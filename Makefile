@@ -129,16 +129,16 @@ stop-stack:  ## Stop local stack
 .PHONY: build-acceptance-servers
 build-acceptance-servers: ## Build Acceptance Servers
 	@echo "Build acceptance backend"
-	@docker build backend -t intk/bonnefanten-backend:acceptance -f backend/Dockerfile.acceptance
+	@docker build backend -t intkbv/bonnefanten-backend:acceptance -f backend/Dockerfile.acceptance
 	@echo "Build acceptance frontend"
-	@docker build frontend -t intk/bonnefanten-frontend:acceptance -f frontend/Dockerfile
+	@docker build frontend -t intkbv/bonnefanten-frontend:acceptance -f frontend/Dockerfile
 
 .PHONY: start-acceptance-servers
 start-acceptance-servers: build-acceptance-servers ## Start Acceptance Servers
 	@echo "Start acceptance backend"
-	@docker run --rm -p 55001:55001 --name bonnefanten-backend-acceptance -d intk/bonnefanten-backend:acceptance
+	@docker run --rm -p 55001:55001 --name bonnefanten-backend-acceptance -d intkbv/bonnefanten-backend:acceptance
 	@echo "Start acceptance frontend"
-	@docker run --rm -p 3000:3000 --name bonnefanten-frontend-acceptance --link bonnefanten-backend-acceptance:backend -e RAZZLE_API_PATH=http://localhost:55001/plone -e RAZZLE_INTERNAL_API_PATH=http://backend:55001/plone -d intk/bonnefanten-frontend:acceptance
+	@docker run --rm -p 3000:3000 --name bonnefanten-frontend-acceptance --link bonnefanten-backend-acceptance:backend -e RAZZLE_API_PATH=http://localhost:55001/plone -e RAZZLE_INTERNAL_API_PATH=http://backend:55001/plone -d intkbv/bonnefanten-frontend:acceptance
 
 .PHONY: stop-acceptance-servers
 stop-acceptance-servers: ## Stop Acceptance Servers

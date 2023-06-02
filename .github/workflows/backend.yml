@@ -8,7 +8,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
   black:
     runs-on: ubuntu-latest
     steps:
@@ -18,8 +17,8 @@ jobs:
       - name: Run check
         uses: plone/code-analysis-action@v2
         with:
-          base_dir: 'backend'
-          check: 'black'
+          base_dir: "backend"
+          check: "black"
 
   flake8:
     runs-on: ubuntu-latest
@@ -30,8 +29,8 @@ jobs:
       - name: Run check
         uses: plone/code-analysis-action@v2
         with:
-          base_dir: 'backend'
-          check: 'flake8'
+          base_dir: "backend"
+          check: "flake8"
 
   isort:
     runs-on: ubuntu-latest
@@ -42,8 +41,8 @@ jobs:
       - name: Run check
         uses: plone/code-analysis-action@v2
         with:
-          base_dir: 'backend'
-          check: 'isort'
+          base_dir: "backend"
+          check: "isort"
 
   zpretty:
     runs-on: ubuntu-latest
@@ -54,8 +53,8 @@ jobs:
       - name: Run check
         uses: plone/code-analysis-action@v2
         with:
-          base_dir: 'backend'
-          check: 'zpretty'
+          base_dir: "backend"
+          check: "zpretty"
 
   tests:
     runs-on: ubuntu-latest
@@ -98,7 +97,6 @@ jobs:
       packages: write
 
     steps:
-
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -107,11 +105,10 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            intk/bonnefanten-backend
+            intkbv/bonnefanten-backend
           labels: |
-            org.label-schema.docker.cmd=docker run -d -p 8080:8080 intk/bonnefanten-backend:latest
-          flavor:
-            latest=false
+            org.label-schema.docker.cmd=docker run -d -p 8080:8080 intkbv/bonnefanten-backend:latest
+          flavor: latest=false
           tags: |
             type=ref,event=branch
             type=sha

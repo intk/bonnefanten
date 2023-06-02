@@ -1,0 +1,3 @@
+---
+hostname: 'bonnefanten'
+fqdn: '{{ hostname }}.localhost'

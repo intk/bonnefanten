@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2022-05-25 17:12+0000\n"
+"POT-Creation-Date: 2023-06-09 13:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,3 +13,39 @@ msgstr ""
 "Language-Name: Portugu&es do Brasil\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+
+#: bonnefanten/profiles.zcml:22
+msgid "Bonnefanten: Initial content"
+msgstr ""
+
+#: bonnefanten/profiles.zcml:13
+msgid "Bonnefanten: Install"
+msgstr ""
+
+#: bonnefanten/profiles.zcml:30
+msgid "Bonnefanten: Uninstall"
+msgstr ""
+
+#: bonnefanten/vocabularies/__init__.py:11
+msgid "Education"
+msgstr ""
+
+#: bonnefanten/vocabularies/__init__.py:9
+msgid "Government"
+msgstr ""
+
+#: bonnefanten/profiles.zcml:22
+msgid "Initial content for our website."
+msgstr ""
+
+#: bonnefanten/vocabularies/__init__.py:10
+msgid "NGO"
+msgstr ""
+
+#: bonnefanten/profiles.zcml:13
+msgid "Policy package to install our site"
+msgstr ""
+
+#: bonnefanten/profiles.zcml:30
+msgid "Uninstall Bonnefanten setup."
+msgstr ""

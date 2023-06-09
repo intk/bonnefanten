@@ -6,6 +6,7 @@
   >
     <value key="available_languages">
       <element>en</element>
+      <element>nl</element>
     </value>
     <value key="default_language">en</value>
   </records>

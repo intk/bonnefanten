@@ -2,6 +2,10 @@
 -e src/bonnefanten[test]
 
 zope.testrunner
+kitconcept.seo
+collective.volto.formsupport
+redturtle.voltoplugin.editablefooter
+collective.volto.socialsettings
 
 # Add required add-ons
 # (Ideally add them in setup.py for bonnefanten)

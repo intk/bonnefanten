@@ -49,6 +49,10 @@ setup(
         "Plone",
         "prettyconf",
         "plone.api",
+        "kitconcept.seo",
+        "collective.volto.formsupport",
+        "redturtle.voltoplugin.editablefooter",
+        "collective.volto.socialsettings",
     ],
     extras_require={
         "test": [

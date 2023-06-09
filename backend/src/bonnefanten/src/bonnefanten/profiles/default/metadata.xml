@@ -3,5 +3,9 @@
   <version>20230602001</version>
   <dependencies>
     <dependency>profile-plone.volto:default</dependency>
+    <dependency>profile-kitconcept.seo:default</dependency>
+    <dependency>profile-collective.volto.formsupport:default</dependency>
+    <dependency>profile-redturtle.voltoplugin.editablefooter:default</dependency>
+    <dependency>profile-collective.volto.socialsettings:default</dependency>
   </dependencies>
 </metadata>

@@ -17,9 +17,17 @@ class BONNEFANTENLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        import collective.volto.formsupport
+        import collective.volto.socialsettings
+        import kitconcept.seo
         import plone.restapi
+        import redturtle.voltoplugin.editablefooter
 
         self.loadZCML(package=plone.restapi)
+        self.loadZCML(package=kitconcept.seo)
+        self.loadZCML(package=collective.volto.formsupport)
+        self.loadZCML(package=redturtle.voltoplugin.editablefooter)
+        self.loadZCML(package=collective.volto.socialsettings)
         self.loadZCML(package=bonnefanten)
 
     def setUpPloneSite(self, portal):

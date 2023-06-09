@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 
 services:
   traefik:
@@ -88,11 +88,13 @@ services:
     environment:
       SITE: Plone
       RELSTORAGE_DSN: "dbname='plone' user='plone' host='db' password='plone'"
-    depends_on:
-      - db
+    volumes:
+      - vol-site-data:/data
     networks:
       - nw-webserver
       - nw-data
+     ports:
+      - 8080:8080
     deploy:
       replicas: 2
       labels:
@@ -132,16 +134,16 @@ services:
         - traefik.http.routers.rt-backend-classic.service=svc-backend
         - traefik.http.routers.rt-backend-classic.middlewares=gzip,mw-backend-auth,mw-backend-vhm-classic
 
-  db:
-    image: postgres:14.2
-    environment:
-      POSTGRES_USER: plone
-      POSTGRES_PASSWORD: plone
-      POSTGRES_DB: plone
-    volumes:
-      - vol-site-data:/var/lib/postgresql/data
-    networks:
-      - nw-data
+  # db:
+  #   image: postgres:14.2
+  #   environment:
+  #     POSTGRES_USER: plone
+  #     POSTGRES_PASSWORD: plone
+  #     POSTGRES_DB: plone
+  #   volumes:
+  #     - vol-site-data:/var/lib/postgresql/data
+  #   networks:
+  #     - nw-data
 
 volumes:
   vol-traefik-public-certificates:

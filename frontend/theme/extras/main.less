@@ -228,9 +228,95 @@ body.multiple-content-view:not(.section-edit) {
   }
 }
 
+h1,
+h2,
+h3 {
+  margin-top: 100px;
+  margin-bottom: 45px;
+
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+
+  @media (max-width: 991px) {
+    margin-top: 55px;
+    margin-bottom: 15px;
+  }
+}
+
+h4,
+h5,
+h6 {
+  margin-top: 100px;
+  margin-bottom: 45px;
+}
+
+@media (max-width: 991px) {
+  h3 {
+    font-size: 22px;
+    line-height: 1.636;
+  }
+}
+
+#page-document {
+  .image-source {
+    font-size: 80%;
+  }
+
+  .image-caption {
+    font-size: 90%;
+  }
+}
+
 p.content-description,
 .content-description {
   margin-bottom: 0.6em;
   font-family: @pageFont;
   font-weight: 600;
+}
+
+button.gdpr-privacy-show-banner {
+  z-index: 2;
+  display: none;
+}
+
+#footer {
+  .ui.inverted.grey.segment,
+  &.ui.inverted.grey.segment {
+    background-color: @footerColor !important;
+    color: @footerText !important;
+
+    a {
+      color: #fff !important;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus {
+        color: #fff !important;
+        opacity: 0.6;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+  font-size: 1.5em;
+}
+
+.ui.form .ui.input input:not([type]),
+.ui.form .ui.input input[type='date'],
+.ui.form .ui.input input[type='datetime-local'],
+.ui.form .ui.input input[type='email'],
+.ui.form .ui.input input[type='number'],
+.ui.form .ui.input input[type='password'],
+.ui.form .ui.input input[type='search'],
+.ui.form .ui.input input[type='tel'],
+.ui.form .ui.input input[type='time'],
+.ui.form .ui.input input[type='text'],
+.ui.form .ui.input input[type='file'],
+.ui.form .ui.input input[type='url'],
+.ui.form textarea {
+  border-color: #000;
 }

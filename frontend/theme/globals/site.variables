@@ -3,7 +3,7 @@
 --------------------*/
 
 @fontName: 'Libre Franklin';
-@importGoogleFonts: false;
+@importGoogleFonts: true;
 
 /*-------------------
       Base Sizes

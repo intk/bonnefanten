@@ -23,6 +23,9 @@ endif
 ifeq ($(DEPLOY_ENV), dev)
 	CONTEXT=dev
 	CONTEXT_HOST=ssh://$(DEPLOY_USER)@$(DEPLOY_HOST):$(DEPLOY_PORT)
+else ifeq ($(DEPLOY_ENV), stage)
+	CONTEXT=stage
+	CONTEXT_HOST=ssh://$(DEPLOY_USER)@$(DEPLOY_HOST):$(DEPLOY_PORT)
 else ifeq ($(DEPLOY_ENV), prod)
 	CONTEXT=prod
 	CONTEXT_HOST=ssh://$(DEPLOY_USER)@$(DEPLOY_HOST):$(DEPLOY_PORT)

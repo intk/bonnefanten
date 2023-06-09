@@ -1,0 +1,236 @@
+body {
+  font-display: swap;
+}
+
+#toolbar .toolbar-content {
+  z-index: 10;
+}
+
+::-moz-selection,
+::selection {
+  border-width: 20px;
+  border-style: solid;
+  background-color: @primaryColor;
+  border-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj4KICA8ZyBmaWxsPSIjMUZCRUVGIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIG9wYWNpdHk9Ii45NSI+CiAgICA8cGF0aCBkPSJNMTAgNjBDNC40NzcxNTI1IDYwIDAgNTUuNTI0MDYxOCAwIDUwIDMuNTUyNzEzNjhlLTE1IDQ0LjQ3NzE1MjUgNC40NzU5MzgxOCA0MCAxMCA0MEwyMCA0MCAyMCA1MEMyMCA1NS41MjI4NDc1IDE1LjUyNDA2MTggNjAgMTAgNjB6TTQwIDUwQzQwIDU1LjUyMjg0NzUgNDQuNDc1OTM4MiA2MCA1MCA2MEw1MCA2MEM1NS41MjI4NDc1IDYwIDYwIDU1LjUyNDA2MTggNjAgNTBMNjAgNTBDNjAgNDQuNDc3MTUyNSA1NS41MjQwNjE4IDQwIDUwIDQwTDQwIDQwIDQwIDUwIDQwIDUweiIvPgogIDwvZz4KPC9zdmc+Cg==')
+    20 fill repeat;
+  color: @primaryText;
+}
+
+.sr-only {
+  position: absolute !important;
+  overflow: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  margin: -1px !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+body:not(.has-hero-section) {
+  .content-area {
+    padding-top: 200px;
+  }
+}
+
+body.cms-ui,
+body.section-add,
+body.section-edit {
+  .ui.basic.segment.content-area {
+    position: relative !important;
+    z-index: 1;
+  }
+}
+
+body.multiple-content-view:not(.section-edit) {
+  background: @secondaryColor;
+  color: @secondaryText;
+
+  .content-area {
+    &,
+    p {
+      color: @secondaryText;
+    }
+  }
+
+  #main .documentDescription {
+    color: @secondaryText;
+  }
+
+  .herosection {
+    &,
+    h1.documentFirstHeading {
+      text-align: center;
+    }
+  }
+}
+
+#main {
+  width: 100%;
+  color: @textColor;
+
+  #page-document p > a,
+  a {
+    color: @linkColor;
+    text-decoration: @linkUnderline;
+    transition: color 0.2s ease;
+
+    &:hover,
+    &:focus {
+      color: @linkHoverColor;
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .ui.primary.buttons .button,
+  .ui.primary.button {
+    background: @primaryColor;
+    color: @primaryText;
+    transition: all 0.3s ease;
+
+    &:hover,
+    &:focus {
+      background: @primaryDarker;
+    }
+  }
+
+  .documentDescription {
+    margin-bottom: 10px;
+    color: @textColor;
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.6;
+  }
+
+  figure.image-wrapper.full-width {
+    display: flex;
+
+    img {
+      min-width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}
+
+#main {
+  #page-controlpanel,
+  .ui.controlpanel {
+    color: rgba(0, 0, 0, 0.87);
+
+    a {
+      h3 {
+        font-size: 1.12rem;
+      }
+    }
+  }
+
+  #page-contents,
+  #page-controlpanel {
+    a {
+      color: @linkColor;
+      text-decoration: @linkUnderline;
+
+      &:hover,
+      &:focus {
+        color: @linkHoverColor;
+        text-decoration: underline;
+      }
+
+      &:focus {
+        outline: 0;
+      }
+    }
+  }
+
+  #page-contents {
+    font-size: 0.8rem;
+  }
+
+  .inline.field {
+    color: @darkGrey;
+  }
+
+  .objectbrowser-field .action.button {
+    color: @textColor;
+  }
+}
+
+.content-area {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: @brand-primary-titles;
+  }
+
+  p {
+    margin: 0 0 30px;
+    color: @textColor;
+    font-size: 21px;
+    line-height: 1.714;
+
+    @media (max-width: 991px) {
+      font-size: 19px;
+      line-height: 1.68;
+    }
+  }
+
+  ol,
+  ul {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 20px;
+    line-height: 34px;
+
+    ul,
+    ol {
+      margin-bottom: 0px;
+    }
+  }
+
+  ul {
+    li {
+      &::marker {
+        color: @theme-color-purple;
+      }
+    }
+  }
+
+  table {
+    th,
+    td {
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    thead th p {
+      font-weight: 600;
+      text-transform: none;
+    }
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+p.content-description,
+.content-description {
+  margin-bottom: 0.6em;
+  font-family: @pageFont;
+  font-weight: 600;
+}

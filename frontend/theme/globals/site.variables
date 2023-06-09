@@ -1,0 +1,91 @@
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName: 'Libre Franklin';
+@importGoogleFonts: false;
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all*/
+@emSize: 16px;
+
+/* The size of page text*/
+@fontSize: 18px;
+
+@fontWeightMedium: 500;
+
+/*-------------------
+      Site Colors
+--------------------*/
+
+/*---  Colors  ---*/
+@brand-primary: #282931;
+@brand-primary-titles: #575756;
+@brand-primary-text: #575756;
+@brand-primary-lines: #eaeaea;
+
+@gray-dark: lighten(black, 25%);
+@gray: lighten(black, 50%);
+@white-faded: fade(white, 80%);
+@gray-light: #eee;
+
+@primaryColor: @brand-primary;
+@primaryText: @brand-primary-text;
+@footerColor: #ffe79a;
+@footerText: #ffffff;
+
+@primaryDarker: #000;
+
+@greyHover: @primaryColor;
+@greyActive: @primaryColor;
+
+@textColor: #333;
+@bgColor: #fff;
+@darkGrey: #272729;
+@darkGrey2: #2e2e2e;
+@lightGrey: #464649;
+@lightenGrey: #9d9d9d;
+@siteDarkWhite: #d7dadc;
+
+/*--------------
+  Page Heading
+---------------*/
+
+@headerFontWeight: 800;
+@headerFont: @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont: @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+
+@h1: 50px;
+@h2: 34px;
+@h3: 24px;
+@h4: 16px;
+@h5: 13px;
+@h6: 10px;
+
+/*-------------------
+        Page
+--------------------*/
+@lineHeight: 1.5em;
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor: #575756;
+@linkHoverColor: #000;
+@linkUnderline: none;
+
+/*-------------------
+        Grid
+--------------------*/
+
+@columnCount: 12;
+
+/*-------------------
+      SITE VARIABLES
+--------------------*/
+
+@leadimageHeight: 470px;

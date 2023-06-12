@@ -1,0 +1,39 @@
+.block.image {
+  figure {
+    margin: 0;
+  }
+
+  figcaption {
+    color: #696969;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+
+    .image-source {
+      display: inline-block;
+      margin-right: 0.5rem;
+
+      + .image-caption {
+        &::before {
+          display: inline-block;
+          margin-right: 0.5rem;
+          content: ' ― ';
+        }
+      }
+    }
+  }
+
+  &.full {
+    margin-bottom: 3rem;
+  }
+
+  figure.full-width {
+    figcaption {
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

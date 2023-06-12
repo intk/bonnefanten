@@ -3,9 +3,9 @@
   font-family: 'StyreneRegular';
   font-style: normal;
   font-weight: normal;
-  src: url('/fonts/StyreneB-Regular.woff') format('woff'),
-    url('/fonts/StyreneB-Regular.woff2') format('woff2'),
-    url('/fonts/StyreneB-Regular.otf') format('opentype');
+  src: url('@{siteFolder}/assets/fonts/StyreneB-Regular.woff') format('woff'),
+    url('@{siteFolder}/assets/fonts/StyreneB-Regular.woff2') format('woff2'),
+    url('@{siteFolder}/assets/fonts/StyreneB-Regular.otf') format('opentype');
 }
 
 @font-face {
@@ -13,9 +13,9 @@
   font-family: 'StyreneBold';
   font-style: normal;
   font-weight: normal;
-  src: url('/fonts/StyreneB-Bold.woff') format('woff'),
-    url('/fonts/StyreneB-Bold.woff2') format('woff2'),
-    url('/fonts/StyreneB-Bold.otf') format('opentype');
+  src: url('@{siteFolder}/assets/fonts/StyreneB-Bold.woff') format('woff'),
+    url('@{siteFolder}/assets/fonts/StyreneB-Bold.woff2') format('woff2'),
+    url('@{siteFolder}/assets/fonts/StyreneB-Bold.otf') format('opentype');
 }
 
 @font-face {
@@ -23,9 +23,9 @@
   font-family: 'BonnefantenBlock';
   font-style: normal;
   font-weight: normal;
-  src: url('/fonts/Bonnefanten-Block.woff') format('woff'),
-    url('/fonts/Bonnefanten-Block.woff2') format('woff2'),
-    url('/fonts/Bonnefanten-Block.otf') format('opentype');
+  src: url('@{siteFolder}/assets/fonts/Bonnefanten-Block.woff') format('woff'),
+    url('@{siteFolder}/assets/fonts/Bonnefanten-Block.woff2') format('woff2'),
+    url('@{siteFolder}/assets/fonts/Bonnefanten-Block.otf') format('opentype');
 }
 
 @font-face {
@@ -33,9 +33,9 @@
   font-family: 'BonnefantenGothic';
   font-style: normal;
   font-weight: normal;
-  src: url('/fonts/Bonnefanten-Gothic.woff') format('woff'),
-    url('/fonts/Bonnefanten-Gothic.woff2') format('woff2'),
-    url('/fonts/Bonnefanten-Gothic.otf') format('opentype');
+  src: url('@{siteFolder}/assets/fonts/Bonnefanten-Gothic.woff') format('woff'),
+    url('@{siteFolder}/assets/fonts/Bonnefanten-Gothic.woff2') format('woff2'),
+    url('@{siteFolder}/assets/fonts/Bonnefanten-Gothic.otf') format('opentype');
 }
 
 @font-face {
@@ -43,7 +43,21 @@
   font-family: 'BonnefantenSlab';
   font-style: normal;
   font-weight: normal;
-  src: url('/fonts/Bonnefanten-Slab.woff') format('woff'),
-    url('/fonts/Bonnefanten-Slab.woff2') format('woff2'),
-    url('/fonts/Bonnefanten-Slab.otf') format('opentype');
+  src: url('@{siteFolder}/assets/fonts/Bonnefanten-Slab.woff') format('woff'),
+    url('@{siteFolder}/assets/fonts/Bonnefanten-Slab.woff2') format('woff2'),
+    url('@{siteFolder}/assets/fonts/Bonnefanten-Slab.otf') format('opentype');
+}
+
+body,
+.content-area {
+  font-family: 'StyreneRegular', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'StyreneBold', sans-serif;
 }

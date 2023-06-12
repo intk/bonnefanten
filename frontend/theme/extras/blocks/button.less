@@ -1,0 +1,55 @@
+.text-button.btn-block,
+a.text-button.btn-block {
+  &,
+  #main & {
+    position: relative;
+    display: inline-block;
+    min-height: 53px;
+    padding: 7px 17px;
+    border: 1px solid @primaryColor;
+    background-color: @primaryColor;
+    border-radius: 0;
+    box-shadow: none;
+    color: @primaryText;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.7;
+    text-shadow: none;
+    text-transform: none;
+    transition: background-color 0.3s ease, color 0.3s ease,
+      border-color 0.3s ease;
+
+    &::after {
+      position: absolute;
+      top: -1px;
+      right: -47px;
+      border-bottom: 53px solid transparent;
+      border-left: 46px solid @primaryColor;
+      content: '';
+      transition: border-color 0.3s ease;
+    }
+
+    &.secondary {
+      border-color: @secondaryColor;
+      background-color: @secondaryColor;
+      color: @secondaryText;
+
+      &::after {
+        border-left-color: @secondaryColor;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      border-color: #000;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+
+      &::after {
+        border-left-color: #000;
+      }
+    }
+  }
+}

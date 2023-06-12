@@ -28,7 +28,10 @@
     "@eeacms/volto-accordion-block",
     "@kitconcept/volto-blocks-grid",
     "@kitconcept/volto-slider-block",
-    "@eeacms/volto-matomo"
+    "volto-form-block",
+    "volto-editablefooter",
+    "volto-social-settings",
+    "volto-gdpr-privacy"
   ],
   "jest": {
     "modulePathIgnorePatterns": [
@@ -136,14 +139,19 @@
     "not dead"
   ],
   "engines": {
-    "node": "^14 || ^16"
+    "node": "^14 || ^16 || ^18"
   },
   "dependencies": {
     "@eeacms/volto-accordion-block": "*",
     "@eeacms/volto-matomo": "*",
     "@kitconcept/volto-blocks-grid": "*",
     "@kitconcept/volto-slider-block": "*",
-    "@plone/volto": "16.20.8"
+    "@plone/volto": "16.20.8",
+    "react-gtm-module": "2.0.11",
+    "volto-editablefooter": "5.0.1",
+    "volto-form-block": "3.0.1",
+    "volto-gdpr-privacy": "2.0.0",
+    "volto-social-settings": "3.0.0"
   },
   "devDependencies": {
     "@plone/scripts": "^2.1.5",

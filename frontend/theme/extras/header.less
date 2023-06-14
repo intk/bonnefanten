@@ -13,11 +13,11 @@
   position: relative;
 
   .header-wrapper {
-    position: absolute;
+    position: fixed;
     z-index: 5;
     width: 100%;
     box-sizing: border-box;
-    padding: 30px 15px;
+    padding: 0 15px;
 
     body.section-edit,
     body.section-contents,
@@ -139,11 +139,11 @@ body.has-hero-section.section-add {
 }
 
 .logo-nav-wrapper {
-  position: relative;
+  position: static;
   z-index: 1;
   display: flex;
   width: 100%;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
 
   .logo {

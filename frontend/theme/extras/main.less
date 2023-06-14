@@ -11,8 +11,8 @@ body {
 ::selection {
   border-width: 20px;
   border-style: solid;
-  background-color: @primaryColor;
-  color: @primaryText;
+  background-color: var(--bonnefanten-primary-text, @primaryColor);
+  color: var(--bonnefanten-primary-invert, @primaryText);
 }
 
 .sr-only {

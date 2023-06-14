@@ -2,9 +2,7 @@ import React from 'react';
 import { Container } from 'semantic-ui-react';
 import { BodyClass } from '@plone/volto/helpers';
 import Image from '@package/components/theme/Image/Image';
-import { defineMessages, useIntl } from 'react-intl';
-
-const messages = defineMessages({});
+import { useIntl } from 'react-intl';
 
 const getDateRangeDescription = (lang, start, end) => {
   if (
@@ -60,8 +58,8 @@ function HeroSection(props) {
   const endDate = new Date(end || Date.now());
   const startDate = new Date(start || Date.now());
 
-  const isCurrentEvent = startDate <= Date.now() && endDate >= Date.now();
-  const isFutureEvent = startDate > Date.now();
+  // const isCurrentEvent = startDate <= Date.now() && endDate >= Date.now();
+  // const isFutureEvent = startDate > Date.now();
 
   return (
     <div className="herosection">

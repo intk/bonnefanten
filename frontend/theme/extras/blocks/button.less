@@ -4,51 +4,55 @@ a.text-button.btn-block {
   #main & {
     position: relative;
     display: inline-block;
-    min-height: 53px;
-    padding: 7px 17px;
-    border: 1px solid @primaryColor;
-    background-color: @primaryColor;
-    border-radius: 0;
-    box-shadow: none;
-    color: @primaryText;
-    cursor: pointer;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.7;
+    padding: 5px 28px;
+    border: 2px solid var(--bonnefanten-primary);
+    margin: 0 auto;
+    background-color: var(--bonnefanten-primary);
+    border-radius: 0px;
+    clip-path: polygon(
+      0% 10px,
+      10px 0%,
+      calc(100%) 0%,
+      100% 10px,
+      100% calc(100% - 10px),
+      calc(100% - 10px) 100%,
+      10px 100%,
+      0 calc(100%)
+    );
+    color: var(--bonnefanten-bg);
+    font-family: 'StyreneBold', Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0em;
+    letter-spacing: 0em;
+    line-height: 2.5;
+    text-decoration: none;
     text-shadow: none;
     text-transform: none;
-    transition: background-color 0.3s ease, color 0.3s ease,
-      border-color 0.3s ease;
-
-    &::after {
-      position: absolute;
-      top: -1px;
-      right: -47px;
-      border-bottom: 53px solid transparent;
-      border-left: 46px solid @primaryColor;
-      content: '';
-      transition: border-color 0.3s ease;
-    }
-
-    &.secondary {
-      border-color: @secondaryColor;
-      background-color: @secondaryColor;
-      color: @secondaryText;
-
-      &::after {
-        border-left-color: @secondaryColor;
-      }
-    }
+    transition: all 0.3s ease-in;
 
     &:hover,
     &:focus {
-      border-color: #000;
-      background-color: #000;
-      color: #fff;
+      border-color: var(--bonnefanten-primary);
+      background-color: var(--bonnefanten-bg);
+      box-shadow: none;
+      clip-path: polygon(
+        0% 10px,
+        0px 0%,
+        calc(100%) 0%,
+        100% 10px,
+        100% calc(100% - 10px),
+        calc(100% - 0px) 100%,
+        10px 100%,
+        0 calc(100%)
+      );
+      color: var(--bonnefanten-primary);
       text-decoration: none;
 
-      &::after {
-        border-left-color: #000;
+      &.secondary {
+        border-color: var(--bonnefanten-secondary);
+        background-color: var(--bonnefanten-secondary);
+        color: var(--bonnefanten-bg);
       }
     }
   }

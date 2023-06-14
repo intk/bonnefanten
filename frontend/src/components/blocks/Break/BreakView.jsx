@@ -15,7 +15,7 @@ const View = ({ data }) => {
     <div
       className={cx('block break-block', { divider: data.style === 'divider' })}
     >
-      {data.style === 'divider' && <hr />}
+      {data.style === 'divider' && <span className="divider">--</span>}
     </div>
   );
 };

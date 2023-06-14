@@ -1,12 +1,21 @@
 .accordion-block {
-  .accordion {
+  .ui.styled.accordion {
+    border: 1px solid var(--bonnefanten-primary, @primaryColor);
+    background: none;
+
     .accordion-title {
       background: var(--bonnefanten-primary, @primaryColor) !important;
-      color: var(--bonnefanten-primary-text, @primaryText) !important;
+      color: var(--bonnefanten-bg, @primaryText) !important;
       font-size: 21px !important;
 
       &.active {
         font-weight: 600 !important;
+      }
+    }
+
+    .content {
+      p {
+        margin-bottom: 0;
       }
     }
   }

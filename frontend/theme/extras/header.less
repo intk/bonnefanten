@@ -53,35 +53,31 @@
         -moz-transition: all 0.3s ease-in;
         -o-transition: all 0.3s ease-in;
         transition: all 0.3s ease-in;
-      }
 
-      @media (max-width: 767px) {
-        line-height: 10vw;
-      }
+        span.block {
+          font-family: 'BonnefantenBlock', Arial, sans-serif;
+        }
 
-      span.block {
-        font-family: 'BonnefantenBlock', Arial, sans-serif;
-      }
+        span.gothic {
+          font-family: 'BonnefantenGothic', Arial, sans-serif;
+        }
 
-      span.gothic {
-        font-family: 'BonnefantenGothic', Arial, sans-serif;
-      }
+        span.slab {
+          font-family: 'BonnefantenSlab', Arial, sans-serif;
+        }
 
-      span.slab {
-        font-family: 'BonnefantenSlab', Arial, sans-serif;
-      }
+        &:hover,
+        &:active,
+        &:focus,
+        &:focus:active {
+          border-bottom: 0px !important;
+          text-transform: none !important;
+        }
 
-      &:hover,
-      &:active,
-      &:focus,
-      &:focus:active {
-        border-bottom: 0px !important;
-        text-transform: none !important;
-      }
-
-      @media (min-width: 1400px) {
-        font-size: 110px;
-        line-height: 135px;
+        @media (min-width: 1400px) {
+          font-size: 110px;
+          line-height: 135px;
+        }
       }
 
       svg,
@@ -705,8 +701,10 @@ body.has-hero-image {
       position: relative;
       z-index: 2;
       display: flex;
+      overflow: hidden;
       width: 100%;
       min-height: 500px;
+      max-height: 700px;
       margin: 0;
 
       picture {

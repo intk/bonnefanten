@@ -63,14 +63,6 @@ const Header = (props) => {
           </div>
         </div>
       </div>
-      <div id="header-spacer"></div>
-      <InView
-        as="div"
-        className="header-visibility-sensor"
-        onChange={(inView, entry) => setInView(inView)}
-      >
-        {' '}
-      </InView>
 
       {!((cmsView && !isSearch) || isHomePage) && (
         <div className="header-bg">
@@ -93,6 +85,23 @@ const Header = (props) => {
           </div>
         </div>
       )}
+
+      <div id="header-spacer"></div>
+      <InView
+        as="div"
+        className="header-visibility-sensor"
+        onChange={(inView, entry) => {
+          setInView(inView);
+
+          if (inView) {
+            document.body.classList.remove('header-out-of-view');
+          } else {
+            document.body.classList.add('header-out-of-view');
+          }
+        }}
+      >
+        {' '}
+      </InView>
     </div>
   );
 };

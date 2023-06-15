@@ -1,0 +1,220 @@
+footer.site-footer {
+  position: relative;
+  z-index: 0;
+  padding: 70px 0 30px 0;
+  margin-top: 40px;
+  background: #ffd100;
+  color: #333;
+
+  .footer-columns {
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: 0em;
+
+    .column {
+      position: relative;
+      display: inline-block;
+      width: calc(100% / 3);
+      padding-right: 1rem;
+      padding-left: 1rem;
+      margin-top: 22px;
+      margin-bottom: 22px;
+
+      @media (max-width: 991px) {
+        width: 50% !important;
+      }
+
+      @media (max-width: 768px) {
+        width: 100% !important;
+      }
+    }
+
+    a {
+      border-bottom: 1px solid transparent;
+      color: #7841b3 !important;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-decoration: none !important;
+      word-wrap: break-word;
+
+      &:hover {
+        border-bottom-color: #7841b3;
+        color: @footerText !important;
+        text-decoration: none !important;
+      }
+    }
+  }
+
+  // logo
+  a.site-logo {
+    svg {
+      width: 200px;
+      max-width: 90%;
+      height: auto;
+    }
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 17px;
+    line-height: 1.88;
+  }
+
+  .social-header {
+    display: block;
+    min-height: 50px;
+    list-style-type: none;
+
+    a {
+      display: inline-block;
+      margin-right: 1em;
+      margin-bottom: 0.5em;
+      font-size: 16px;
+      opacity: 1;
+      text-decoration: none !important;
+
+      i {
+        font-size: 1.75rem;
+      }
+
+      &:hover,
+      &:focus,
+      &:active:focus {
+        opacity: 0.6;
+        text-decoration: none !important;
+      }
+    }
+
+    + .footer-column-content {
+      p {
+        a {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .newsletter-subscribe {
+    a.newsletter-subscribe-link {
+      position: relative;
+      display: inline-block;
+      min-height: 53px;
+      padding: 7px 17px;
+      border: 1px solid @theme-color-light-blue;
+      background-color: @theme-color-light-blue;
+      border-radius: 0;
+      box-shadow: none;
+      color: @primaryText;
+      cursor: pointer;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1.7;
+      text-decoration: none !important;
+      text-shadow: none;
+      text-transform: none !important;
+      transition: background-color 0.3s ease, color 0.3s ease,
+        border-color 0.3s ease !important;
+
+      &::after {
+        position: absolute;
+        top: -1px;
+        right: -47px;
+        border-bottom: 53px solid transparent;
+        border-left: 46px solid @theme-color-light-blue;
+        content: '';
+        transition: border-color 0.3s ease;
+      }
+
+      &:hover,
+      &:focus,
+      &:active:focus {
+        border-color: #fff !important;
+        background-color: #fff;
+        color: #000 !important;
+        opacity: 1;
+        text-decoration: none !important;
+
+        &::after {
+          border-left-color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.sponsors-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.sponsor {
+  width: 33%;
+  min-height: 50px;
+  padding-left: 10px;
+  margin-top: 34px;
+
+  &:first-child {
+    padding-left: 0px;
+  }
+
+  @media (max-width: 991px) {
+    padding-left: 0px;
+  }
+
+  .sponsors-logo {
+    display: block;
+    max-width: 100%;
+    min-height: 60px;
+    opacity: 0.6;
+  }
+
+  a {
+    display: inline-block;
+
+    &:hover,
+    &:focus,
+    &:active:focus {
+      .sponsors-logo {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.sponsors-logo {
+  &.anbi {
+    width: 60px;
+    background-position: left;
+    background-size: contain;
+  }
+
+  &.ocw {
+    width: 165px;
+    background-position: left;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: auto;
+    background-size: contain;
+    filter: grayscale(1);
+  }
+}

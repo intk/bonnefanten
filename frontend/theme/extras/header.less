@@ -18,6 +18,8 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0 15px;
+    background: none;
+    transition: background 0.3s ease-in-out;
 
     body.section-edit,
     body.section-contents,
@@ -40,7 +42,7 @@
         width: auto;
         height: auto;
         padding-bottom: 5px;
-        margin-left: 20px;
+        padding-left: 20px;
         background-color: transparent;
         color: var(--bonnefanten-primary, #f9423a);
         cursor: pointer;
@@ -160,6 +162,11 @@ body.has-hero-section.section-add {
   }
 }
 
+body.scrolled #main .portal-top .header-wrapper {
+  background: var(--bonnefanten-bg);
+  transition: background-color 0.2s ease-in;
+}
+
 .hamburger-wrapper {
   display: flex;
 
@@ -191,6 +198,7 @@ body.has-hero-section.section-add {
         &::after {
           width: 35px;
           background-color: var(--bonnefanten-primary, #f9423a);
+          transition: background-color 0.2s ease-in;
 
           @media (max-width: 991px) {
             width: 30px;

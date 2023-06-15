@@ -87,7 +87,6 @@ services:
     image: intkbv/bonnefanten-backend:latest
     environment:
       SITE: Plone
-      RELSTORAGE_DSN: "dbname='plone' user='plone' host='db' password='plone'"
     volumes:
       - vol-site-data:/data
     networks:
@@ -96,7 +95,6 @@ services:
     ports:
       - 8080:8080
     deploy:
-      replicas: 2
       labels:
         - traefik.enable=true
         - traefik.docker.network=nw-webserver

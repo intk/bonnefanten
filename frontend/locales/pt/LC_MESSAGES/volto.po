@@ -19,6 +19,11 @@ msgstr ""
 "Language-Name: Portuguese\n"
 "Preferred-Encodings: utf-8\n"
 
+#: components/blocks/Teaser/schema
+# defaultMessage: Alignment
+msgid "Alignment"
+msgstr ""
+
 #: components/blocks/Break/schema
 # defaultMessage: Break
 msgid "Break"
@@ -39,9 +44,45 @@ msgstr ""
 msgid "Close menu"
 msgstr ""
 
+#: components/blocks/Teaser/schema
+# defaultMessage: Description
+msgid "Description"
+msgstr ""
+
+#: components/blocks/Teaser/TeaserDefaultTemplate
+# defaultMessage: Future
+msgid "Future"
+msgstr ""
+
+#: components/blocks/Teaser/schema
+# defaultMessage: Image override
+msgid "Image override"
+msgstr ""
+
+#: components/blocks/Teaser/TeaserDefaultTemplate
+# defaultMessage: Now on display
+msgid "Now on display"
+msgstr ""
+
+#: components/blocks/Teaser/schema
+# defaultMessage: Open in a new tab
+msgid "Open in a new tab"
+msgstr ""
+
 #: components/theme/Navigation/Navigation
 # defaultMessage: Open menu
 msgid "Open menu"
+msgstr ""
+
+#: components/blocks/Teaser/TeaserDefaultTemplate
+# defaultMessage: Past exhibition
+msgid "Past exhibition"
+msgstr ""
+
+#: components/blocks/Slider/View
+#: components/blocks/Teaser/TeaserDefaultTemplate
+# defaultMessage: Please choose an existing content as source for this element
+msgid "Please choose an existing content as source for this element"
 msgstr ""
 
 #: components/blocks/Quote/schema
@@ -49,7 +90,37 @@ msgstr ""
 msgid "Quote"
 msgstr ""
 
+#: components/theme/Footer/NewsletterSubscribe
+# defaultMessage: Subscribe
+msgid "Subscribe"
+msgstr ""
+
 #: components/theme/LanguageSelector/LanguageSelector
 # defaultMessage: Switch to
 msgid "Switch to"
+msgstr ""
+
+#: components/blocks/Teaser/schema
+# defaultMessage: Target
+msgid "Target"
+msgstr ""
+
+#: components/blocks/Teaser/schema
+# defaultMessage: Teaser
+msgid "Teaser"
+msgstr ""
+
+#: components/blocks/Teaser/schema
+# defaultMessage: Title
+msgid "Title"
+msgstr ""
+
+#: components/blocks/Teaser/schema
+# defaultMessage: Head title
+msgid "head_title"
+msgstr ""
+
+#: components/blocks/Teaser/TeaserDefaultTemplate
+# defaultMessage: More info
+msgid "moreInfo"
 msgstr ""

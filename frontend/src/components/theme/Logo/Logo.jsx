@@ -29,7 +29,8 @@ const Logo = () => {
   const { settings } = config;
   const lang = useSelector((state) => state.intl.locale);
 
-  const [letters, dispatchLettersChange] = useReducer(lettersReducer, [
+  // const [letters, dispatchLettersChange] = useReducer(lettersReducer, [
+  const [letters] = useReducer(lettersReducer, [
     {
       letter: 'B',
       theme: 'block',

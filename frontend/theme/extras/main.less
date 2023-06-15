@@ -399,7 +399,7 @@ table.ui.table.block {
     padding-right: 20px;
     padding-bottom: 10px;
     padding-left: 15px;
-    background-color: var(--bonnefanten-primary-text);
+    background-color: var(--bonnefanten-primary-text) !important;
     color: var(--bonnefanten-bg);
     font-family: 'StyreneBold', Arial, sans-serif;
     font-size: 17px;
@@ -413,6 +413,19 @@ table.ui.table.block {
       font-size: inherit;
       font-weight: 400;
       line-height: inherit;
+    }
+  }
+
+  &:not(.unstackable) {
+    thead tr {
+      @media only screen and (max-width: 767px) {
+        padding: 0 !important;
+
+        > th {
+          padding-top: 15px !important;
+          padding-bottom: 15px !important;
+        }
+      }
     }
   }
 

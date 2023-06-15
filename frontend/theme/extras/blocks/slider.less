@@ -1,0 +1,22 @@
+.block.slider {
+  &:not(.inner):not([role='presentation']) {
+    padding-bottom: 0;
+  }
+
+  @media (max-width: 767px) {
+    padding: 0 40px;
+  }
+
+  button.slick-arrow {
+    svg {
+      width: 25px;
+      height: 42.5px;
+      color: var(--bonnefanten-primary);
+    }
+  }
+
+  .block.teaser .teaser-item.default {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

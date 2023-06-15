@@ -7,8 +7,27 @@ body {
   --bonnefanten-text: #333;
 
   background: var(--bonnefanten-bg);
+  transition: background-color 0.2s ease-in;
 
   #main {
     color: var(--bonnefanten-text);
+  }
+
+  &.header-out-of-view {
+    --bonnefanten-bg: #fedacd;
+    --bonnefanten-primary: #216d6a;
+    --bonnefanten-primary-text: #575756;
+    --bonnefanten-primary-invert: #fff;
+    --bonnefanten-secondary: #b6a782;
+    --bonnefanten-text: #333;
+  }
+
+  &.footer-in-view {
+    --bonnefanten-bg: #ffd100;
+    --bonnefanten-primary: #7841b3;
+    --bonnefanten-primary-text: #575756;
+    --bonnefanten-primary-invert: #fff;
+    --bonnefanten-secondary: #b6a782;
+    --bonnefanten-text: #333;
   }
 }

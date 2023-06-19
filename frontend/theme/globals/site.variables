@@ -13,7 +13,7 @@
 @emSize: 16px;
 
 /* The size of page text*/
-@fontSize: 18px;
+@fontSize: 16px;
 
 @fontWeightMedium: 500;
 

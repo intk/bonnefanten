@@ -1,6 +1,9 @@
 body {
   font-display: swap;
   font-size: 16px;
+  font-smooth: always;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 #toolbar .toolbar-content {
@@ -80,36 +83,56 @@ body.section-edit {
     }
   }
 
-  .documentDescription {
+  .description-wrapper {
+    position: relative;
+    padding: 0 20px;
+
+    @media (min-width: 768px) {
+      padding-right: 25px;
+      padding-left: 25px;
+    }
+
+    @media (min-width: 1200px) {
+      padding: 5px 115px 5px 30px;
+    }
+
+    .quote-bonnefanten.quote-top-left {
+      top: 20px;
+      left: -70px;
+    }
+
+    .quote-bonnefanten.quote-top-right {
+      top: 20px;
+      right: -95px;
+    }
+  }
+
+  .documentDescription:not(.hero-description) {
     display: block;
     width: 100%;
     max-width: 100%;
-    padding-top: 34px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    margin: 0 auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-    margin-left: auto;
-    color: @textColor;
+    margin: 15px auto 5px;
     color: #b6a782;
     font-family: 'StyreneRegular', Arial, sans-serif;
     font-size: 25px;
-    font-weight: 600;
     letter-spacing: 0em;
     line-height: 32px;
     text-align: left;
-
-    @media (min-width: 1200px) {
-      padding-right: 115px;
-      padding-left: 50px;
-    }
 
     body.section-edit &,
     body.section-content &,
     body.section-add & {
       padding: 0;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 620px;
+      margin-left: 0px;
+    }
+  }
+  @media (max-width: 768px) {
+    .description-wrapper + #page-document .content-container {
+      padding-top: 0;
     }
   }
 
@@ -167,32 +190,6 @@ body.section-edit {
   }
 }
 
-h1.documentFirstHeading {
-  padding: 0;
-  border-bottom: 0;
-  margin-top: 100px;
-  margin-bottom: 45px;
-  font-size: 80px;
-  font-weight: 800;
-  letter-spacing: 0em;
-  line-height: 1;
-  text-align: left;
-
-  &::before {
-    display: none;
-  }
-
-  @media (max-width: 991px) {
-    margin-top: 80px;
-    font-size: 37px;
-    line-height: 1.08;
-  }
-
-  @media (min-width: 992px) and (max-height: 750px) {
-    font-size: 8vh;
-  }
-}
-
 .content-area {
   h1,
   h2,
@@ -208,21 +205,31 @@ h1.documentFirstHeading {
   p {
     margin: 0 0 30px;
     color: var(--bonnefanten-text, @textColor);
-    font-size: 21px;
-    line-height: 1.714;
+    font-size: 18px;
+    line-height: 25px;
 
     @media (max-width: 991px) {
-      font-size: 19px;
-      line-height: 1.68;
+      font-size: 1.18em;
     }
+  }
+
+  strong {
+    font-smooth: never;
+    -moz-osx-font-smoothing: auto;
+    -webkit-font-smoothing: auto;
+    font-weight: 700;
   }
 
   ol,
   ul {
     margin-top: 0;
     margin-bottom: 30px;
-    font-size: 20px;
-    line-height: 34px;
+
+    &,
+    li {
+      font-size: 18px;
+      line-height: 25px;
+    }
 
     ul,
     ol {
@@ -280,6 +287,45 @@ h6 {
   h3 {
     font-size: 22px;
     line-height: 1.636;
+  }
+}
+
+h1.documentFirstHeading {
+  .content-area & {
+    padding: 0;
+    padding-top: 0;
+    padding-right: 20px;
+    padding-bottom: 0;
+    padding-left: 20px;
+    border-bottom: 0;
+    margin-top: 0;
+    color: #b6a782;
+    font-family: 'BonnefantenBlock', Arial, sans-serif;
+    font-size: 8vw;
+    font-weight: 400;
+    letter-spacing: 0em;
+    line-height: 8.5vw;
+    text-align: left;
+
+    &::before {
+      display: none;
+    }
+
+    @media (min-width: 769px) {
+      padding-top: 10px;
+      padding-right: 25px;
+      padding-left: 25px;
+      margin-top: 40px;
+    }
+
+    @media (min-width: 860px) {
+      margin-top: 70px;
+    }
+
+    @media (min-width: 1400px) {
+      font-size: 110px;
+      line-height: 120px;
+    }
   }
 }
 
@@ -443,5 +489,46 @@ table.ui.table.block {
     letter-spacing: 0em;
     line-height: 32px;
     vertical-align: middle;
+  }
+}
+
+.social-share-links {
+  margin: 3rem 0 4rem;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+
+  ul {
+    display: flex;
+    max-width: 180px;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+
+    li {
+      margin: 0 5px;
+
+      a {
+        display: inline-block;
+        font-size: 22px;
+        text-decoration: none !important;
+
+        i {
+          color: var(--bonnefanten-primary);
+        }
+
+        &:hover,
+        &:focus {
+          text-decoration: none !important;
+
+          i {
+            color: var(--bonnefanten-secondary);
+          }
+        }
+      }
+    }
   }
 }

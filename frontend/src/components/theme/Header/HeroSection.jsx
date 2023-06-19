@@ -95,8 +95,7 @@ function HeroSection(props) {
         )}
       </div>
       {title && !image_url && (
-        <Container>
-          <h1 className="documentFirstHeading">{title}</h1>
+        <Container className="content-container header-no-hero">
           {startDate && isEvent && (
             <p className="hero-dates">
               {getDateRangeDescription(intl.locale, startDate, endDate)}

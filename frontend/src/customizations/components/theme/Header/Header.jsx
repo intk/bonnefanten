@@ -1,7 +1,4 @@
-// Customized to use the HeroSection
-
 import React from 'react';
-import { InView } from 'react-intersection-observer';
 import { useSelector } from 'react-redux';
 import { Logo, Navigation } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
@@ -11,6 +8,7 @@ import { useIntl } from 'react-intl';
 import usePreviewImage from './usePreviewImage';
 import { useLocation } from 'react-router-dom';
 import qs from 'query-string';
+import useInView from '@package/helpers/useInView';
 
 const Header = (props) => {
   const { navigationItems } = props;
@@ -29,7 +27,16 @@ const Header = (props) => {
   const isSearch = pathname === '/search';
   const cmsView = isCmsUi(pathname);
   const homePageView = isHomePage && !cmsView && !isSearch;
-  const [inView, setInView] = React.useState();
+
+  const titleInView = useInView(
+    'h1',
+    {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0,
+    },
+    true,
+  );
 
   return (
     <div className="portal-top">
@@ -39,11 +46,15 @@ const Header = (props) => {
         <BodyClass className="has-hero-section" />
       )}
       {isSearch && <BodyClass className="has-hero-section" />}
+      {titleInView ? (
+        <BodyClass className="title-in-view" />
+      ) : (
+        <BodyClass className="title-out-of-view" />
+      )}
       <div
         className={cx(
           'header-wrapper',
           homePageView ? 'homepage' : 'contentpage',
-          inView ? 'header-in-view' : 'header-out-of-view fadeInDown',
         )}
         role="banner"
       >
@@ -85,23 +96,6 @@ const Header = (props) => {
           </div>
         </div>
       )}
-
-      <div id="header-spacer"></div>
-      <InView
-        as="div"
-        className="header-visibility-sensor"
-        onChange={(inView, entry) => {
-          setInView(inView);
-
-          if (inView) {
-            document.body.classList.remove('header-out-of-view');
-          } else {
-            document.body.classList.add('header-out-of-view');
-          }
-        }}
-      >
-        {' '}
-      </InView>
     </div>
   );
 };

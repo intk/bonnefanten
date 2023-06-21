@@ -85,24 +85,31 @@ body.section-edit {
 
   .description-wrapper {
     position: relative;
-    padding: 0 20px;
+    padding: 0 20px 10px;
 
     @media (min-width: 768px) {
+      padding-top: 5px;
+      padding-right: 35px;
+      padding-bottom: 0;
+      padding-left: 35px;
+    }
+
+    @media (min-width: 860px) {
       padding-right: 25px;
       padding-left: 25px;
     }
 
     @media (min-width: 1200px) {
-      padding: 5px 115px 5px 115px;
+      padding: 5px 115px 25px 115px;
     }
 
     .quote-bonnefanten.quote-top-left {
-      top: 20px;
+      top: 27px;
       left: -95px;
     }
 
     .quote-bonnefanten.quote-top-right {
-      top: 20px;
+      top: 27px;
       right: -95px;
     }
   }
@@ -111,7 +118,7 @@ body.section-edit {
     display: block;
     width: 100%;
     max-width: 100%;
-    margin: 15px auto 5px;
+    margin: 15px auto;
     color: #b6a782;
     font-family: 'StyreneRegular', Arial, sans-serif;
     font-size: 25px;
@@ -190,6 +197,16 @@ body.section-edit {
   }
 }
 
+.content-container {
+  padding-right: 5px;
+  padding-left: 5px;
+
+  @media (min-width: 769px) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 .content-area {
   h1,
   h2,
@@ -197,9 +214,30 @@ body.section-edit {
   h4,
   h5,
   h6 {
-    margin-top: 45px;
+    margin-top: 40px;
     margin-bottom: 10px;
     color: var(--bonnefanten-primary-text, @brand-primary-titles);
+    font-weight: 400;
+  }
+
+  h2 {
+    font-size: 26px;
+    line-height: 30px;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+
+  h3 {
+    font-size: 19px;
+    line-height: 25px;
+  }
+
+  h4 {
+    font-size: 18px;
+    line-height: 25px;
   }
 
   p {
@@ -208,7 +246,7 @@ body.section-edit {
     font-size: 18px;
     line-height: 25px;
 
-    @media (max-width: 991px) {
+    @media (max-width: 768px) {
       font-size: 1.18em;
     }
   }
@@ -292,7 +330,6 @@ h6 {
 
 h1.documentFirstHeading {
   .content-area & {
-    padding: 0;
     padding-top: 0;
     padding-right: 20px;
     padding-bottom: 0;
@@ -311,15 +348,22 @@ h1.documentFirstHeading {
       display: none;
     }
 
+    @media (max-width: 768px) {
+      padding-top: 5px;
+      padding-bottom: 15px;
+      font-size: 11vw;
+      line-height: 1.1;
+    }
+
     @media (min-width: 769px) {
-      padding-top: 10px;
-      padding-right: 25px;
-      padding-left: 25px;
-      margin-top: 40px;
+      padding-right: 40px;
+      padding-left: 40px;
+      margin-top: 120px;
     }
 
     @media (min-width: 860px) {
-      margin-top: 70px;
+      padding-right: 21px;
+      padding-left: 21px;
     }
 
     @media (min-width: 1400px) {

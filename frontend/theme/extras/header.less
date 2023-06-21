@@ -35,7 +35,6 @@
         z-index: 2;
         width: auto;
         height: auto;
-        padding-bottom: 5px;
         padding-left: 20px;
         background-color: transparent;
         color: var(--bonnefanten-primary, #f9423a);
@@ -68,6 +67,14 @@
         &:focus:active {
           border-bottom: 0px !important;
           text-transform: none !important;
+        }
+
+        @media (min-width: 769px) {
+          padding-left: 25px;
+        }
+
+        @media (min-width: 1200px) {
+          padding-left: 5px;
         }
 
         @media (min-width: 1400px) {
@@ -770,7 +777,6 @@ body.has-hero-image {
         padding-left: 40px;
         border-bottom: 0;
         margin: 0 0 10px;
-        margin-bottom: 10px;
         color: #fff;
         font-size: 80px;
         letter-spacing: 0;
@@ -819,7 +825,7 @@ body.has-hero-image {
 
     @media (min-width: 1200px) {
       padding-right: 115px;
-      padding-left: 150px;
+      padding-left: 115px;
     }
 
     body.section-edit &,

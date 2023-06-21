@@ -1,7 +1,14 @@
 import installBlocks from './components/blocks';
+import TagManager from 'react-gtm-module';
 
 // All your imports required for the config here BEFORE this line
 import '@plone/volto/config';
+
+const tagManagerArgs = {
+  gtmId: 'GTM-PTCC6J6',
+};
+
+__CLIENT__ && !__DEVELOPMENT__ && TagManager.initialize(tagManagerArgs);
 
 export default function applyConfig(config) {
   if (__DEVELOPMENT__) {

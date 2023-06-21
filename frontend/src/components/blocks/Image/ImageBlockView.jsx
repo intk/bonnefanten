@@ -63,6 +63,7 @@ const ViewImage = (props) => {
                       : data.url
                   }
                   alt={data.alt || ''}
+                  width={800}
                   loading="lazy"
                 />
               );

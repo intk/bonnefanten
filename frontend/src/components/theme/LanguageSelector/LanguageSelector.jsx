@@ -36,38 +36,35 @@ const LanguageSelector = (props) => {
 
   return settings.isMultilingual ? (
     <div className="language-selector">
-      <Dropdown text={currentLang.toUpperCase()} basic>
-        <Dropdown.Menu>
-          {map(
-            settings.supportedLanguages.filter((l) => l !== currentLang),
-            (lang) => {
-              const translation = find(translations, { language: lang });
-              return (
-                <Dropdown.Item key={`language-selector-${lang}`}>
-                  <Link
-                    aria-label={`${intl.formatMessage(
-                      messages.switchLanguageTo,
-                    )} ${langmap[lang].nativeName.toLowerCase()}`}
-                    className={cx({ selected: lang === currentLang })}
-                    to={
-                      translation
-                        ? flattenToAppURL(translation['@id'])
-                        : `/${lang}`
-                    }
-                    title={langmap[lang].nativeName}
-                    onClick={() => {
-                      props.onClickAction();
-                    }}
-                    key={`language-selector-${lang}`}
-                  >
-                    {lang.toUpperCase()}
-                  </Link>
-                </Dropdown.Item>
-              );
-            },
-          )}
-        </Dropdown.Menu>
-      </Dropdown>
+      {map(
+        settings.supportedLanguages.filter((l) => l !== currentLang),
+        (lang) => {
+          const translation = find(translations, { language: lang });
+          return (
+            <Link
+              key={`language-selector-${lang}`}
+              aria-label={`${intl.formatMessage(
+                messages.switchLanguageTo,
+              )} ${langmap[lang].nativeName.toLowerCase()}`}
+              className={cx({ selected: lang === currentLang })}
+              to={
+                translation ? flattenToAppURL(translation['@id']) : `/${lang}`
+              }
+              title={langmap[lang].nativeName}
+              onClick={() => {
+                props.onClickAction();
+              }}
+            >
+              {(lang === 'nl'
+                ? 'Nederlands'
+                : lang === 'en'
+                ? 'English'
+                : lang
+              ).toUpperCase()}
+            </Link>
+          );
+        },
+      )}
     </div>
   ) : (
     <Helmet>

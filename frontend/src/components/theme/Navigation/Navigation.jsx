@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { defineMessages, injectIntl } from 'react-intl';
 import cx from 'classnames';
-import { Container } from 'semantic-ui-react';
 import { BodyClass, getBaseUrl, hasApiExpander } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import { getNavigation } from '@plone/volto/actions';
@@ -212,13 +211,11 @@ class Navigation extends Component {
                 <LanguageSelector onClickAction={this.closeMobileMenu} />
               </div>
 
-              <Container>
-                <NavItems
-                  items={this.props.items}
-                  lang={this.props.lang}
-                  onClose={this.closeMobileMenu}
-                />
-              </Container>
+              <NavItems
+                items={this.props.items}
+                lang={this.props.lang}
+                onClose={this.closeMobileMenu}
+              />
             </div>
           </div>
         </CSSTransition>

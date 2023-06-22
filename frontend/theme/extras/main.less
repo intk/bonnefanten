@@ -32,7 +32,7 @@ body {
   white-space: nowrap !important;
 }
 
-body:not(.has-hero-section) {
+body:not(.has-hero-section):not(.cms-ui) {
   .content-area {
     padding-top: 200px;
   }
@@ -46,6 +46,7 @@ body.section-edit {
     .ui.basic.segment.content-area {
       position: relative !important;
       z-index: 1;
+      padding-top: 50px;
     }
   }
 }

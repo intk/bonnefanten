@@ -27,7 +27,7 @@
       padding: 0 15px;
 
       @media (max-width: 991px) {
-        padding: 0;
+        padding: 5px 0;
       }
 
       a.site-logo {
@@ -173,6 +173,10 @@ body.scrolled #main .portal-top .header-wrapper {
 .hamburger-wrapper {
   display: flex;
 
+  @media (max-width: 991px) {
+    padding-top: 6px;
+  }
+
   button.hamburger {
     position: relative;
     display: inline-flex;
@@ -198,7 +202,7 @@ body.scrolled #main .portal-top .header-wrapper {
       transition: transform 0.3s ease-in-out, opacity 0.2s ease-in;
 
       @media (max-width: 991px) {
-        right: 10px;
+        right: 0px;
       }
     }
 
@@ -247,54 +251,36 @@ nav.navigation {
   margin-left: auto;
 
   ul.nav-items {
-    position: relative;
-    z-index: 5;
     display: flex;
     width: 100%;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 0;
+    flex-direction: column;
+    padding: 7vw 25px 80px;
     margin: 0;
     list-style: none;
 
     li.item {
-      display: flex;
-      width: 50%;
-      flex-direction: column;
-      margin: 3rem 0 0 0 !important;
+      margin: 0 0 5px !important;
       text-align: left;
 
       a {
         display: inline-block;
-        padding-right: 2em;
-        padding-left: 10px;
-        color: #000 !important;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 1.2;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        color: var(--bonnefanten-bg) !important;
+        font-family: 'BonnefantenBlock', Arial, sans-serif;
+        font-size: 6.2vw;
+        line-height: 7vw;
         text-decoration: none !important;
 
-        &.active {
-          color: #fff !important;
-        }
-
-        span {
-          background-color: transparent;
-          background-image: linear-gradient(currentColor, currentColor);
-          background-position: 0 100%;
-          background-repeat: no-repeat;
-          background-size: 0 3px;
-          transition: background-size 0.3s linear;
+        @media (max-width: 992px) {
+          margin-bottom: 10px;
+          font-size: 5.8vw;
+          line-height: 6.5vw;
         }
 
         &:hover,
         &:focus {
           text-decoration: none !important;
-
-          span {
-            background-size: 100% 3px;
-          }
         }
       }
 
@@ -338,6 +324,10 @@ nav.navigation {
     margin-right: auto;
 
     .language-selector {
+      @media (max-width: 768px) {
+        margin-left: 25px;
+      }
+
       a {
         display: inline-block;
         color: var(--bonnefanten-bg) !important;
@@ -362,8 +352,11 @@ nav.navigation {
     padding-bottom: 30px;
     padding-left: 25px;
     margin-right: 27px;
+    float: left;
 
     @media (max-width: 992px) {
+      padding-bottom: 10px;
+      padding-left: 25px;
       margin-right: 20px;
     }
 
@@ -461,10 +454,9 @@ nav.navigation {
   color: var(--bonnefanten-bg, #ffe79a);
 
   .mobile-menu-nav {
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 0px;
+    display: block;
+    margin-top: 45px;
+    text-align: left;
 
     @media (min-width: 769px) {
       margin-top: 120px;

@@ -6,7 +6,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Dropdown } from 'semantic-ui-react';
 
 import { useSelector } from 'react-redux';
 import cx from 'classnames';

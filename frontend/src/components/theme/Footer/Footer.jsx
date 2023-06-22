@@ -9,7 +9,6 @@ import { injectIntl } from 'react-intl';
 import FooterColumns from '@package/components/theme/Footer/FooterColumns';
 import useInView from '@package/helpers/useInView';
 import { BodyClass } from '@plone/volto/helpers';
-import { Helmet } from '@plone/volto/helpers';
 
 /**
  * Component to display the footer.

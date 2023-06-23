@@ -2,11 +2,18 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { flattenHTMLToAppURL, flattenToAppURL } from '@plone/volto/helpers';
-import { ConditionalLink, Logo } from '@plone/volto/components';
+import { ConditionalLink } from '@plone/volto/components';
 import NewsletterSubscribe from '@package/components/theme/Footer/NewsletterSubscribe';
 import { SocialLinks } from 'volto-social-settings';
 import { getEditableFooterColumns } from 'volto-editablefooter/actions';
 import { getItemsByPath } from 'volto-editablefooter/utils';
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true,
+});
 
 const FooterColumns = ({ footer }) => {
   const location = useLocation();
@@ -28,14 +35,11 @@ const FooterColumns = ({ footer }) => {
 
   return (
     <div className="footer-columns">
-      <div className="column">
-        <Logo />
-      </div>
       {footerColumns
         .filter((c) => c.visible)
         .map((column) => (
           <div className="column" key={column.id}>
-            <h3 className={column.showSocial ? 'with-socials sr-only' : ''}>
+            <h3 className={column.showSocial ? 'with-socials' : ''}>
               {column?.title && (
                 <ConditionalLink
                   condition={column.titleLink?.length > 0}
@@ -45,18 +49,29 @@ const FooterColumns = ({ footer }) => {
                   }
                   title={column.title}
                 >
-                  {column.title}
+                  {column.title}:
                 </ConditionalLink>
               )}
             </h3>
-            {column.showSocial && <SocialLinks />}
             {column.newsletterSubscribe && <NewsletterSubscribe />}
-            <div
-              className="footer-column-content"
-              dangerouslySetInnerHTML={{
-                __html: flattenHTMLToAppURL(column.text.data),
-              }}
-            />
+            {column.text.data.includes('[![') ? (
+              <div
+                className="footer-column-content markdown"
+                dangerouslySetInnerHTML={{
+                  __html: md.render(
+                    column.text.data.replace('<p>', '').replace('</p>', ''),
+                  ),
+                }}
+              />
+            ) : (
+              <div
+                className="footer-column-content"
+                dangerouslySetInnerHTML={{
+                  __html: flattenHTMLToAppURL(column.text.data),
+                }}
+              />
+            )}
+            {column.showSocial && <SocialLinks />}
           </div>
         ))}
     </div>

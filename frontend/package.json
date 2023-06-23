@@ -147,6 +147,7 @@
     "@kitconcept/volto-blocks-grid": "*",
     "@kitconcept/volto-slider-block": "*",
     "@plone/volto": "16.20.8",
+    "markdown-it": "13.0.1",
     "react-gtm-module": "2.0.11",
     "volto-editablefooter": "5.0.1",
     "volto-form-block": "3.0.1",

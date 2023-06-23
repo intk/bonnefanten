@@ -4,7 +4,6 @@
  */
 
 import React from 'react';
-import { Container } from 'semantic-ui-react';
 import { injectIntl } from 'react-intl';
 import FooterColumns from '@package/components/theme/Footer/FooterColumns';
 import useInView from '@package/helpers/useInView';
@@ -35,31 +34,9 @@ const Footer = ({ intl }) => {
         </>
       )}
 
-      <Container>
+      <div className="footer-content">
         <FooterColumns />
-        <div className="sponsors-wrapper">
-          <div className="sponsor">
-            <a
-              aria-label="ANBI"
-              href="https://anbi.nl/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="sponsors-logo anbi"></span>
-            </a>
-          </div>
-          <div className="sponsor">
-            <a
-              aria-label="OCW"
-              href="https://www.denhaag.nl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="sponsors-logo ocw"></span>
-            </a>
-          </div>
-        </div>
-      </Container>
+      </div>
     </footer>
   );
 };

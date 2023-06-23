@@ -42,9 +42,7 @@ const Header = (props) => {
     <div className="portal-top">
       {homePageView && <BodyClass className="homepage-view" />}
       {!cmsView && !isSearch && <BodyClass className="has-image" />}
-      {!((cmsView && isSearch) || isHomePage) && (
-        <BodyClass className="has-hero-section" />
-      )}
+      {!(cmsView && isSearch) && <BodyClass className="has-hero-section" />}
       {isSearch && <BodyClass className="has-hero-section" />}
       {titleInView ? (
         <BodyClass className="title-in-view" />

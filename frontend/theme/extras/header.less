@@ -258,14 +258,19 @@ nav.navigation {
     margin: 0;
     list-style: none;
 
-    li.item {
+    > li.item {
       margin: 0 0 5px !important;
       text-align: left;
 
-      a {
+      > a,
+      button {
         display: inline-block;
+        padding: 0;
+        border: 0;
+        margin: 0;
         margin-top: 5px;
         margin-bottom: 15px;
+        background: none;
         color: var(--bonnefanten-bg) !important;
         font-family: 'BonnefantenBlock', Arial, sans-serif;
         font-size: 6.2vw;
@@ -284,34 +289,59 @@ nav.navigation {
         }
       }
 
-      &.private {
-        a {
-          color: #c4183c !important;
+      button {
+        cursor: pointer;
+      }
 
-          &:hover,
-          &:focus,
-          &.active {
-            color: #801027 !important;
-          }
+      &.private {
+        a,
+        button {
+          opacity: 0.5;
         }
       }
     }
+  }
 
-    &.nav-items-nested {
-      flex-direction: column;
-      margin-top: 1.5em;
+  ul.nav-items-nested {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 
-      li.item {
-        width: 100%;
-        margin: 0 0 1em 0 !important;
+    li.item {
+      width: 100%;
+      padding: 3px 20px;
+      margin: 0 0 10px;
+      font-family: 'StyreneBold', Arial, sans-serif;
+      font-size: 22px;
+      line-height: 20px;
 
-        a {
-          margin: 0;
-          font-weight: 400;
+      @media (min-width: 992px) {
+        font-size: 36px;
+        line-height: 40px;
+      }
 
-          &.active {
-            color: #000 !important;
-          }
+      a {
+        margin: 0;
+        color: var(--bonnefanten-bg) !important;
+        font-weight: 400;
+        text-decoration: none !important;
+
+        &.active {
+          color: var(--bonnefanten-secondary) !important;
+        }
+
+        &:hover,
+        &:focus {
+          color: var(--bonnefanten-secondary) !important;
+          text-decoration: none !important;
+        }
+      }
+
+      &.private {
+        a,
+        button {
+          opacity: 0.5;
         }
       }
     }

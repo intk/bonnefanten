@@ -14,8 +14,9 @@ body {
 ::selection {
   border-width: 20px;
   border-style: solid;
-  background-color: var(--bonnefanten-primary-text, @primaryColor);
-  color: var(--bonnefanten-primary-invert, @primaryText);
+  background: #282931;
+  color: white;
+  text-shadow: none;
 }
 
 .sr-only {
@@ -34,6 +35,12 @@ body {
 
 body:not(.has-hero-section):not(.cms-ui) {
   .content-area {
+    padding-top: 200px;
+  }
+}
+
+body:not(.cms-ui) {
+  .view-wrapper {
     padding-top: 200px;
   }
 }

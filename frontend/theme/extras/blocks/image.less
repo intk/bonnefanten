@@ -35,10 +35,28 @@
   }
 
   &.align.left {
-    margin-left: -15%;
+    margin-left: 0;
 
     @media (max-width: 768px) {
-      margin-left: 0;
+      margin-right: -20px;
+      margin-left: -20px;
+    }
+
+    @media (min-width: 769px) {
+      margin-left: -15%;
+
+      figure.image-wrapper {
+        padding-top: 45px;
+
+        img {
+          margin-right: 0 !important;
+          margin-bottom: 45px;
+        }
+      }
+    }
+
+    @media (min-width: 1200px) {
+      margin-left: -30%;
     }
 
     img {

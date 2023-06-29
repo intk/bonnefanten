@@ -18,6 +18,9 @@ const getImageType = (image) => {
   return imageType;
 };
 
+const stripDockerBaseUrl = (url) =>
+  url.replace('http://backend:8080/Plone', '');
+
 /**
  * Get src-set list from image
  * @param {object | string} image - Image content object or url
@@ -37,7 +40,7 @@ export const getImageAttributes = (image, size) => {
 
   switch (imageType) {
     case 'svg':
-      attrs.src = flattenToAppURL(image.download);
+      attrs.src = stripDockerBaseUrl(flattenToAppURL(image.download));
       attrs.width = image.width;
       attrs.height = image.height;
       break;
@@ -58,6 +61,9 @@ export const getImageAttributes = (image, size) => {
       // Use smallest size as fallback, which will also be the placeholder when lazy loading
       const minScale = sortedScales[0];
       attrs.src = minScale.download ?? image.download;
+      if (attrs.src) {
+        attrs.src = stripDockerBaseUrl(flattenToAppURL(attrs.src));
+      }
 
       const sizeScale = SIZE_MAPPING[size];
       // Use size for width/height if available. Otherwise use the biggest scale
@@ -71,7 +77,10 @@ export const getImageAttributes = (image, size) => {
       }
 
       attrs.srcSet = sortedScales.map(
-        (scale) => `${flattenToAppURL(scale.download)} ${scale.width}w`,
+        (scale) =>
+          `${stripDockerBaseUrl(flattenToAppURL(scale.download))} ${
+            scale.width
+          }w`,
       );
 
       break;

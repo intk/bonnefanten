@@ -2,7 +2,7 @@
  * Logo component.
  * @module components/theme/Logo/Logo
  */
-import { useReducer, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import config from '@plone/volto/registry';
 import { UniversalLink } from '@plone/volto/components';
@@ -10,14 +10,63 @@ import { toBackendLang } from '@plone/volto/helpers';
 
 const possibleClasses = ['gothic', 'slab', 'block'];
 
-const lettersReducer = (state, action) => {
-  let randomLetter = Math.floor(Math.random() * state.length);
-
-  state[randomLetter].theme =
-    possibleClasses[Math.floor(Math.random() * possibleClasses.length)];
-
-  return state;
-};
+const initialLettersState = [
+  {
+    letter: 'B',
+    theme: 'block',
+    animations: [],
+  },
+  {
+    letter: 'o',
+    theme: 'slab',
+    animations: [],
+  },
+  {
+    letter: 'n',
+    theme: 'gothic',
+    animations: [],
+  },
+  {
+    letter: 'n',
+    theme: 'slab',
+    animations: [],
+  },
+  {
+    letter: 'e',
+    theme: 'block',
+    animations: [],
+  },
+  {
+    letter: 'f',
+    theme: 'gothic',
+    animations: [],
+  },
+  {
+    letter: 'a',
+    theme: 'slab',
+    animations: [],
+  },
+  {
+    letter: 'n',
+    theme: 'block',
+    animations: [],
+  },
+  {
+    letter: 't',
+    theme: 'gothic',
+    animations: [],
+  },
+  {
+    letter: 'e',
+    theme: 'slab',
+    animations: [],
+  },
+  {
+    letter: 'n',
+    theme: 'block',
+    animations: [],
+  },
+];
 
 /**
  * Logo component class.
@@ -29,72 +78,86 @@ const Logo = () => {
   const { settings } = config;
   const lang = useSelector((state) => state.intl.locale);
 
-  // const [letters, dispatchLettersChange] = useReducer(lettersReducer, [
-  const [letters] = useReducer(lettersReducer, [
-    {
-      letter: 'B',
-      theme: 'block',
-    },
-    {
-      letter: 'o',
-      theme: 'slab',
-    },
-    {
-      letter: 'n',
-      theme: 'gothic',
-    },
-    {
-      letter: 'n',
-      theme: 'slab',
-    },
-    {
-      letter: 'e',
-      theme: 'block',
-    },
-    {
-      letter: 'f',
-      theme: 'gothic',
-    },
-    {
-      letter: 'a',
-      theme: 'slab',
-    },
-    {
-      letter: 'n',
-      theme: 'block',
-    },
-    {
-      letter: 't',
-      theme: 'gothic',
-    },
-    {
-      letter: 'e',
-      theme: 'slab',
-    },
-    {
-      letter: 'n',
-      theme: 'block',
-    },
-  ]);
+  const [letters, setLetters] = useState(initialLettersState);
 
-  const scrollListener = (e) => {
+  useEffect(() => {
+    let height = document.body.scrollHeight;
+    // let animationsSpan = height / 50;
+
+    let newState = [...initialLettersState];
+
+    // for (let i = animationsSpan; i <= height; i += animationsSpan) {
+    //   let randomLetter = Math.floor(Math.random() * newState.length);
+
+    //   newState[randomLetter].initialTheme = newState[randomLetter].theme;
+    //   newState[randomLetter].animations = [
+    //     ...(newState[randomLetter].animations || []),
+    //     {
+    //       theme:
+    //         possibleClasses[Math.floor(Math.random() * possibleClasses.length)],
+    //       scrollHeight: i,
+    //     },
+    //   ];
+    // }
+    for (let i = 0; i < 49; i++) {
+      let randomLetter = Math.floor(Math.random() * newState.length);
+      let randomHeight = Math.floor(Math.random() * height);
+
+      newState[randomLetter].initialTheme = newState[randomLetter].theme;
+      newState[randomLetter].animations = [
+        ...(newState[randomLetter].animations || []),
+        {
+          theme:
+            possibleClasses[Math.floor(Math.random() * possibleClasses.length)],
+          scrollHeight: randomHeight,
+        },
+      ];
+    }
+
+    setLetters(newState);
+  }, []);
+
+  const updateLetters = useCallback(() => {
+    let scrollY = Math.round(window.scrollY);
+
+    let newState = [...letters];
+
+    newState.forEach((letter, index) => {
+      let themeToApply = letter.initialTheme;
+
+      letter.animations.forEach((animation) => {
+        if (scrollY >= animation.scrollHeight) {
+          themeToApply = animation.theme;
+        }
+      });
+
+      newState[index].theme = themeToApply;
+    });
+
+    setLetters(newState);
+  }, [letters]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', updateLetters);
+
+    return () => {
+      window.removeEventListener('scroll', updateLetters);
+    };
+  }, [updateLetters]);
+
+  const scrolledListener = (e) => {
     if (window.scrollY > 100) {
       document.body.classList.add('scrolled');
     } else {
       document.body.classList.remove('scrolled');
     }
-
-    let scrollOffset = Math.round(document.body.scrollHeight / 50);
-    if (window.scrollY % scrollOffset === 0) {
-      // dispatchLettersChange();
-    }
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', scrollListener);
+    window.addEventListener('scroll', scrolledListener);
 
     return () => {
-      window.removeEventListener('scroll', scrollListener);
+      window.removeEventListener('scroll', scrolledListener);
     };
   }, []);
 

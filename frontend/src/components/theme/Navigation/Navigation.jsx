@@ -197,6 +197,11 @@ class Navigation extends Component {
             document.body.classList.remove('intk-menu-opening');
             document.body.classList.remove('intk-menu-opened');
           }}
+          onExited={() => {
+            setTimeout(() => {
+              document.body.classList.add('scrolled');
+            }, 300);
+          }}
           unmountOnExit
         >
           <div key="mobile-menu-key" className="mobile-menu">

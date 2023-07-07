@@ -49,12 +49,18 @@
     padding-bottom: calc(50px - 2rem);
 
     figure.listing-image {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
       margin: 0 0 10px;
 
       img {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 3 / 2 auto;
+        min-width: 100%;
+        min-height: 100%;
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
       }
     }
 

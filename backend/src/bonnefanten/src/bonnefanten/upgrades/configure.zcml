@@ -18,7 +18,7 @@
         />
   </genericsetup:upgradeSteps>
 
-   <genericsetup:upgradeSteps
+  <genericsetup:upgradeSteps
       profile="bonnefanten:default"
       source="20230707001"
       destination="20230707002"

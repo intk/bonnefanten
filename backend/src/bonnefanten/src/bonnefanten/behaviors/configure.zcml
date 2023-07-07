@@ -10,7 +10,7 @@
       provides=".multiple_content_view.IMultipleContentView"
       />
 
-   <plone:behavior
+  <plone:behavior
       name="bonnefanten.has_hero_section"
       title="Hero Section View"
       description="Mark an item to show hero section"

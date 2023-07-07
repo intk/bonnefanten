@@ -1,5 +1,6 @@
 import installBlocks from './components/blocks';
 import TagManager from 'react-gtm-module';
+import MultipleContentView from './components/theme/View/MultipleContentView';
 
 // All your imports required for the config here BEFORE this line
 import '@plone/volto/config';
@@ -43,6 +44,9 @@ export default function applyConfig(config) {
     Event: 'title',
     'News Item': 'title',
   };
+
+  config.views.layoutViews.multiple_content = MultipleContentView;
+  config.views.layoutViewsNamesMapping.multiple_content = 'Section layout';
 
   if (config.settings['volto-gdpr-privacy']) {
     config.settings['volto-gdpr-privacy'].defaultPanelConfig = {

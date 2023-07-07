@@ -50,8 +50,14 @@ const getDateRangeDescription = (lang, start, end) => {
 function HeroSection(props) {
   const intl = useIntl();
   const { image_url, content } = props;
-  const { title, preview_caption, multiple_content_view, start, end } =
-    content || {};
+  const {
+    title,
+    preview_caption,
+    multiple_content_view,
+    has_hero_section,
+    start,
+    end,
+  } = content || {};
 
   const isEvent = content?.['@type'] === 'Event';
 
@@ -65,7 +71,7 @@ function HeroSection(props) {
     <div className="herosection">
       {multiple_content_view && <BodyClass className="multiple-content-view" />}
       <div className="herosection-content-wrapper">
-        {content?.preview_image ? (
+        {content?.preview_image && has_hero_section ? (
           <>
             <BodyClass className="has-hero-image" />
             <figure className="herosection-content-image document-image">

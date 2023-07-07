@@ -3,4 +3,18 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     >
 
+  <plone:behavior
+      name="bonnefanten.multiple_content_view"
+      title="Multiple Content View"
+      description="Mark an item as multiple content view"
+      provides=".multiple_content_view.IMultipleContentView"
+      />
+
+   <plone:behavior
+      name="bonnefanten.has_hero_section"
+      title="Hero Section View"
+      description="Mark an item to show hero section"
+      provides=".has_hero_section.IHeroSectionView"
+      />
+
 </configure>

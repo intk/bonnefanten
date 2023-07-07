@@ -28,12 +28,12 @@ const DefaultView = (props) => {
   const path = getBaseUrl(location?.pathname || '');
 
   // const description = content?.description;
-  const hasLeadImage = content?.preview_image;
+  const isHeroSection = content?.has_hero_section && content?.preview_image;
   const filteredContent = filterBlocks(content, ['title', 'description']);
 
   return hasBlocksData(content) ? (
     <>
-      {hasLeadImage ? (
+      {isHeroSection ? (
         <>
           <p className="documentDescription hero-description">
             {content.description}

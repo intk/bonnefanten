@@ -4,6 +4,7 @@ import installBreakBlock from './Break';
 import installQuoteBlock from './Quote';
 import installTeaserBlock from './Teaser';
 import installSliderBlock from './Slider';
+import installListingBlock from './Listing';
 import { compose } from 'redux';
 
 const installBlocks = (config) => {
@@ -16,6 +17,7 @@ const installBlocks = (config) => {
     installQuoteBlock,
     installTeaserBlock,
     installSliderBlock,
+    installListingBlock,
   )(config);
 };
 

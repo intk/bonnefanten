@@ -106,11 +106,12 @@ body:not(.cms-ui) {
     position: relative;
     padding: 0 20px 10px;
 
-    @media (min-width: 768px) {
+    @media (min-width: 769px) {
       padding-top: 5px;
       padding-right: 35px;
       padding-bottom: 0;
-      padding-left: 35px;
+      // padding-left: 35px;
+      padding-left: 20px;
     }
 
     @media (min-width: 860px) {
@@ -122,14 +123,16 @@ body:not(.cms-ui) {
       padding: 5px 115px 25px 115px;
     }
 
-    .quote-bonnefanten.quote-top-left {
-      top: 27px;
-      left: -95px;
-    }
+    .quote-bonnefanten {
+      top: 15px;
 
-    .quote-bonnefanten.quote-top-right {
-      top: 27px;
-      right: -95px;
+      &.quote-top-left {
+        left: -95px;
+      }
+
+      &.quote-top-right {
+        right: -95px;
+      }
     }
   }
 
@@ -154,6 +157,14 @@ body:not(.cms-ui) {
     @media (min-width: 1200px) {
       max-width: 620px;
       margin-left: 0px;
+    }
+
+    @media (max-width: 991px) {
+      margin: 0 0 25px;
+    }
+
+    @media (min-width: 768px) {
+      max-width: 710px;
     }
   }
   @media (max-width: 768px) {
@@ -227,11 +238,6 @@ body:not(.cms-ui) {
 }
 
 .content-area {
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-
   h1,
   h2,
   h3,
@@ -394,8 +400,8 @@ h1.documentFirstHeading {
     }
 
     @media (min-width: 769px) {
-      padding-right: 40px;
-      padding-left: 40px;
+      padding-right: 25px;
+      padding-left: 25px;
       margin-top: 120px;
     }
 
@@ -496,13 +502,76 @@ button.gdpr-privacy-show-banner {
   margin-top: 50px;
 
   @media (min-width: 768px) {
-    width: 570px;
     margin: 0 auto;
   }
 
   @media (max-width: 768px) {
     padding-top: 20px;
     padding-bottom: 35px;
+  }
+}
+
+body:not(.multiple-content-view) .content-container {
+  @media (min-width: 768px) {
+    width: 570px;
+    margin: 0 auto;
+  }
+}
+
+body.multiple-content-view,
+body.contenttype-lrf,
+body.homepage-view {
+  #page-document.ui.container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+
+    .content-container {
+      padding-right: 25px;
+      padding-left: 25px;
+
+      @media (max-width: 767px) {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+body.contenttype-lrf,
+body.homepage-view {
+  #page-document.ui.container {
+    .content-container {
+      @media (min-width: 992px) {
+        padding-right: 40px;
+        padding-left: 40px;
+      }
+    }
+  }
+}
+
+body.multiple-content-view {
+  #main .description-wrapper {
+    @media (min-width: 992px) {
+      padding-top: 50px;
+      padding-bottom: 50px;
+
+      p.documentDescription {
+        max-width: 710px;
+        margin-top: 10px;
+        margin-left: 60px;
+      }
+    }
+  }
+
+  #page-document.ui.container {
+    .content-container {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
   }
 }
 

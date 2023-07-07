@@ -1,0 +1,107 @@
+.block.listing {
+  position: relative;
+
+  h2.headline {
+    margin-bottom: 2rem;
+  }
+}
+
+.listing-template {
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-bottom: 40px;
+
+  @media (min-width: 480px) {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .listing-column {
+    @media (min-width: 992px) {
+      padding-right: 12px !important;
+      padding-left: 12px !important;
+    }
+  }
+
+  // TODO: check this
+  .showmore-link {
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
+
+    a {
+      display: inline-block;
+      border-bottom: 2px solid #000;
+      color: #000 !important;
+      font-size: 21px;
+      line-height: 1.714;
+      text-decoration: none !important;
+
+      &:hover,
+      &:focus {
+        border-bottom: 2px solid transparent;
+        color: #000 !important;
+      }
+    }
+  }
+
+  .plone-item-card {
+    padding-bottom: calc(50px - 2rem);
+
+    figure.listing-image {
+      margin: 0 0 10px;
+
+      img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 2 auto;
+      }
+    }
+
+    h3.plone-item-title {
+      padding-top: 0px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      clear: both;
+      color: var(--bonnefanten-primary);
+      font-family: 'StyreneBold', Arial, sans-serif;
+      font-size: 26px;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 30px;
+      text-transform: none;
+
+      span {
+        border-bottom: 1px solid transparent;
+      }
+    }
+
+    .plone-item-description {
+      display: -webkit-box;
+      overflow: hidden;
+      margin: 10px 0 5px;
+      -webkit-box-orient: vertical;
+      color: var(--bonnefanten-primary-text, #575756);
+      font-family: 'StyreneRegular', Arial, sans-serif;
+      font-size: 19px;
+      letter-spacing: 0em;
+      -webkit-line-clamp: 5;
+      line-height: 25px;
+    }
+  }
+
+  a.plone-item-card-link {
+    text-decoration: none !important;
+
+    &:hover,
+    &:focus {
+      text-decoration: none !important;
+
+      h3.plone-item-title {
+        span {
+          border-bottom: 1px solid var(--bonnefanten-primary);
+        }
+      }
+    }
+  }
+}

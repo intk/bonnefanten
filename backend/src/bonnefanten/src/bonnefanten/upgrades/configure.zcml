@@ -3,17 +3,34 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     >
 
-  <!-- Example upgrade step
   <genericsetup:upgradeSteps
       profile="bonnefanten:default"
       source="20230602001"
-      destination="20230229001"
+      destination="20230707001"
       >
     <genericsetup:upgradeDepends
         title="Update registry value"
         import_steps="plone.app.registry"
         />
+    <genericsetup:upgradeDepends
+        title="Update types value"
+        import_steps="typeinfo"
+        />
   </genericsetup:upgradeSteps>
-  -->
+
+   <genericsetup:upgradeSteps
+      profile="bonnefanten:default"
+      source="20230707001"
+      destination="20230707002"
+      >
+    <genericsetup:upgradeDepends
+        title="Update registry value"
+        import_steps="plone.app.registry"
+        />
+    <genericsetup:upgradeDepends
+        title="Update types value"
+        import_steps="typeinfo"
+        />
+  </genericsetup:upgradeSteps>
 
 </configure>

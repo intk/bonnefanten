@@ -43,9 +43,9 @@ const DefaultView = (props) => {
         <>
           <h1 className="documentFirstHeading">{content.title}</h1>
           <div className="description-wrapper">
-            <div class="header-quotes-wrapper">
-              <div class="quote-top-left quote-bonnefanten">“</div>
-              <div class="quote-top-right quote-bonnefanten">”</div>
+            <div className="header-quotes-wrapper">
+              <div className="quote-top-left quote-bonnefanten">“</div>
+              <div className="quote-top-right quote-bonnefanten">”</div>
             </div>
             <p className="documentDescription">{content.description}</p>
           </div>

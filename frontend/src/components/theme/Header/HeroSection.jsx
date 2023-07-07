@@ -78,9 +78,9 @@ function HeroSection(props) {
               />
             </figure>
             <div className="header-title-dates">
-              <div class="header-quotes-wrapper">
-                <div class="quote-top-left quote-bonnefanten">“</div>
-                <div class="quote-top-right quote-bonnefanten">”</div>
+              <div className="header-quotes-wrapper">
+                <div className="quote-top-left quote-bonnefanten">“</div>
+                <div className="quote-top-right quote-bonnefanten">”</div>
               </div>
               <h1 className="hero-title-floating">{title}</h1>
               {startDate && isEvent && (

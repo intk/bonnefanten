@@ -294,6 +294,20 @@ body:not(.cms-ui) {
     }
   }
 
+  ul {
+    &,
+    li {
+      list-style-type: square !important;
+    }
+
+    &.ui.bulleted.list {
+      > li.item::before {
+        display: none;
+        content: none;
+      }
+    }
+  }
+
   table {
     th,
     td {

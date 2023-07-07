@@ -41,6 +41,10 @@ footer#site-footer {
     align-items: stretch;
     padding: 0 15px;
     color: var(--bonnefanten-secondary);
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 
     .column {
       position: relative;
@@ -69,7 +73,6 @@ footer#site-footer {
   a {
     display: inline-block;
     margin-top: 0px;
-    margin-bottom: 20px;
     color: var(--bonnefanten-primary) !important;
     font-family: 'StyreneBold', Arial, sans-serif;
     text-decoration: none !important;
@@ -183,6 +186,19 @@ footer#site-footer {
   }
 
   .footer-column-content.markdown {
+    display: grid;
+    max-width: 690px;
+    align-tracks: stretch;
+    align-tracks: stretch;
+    gap: 15px;
+    grid-auto-flow: dense;
+    grid-template: masonry;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: masonry;
+    justify-tracks: start;
+    masonry-auto-flow: pack;
+    masonry-auto-flow: next;
+
     p {
       display: inline;
     }
@@ -198,8 +214,11 @@ footer#site-footer {
     }
 
     img {
-      max-width: 200px;
+      width: auto;
+      min-width: 200px;
+      max-width: 100%;
       height: auto;
+      min-height: 60px;
       padding: 0 15px 10px 0;
       float: left;
     }

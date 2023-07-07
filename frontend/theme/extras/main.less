@@ -227,6 +227,11 @@ body:not(.cms-ui) {
 }
 
 .content-area {
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
   h1,
   h2,
   h3,
@@ -583,10 +588,11 @@ table.ui.table.block {
     justify-content: space-around;
     padding: 0;
     margin: 0 auto;
-    list-style: none;
+    list-style: none !important;
 
     li {
       margin: 0 5px;
+      list-style: none !important;
 
       a {
         display: inline-block;

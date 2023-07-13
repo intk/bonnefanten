@@ -57,6 +57,11 @@ msgstr ""
 msgid "Image override"
 msgstr ""
 
+#: components/blocks/Newsletter/schema
+# defaultMessage: Newsletter
+msgid "Newsletter"
+msgstr ""
+
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: Now on display
 msgid "Now on display"
@@ -83,11 +88,17 @@ msgstr ""
 msgid "Please choose an existing content as source for this element"
 msgstr ""
 
+#: components/blocks/Newsletter/NewsletterView
+# defaultMessage: Privacy statement
+msgid "Privacy statement"
+msgstr ""
+
 #: components/blocks/Quote/schema
 # defaultMessage: Quote
 msgid "Quote"
 msgstr ""
 
+#: components/blocks/Newsletter/NewsletterView
 #: components/theme/Footer/NewsletterSubscribe
 # defaultMessage: Subscribe
 msgid "Subscribe"
@@ -111,6 +122,11 @@ msgstr ""
 #: components/blocks/Teaser/schema
 # defaultMessage: Title
 msgid "Title"
+msgstr ""
+
+#: components/blocks/Newsletter/NewsletterView
+# defaultMessage: Your email address
+msgid "Your email address"
 msgstr ""
 
 #: components/blocks/Teaser/schema

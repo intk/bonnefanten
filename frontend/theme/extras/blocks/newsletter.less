@@ -28,14 +28,14 @@
     line-height: 4.5vw;
     text-align: center;
 
+    @media (max-width: 768px) {
+      margin-top: 10px;
+      margin-bottom: 35px;
+    }
+
     @media (max-width: 991px) {
       font-size: 8vw;
       line-height: 10vw;
-    }
-
-    @media (max-width: 768px) {
-      font-size: 6vw;
-      line-height: 6.5vw;
     }
 
     @media (min-width: 1400px) {
@@ -46,10 +46,25 @@
 
   .newsletterblock-row {
     display: flex;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
-  .newsletterblock-input {
+  input.newsletterblock-input {
     width: 100%;
+
+    + button[type='submit'].newsletterblock-submit {
+      margin-right: 12px !important;
+      margin-left: 12px !important;
+
+      @media (max-width: 768px) {
+        margin-top: 10px !important;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+      }
+    }
   }
 
   .newsletterblock-privacy-statement {

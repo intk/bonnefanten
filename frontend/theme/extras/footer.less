@@ -72,9 +72,11 @@ footer#site-footer {
 
   a {
     display: inline-block;
+    border-bottom: 1px solid transparent;
     margin-top: 0px;
     color: var(--bonnefanten-primary) !important;
     font-family: 'StyreneBold', Arial, sans-serif;
+    line-height: 1.33;
     text-decoration: none !important;
 
     &:hover,
@@ -114,8 +116,10 @@ footer#site-footer {
     }
 
     a {
+      border-bottom: 0;
       color: var(--bonnefanten-secondary) !important;
       font-family: 'BonnefantenBlock', Arial, sans-serif;
+      line-height: inherit;
       text-decoration: none !important;
 
       &:hover,

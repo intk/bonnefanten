@@ -47,18 +47,24 @@ const ListingTemplate = (props) => {
 
   if (isInternalURL(href)) {
     link = (
-      <ConditionalLink to={flattenToAppURL(href)} condition={!isEditMode}>
+      <ConditionalLink
+        to={flattenToAppURL(href)}
+        condition={!isEditMode}
+        className="text-button btn-block"
+      >
         {linkTitle || href}
       </ConditionalLink>
     );
   } else if (href) {
-    link = <UniversalLink href={href}>{linkTitle || href}</UniversalLink>;
+    link = (
+      <UniversalLink className="text-button btn-block" href={href}>
+        {linkTitle || href}
+      </UniversalLink>
+    );
   }
 
   return (
     <div className="listing-template">
-      {link && <div className="showmore-link">{link}</div>}
-
       <Grid columns={3} className="listings">
         {items.map((item, i) => (
           <Grid.Column
@@ -72,6 +78,8 @@ const ListingTemplate = (props) => {
           </Grid.Column>
         ))}
       </Grid>
+
+      {link && <div className="showmore-link">{link}</div>}
     </div>
   );
 };

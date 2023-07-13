@@ -81,27 +81,14 @@ const Logo = () => {
   const [letters, setLetters] = useState(initialLettersState);
 
   useEffect(() => {
-    let height = document.body.scrollHeight;
-    // let animationsSpan = height / 50;
+    let animationsSpan = 300;
+    let transitionHeight = 0;
 
     let newState = [...initialLettersState];
 
-    // for (let i = animationsSpan; i <= height; i += animationsSpan) {
-    //   let randomLetter = Math.floor(Math.random() * newState.length);
-
-    //   newState[randomLetter].initialTheme = newState[randomLetter].theme;
-    //   newState[randomLetter].animations = [
-    //     ...(newState[randomLetter].animations || []),
-    //     {
-    //       theme:
-    //         possibleClasses[Math.floor(Math.random() * possibleClasses.length)],
-    //       scrollHeight: i,
-    //     },
-    //   ];
-    // }
     for (let i = 0; i < 49; i++) {
       let randomLetter = Math.floor(Math.random() * newState.length);
-      let randomHeight = Math.floor(Math.random() * height);
+      transitionHeight = transitionHeight + animationsSpan;
 
       newState[randomLetter].initialTheme = newState[randomLetter].theme;
       newState[randomLetter].animations = [
@@ -109,7 +96,7 @@ const Logo = () => {
         {
           theme:
             possibleClasses[Math.floor(Math.random() * possibleClasses.length)],
-          scrollHeight: randomHeight,
+          scrollHeight: transitionHeight,
         },
       ];
     }

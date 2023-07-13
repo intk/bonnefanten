@@ -190,7 +190,11 @@ footer#site-footer {
   }
 
   .footer-column-content {
-    color: var(--bonnefanten-text);
+    color: var(--bonnefanten-secondary);
+
+    body.homepage-view & {
+      color: var(--bonnefanten-text);
+    }
   }
 
   .footer-column-content.markdown {

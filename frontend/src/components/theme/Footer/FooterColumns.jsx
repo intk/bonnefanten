@@ -58,9 +58,11 @@ const FooterColumns = ({ footer }) => {
               <div
                 className="footer-column-content markdown"
                 dangerouslySetInnerHTML={{
-                  __html: md.render(
-                    column.text.data.replace('<p>', '').replace('</p>', ''),
-                  ),
+                  __html: md
+                    .render(
+                      column.text.data.replace('<p>', '').replace('</p>', ''),
+                    )
+                    .replaceAll(/alt="(\w+)"/gi, 'alt="$1" title="$1"'),
                 }}
               />
             ) : (

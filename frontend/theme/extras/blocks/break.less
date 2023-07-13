@@ -29,4 +29,15 @@
     clear: both;
     content: '';
   }
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    &,
+    &::before,
+    &::after {
+      border: 0 !important;
+      outline: none;
+    }
+  }
 }

@@ -1,0 +1,79 @@
+.block.newsletter-block {
+  padding: 45px 30px 15px;
+
+  .newsletterblock-container {
+    @media (min-width: 992px) {
+      width: 85%;
+      padding-right: 0;
+      padding-left: 0;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      padding-right: 30px;
+      padding-left: 30px;
+    }
+
+    @media (max-width: 768px) {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+
+  h2.newsletter-heading {
+    margin: 70px auto;
+    color: var(--bonnefanten-secondary);
+    font-family: 'BonnefantenBlock', Arial, sans-serif;
+    font-size: 4vw;
+    line-height: 4.5vw;
+    text-align: center;
+
+    @media (max-width: 991px) {
+      font-size: 8vw;
+      line-height: 10vw;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 6vw;
+      line-height: 6.5vw;
+    }
+
+    @media (min-width: 1400px) {
+      font-size: 75px;
+      line-height: 120px;
+    }
+  }
+
+  .newsletterblock-row {
+    display: flex;
+  }
+
+  .newsletterblock-input {
+    width: 100%;
+  }
+
+  .newsletterblock-privacy-statement {
+    margin-top: 25px;
+    margin-left: 25px;
+    letter-spacing: 0.05em;
+
+    a {
+      border-bottom: 0;
+      color: var(--bonnefanten-primary) !important;
+      font-family: 'StyreneBold', Arial, sans-serif;
+      font-size: 13px;
+      text-decoration: none !important;
+
+      &:hover,
+      &:focus {
+        border: 0;
+        outline: 0;
+        text-decoration: underline !important;
+
+        &::before {
+          border: 0 !important;
+        }
+      }
+    }
+  }
+}

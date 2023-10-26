@@ -1,10 +1,6 @@
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.multilingual.dx import directives as lang_directives
-from plone.app.z3cform.widget import RelatedItemsFieldWidget
-from plone.autoform import directives as form_directives
 from plone.supermodel import model
-from z3c.relationfield.schema import RelationChoice
-from z3c.relationfield.schema import RelationList
 from zope import schema
 
 
@@ -20,14 +16,20 @@ from zope import schema
 #     "DefaultBoo" : true,
 #     "__lastModified" : "2022-07-01T12:00:00",
 #     "Sizes" : {
-#       "ExtraSmallUri" : "/ria-ws/application/module/Multimedia/10112/thumbnail?size=EXTRA_SMALL",
-#       "SmallUri" : "/ria-ws/application/module/Multimedia/10112/thumbnail?size=SMALL",
-#       "MediumUri" : "/ria-ws/application/module/Multimedia/10112/thumbnail?size=MEDIUM",
-#       "LargeUri" : "/ria-ws/application/module/Multimedia/10112/thumbnail?size=LARGE",
-#       "ExtraLargeUri" : "/ria-ws/application/module/Multimedia/10112/thumbnail?size=EXTRA_LARGE"
+#       "ExtraSmallUri" : "/ria-ws/application/module/Multimedia/10112/
+#           thumbnail?size=EXTRA_SMALL",
+#       "SmallUri" : "/ria-ws/application/module/Multimedia/10112/
+#           thumbnail?size=SMALL",
+#       "MediumUri" : "/ria-ws/application/module/Multimedia/10112/
+#           thumbnail?size=MEDIUM",
+#       "LargeUri" : "/ria-ws/application/module/Multimedia/10112/
+#           thumbnail?size=LARGE",
+#       "ExtraLargeUri" : "/ria-ws/application/module/Multimedia/10112/
+#           thumbnail?size=EXTRA_LARGE"
 #     }
 #   } ],
-#   "ObjCreditlineTxt" : "Collectie Bonnefanten, verworven met steun van de VriendenLoterij.",
+#   "ObjCreditlineTxt" : "Collectie Bonnefanten, verworven met steun van de
+#       VriendenLoterij.",
 #   "ObjTechniqueTxt" : "geweven",
 #   "ObjCurrentLocationTxt" : " -> Entree begane grond",
 #   "ObjCategoryTxt" : "textilia",
@@ -82,8 +84,6 @@ from zope import schema
 # } ]
 
 
-
-
 class IArtwork(model.Schema):
     """Schema for Artwork content type."""
 
@@ -92,21 +92,29 @@ class IArtwork(model.Schema):
     ObjMaterialTxt = schema.TextLine(title="ObjMaterialTxt", required=False)
     ObjObjectNumberTxt = schema.TextLine(title="ObjObjectNumberTxt", required=False)
     ObjTitleTxt = schema.TextLine(title="ObjTitleTxt", required=False)
-    ObjPhysicalDescriptionTxt = schema.Text(title="ObjPhysicalDescriptionTxt", required=False)
+    ObjPhysicalDescriptionTxt = schema.Text(
+        title="ObjPhysicalDescriptionTxt", required=False
+    )
     ObjCreditlineTxt = schema.TextLine(title="ObjCreditlineTxt", required=False)
     ObjTechniqueTxt = schema.TextLine(title="ObjTechniqueTxt", required=False)
-    ObjCurrentLocationTxt = schema.TextLine(title="ObjCurrentLocationTxt", required=False)
+    ObjCurrentLocationTxt = schema.TextLine(
+        title="ObjCurrentLocationTxt", required=False
+    )
     ObjCategoryTxt = schema.TextLine(title="ObjCategoryTxt", required=False)
     ObjObjectTypeTxt = schema.TextLine(title="ObjObjectTypeTxt", required=False)
     ObjDateFromTxt = schema.Int(title="ObjDateFromTxt", required=False)
     ObjDateToTxt = schema.TextLine(title="ObjDateToTxt", required=False)
     ObjDateNotesTxt = schema.TextLine(title="ObjDateNotesTxt", required=False)
-    ObjAcquisitionMethodTxt = schema.TextLine(title="ObjAcquisitionMethodTxt", required=False)
+    ObjAcquisitionMethodTxt = schema.TextLine(
+        title="ObjAcquisitionMethodTxt", required=False
+    )
     ObjAcquisitionDateTxt = schema.Date(title="ObjAcquisitionDateTxt", required=False)
-    ObjHistoricLocationTxt = schema.TextLine(title="ObjHistoricLocationTxt", required=False)
-    ObjPersonRef = schema.List(title="ObjPersonRef", required=False, value_type=schema.TextLine(title="Artist"))
-
-
+    ObjHistoricLocationTxt = schema.TextLine(
+        title="ObjHistoricLocationTxt", required=False
+    )
+    ObjPersonRef = schema.List(
+        title="ObjPersonRef", required=False, value_type=schema.TextLine(title="Artist")
+    )
     rawdata = schema.Text(title="Rawdata", required=False)
 
     lang_directives.languageindependent(
@@ -129,4 +137,4 @@ class IArtwork(model.Schema):
         "ObjPersonRef",
     )
 
-    searchable("Id", "ObjTitleTxt", "ObjPersonRef", "ObjCategoryTxt" )
+    searchable("Id", "ObjTitleTxt", "ObjPersonRef", "ObjCategoryTxt")

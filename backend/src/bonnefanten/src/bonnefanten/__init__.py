@@ -9,3 +9,5 @@ PACKAGE_NAME = "bonnefanten"
 _ = MessageFactory("bonnefanten")
 
 logger = logging.getLogger("bonnefanten")
+
+from .content.artwork import IArtwork

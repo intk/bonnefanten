@@ -15,10 +15,13 @@ services:
       replicas: 2
 
   backend:
-    image: intkbv/bonnefanten-backend:sha-d796a25
+    image: intkbv/bonnefanten-backend:sha-1c5f762
     environment:
       ZEO_ADDRESS: zeo:8100
       SITE: Plone
+    env_file:
+      - ../container.env
+
     networks:
       - nw-data
     ports:
@@ -36,13 +39,6 @@ services:
       - /var/local/bonnefanten/data:/data
     networks:
       - nw-data
-
-volumes:
-  vol-site-data:
-    driver_opts:
-      type: none
-      device: /srv/bonnefanten/data
-      o: bind
 
 networks:
   nw-data:

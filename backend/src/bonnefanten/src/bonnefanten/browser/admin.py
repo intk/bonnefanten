@@ -1,4 +1,3 @@
-from .request import HEADERS
 from bonnefanten.config import DATA_REPO
 from bonnefanten.config import IMAGE_BASE_URL
 from bonnefanten.config import IMPORT_LOCATIONS

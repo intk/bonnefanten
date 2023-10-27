@@ -15,13 +15,13 @@ services:
       replicas: 2
 
   backend:
-    image: intkbv/bonnefanten-backend:sha-1c5f762
+    image: intkbv/bonnefanten-backend:sha-17414d5
     environment:
       ZEO_ADDRESS: zeo:8100
       SITE: Plone
+      DOCKER_DEPLOYMENT: "true"
     env_file:
       - ../container.env
-
     networks:
       - nw-data
     ports:

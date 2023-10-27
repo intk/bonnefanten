@@ -58,7 +58,8 @@ class AdminFixes(BrowserView):
             f"The sync function started at {start_time} for the range of objects between {start_range} and {end_range} "
         )
 
-        load_env_file(".env")
+        if not os.environ.get('DOCKER_DEPLOYMENT'):
+            load_env_file('.env')
 
         API_USERNAME = os.environ.get("API_USERNAME")
         API_PASSWORD = os.environ.get("API_PASSWORD")

@@ -74,14 +74,13 @@ class AdminFixes(BrowserView):
 
         api_url = "https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten/ria-ws/application/module/Object/export/61002/"
 
-
         # Get the directory of the current script
         current_directory = os.path.dirname(os.path.abspath(__file__))
 
         # Construct the path to the XML file
-        xml_file_path = os.path.join(current_directory, 'export-body.xml')
+        xml_file_path = os.path.join(current_directory, "export-body.xml")
 
-        with open(xml_file_path, 'r') as xml_file:
+        with open(xml_file_path, "r") as xml_file:
             xml_content = xml_file.read()
 
         response = requests.post(api_url, data=xml_content, headers=headers)

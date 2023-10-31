@@ -38,6 +38,10 @@ export default function ArtworkView(props) {
     setPopupVisible(false);
   };
 
+  // const authors = content.authors.map((auth) => auth.title).join(', ');
+  // const linkAuthors = content.authors || contextLinks?.authors;
+  const linkAuthors = content.authors;
+
   const expandData = () => {
     setDataExpand(!dataExpand);
     const rawDataElement = document.getElementById('rawdata');
@@ -235,6 +239,23 @@ export default function ArtworkView(props) {
           >
             <table>
               <tbody>
+                {linkAuthors?.map((auth, index) => (
+                  <tr>
+                    <td className="columnone">
+                      <p>Authors</p>
+                    </td>
+                    <td className="columntwo">
+                      <p key={index}>
+                        <a
+                          href={auth['@id']}
+                          // title={auth.detailsHrefTitle}
+                        >
+                          {auth.title}
+                        </a>
+                      </p>
+                    </td>
+                  </tr>
+                ))}
                 {content.ObjPersonRef && (
                   <tr>
                     <td className="columnone">

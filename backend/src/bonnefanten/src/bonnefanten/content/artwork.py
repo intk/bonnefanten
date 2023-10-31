@@ -1,6 +1,10 @@
 from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.multilingual.dx import directives as lang_directives
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives as form_directives
 from plone.supermodel import model
+from z3c.relationfield.schema import RelationChoice
+from z3c.relationfield.schema import RelationList
 from zope import schema
 
 
@@ -112,8 +116,28 @@ class IArtwork(model.Schema):
     ObjHistoricLocationTxt = schema.TextLine(
         title="ObjHistoricLocationTxt", required=False
     )
-    ObjPersonRef = schema.TextLine(title="ObjPersonRef", required=False)
+    ObjPersonRef = schema.List(
+        title="ObjPersonRef", required=False, value_type=schema.TextLine(title="Artist")
+    )
     rawdata = schema.Text(title="Rawdata", required=False)
+
+    authors = RelationList(
+        title="Authors",
+        default=[],
+        value_type=RelationChoice(
+            title="Author", vocabulary="plone.app.vocabularies.Catalog"
+        ),
+        required=False,
+    )
+    form_directives.widget(
+        "authors",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "selectableTypes": [
+                "author",
+            ],
+        },
+    )
 
     lang_directives.languageindependent(
         "Id",

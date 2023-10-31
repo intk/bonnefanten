@@ -1,6 +1,7 @@
 import installBlocks from './components/blocks';
 import TagManager from 'react-gtm-module';
 import MultipleContentView from './components/theme/View/MultipleContentView';
+import ArtworkView from './components/theme/View/ArtworkView';
 
 // All your imports required for the config here BEFORE this line
 import '@plone/volto/config';
@@ -43,6 +44,15 @@ export default function applyConfig(config) {
     Document: 'title',
     Event: 'title',
     'News Item': 'title',
+  };
+  delete config.views.layoutViews.document_view;
+  config.views.layoutViewsNamesMapping = {
+    ...config.views.layoutViewsNamesMapping,
+    artwork_view: 'Artwork',
+  };
+  config.views.contentTypesViews = {
+    ...config.views.contentTypesViews,
+    artwork: ArtworkView,
   };
 
   config.views.layoutViews.multiple_content = MultipleContentView;

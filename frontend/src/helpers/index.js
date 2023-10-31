@@ -6,3 +6,4 @@
  */
 
 export * from './images';
+export useSiteDataContent from './useSiteDataContent';

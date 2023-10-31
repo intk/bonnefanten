@@ -101,12 +101,13 @@ class AdminFixes(BrowserView):
                 container=container,
                 container_en=container_en,
                 catalog=catalog,
+                headers=headers
             )
 
         return "all done"
 
 
-def import_one_record(self, record, container, container_en, catalog):
+def import_one_record(self, record, container, container_en, catalog, headers):
     # Convert <dc_record> element to XML string
     # dc_record_xml = ET.tostring(record, encoding='unicode')
 
@@ -143,13 +144,25 @@ def import_one_record(self, record, container, container_en, catalog):
         # "ObjAcquisitionMethodTxt" : "ObjAcquisitionMethodTxt",
         # "ObjAcquisitionDateTxt" : "ObjAcquisitionDateTxt",
         "ObjHistoricLocationTxt": "ObjHistoricLocationTxt",
-        # "ObjPersonRef" : "ObjPersonRef",
     }
 
     for xml_field, info_field in fields_to_extract.items():
         value = record[xml_field]
         info["nl"][info_field] = value if value else ""
         info["en"][info_field] = value if value else ""
+
+    extra_large_uri = None
+    thumbnails = record.get("Thumbnails", [])
+
+    if thumbnails and isinstance(thumbnails, list) and "Sizes" in thumbnails[0] and "ExtraLargeUri" in thumbnails[0]["Sizes"]:
+        info["nl"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
+        info["en"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
+        print(info["nl"]["images"])
+
+    artist = record["ObjPersonRef"][0]["Items"]["LinkLabelTxt"]
+    if artist:
+        info["nl"]["images"] = artist
+        info["en"]["images"] = artist
 
     # ObjObjectNumberTxt = record["ObjObjectNumberTxt"]
     # info['nl']['ObjObjectNumberTxt'] = ObjObjectNumberTxt
@@ -348,13 +361,13 @@ def import_one_record(self, record, container, container_en, catalog):
         #     relation.create(source=obj_en, target=author_en, relationship="authors")
 
         # adding images
-        # images=element.xpath(f"//dc_record/objectImage")
-        # if images:
-        #     import_images(
-        #         container= obj,
-        #         images=images
-        #         )
-        #     obj.hasImage=True;
+        if info["en"]["images"]:
+            import_images(
+                container= obj,
+                image=info["en"]["images"],
+                headers=headers
+                )
+            obj.hasImage=True;
 
         # obj_en = self.translate(obj, info['en'])
 
@@ -396,70 +409,76 @@ def create_and_setup_object(title, container, info, intl, object_type):
     return obj
 
 
-def import_images(container, images):
+def import_images(container, image, headers):
     MAX_RETRIES = 2
     DELAY_SECONDS = 1
+
+    # Extract the API authentication from the headers (if available)
+    API_USERNAME = os.environ.get("API_USERNAME")
+    API_PASSWORD = os.environ.get("API_PASSWORD")
+
+    credentials = f"{API_USERNAME}:{API_PASSWORD}".encode()
+    encoded_credentials = base64.b64encode(credentials).decode("utf-8")
+    headers = {
+        "Content-Type": "application/xml",
+        "Authorization": f"Basic {encoded_credentials}",
+    }
 
     # Delete the existing images inside the container
     for obj in api.content.find(context=container, portal_type="Image"):
         api.content.delete(obj=obj.getObject())
 
-    for image in images:
-        primaryDisplay = image.get("PrimaryDisplay")
-        retries = 0
-        success = False
 
-        # Tries MAX_RETRIES times and then raise exception
-        while retries < MAX_RETRIES:
-            try:
-                with requests.get(
-                    url=f"{IMAGE_BASE_URL}/{image.text}",
-                    stream=True,
-                    verify=False,
-                    headers=HEADERS,
-                ) as req:  # noqa
-                    req.raise_for_status()
-                    data = req.raw.read()
+    retries = 0
+    success = False
+    imageTitle = image
 
-                    if "DOCTYP" in str(data[:10]):
-                        continue
 
-                    log_to_file(f"{image.text} image is created")
+    # Tries MAX_RETRIES times and then raise exception
+    while retries < MAX_RETRIES:
+        try:
+            image_url = f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten{image}"
+            print(image_url)
+            with requests.get(
+                url=image_url,
+                stream=True,
+                verify=False,
+                headers=headers
+            ) as req:  # noqa
+                req.raise_for_status()
+                data = req.raw.read()
 
-                    imagefield = NamedBlobImage(
-                        # TODO: are all images jpegs?
-                        data=data,
-                        contentType="image/jpeg",
-                        filename=image.text,
-                    )
-                    image = api.content.create(
-                        type="Image",
-                        title=image.text,
-                        image=imagefield,
-                        container=container,
-                    )
+                if "DOCTYP" in str(data[:10]):
+                    continue
 
-                    if primaryDisplay == "1":
-                        ordering = IExplicitOrdering(container)
-                        ordering.moveObjectsToTop([image.getId()])
+                log_to_file(f"{image} image is created")
 
-                    success = True
-                    break
+                imagefield = NamedBlobImage(
+                    data=data,
+                    contentType="image/jpeg",
+                    filename=f"{image}.jpeg",
+                )
+                created_image = api.content.create(
+                    type="Image",
+                    title='test',
+                    image=imagefield,
+                    container=container,
+                )
 
-            except requests.RequestException as e:
-                retries += 1
-                if retries < MAX_RETRIES:
-                    time.sleep(DELAY_SECONDS)
-                else:
-                    # print(
-                    #     f"Failed to fetch image {image.text} after {MAX_RETRIES} attempts: {e}"
-                    # )
-                    log_to_file(f"failed to create {image.text} image")
+                success = True
+                break
 
-        if not success:
-            log_to_file(f"Skipped image {image.text} due to repeated fetch failures.")
+        except requests.RequestException as e:
+            retries += 1
+            if retries < MAX_RETRIES:
+                time.sleep(DELAY_SECONDS)
+            else:
+                log_to_file(f"failed to create {image} image")
 
-    return f"Images {images} created successfully"
+    if not success:
+        log_to_file(f"Skipped image {image} due to repeated fetch failures.")
+
+    return f"Image {image} created successfully"
 
 
 def log_to_file(message):

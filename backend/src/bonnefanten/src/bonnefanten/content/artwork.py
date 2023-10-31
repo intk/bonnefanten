@@ -112,8 +112,8 @@ class IArtwork(model.Schema):
     ObjHistoricLocationTxt = schema.TextLine(
         title="ObjHistoricLocationTxt", required=False
     )
-    ObjPersonRef = schema.List(
-        title="ObjPersonRef", required=False, value_type=schema.TextLine(title="Artist")
+    ObjPersonRef = schema.TextLine(
+        title="ObjPersonRef", required=False
     )
     rawdata = schema.Text(title="Rawdata", required=False)
 

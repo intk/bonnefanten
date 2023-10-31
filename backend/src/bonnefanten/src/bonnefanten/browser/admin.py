@@ -164,10 +164,10 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         info["en"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
         print(info["nl"]["images"])
 
-    artist = record["ObjPersonRef"][0]["Items"]["LinkLabelTxt"]
-    if artist:
-        info["nl"]["images"] = artist
-        info["en"]["images"] = artist
+    # artist = record["ObjPersonRef"][0]["Items"]["LinkLabelTxt"]
+    # if artist:
+    #     info["nl"]["images"] = artist
+    #     info["en"]["images"] = artist
 
     # ObjObjectNumberTxt = record["ObjObjectNumberTxt"]
     # info['nl']['ObjObjectNumberTxt'] = ObjObjectNumberTxt

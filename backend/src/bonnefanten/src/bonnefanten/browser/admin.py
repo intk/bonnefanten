@@ -101,7 +101,7 @@ class AdminFixes(BrowserView):
                 container=container,
                 container_en=container_en,
                 catalog=catalog,
-                headers=headers
+                headers=headers,
             )
 
         return "all done"
@@ -154,7 +154,12 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     extra_large_uri = None
     thumbnails = record.get("Thumbnails", [])
 
-    if thumbnails and isinstance(thumbnails, list) and "Sizes" in thumbnails[0] and "ExtraLargeUri" in thumbnails[0]["Sizes"]:
+    if (
+        thumbnails
+        and isinstance(thumbnails, list)
+        and "Sizes" in thumbnails[0]
+        and "ExtraLargeUri" in thumbnails[0]["Sizes"]
+    ):
         info["nl"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
         info["en"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
         print(info["nl"]["images"])
@@ -362,12 +367,8 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
         # adding images
         if info["en"]["images"]:
-            import_images(
-                container= obj,
-                image=info["en"]["images"],
-                headers=headers
-                )
-            obj.hasImage=True;
+            import_images(container=obj, image=info["en"]["images"], headers=headers)
+            obj.hasImage = True
 
         # obj_en = self.translate(obj, info['en'])
 
@@ -428,22 +429,19 @@ def import_images(container, image, headers):
     for obj in api.content.find(context=container, portal_type="Image"):
         api.content.delete(obj=obj.getObject())
 
-
     retries = 0
     success = False
     imageTitle = image
 
-
     # Tries MAX_RETRIES times and then raise exception
     while retries < MAX_RETRIES:
         try:
-            image_url = f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten{image}"
+            image_url = (
+                f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten{image}"
+            )
             print(image_url)
             with requests.get(
-                url=image_url,
-                stream=True,
-                verify=False,
-                headers=headers
+                url=image_url, stream=True, verify=False, headers=headers
             ) as req:  # noqa
                 req.raise_for_status()
                 data = req.raw.read()
@@ -460,7 +458,7 @@ def import_images(container, image, headers):
                 )
                 created_image = api.content.create(
                     type="Image",
-                    title='test',
+                    title="test",
                     image=imagefield,
                     container=container,
                 )

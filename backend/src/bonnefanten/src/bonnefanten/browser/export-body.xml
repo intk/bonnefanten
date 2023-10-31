@@ -10,7 +10,9 @@
       >
         <expert>
           <!-- <equalsField fieldPath="ObjTitleTxt" operand="The Walthamstow Tapestry" /> -->
-          <equalsField fieldPath="ObjObjectTitleGrp.TitleTxt" operand="The Walthamstow Tapestry" />
+          <equalsField fieldPath="ObjObjectTitleGrp.TitleTxt"
+                       operand="The Walthamstow Tapestry"
+          />
           <!-- <equalsField fieldPath="__id"
                        operand="11678"
           /> -->

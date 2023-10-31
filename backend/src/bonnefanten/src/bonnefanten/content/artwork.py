@@ -112,9 +112,7 @@ class IArtwork(model.Schema):
     ObjHistoricLocationTxt = schema.TextLine(
         title="ObjHistoricLocationTxt", required=False
     )
-    ObjPersonRef = schema.TextLine(
-        title="ObjPersonRef", required=False
-    )
+    ObjPersonRef = schema.TextLine(title="ObjPersonRef", required=False)
     rawdata = schema.Text(title="Rawdata", required=False)
 
     lang_directives.languageindependent(

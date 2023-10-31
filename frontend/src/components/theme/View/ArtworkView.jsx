@@ -2,16 +2,16 @@
 // import { RenderBlocks } from '@plone/volto/components';
 import React, { useState, useRef } from 'react';
 // import { FormattedMessage } from 'react-intl';
-import { Grid, Container } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 // import { Card } from '@package/components'; // SocialLinks,
 // import ImageAlbum from '../ImageAlbum/ImageAlbum';
 // import config from '@plone/volto/registry';
 // import { useSiteDataContent } from '@package/helpers';
 // import { LuFileVideo, LuFileAudio } from 'react-icons/lu';
-import { injectIntl } from 'react-intl';
+// import { injectIntl } from 'react-intl';
 import './css/artworkview.less';
 import ReactSwipe from 'react-swipe';
-import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
+// import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 import { SlMagnifierAdd, SlMagnifierRemove } from 'react-icons/sl';
 import { GoShare, GoDownload } from 'react-icons/go';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
@@ -21,6 +21,7 @@ import twbutton from './assets/share_button_twitter.svg';
 export default function ArtworkView(props) {
   const { content } = props;
 
+  // eslint-disable-next-line no-unused-vars
   let reactSwipeEl;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dataExpand, setDataExpand] = useState(false);

@@ -10,4 +10,15 @@
   <!-- Metadata
   <column value="industry" />
 -->
+  <index meta_type="FieldIndex"
+         name="ObjObjectNumberTxt"
+  >
+    <indexed_attr value="ObjObjectNumberTxt" />
+  </index>
+  <index meta_type="FieldIndex"
+         name="ObjTitleTxt"
+  >
+    <indexed_attr value="ObjTitleTxt" />
+  </index>
+
 </object>

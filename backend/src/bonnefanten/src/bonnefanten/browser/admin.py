@@ -147,8 +147,11 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
     # print(dc_record_xml)
     # element = lxml.etree.fromstring(dc_record_xml)
-    authors, authors_en = import_authors(self, record)
-    # import_authors(self, record)
+    importedAuthors = import_authors(self, record)
+    if importedAuthors:
+        authors, authors_en = import_authors(self, record)
+    else:
+        authors = "null"
 
     record_text = json.dumps(record)
     info = {"nl": {}, "en": {}}
@@ -198,192 +201,102 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         info["nl"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
         info["en"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
         print(info["nl"]["images"])
-
-    # artist = record["ObjPersonRef"][0]["Items"]["LinkLabelTxt"]
-    # if artist:
-    #     info["nl"]["images"] = artist
-    #     info["en"]["images"] = artist
-
-    # ObjObjectNumberTxt = record["ObjObjectNumberTxt"]
-    # info['nl']['ObjObjectNumberTxt'] = ObjObjectNumberTxt
-    # info['en']['ObjObjectNumberTxt'] = ObjObjectNumberTxt
-
-    # title = record["ObjTitleTxt"]
-    # info['nl']['title'] = title
-    # info['en']['title'] = title
-
-    language_dependent_fields = {
-        # "objectClassification" : "objectClassification",
-        # "objectMedium": "objectMedium",
-    }
-
-    # for lang in info.keys():
-    #     for xml_field, info_field in language_dependent_fields.items():
-    #         value = element.xpath(f"//dc_record/{xml_field}[@Language='{lang.upper()}']")
-    #         if value:
-    #             info[lang][info_field] = value[0].text
-    #         else:
-    #             info[lang][info_field] = ''
-
-    # for xml_field, info_field in fields_to_extract.items():
-    #     elements = element.xpath(f"//dc_record/{xml_field}")
-    #     info['nl'][info_field] = elements[0].text if elements else ''
-    #     info['en'][info_field] = elements[0].text if elements else ''
-
-    # rawdata = element.xpath("//dc_record")[0]
-    # info['nl']['rawdata'] = lxml.etree.tostring(rawdata)
-    # info['en']['rawdata'] = lxml.etree.tostring(rawdata)
-
-    # titles = element.xpath("//dc_record/objectTitle")
-    # title = titles[0].text
-    # if len(titles) > 1:
-    #     titles.sort(key=lambda x: x.get("Rangorde") or "")
-    #     title = titles[0].text
-    # info['nl']['objectTitle'] = title
-    # info['en']['objectTitle'] = title
-
-    # attrs = [
-    # "objectPosition",
-    # "objectFormatWidth",
-    # "objectFormatDepth",
-    # "objectFormatLength",
-    # "objectKeys",
-    # "authorID"
-    # ]
-
-    # for attr in attrs:
-    #     value = element.xpath(f"//dc_record/{attr}")
-    #     if value:
-    #         info['en'][attr] = str(value[0].text)
-    #         info['nl'][attr] = str(value[0].text)
-
-    #         # If the current attribute is 'objectPosition' and the value is not empty
-    #         if attr == "objectPosition" and str(value[0]).strip():
-    #             info['en']['objectOnDisplay'] = True
-    #             info['nl']['objectOnDisplay'] = True
-
-    # for field in ["ObjectAudio", "ObjectVideo"]:
-    #     for lang in info.keys():
-    #         els = element.xpath(
-    #             f"//dc_record/{field}[@Language='{lang.upper()}']")
-    #         if not els:
-    #             continue
-    #         info[lang][field] = [
-    #             {"title": (el.get("Title") or "").strip(),
-    #                 "filename": (el.text or "").strip()}
-    #             for el in els
-    #         ]
-
-    # for lang in info.keys():
-    #     objectDescription = element.xpath(f"//dc_record/objectDescription[@Language='{lang.upper()}']")
-    #     if len(objectDescription)>1:
-    #         for e in objectDescription:
-    #             descTitle=e.get('Title')
-    #             descScope=e.get('Scope')
-    #             if descTitle or descScope:
-    #                 info[lang]['objectDescription_extra'] = str(e.text)
-    #                 info[lang]['objectDescription_extra_title'] = descTitle
-    #                 info[lang]['objectDescription_extra_scope'] = descScope
-    #             else:
-    #                 info[lang]['objectDescription'] = e.text
-    #     elif objectDescription:
-    #         info[lang]['objectDescription'] = objectDescription[0].text
-    #     else:
-    #         info[lang]['objectDescription'] = ''
+    else:
+        info["en"]["images"] = "null"
 
     # Find the existing object
-    # brains = catalog.searchResults(ccObjectID=ccObjectID, portal_type="artwork")
+    ObjectNumber = info["nl"]["ObjObjectNumberTxt"]
 
     # Check if only one language version of the object with ccObjectID exists
-    # brains = catalog.searchResults(ccObjectID=ObjObjectNumberTxt)
-    # if len(brains)==1:
-    #     lang = brains[0].getObject().language
-    #     missing_lang = 'en' if lang == 'nl' else 'nl'
-    #     if missing_lang == 'nl':
-    #         obj = create_and_setup_object(title, container, info, intl, "artwork") #Dutch version
-    #         log_to_file(f"{ccObjectID} Dutch version of object is created")
-    #         # for author in authors:
-    #             # relation.create(source=obj, target=author, relationship="authors")
+    brains = catalog.searchResults(
+        ObjObjectNumberTxt=ObjectNumber, portal_type="artwork"
+    )
+    if len(brains) == 1:
+        lang = brains[0].getObject().language
+        missing_lang = "en" if lang == "nl" else "nl"
+        if missing_lang == "nl":
+            obj = create_and_setup_object(
+                title, container, info, intl, "artwork"
+            )  # Dutch version
+            # log_to_file(f"{ccObjectID} Dutch version of object is created")
+            # for author in authors:
+            # relation.create(source=obj, target=author, relationship="authors")
 
-    #         manager = ITranslationManager(obj)
-    #         if not manager.has_translation('en'):
-    #             manager.register_translation('en', brains[0].getObject())
+            manager = ITranslationManager(obj)
+            if not manager.has_translation("en"):
+                manager.register_translation("en", brains[0].getObject())
 
-    #         #adding images
-    #         images=element.xpath(f"//dc_record/objectImage")
-    #         if images:
-    #             import_images(
-    #                 container= obj,
-    #                 images=images
-    #                 )
-    #             obj.hasImage=True;
-    #         obj.reindexObject()
+            # adding images
+            if info["en"]["images"]:
+                import_images(
+                    container=obj, image=info["en"]["images"], headers=headers
+                )
+                obj.hasImage = True
+            obj.reindexObject()
 
-    #     else:
-    #         obj_en = create_and_setup_object(title, container_en, info, intl, "artwork") #English version
-    #         log_to_file(f"{ccObjectID} English version of object is created")
-    #         # for author_en in authors_en:
-    #             # relation.create(source=obj_en, target=author_en, relationship="authors")
+        else:
+            obj_en = create_and_setup_object(
+                title, container_en, info, intl, "artwork"
+            )  # English version
+            # log_to_file(f"{ccObjectID} English version of object is created")
+            # for author_en in authors_en:
+            # relation.create(source=obj_en, target=author_en, relationship="authors")
 
-    #         manager = ITranslationManager(obj_en)
-    #         if not manager.has_translation('nl'):
-    #             manager.register_translation('nl', brains[0].getObject())
+            manager = ITranslationManager(obj_en)
+            if not manager.has_translation("nl"):
+                manager.register_translation("nl", brains[0].getObject())
 
-    #         #adding images
-    #         images=element.xpath(f"//dc_record/objectImage")
-    #         if images:
-    #             import_images(
-    #                 container= obj_en,
-    #                 images=images
-    #                 )
-    #             obj_en.hasImage=True;
-    #         obj_en.reindexObject()
+            # adding images
+            if info["en"]["images"]:
+                import_images(
+                    container=obj_en, image=info["en"]["images"], headers=headers
+                )
+                obj_en.hasImage = True
+
+            obj_en.reindexObject()
 
     # # Check if object with ccObjectID already exists in the container
-    # # brains = catalog.searchResults(ccObjectID=ccObjectID)
-    # elif brains:
-    #     for brain in brains:
-    #         # Object exists, so we fetch it and update it
-    #         obj = brain.getObject()
+    elif brains:
+        for brain in brains:
+            # Object exists, so we fetch it and update it
+            obj = brain.getObject()
 
-    #         # Update the object's fields with new data
-    #         lang = obj.language
-    #         for k, v in info[lang].items():
-    #             if v:
-    #                 setattr(obj, k, v)
+            # Update the object's fields with new data
+            lang = obj.language
+            for k, v in info[lang].items():
+                if v:
+                    setattr(obj, k, v)
 
-    #         for k, v in intl[lang].items():
-    #             if v:
-    #                 setattr(obj, k, json.dumps(v))
+            for k, v in intl[lang].items():
+                if v:
+                    setattr(obj, k, json.dumps(v))
 
-    #         # print(f"Updated Object ID: {obj.getId()}, Path: {obj.absolute_url()}, Workflow State: {api.content.get_state(obj)}")
+            # print(f"Updated Object ID: {obj.getId()}, Path: {obj.absolute_url()}, Workflow State: {api.content.get_state(obj)}")
 
-    #         # if lang == "nl":
-    #         #     for author in authors:
-    #         #         relation.delete(source=obj, target=author, relationship="authors")
-    #         #         relation.create(source=obj, target=author, relationship="authors")
+            # if lang == "nl":
+            #     for author in authors:
+            #         relation.delete(source=obj, target=author, relationship="authors")
+            #         relation.create(source=obj, target=author, relationship="authors")
 
-    #         # else:
-    #         #     for author_en in authors_en:
-    #         #         relation.delete(source=obj, target=author_en, relationship="authors")
-    #         #         relation.create(source=obj, target=author_en, relationship="authors")
+            # else:
+            #     for author_en in authors_en:
+            #         relation.delete(source=obj, target=author_en, relationship="authors")
+            #         relation.create(source=obj, target=author_en, relationship="authors")
 
-    #         log_to_file(f"{ccObjectID} object is updated")
+            # log_to_file(f"{ccObjectID} object is updated")
 
-    #         #adding images
-    #         images=element.xpath(f"//dc_record/objectImage")
-    #         if images:
-    #             import_images(
-    #                 container= obj,
-    #                 images=images
-    #                 )
-    #         obj.hasImage=True;
+            # adding images
+            if info["en"]["images"] != "null":
+                import_images(
+                    container=obj, image=info["en"]["images"], headers=headers
+                )
+                obj.hasImage = True
 
-    #         # Reindex the updated object
-    #         obj.reindexObject()
+            # Reindex the updated object
+            obj.reindexObject()
 
     # # Object doesn't exist, so we create a new one
-    if True:
+    else:
         if not title:
             title = "Untitled Object"  # default value for untitled objects
 
@@ -394,16 +307,17 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         # log_to_file(f"{ObjObjectNumberTxt} object is created")
 
         # adding images
-        if info["en"]["images"]:
+        if info["en"]["images"] != "null":
             import_images(container=obj, image=info["en"]["images"], headers=headers)
             obj.hasImage = True
 
         obj_en = self.translate(obj, info["en"])
 
-        for author in authors:
-            relation.create(source=obj, target=author, relationship="authors")
-        for author_en in authors_en:
-            relation.create(source=obj_en, target=author_en, relationship="authors")
+        if authors != "null":
+            for author in authors:
+                relation.create(source=obj, target=author, relationship="authors")
+            for author_en in authors_en:
+                relation.create(source=obj_en, target=author_en, relationship="authors")
 
 
 def create_and_setup_object(title, container, info, intl, object_type):
@@ -550,19 +464,18 @@ def import_authors(self, record, use_archive=True):
     authors = []
     authors_en = []
 
-    # urls = {}
-    # url_titles = {}
-
-    # def get(lang, d):
-    #     if lang in d:
-    #         return d[lang]
-    #     else:
-    #         if d:
-    #             return d[list(d.keys())[0]]
-
-    print(record["ObjPersonRef"]["Items"][0]["ReferencedId"])
+    # print(record["ObjPersonRef"]["Items"][0]["ReferencedId"])
     # for authorID in record["ObjPersonRef"]["Items"][0]["ReferencedId"]:
-    authorID = record["ObjPersonRef"]["Items"][0]["ReferencedId"]
+    if (
+        "ObjPersonRef" in record
+        and "Items" in record["ObjPersonRef"]
+        and len(record["ObjPersonRef"]["Items"]) > 0
+        and "ReferencedId" in record["ObjPersonRef"]["Items"][0]
+    ):
+        authorID = record["ObjPersonRef"]["Items"][0]["ReferencedId"]
+    else:
+        return
+    # authorID = record["ObjPersonRef"]["Items"][0]["ReferencedId"]
     found = content.find(
         portal_type="author",
         authorID=authorID,
@@ -576,63 +489,9 @@ def import_authors(self, record, use_archive=True):
     if found:
         authors += [b.getObject() for b in found]
         authors_en += [b.getObject() for b in found_en]
-        # continue
+        return [authors, authors_en]
 
-    # x = element.xpath
-
-    # el = x(f"authorName[@authorID={authorID}]")[0]
-    # authorSortName = el.get("authorSortName")
     authorName = record["ObjPersonRef"]["Items"][0]["LinkLabelTxt"]
-
-    # authorBirthDate = x(f"authorBirthDate[@authorID={authorID}]/text()")  # noqa
-    # if authorBirthDate:
-    #     authorBirthDate = authorBirthDate[0]
-
-    # authorDeathDate = x(f"authorDeathDate[@authorID={authorID}]/text()")  # noqa
-    # if authorDeathDate:
-    #     authorDeathDate = authorDeathDate[0]
-
-    # AuthorBio = x(f"AuthorBio[@authorID={authorID}]/text()")
-    # if AuthorBio:
-    #     AuthorBio = AuthorBio[0]
-
-    # for el in x(f"authorURL[@authorID={authorID}]"):
-    #     lang = (el.get("Language") or "nl").lower()
-    #     urls[lang] = el.text
-    #     url_titles[lang] = el.get("Title")
-
-    # # TODO: setup special folder location for authors
-    # fields = dict(
-    #     title=authorName or authorID,
-    #     authorID=authorID,
-    #     AuthorBio=AuthorBio,
-    #     authorName=authorName,
-    #     authorSortName=authorSortName,
-    #     authorBirthDate=authorBirthDate,
-    #     authorDeathDate=authorDeathDate,
-    #     authorURL=get("nl", urls),
-    #     authorURLTitle=get("nl", url_titles),
-    # )
-    # fields_en = dict(
-    #     title=authorName or authorID,
-    #     authorID=authorID,
-    #     AuthorBio=AuthorBio,
-    #     authorName=authorName,
-    #     authorSortName=authorSortName,
-    #     authorBirthDate=authorBirthDate,
-    #     authorDeathDate=authorDeathDate,
-    #     authorURL=get("nl", urls),
-    #     authorURLTitle=get("nl", url_titles),
-    # )
-
-    # for k, v in fields.items():
-    #     fields[k] = str(v)
-    # for k, v in fields_en.items():
-    #     fields_en[k]=str(v)
-
-    # if urls.get("en"):
-    #     fields_en["authorURL"] = urls["en"]
-    #     fields_en["authorURLTitle"] = url_titles["en"]
 
     author = content.create(
         type="author",

@@ -18,8 +18,70 @@ import { GoShare } from 'react-icons/go';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import fbbutton from './assets/soc_fb_wBG.svg';
 import twbutton from './assets/share_button_twitter.svg';
+import { defineMessages, useIntl } from 'react-intl';
+
+const messages = defineMessages({
+  artist: {
+    id: 'artist',
+    defaultMessage: 'Vervaardiger',
+  },
+  title: {
+    id: 'title',
+    defaultMessage: 'Titel',
+  },
+  objectCategory: {
+    id: 'objectCategory',
+    defaultMessage: 'Objectcategorie',
+  },
+  objectType: {
+    id: 'objectType',
+    defaultMessage: 'Objectnaam',
+  },
+  date: {
+    id: 'date',
+    defaultMessage: 'Datering',
+  },
+  material: {
+    id: 'material',
+    defaultMessage: 'Materialen',
+  },
+  technique: {
+    id: 'technique',
+    defaultMessage: 'Techniek',
+  },
+  acquisition: {
+    id: 'acquisition',
+    defaultMessage: 'Verwerving',
+  },
+  dimension: {
+    id: 'dimension',
+    defaultMessage: 'Afmetingen',
+  },
+  description: {
+    id: 'description',
+    defaultMessage: 'Fysieke beschrijving',
+  },
+  credit: {
+    id: 'credit',
+    defaultMessage: 'Credit line',
+  },
+  objectNumber: {
+    id: 'objectNumber',
+    defaultMessage: 'Objectnummer',
+  },
+  question: {
+    id: 'question',
+    defaultMessage: 'Vragen?',
+  },
+  questionText: {
+    id: 'questionText',
+    defaultMessage:
+      'Ziet u een fout? Of heeft u extra informatie over dit object? Laat het ons weten!',
+  },
+});
 
 export default function ArtworkView(props) {
+  const intl = useIntl();
   const { content } = props;
 
   // eslint-disable-next-line no-unused-vars
@@ -250,7 +312,7 @@ export default function ArtworkView(props) {
                 {linkAuthors?.map((auth, index) => (
                   <tr>
                     <td className="columnone">
-                      <p>Authors</p>
+                      <p>{intl.formatMessage(messages.artist)}</p>
                     </td>
                     <td className="columntwo">
                       <p key={index}>
@@ -264,20 +326,10 @@ export default function ArtworkView(props) {
                     </td>
                   </tr>
                 ))}
-                {content.ObjPersonRef && (
-                  <tr>
-                    <td className="columnone">
-                      <p>Vervaardiger</p>
-                    </td>
-                    <td className="columntwo">
-                      <p>{content.ObjPersonRef}</p>
-                    </td>
-                  </tr>
-                )}
                 {content.title && (
                   <tr>
                     <td className="columnone">
-                      <p>Titel</p>
+                      <p>{intl.formatMessage(messages.title)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.title}</p>
@@ -287,7 +339,7 @@ export default function ArtworkView(props) {
                 {content.ObjCategoryTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Objectcategorie</p>
+                      <p>{intl.formatMessage(messages.objectCategory)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjCategoryTxt}</p>
@@ -297,7 +349,7 @@ export default function ArtworkView(props) {
                 {content.ObjObjectTypeTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Obhectnaam</p>
+                      <p>{intl.formatMessage(messages.objectType)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjObjectTypeTxt}</p>
@@ -307,7 +359,7 @@ export default function ArtworkView(props) {
                 {content.ObjDateToTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Datering</p>
+                      <p>{intl.formatMessage(messages.date)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjDateToTxt}</p>
@@ -317,7 +369,7 @@ export default function ArtworkView(props) {
                 {content.ObjMaterialTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Materialen</p>
+                      <p>{intl.formatMessage(messages.material)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjMaterialTxt}</p>
@@ -327,7 +379,7 @@ export default function ArtworkView(props) {
                 {content.ObjTechniqueTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Techniek</p>
+                      <p>{intl.formatMessage(messages.technique)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjTechniqueTxt}</p>
@@ -337,7 +389,7 @@ export default function ArtworkView(props) {
                 {content.ObjAcquisitionDateTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Verwerving</p>
+                      <p>{intl.formatMessage(messages.acquisition)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjAcquisitionDateTxt}</p>
@@ -347,7 +399,7 @@ export default function ArtworkView(props) {
                 {content.ObjDimensionTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Afmetingen</p>
+                      <p>{intl.formatMessage(messages.dimension)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjDimensionTxt}</p>
@@ -357,7 +409,7 @@ export default function ArtworkView(props) {
                 {content.ObjPhysicalDescriptionTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Fysieke beschrijving</p>
+                      <p>{intl.formatMessage(messages.description)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjPhysicalDescriptionTxt}</p>
@@ -367,7 +419,7 @@ export default function ArtworkView(props) {
                 {content.ObjCreditlineTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Credit line</p>
+                      <p>{intl.formatMessage(messages.credit)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjCreditlineTxt}</p>
@@ -377,13 +429,21 @@ export default function ArtworkView(props) {
                 {content.ObjObjectNumberTxt && (
                   <tr>
                     <td className="columnone">
-                      <p>Objectnummer</p>
+                      <p>{intl.formatMessage(messages.objectNumber)}</p>
                     </td>
                     <td className="columntwo">
                       <p>{content.ObjObjectNumberTxt}</p>
                     </td>
                   </tr>
                 )}
+                <tr>
+                  <td className="columnone">
+                    <p>{intl.formatMessage(messages.question)}</p>
+                  </td>
+                  <td className="columntwo">
+                    <p>{intl.formatMessage(messages.questionText)}</p>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>

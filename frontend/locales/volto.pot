@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-07-13T13:57:39.230Z\n"
+"POT-Creation-Date: 2023-11-01T13:48:50.559Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -125,12 +125,82 @@ msgstr ""
 msgid "Your email address"
 msgstr ""
 
+#: components/theme/View/ArtworkView
+# defaultMessage: Verwerving
+msgid "acquisition"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Vervaardiger
+msgid "artist"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Credit line
+msgid "credit"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Datering
+msgid "date"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Fysieke beschrijving
+msgid "description"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Afmetingen
+msgid "dimension"
+msgstr ""
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Head title
 msgid "head_title"
 msgstr ""
 
+#: components/theme/View/ArtworkView
+# defaultMessage: Materialen
+msgid "material"
+msgstr ""
+
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: More info
 msgid "moreInfo"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Objectcategorie
+msgid "objectCategory"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Objectnummer
+msgid "objectNumber"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Objectnaam
+msgid "objectType"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Vragen?
+msgid "question"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Ziet u een fout? Of heeft u extra informatie over dit object? Laat het ons weten!
+msgid "questionText"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Techniek
+msgid "technique"
+msgstr ""
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Titel
+msgid "title"
 msgstr ""

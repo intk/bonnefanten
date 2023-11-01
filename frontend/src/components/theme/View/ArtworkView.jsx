@@ -76,7 +76,7 @@ const messages = defineMessages({
   questionText: {
     id: 'questionText',
     defaultMessage:
-      'Ziet u een fout? Of heeft u extra informatie over dit object? Laat het ons weten!',
+      'Ziet u een fout? Of heeft u extra informatie over dit object? ',
   },
 });
 
@@ -441,7 +441,22 @@ export default function ArtworkView(props) {
                     <p>{intl.formatMessage(messages.question)}</p>
                   </td>
                   <td className="columntwo">
-                    <p>{intl.formatMessage(messages.questionText)}</p>
+                    <p>
+                      {intl.formatMessage(messages.questionText)}
+                      {intl.locale === 'nl' ? (
+                        <a
+                          href={`mailto:info@bonnefanten.nl?subject=opmerking%20over%20object:%${content.ObjObjectNumberTxt}`}
+                        >
+                          <span>Laat het ons weten!</span>
+                        </a>
+                      ) : (
+                        <a
+                          href={`mailto:info@bonnefanten.nl?subject=remark%20on%20this%20object:%${content.ObjObjectNumberTxt}`}
+                        >
+                          <span>Please let us know!</span>
+                        </a>
+                      )}
+                    </p>
                   </td>
                 </tr>
               </tbody>

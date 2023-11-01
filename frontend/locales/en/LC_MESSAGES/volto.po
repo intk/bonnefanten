@@ -191,7 +191,7 @@ msgstr "Questions?"
 #: components/theme/View/ArtworkView
 # defaultMessage: Ziet u een fout? Of heeft u extra informatie over dit object? Laat het ons weten!
 msgid "questionText"
-msgstr "Do you have a remark or extra information on this object? Please let us know!"
+msgstr "Do you have a remark or extra information on this object? "
 
 #: components/theme/View/ArtworkView
 # defaultMessage: Techniek

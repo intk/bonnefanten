@@ -13,7 +13,8 @@ import './css/artworkview.less';
 import ReactSwipe from 'react-swipe';
 // import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
 import { SlMagnifierAdd, SlMagnifierRemove } from 'react-icons/sl';
-import { GoShare, GoDownload } from 'react-icons/go';
+import { GoShare } from 'react-icons/go';
+// import { GoDownload } from 'react-icons/go';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import fbbutton from './assets/soc_fb_wBG.svg';
 import twbutton from './assets/share_button_twitter.svg';
@@ -25,8 +26,8 @@ export default function ArtworkView(props) {
   let reactSwipeEl;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dataExpand, setDataExpand] = useState(false);
-  const currentImageUrl = props.content?.items[currentIndex]?.url;
-  const downloadLink = `${currentImageUrl}/@@images/image`;
+  // const currentImageUrl = props.content?.items[currentIndex]?.url;
+  // const downloadLink = `${currentImageUrl}/@@images/image`;
 
   const [popupVisible, setPopupVisible] = useState(false);
   const zoomUtilsRefs = useRef([]);
@@ -53,7 +54,10 @@ export default function ArtworkView(props) {
   // Buttons for the image and text
   const Controls = ({ zoomIn, zoomOut, resetTransform }) => (
     <>
-      <button className="button expand" onClick={expandData}>
+      <button
+        className={dataExpand ? 'button expand expanded' : 'button expand'}
+        onClick={expandData}
+      >
         {dataExpand === true ? '− Objectgegevens' : '+ Objectgegevens'}
       </button>
       <button
@@ -117,7 +121,7 @@ export default function ArtworkView(props) {
           </div>
         )}
       </button>
-      <a
+      {/* <a
         className="button"
         href={downloadLink}
         role="button"
@@ -130,7 +134,7 @@ export default function ArtworkView(props) {
           aria-label="download button"
           height="2em"
         />
-      </a>
+      </a> */}
       <button
         className="button zoomplus"
         onClick={() => zoomUtilsRefs.current[currentIndex]?.zoomIn()}

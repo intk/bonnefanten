@@ -11,15 +11,6 @@
 }
 
 #object-block{
-  // padding-top: 50px;
-  // padding-bottom: 80px;
-  // @media screen and (max-width: 1200px) {
-  //   padding-top: 25px !important;
-  // }
-  // @media screen and (max-width: 800px) {
-  //   padding-top: 0px !important;
-  // }
-
   .react-swipe-container{
     padding-bottom: 55px;
     @media screen and (max-width: 768px) {
@@ -70,11 +61,7 @@
         max-width: 68px;
       }
       .button.expand{
-        // color: var(--bonnefanten-primary, #f9423a);
-        // background: var(--bonnefanten-bg);
         width: 200px;
-        // padding-left: 22.5px;
-        // padding-right: 22.5px;
         clip-path: polygon(0% 10px, 10px 0%, calc(100%) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100%));
         @media screen and (max-width: 992px) {
           width: 250px;
@@ -88,7 +75,7 @@
       .button.zoomminus{
         margin-left: 1px;
         margin-right: 15px;
-        @media screen and (max-width: 687px) {
+        @media screen and (max-width: 768px) {
           margin-right: 5px;
         }
       }
@@ -146,13 +133,27 @@
     }
   }
   .rawdata-section{
-    margin-top: 80px;
+    margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 82px;
+    padding-right: 82px;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+    @media screen and (max-width:1200px){
+      padding-left: 73px;
+      padding-right: 73px;
+    }
+    @media screen and (max-width:992px) {
+      padding-left: 61px;
+      padding-right: 61px;
+    }
+    @media screen and (max-width:768px) {
+      padding-left: 42.5px;
+      padding-right: 42.5px;
+    }
     p{
       font-family: 'FranklinBook', Arial, sans-serif;
       font-size: 19.68px;
@@ -379,21 +380,51 @@
     left: 0px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
   }
+  @media screen and (max-width: 768px) {
+    tr{
+      display: flex;
+      flex-direction: column;
+      .columntwo, .columnone{
+        padding-left: 0px;
+        width: 100%;
+      }
+      .columnone{
+        p{
+          font-size: 20px !important;
+        }
+        padding-top: 0;
+      }
+      .columntwo{
+        p{
+          font-size: 16px !important;
+        }
+        padding-top: 0;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+        padding-right: 5px;
+      }
+    }
+  }
   .columnone{
     width: 33.3%;
     padding: 13.5px 15px 0px 5px;
     vertical-align: top;
     p{
-      color: var(--bonnefanten-primary-text);
-      letter-spacing: -0.1968px;
+      font-family: 'StyreneBold', Arial, sans-serif;
+      color: var(--bonnefanten-primary, #f9423a);
+      font-size: 18px !important;
+      line-height: 25px;
     }
   }
   .columntwo{
     width: 66.6%;
-    padding: 13.5px 15px 0px 12px;
-    p {
-      color: var(--bonnefanten-text);
-      letter-spacing: -0.1968px;
+    padding: 15px 15px 0px 12px;
+    p, a {
+      color: #575756;
+      font-family: "StyreneRegular", Arial, Helvetica, sans-serif;
+      letter-spacing: 0.00em;
+      font-size: 18px !important;
+      line-height: 25px;
     }
   }
   table tr,
@@ -419,8 +450,6 @@
   .react-transform-component{
     width: 100%;
     height: 100%;
-    // margin-left: 0px !important;
-    // margin-right: 0px !important;
     align-items: center;
     justify-content: center;
   }

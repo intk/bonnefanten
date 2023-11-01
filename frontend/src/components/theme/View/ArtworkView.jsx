@@ -153,7 +153,7 @@ export default function ArtworkView(props) {
                 <a
                   onclick="return !window.open(this.href, 'Facebook', 'width=500,height=500')"
                   className="share-btn-social"
-                  href="https://www.facebook.com/sharer/sharer.php?u=https://www.centraalmuseum.nl/nl/collectie/10786-de-koppelaarster-gerard-van-honthorst"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
                 >
                   <img
                     className="share-button"
@@ -167,7 +167,9 @@ export default function ArtworkView(props) {
                 <a
                   onclick="return !window.open(this.href, 'Twitter', 'width=500,height=500')"
                   className="share-btn-social"
-                  href="http://twitter.com/share?text=De koppelaarster&amp;url=https://www.centraalmuseum.nl/nl/collectie/10786-de-koppelaarster-gerard-van-honthorst"
+                  href={`http://twitter.com/share?text=${''}&url=${
+                    window.location.href
+                  }`}
                 >
                   <img
                     className="share-button"
@@ -180,14 +182,14 @@ export default function ArtworkView(props) {
               <div className="row pinterest-row">
                 <a
                   id="pinterest-btn"
-                  href="http://www.pinterest.com/pin/create/button/?url=https://www.centraalmuseum.nl/nl/collectie/10786-de-koppelaarster-gerard-van-honthorst&amp;media=https://www.centraalmuseum.nl/nl/collectie/10786-de-koppelaarster-gerard-van-honthorst/slideshow/10786_10-tif/@@images/image/large"
+                  href={`http://www.pinterest.com/pin/create/button/?url=${window.location.href}`}
                   data-pin-do="buttonPin"
                   data-pin-config="none"
                 >
                   <img
                     alt="Delen op Pinterest"
                     src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png"
-                    href="http://www.pinterest.com/pin/create/button/?url=https://www.centraalmuseum.nl/nl/collectie/10786-de-koppelaarster-gerard-van-honthorst"
+                    href={`http://www.pinterest.com/pin/create/button/?url=${window.location.href}`}
                   />
                 </a>
               </div>

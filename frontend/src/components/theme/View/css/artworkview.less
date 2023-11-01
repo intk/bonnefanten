@@ -1,8 +1,14 @@
 @import '../../../../../theme/globals/site.variables';
 
 #object-block{
-  padding-top: 0px;
+  padding-top: 50px;
   padding-bottom: 80px;
+  @media screen and (max-width: 1200px) {
+    padding-top: 25px !important;
+  }
+  @media screen and (max-width: 800px) {
+    padding-top: 0px !important;
+  }
 
   .buttons {
     padding-top: 20px;
@@ -63,9 +69,11 @@
   }
 
   img{
-    max-width: 80vw;
-    margin: auto !important;
-    padding-top: 30px;
+    max-width: 95vh;
+    width: 100%;
+    margin: 0px !important;
+    padding-top: 10px;
+    // padding-bottom: 20px;
   }
   .leftrightbuttons{
     text-align: center;
@@ -150,6 +158,9 @@
     overflow: hidden;
     height: 100%;
     cursor: move;
+    @media screen and (max-width: 768px) {
+      height: 55vh !important;
+    }
   }
   .buttons{
     display: flex;
@@ -362,6 +373,9 @@
 .react-transform-wrapper{
   width: 100% !important;
   height: 80vh !important;
+  @media screen and (max-width: 768px) {
+      height: 55vh !important;
+    }
 
   .react-transform-component{
     width: 100%;
@@ -374,3 +388,11 @@
 }
 
 
+.object-wrapper{
+  // position: relative;
+  // width: 100vw;
+  // left: 50%;
+  // right: 50%;
+  // margin-right: auto;
+  // margin-left: auto;
+}

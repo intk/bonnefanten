@@ -49,6 +49,8 @@ export default function ArtworkView(props) {
       rawDataElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Buttons for the image and text
   const Controls = ({ zoomIn, zoomOut, resetTransform }) => (
     <>
       <button className="button expand" onClick={expandData}>
@@ -155,7 +157,7 @@ export default function ArtworkView(props) {
   return (
     <div id="object-block">
       <Container>
-        <div className="object-wrapper">
+        <div className="object-wrapper full-width">
           <div id="swipe-slider">
             <ReactSwipe
               className="carousel"
@@ -174,6 +176,8 @@ export default function ArtworkView(props) {
                       <TransformWrapper
                         initialScale={1}
                         key={index}
+                        minScale={0.5}
+                        maxScale={3}
                         wheel={{
                           activationKeys: ['Control', 'Shift'],
                         }}

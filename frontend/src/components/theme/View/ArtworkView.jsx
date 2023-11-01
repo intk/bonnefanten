@@ -78,6 +78,14 @@ const messages = defineMessages({
     defaultMessage:
       'Ziet u een fout? Of heeft u extra informatie over dit object? ',
   },
+  share: {
+    id: 'share',
+    defaultMessage: 'Delen',
+  },
+  details: {
+    id: 'details',
+    defaultMessage: 'Objectgegevens',
+  },
 });
 
 export default function ArtworkView(props) {
@@ -120,7 +128,9 @@ export default function ArtworkView(props) {
         className={dataExpand ? 'button expand expanded' : 'button expand'}
         onClick={expandData}
       >
-        {dataExpand === true ? '− Objectgegevens' : '+ Objectgegevens'}
+        {dataExpand === true
+          ? `− ${intl.formatMessage(messages.details)}`
+          : `+ ${intl.formatMessage(messages.details)}`}
       </button>
       <button
         className="button share"
@@ -135,7 +145,9 @@ export default function ArtworkView(props) {
         />
         {popupVisible && (
           <div className="social-media-popup" role="tooltip" id="popover825468">
-            <h3 className="popover-title">Delen</h3>
+            <h3 className="popover-title">
+              {intl.formatMessage(messages.share)}
+            </h3>
             <div className="popover-content">
               <div className="row facebook-row">
                 <a

@@ -149,6 +149,11 @@ msgid "description"
 msgstr "Physical description"
 
 #: components/theme/View/ArtworkView
+# defaultMessage: Objectgegevens
+msgid "details"
+msgstr "Object details"
+
+#: components/theme/View/ArtworkView
 # defaultMessage: Afmetingen
 msgid "dimension"
 msgstr "Dimensions"
@@ -189,9 +194,14 @@ msgid "question"
 msgstr "Questions?"
 
 #: components/theme/View/ArtworkView
-# defaultMessage: Ziet u een fout? Of heeft u extra informatie over dit object? Laat het ons weten!
+# defaultMessage: Ziet u een fout? Of heeft u extra informatie over dit object?
 msgid "questionText"
 msgstr "Do you have a remark or extra information on this object? "
+
+#: components/theme/View/ArtworkView
+# defaultMessage: Delen
+msgid "share"
+msgstr "Share"
 
 #: components/theme/View/ArtworkView
 # defaultMessage: Techniek

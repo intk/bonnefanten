@@ -382,11 +382,13 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.objectCategory)}</p>
                     </td>
                     <td className="columntwo">
-                      <a
-                        href={`/search?SearchableText=${content.ObjCategoryTxt}`}
-                      >
-                        {content.ObjCategoryTxt}
-                      </a>
+                      <p>
+                        <a
+                          href={`/search?SearchableText=${content.ObjCategoryTxt}`}
+                        >
+                          {content.ObjCategoryTxt}
+                        </a>
+                      </p>
                     </td>
                   </tr>
                 )}
@@ -396,11 +398,13 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.objectType)}</p>
                     </td>
                     <td className="columntwo">
-                      <a
-                        href={`/search?SearchableText=${content.ObjObjectTypeTxt}`}
-                      >
-                        {content.ObjObjectTypeTxt}
-                      </a>
+                      <p>
+                        <a
+                          href={`/search?SearchableText=${content.ObjObjectTypeTxt}`}
+                        >
+                          {content.ObjObjectTypeTxt}
+                        </a>
+                      </p>
                     </td>
                   </tr>
                 )}
@@ -420,14 +424,16 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.material)}</p>
                     </td>
                     <td className="columntwo">
-                      {materialsArray.map((material) => (
-                        <span>
-                          <a href={`/search?SearchableText=${material}`}>
-                            {' '}
-                            {material}
-                          </a>
-                        </span>
-                      ))}
+                      <p>
+                        {materialsArray.map((material) => (
+                          <span>
+                            <a href={`/search?SearchableText=${material}`}>
+                              {' '}
+                              {material}
+                            </a>
+                          </span>
+                        ))}
+                      </p>
                     </td>
                   </tr>
                 )}
@@ -437,11 +443,13 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.technique)}</p>
                     </td>
                     <td className="columntwo">
-                      <a
-                        href={`/search?SearchableText=${content.ObjTechniqueTxt}`}
-                      >
-                        {content.ObjTechniqueTxt}
-                      </a>
+                      <p>
+                        <a
+                          href={`/search?SearchableText=${content.ObjTechniqueTxt}`}
+                        >
+                          {content.ObjTechniqueTxt}
+                        </a>
+                      </p>
                     </td>
                   </tr>
                 )}

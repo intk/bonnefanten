@@ -234,8 +234,6 @@ export default function ArtworkView(props) {
     </>
   );
 
-  const authors = content.authors?.map((auth) => auth?.title).join(', ');
-
   return (
     <div id="object-block">
       <Container>
@@ -325,24 +323,20 @@ export default function ArtworkView(props) {
           >
             <table>
               <tbody>
-                {linkAuthors?.map((auth, index) => (
+                {linkAuthors && (
                   <tr>
                     <td className="columnone">
                       <p>{intl.formatMessage(messages.artist)}</p>
                     </td>
-                    <td className="columntwo">
-                      <p key={index}>
-                        <a
-                          href={auth['@id']}
-                          // title={auth.detailsHrefTitle}
-                        >
-                          {/* {auth.title} */}
-                          {authors}
-                        </a>
-                      </p>
+                    <td>
+                      {linkAuthors?.map((auth, index) => (
+                        <p key={index}>
+                          <a href={auth['@id']}>{auth.title}</a>
+                        </p>
+                      ))}
                     </td>
                   </tr>
-                ))}
+                )}
                 {content.title && (
                   <tr>
                     <td className="columnone">

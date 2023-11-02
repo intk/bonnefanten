@@ -119,9 +119,12 @@ export default function ArtworkView(props) {
 
   const expandData = () => {
     setDataExpand(!dataExpand);
-    const rawDataElement = document.getElementById('rawdata');
-    if (dataExpand === false && rawDataElement) {
-      rawDataElement.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    const sliderElement = document.getElementById('swipe-slider');
+    const rawDataElement = document.getElementById('site-footer');
+    if (dataExpand === false && sliderElement) {
+      rawDataElement.scrollIntoView({ behavior: 'smooth' });
+    } else if (dataExpand === true && rawDataElement) {
+      sliderElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
 

@@ -380,9 +380,12 @@ def create_and_setup_object(title, container, info, intl, object_type):
     Create an object with the given title and container, then set its attributes
     using the provided info and intl dictionaries.
     """
+    urlTitle = title.replace(" ", "-")
+    obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{urlTitle}"
     try:
         obj = api.content.create(
             type=object_type,
+            id=obj_id,
             title=title,
             container=container,
         )

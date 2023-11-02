@@ -5,20 +5,20 @@
 >
   <modules>
     <module name="Object">
-      <search limit="1"
+      <search limit="100"
               offset="0"
       >
         <expert>
           <!-- <equalsField fieldPath="ObjTitleTxt" operand="The Walthamstow Tapestry" /> -->
-          <equalsField fieldPath="ObjObjectTitleGrp.TitleTxt"
+          <!-- <equalsField fieldPath="ObjObjectTitleGrp.TitleTxt"
                        operand="The Walthamstow Tapestry"
-          />
+          /> -->
           <!-- <equalsField fieldPath="__id"
                        operand="11678"
           /> -->
-          <!-- <greater fieldPath="__lastModified"
+          <greater fieldPath="__lastModified"
                    operand="2023-08-01T00:00:00"
-          /> -->
+          />
         </expert>
       </search>
     </module>

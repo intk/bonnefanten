@@ -121,7 +121,7 @@ export default function ArtworkView(props) {
     setDataExpand(!dataExpand);
     const rawDataElement = document.getElementById('rawdata');
     if (dataExpand === false && rawDataElement) {
-      rawDataElement.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      rawDataElement.scrollIntoView({ block: 'end', behavior: 'smooth' });
     }
   };
 

@@ -496,66 +496,55 @@ def import_authors(self, record, use_archive=True):
     authors = []
     authors_en = []
 
-    # print(record["ObjPersonRef"]["Items"][0]["ReferencedId"])
-    # for authorID in record["ObjPersonRef"]["Items"][0]["ReferencedId"]:
-    if (
-        "ObjPersonRef" in record
-        and "Items" in record["ObjPersonRef"]
-        and len(record["ObjPersonRef"]["Items"]) > 0
-        and "ReferencedId" in record["ObjPersonRef"]["Items"][0]
-    ):
-        authorID = record["ObjPersonRef"]["Items"][0]["ReferencedId"]
+    if "ObjPersonRef" in record and "Items" in record["ObjPersonRef"]:
+        # Loop through each author in the record
+        for item in record["ObjPersonRef"]["Items"]:
+            if "ReferencedId" in item:
+                authorID = item["ReferencedId"]
 
-        found = content.find(
-            portal_type="author",
-            authorID=authorID,
-            Language="nl",
-        )
-        found_en = content.find(
-            portal_type="author",
-            authorID=authorID,
-            Language="en",
-        )
-        if found:
-            for brain in found:
-                # authors.append(brain.getObject())
-                authors.append(found[0].getObject())
+                found = content.find(
+                    portal_type="author",
+                    authorID=authorID,
+                    Language="nl",
+                )
+                found_en = content.find(
+                    portal_type="author",
+                    authorID=authorID,
+                    Language="en",
+                )
+                if found:
+                    for brain in found:
+                        authors.append(brain.getObject())
 
-            for brain in found_en:
-                # authors_en.append(brain.getObject())
-                authors_en.append(found_en[0].getObject())
-            return [authors, authors_en]
+                    for brain in found_en:
+                        authors_en.append(brain.getObject())
+                    continue  # If found, skip creating a new author
 
-        authorName = record["ObjPersonRef"]["Items"][0]["LinkLabelTxt"]
+                authorName = item["LinkLabelTxt"]
 
-        author = content.create(
-            type="author",
-            # id=authorID,
-            container=container,
-            title=authorName,
-            authorID=authorID,
-            # **fields,
-        )
-        author_en = content.create(
-            type="author",
-            # id=authorID,
-            container=container_en,
-            title=authorName,
-            authorID=authorID,
-            # **fields_en,
-        )  # English version
+                author = content.create(
+                    type="author",
+                    container=container,
+                    title=authorName,
+                    authorID=authorID,
+                )
+                author_en = content.create(
+                    type="author",
+                    container=container_en,
+                    title=authorName,
+                    authorID=authorID,
+                )  # English version
 
-        # log_to_file(f"{authorName} author is created")
+                manager = ITranslationManager(author)
+                if not manager.has_translation("en"):
+                    manager.register_translation("en", author_en)
 
-        manager = ITranslationManager(author)
-        if not manager.has_translation("en"):
-            manager.register_translation("en", author_en)
+                authors.append(author)
+                authors_en.append(author_en)
+                content.transition(obj=author, transition="publish")
+                content.transition(obj=author_en, transition="publish")
 
-        authors.append(author)
-        authors_en.append(author_en)
-        content.transition(obj=author, transition="publish")
-        content.transition(obj=author_en, transition="publish")
-
-        log_to_file(f"Created author {author.getId()}")
+                log_to_file(f"Created author {author.getId()}")
 
     return [authors, authors_en]
+

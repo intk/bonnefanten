@@ -171,6 +171,12 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["nl"]["rawdata"] = record_text
     info["en"]["rawdata"] = record_text
 
+    info["nl"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"]["LabelTxt_nl"]
+    info["en"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"]["LabelTxt_en"]
+
+    info["nl"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
+    info["en"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
+
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",
         "ObjTitleTxt": "ObjTitleTxt",
@@ -186,10 +192,21 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         "ObjDateFromTxt": "ObjDateFromTxt",
         "ObjDateToTxt": "ObjDateToTxt",
         "ObjDateNotesTxt": "ObjDateNotesTxt",
-        # "ObjAcquisitionMethodTxt" : "ObjAcquisitionMethodTxt",
-        # "ObjAcquisitionDateTxt" : "ObjAcquisitionDateTxt",
         "ObjHistoricLocationTxt": "ObjHistoricLocationTxt",
     }
+
+    if "ObjPersonRef" in record and "Items" in record["ObjPersonRef"]:
+        # Loop through each author in the record
+        roles_dict = {}  # Dictionary to store the name and role pairs
+        roles_dict_en = {}
+        for item in record["ObjPersonRef"]["Items"]:
+            authorName = item["LinkLabelTxt"]
+            authorRole = item["RoleTxt"]["LabelTxt_nl"]
+            authorRole_en = item["RoleTxt"]["LabelTxt_en"]
+            roles_dict[authorName] = authorRole
+            roles_dict_en[authorName] = authorRole_en
+        info["en"]["ObjPersonRole"] = roles_dict
+        info["nl"]["ObjPersonRole"] = roles_dict_en
 
     for xml_field, info_field in fields_to_extract.items():
         value = record[xml_field]

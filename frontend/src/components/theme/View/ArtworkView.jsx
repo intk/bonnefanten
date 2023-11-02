@@ -125,6 +125,11 @@ export default function ArtworkView(props) {
     }
   };
 
+  const materials = content.ObjMaterialTxt.split(',');
+  const materialsArray = materials.map((material, index) =>
+    index !== materials.length - 1 ? material + ',' : material.trim(),
+  );
+
   // Buttons for the image and text
   const Controls = ({ zoomIn, zoomOut, resetTransform }) => (
     <>
@@ -346,6 +351,16 @@ export default function ArtworkView(props) {
                       {linkAuthors?.map((auth, index) => (
                         <p key={index}>
                           <a href={auth['@id']}>{auth.title}</a>
+                          <span>
+                            <a
+                              href={`/search?SearchableText=${
+                                content.ObjPersonRole[auth.title]
+                              }`}
+                            >
+                              {' '}
+                              ({content.ObjPersonRole[auth.title]})
+                            </a>
+                          </span>
                         </p>
                       ))}
                     </td>
@@ -367,7 +382,11 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.objectCategory)}</p>
                     </td>
                     <td className="columntwo">
-                      <p>{content.ObjCategoryTxt}</p>
+                      <a
+                        href={`/search?SearchableText=${content.ObjCategoryTxt}`}
+                      >
+                        {content.ObjCategoryTxt}
+                      </a>
                     </td>
                   </tr>
                 )}
@@ -377,7 +396,11 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.objectType)}</p>
                     </td>
                     <td className="columntwo">
-                      <p>{content.ObjObjectTypeTxt}</p>
+                      <a
+                        href={`/search?SearchableText=${content.ObjObjectTypeTxt}`}
+                      >
+                        {content.ObjObjectTypeTxt}
+                      </a>
                     </td>
                   </tr>
                 )}
@@ -397,7 +420,14 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.material)}</p>
                     </td>
                     <td className="columntwo">
-                      <p>{content.ObjMaterialTxt}</p>
+                      {materialsArray.map((material) => (
+                        <span>
+                          <a href={`/search?SearchableText=${material}`}>
+                            {' '}
+                            {material}
+                          </a>
+                        </span>
+                      ))}
                     </td>
                   </tr>
                 )}
@@ -411,13 +441,16 @@ export default function ArtworkView(props) {
                     </td>
                   </tr>
                 )}
-                {content.ObjAcquisitionDateTxt && (
+                {content.ObjAcquisitionMethodTxt && (
                   <tr>
                     <td className="columnone">
                       <p>{intl.formatMessage(messages.acquisition)}</p>
                     </td>
                     <td className="columntwo">
-                      <p>{content.ObjAcquisitionDateTxt}</p>
+                      <p>
+                        {content.ObjAcquisitionMethodTxt}{' '}
+                        {content.ObjAcquisitionDateTxt.slice(0, 4)}
+                      </p>
                     </td>
                   </tr>
                 )}

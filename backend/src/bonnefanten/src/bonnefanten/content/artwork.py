@@ -91,7 +91,6 @@ from zope import schema
 class IArtwork(model.Schema):
     """Schema for Artwork content type."""
 
-    Id = schema.Int(title="Id", required=False)
     ObjDimensionTxt = schema.TextLine(title="ObjDimensionTxt", required=False)
     ObjMaterialTxt = schema.TextLine(title="ObjMaterialTxt", required=False)
     ObjObjectNumberTxt = schema.TextLine(title="ObjObjectNumberTxt", required=False)
@@ -112,13 +111,16 @@ class IArtwork(model.Schema):
     ObjAcquisitionMethodTxt = schema.TextLine(
         title="ObjAcquisitionMethodTxt", required=False
     )
-    ObjAcquisitionDateTxt = schema.Date(title="ObjAcquisitionDateTxt", required=False)
+    ObjAcquisitionDateTxt = schema.TextLine(title="ObjAcquisitionDateTxt", required=False)
     ObjHistoricLocationTxt = schema.TextLine(
         title="ObjHistoricLocationTxt", required=False
     )
-    # ObjPersonRef = schema.List(
-    #     title="ObjPersonRef", required=False, value_type=schema.TextLine(title="Artist")
-    # )
+    ObjPersonRole = schema.Dict(
+        title=u"ObjPersonRole",
+        key_type=schema.TextLine(title=u"Author Name"),     # define the type for the key
+        value_type=schema.TextLine(title=u"Author Role"),   # define the type for the value
+        required=False
+    )
     rawdata = schema.Text(title="Rawdata", required=False)
 
     authors = RelationList(
@@ -140,7 +142,6 @@ class IArtwork(model.Schema):
     )
 
     lang_directives.languageindependent(
-        "Id",
         "ObjDimensionTxt",
         "ObjMaterialTxt",
         "ObjObjectNumberTxt",

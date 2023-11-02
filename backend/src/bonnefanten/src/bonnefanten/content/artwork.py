@@ -111,15 +111,19 @@ class IArtwork(model.Schema):
     ObjAcquisitionMethodTxt = schema.TextLine(
         title="ObjAcquisitionMethodTxt", required=False
     )
-    ObjAcquisitionDateTxt = schema.TextLine(title="ObjAcquisitionDateTxt", required=False)
+    ObjAcquisitionDateTxt = schema.TextLine(
+        title="ObjAcquisitionDateTxt", required=False
+    )
     ObjHistoricLocationTxt = schema.TextLine(
         title="ObjHistoricLocationTxt", required=False
     )
     ObjPersonRole = schema.Dict(
-        title=u"ObjPersonRole",
-        key_type=schema.TextLine(title=u"Author Name"),     # define the type for the key
-        value_type=schema.TextLine(title=u"Author Role"),   # define the type for the value
-        required=False
+        title="ObjPersonRole",
+        key_type=schema.TextLine(title="Author Name"),  # define the type for the key
+        value_type=schema.TextLine(
+            title="Author Role"
+        ),  # define the type for the value
+        required=False,
     )
     rawdata = schema.Text(title="Rawdata", required=False)
 

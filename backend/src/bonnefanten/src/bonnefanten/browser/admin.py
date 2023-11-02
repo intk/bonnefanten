@@ -171,8 +171,12 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["nl"]["rawdata"] = record_text
     info["en"]["rawdata"] = record_text
 
-    info["nl"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"]["LabelTxt_nl"]
-    info["en"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"]["LabelTxt_en"]
+    info["nl"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"][
+        "LabelTxt_nl"
+    ]
+    info["en"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"][
+        "LabelTxt_en"
+    ]
 
     info["nl"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
     info["en"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]

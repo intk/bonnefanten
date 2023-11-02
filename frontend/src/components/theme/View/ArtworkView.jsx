@@ -121,7 +121,7 @@ export default function ArtworkView(props) {
     setDataExpand(!dataExpand);
     const rawDataElement = document.getElementById('rawdata');
     if (dataExpand === false && rawDataElement) {
-      rawDataElement.scrollIntoView({ behavior: 'smooth' });
+      rawDataElement.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
   };
 
@@ -383,11 +383,11 @@ export default function ArtworkView(props) {
                     </td>
                     <td className="columntwo">
                       <p>
-                        <a
+                        {/* <a
                           href={`/search?SearchableText=${content.ObjCategoryTxt}`}
-                        >
-                          {content.ObjCategoryTxt}
-                        </a>
+                        > */}
+                        {content.ObjCategoryTxt}
+                        {/* </a> */}
                       </p>
                     </td>
                   </tr>

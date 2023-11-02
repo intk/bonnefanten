@@ -547,4 +547,3 @@ def import_authors(self, record, use_archive=True):
                 log_to_file(f"Created author {author.getId()}")
 
     return [authors, authors_en]
-

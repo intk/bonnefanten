@@ -11,6 +11,7 @@ from plone.api import relation
 from plone.app.multilingual.api import get_translation_manager
 from plone.app.multilingual.api import translate
 from plone.app.multilingual.interfaces import ITranslationManager
+from plone.dexterity.interfaces import IDexterityContent
 from plone.folder.interfaces import IExplicitOrdering
 from plone.namedfile.file import NamedBlobImage
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -20,7 +21,6 @@ from zope import component
 from zope.component import getUtility
 from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
-from plone.dexterity.interfaces import IDexterityContent
 from zope.schema import getFields
 
 import base64
@@ -156,7 +156,9 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         authors = "null"
         authors_en = "null"
 
-    log_to_file(f"After calling import_authors: authors = {authors}, authors_en = {authors_en}")
+    log_to_file(
+        f"After calling import_authors: authors = {authors}, authors_en = {authors_en}"
+    )
 
     record_text = json.dumps(record)
     info = {"nl": {}, "en": {}}
@@ -248,7 +250,9 @@ def import_one_record(self, record, container, container_en, catalog, headers):
             # log_to_file(f"{ObjectNumber} English version of object is created")
             if authors_en != "null":
                 for author in authors_en:
-                    relation.create(source=obj_en, target=author, relationship="authors")
+                    relation.create(
+                        source=obj_en, target=author, relationship="authors"
+                    )
 
             manager = ITranslationManager(obj_en)
             if not manager.has_translation("nl"):
@@ -269,12 +273,12 @@ def import_one_record(self, record, container, container_en, catalog, headers):
             # Object exists, so we fetch it and update it
             obj = brain.getObject()
 
-            #First clear all of the fields
+            # First clear all of the fields
             schema = obj.getTypeInfo().lookupSchema()
             fields = getFields(schema)
 
             # Exclude these fields from clearing
-            exclude_fields = ['id', 'UID', 'title', 'description', 'authors']
+            exclude_fields = ["id", "UID", "title", "description", "authors"]
 
             for field_name, field in fields.items():
                 if field_name not in exclude_fields:
@@ -296,14 +300,22 @@ def import_one_record(self, record, container, container_en, catalog, headers):
                     log_to_file(f"authors {authors}")
                     for author in authors:
                         log_to_file(f"author {author}")
-                        relation.delete(source=obj, target=author, relationship="authors")
-                        relation.create(source=obj, target=author, relationship="authors")
+                        relation.delete(
+                            source=obj, target=author, relationship="authors"
+                        )
+                        relation.create(
+                            source=obj, target=author, relationship="authors"
+                        )
 
             else:
                 if authors != "null":
                     for author_en in authors_en:
-                        relation.delete(source=obj, target=author_en, relationship="authors")
-                        relation.create(source=obj, target=author_en, relationship="authors")
+                        relation.delete(
+                            source=obj, target=author_en, relationship="authors"
+                        )
+                        relation.create(
+                            source=obj, target=author_en, relationship="authors"
+                        )
 
             log_to_file(f"{ObjectNumber} object is updated")
 
@@ -515,8 +527,6 @@ def import_authors(self, record, use_archive=True):
             authors_en.append(found_en[0].getObject())
         return [authors, authors_en]
 
-
-
     authorName = record["ObjPersonRef"]["Items"][0]["LinkLabelTxt"]
 
     author = content.create(
@@ -524,7 +534,7 @@ def import_authors(self, record, use_archive=True):
         # id=authorID,
         container=container,
         title=authorName,
-        authorID = authorID,
+        authorID=authorID,
         # **fields,
     )
     author_en = content.create(
@@ -532,7 +542,7 @@ def import_authors(self, record, use_archive=True):
         # id=authorID,
         container=container_en,
         title=authorName,
-        authorID = authorID,
+        authorID=authorID,
         # **fields_en,
     )  # English version
 

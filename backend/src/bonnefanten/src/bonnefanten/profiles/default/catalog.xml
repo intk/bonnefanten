@@ -26,4 +26,21 @@
     <indexed_attr value="authorID" />
   </index>
 
+  <index meta_type="KeywordIndex"
+         name="artwork_technique"
+  >
+    <indexed_attr value="artwork_technique" />
+  </index>
+
+  <index meta_type="KeywordIndex"
+         name="artwork_name"
+  >
+    <indexed_attr value="artwork_name" />
+  </index>
+
+  <index meta_type="KeywordIndex"
+         name="artwork_material"
+  >
+    <indexed_attr value="artwork_material" />
+  </index>
 </object>

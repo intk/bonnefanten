@@ -1,10 +1,16 @@
 <configure xmlns="http://namespaces.zope.org/zope">
-
-  <!-- Indexers/Metadata -->
-  <!--
   <adapter
-      factory=".indexer.industry_indexer"
-      name="industry"
+      factory=".indexes.artwork_name"
+      name="artwork_name"
       />
--->
+
+  <adapter
+      factory=".indexes.artwork_technique"
+      name="artwork_technique"
+      />
+
+  <adapter
+      factory=".indexes.artwork_material"
+      name="artwork_material"
+      />
 </configure>

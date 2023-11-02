@@ -1,10 +1,18 @@
 <configure xmlns="http://namespaces.zope.org/zope">
 
-  <!-- Example vocabulary
   <utility
-      name="bonnefanten.vocabulary.industries"
-      component=".industries_vocabulary"
+      name="artwork_technique"
+      component=".searchindex.artwork_techniqueVocabularyFactory"
       />
-   -->
+
+  <utility
+      name="artwork_name"
+      component=".searchindex.artwork_nameVocabularyFactory"
+      />
+
+  <utility
+      name="artwork_material"
+      component=".searchindex.artwork_materialVocabularyFactory"
+      />
 
 </configure>

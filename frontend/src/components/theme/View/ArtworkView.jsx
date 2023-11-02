@@ -437,7 +437,11 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.technique)}</p>
                     </td>
                     <td className="columntwo">
-                      <p>{content.ObjTechniqueTxt}</p>
+                      <a
+                        href={`/search?SearchableText=${content.ObjTechniqueTxt}`}
+                      >
+                        {content.ObjTechniqueTxt}
+                      </a>
                     </td>
                   </tr>
                 )}

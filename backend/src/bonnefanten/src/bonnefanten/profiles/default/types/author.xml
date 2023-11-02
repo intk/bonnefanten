@@ -35,7 +35,7 @@
     <element value="plone.categorization" />
     <element value="plone.textindexer" />
   </property>
-  <property name="schema">intk_vanabbe.content.author.IAuthor</property>
+  <property name="schema">bonnefanten.content.author.IAuthor</property>
   <alias from="(Default)"
          to="(dynamic view)"
   />

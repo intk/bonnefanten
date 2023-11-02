@@ -20,6 +20,8 @@ from zope import component
 from zope.component import getUtility
 from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
+from plone.dexterity.interfaces import IDexterityContent
+from zope.schema import getFields
 
 import base64
 import json
@@ -149,9 +151,12 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     # element = lxml.etree.fromstring(dc_record_xml)
     importedAuthors = import_authors(self, record)
     if importedAuthors:
-        authors, authors_en = import_authors(self, record)
+        authors, authors_en = importedAuthors
     else:
         authors = "null"
+        authors_en = "null"
+
+    log_to_file(f"After calling import_authors: authors = {authors}, authors_en = {authors_en}")
 
     record_text = json.dumps(record)
     info = {"nl": {}, "en": {}}
@@ -207,7 +212,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     # Find the existing object
     ObjectNumber = info["nl"]["ObjObjectNumberTxt"]
 
-    # Check if only one language version of the object with ccObjectID exists
+    # Check if only one language version of the object with ObjectNumber exists
     brains = catalog.searchResults(
         ObjObjectNumberTxt=ObjectNumber, portal_type="artwork"
     )
@@ -218,9 +223,11 @@ def import_one_record(self, record, container, container_en, catalog, headers):
             obj = create_and_setup_object(
                 title, container, info, intl, "artwork"
             )  # Dutch version
-            # log_to_file(f"{ccObjectID} Dutch version of object is created")
-            # for author in authors:
-            # relation.create(source=obj, target=author, relationship="authors")
+            # log_to_file(f"{ObjectNumber} Dutch version of object is created")
+
+            if authors != "null":
+                for author in authors:
+                    relation.create(source=obj, target=author, relationship="authors")
 
             manager = ITranslationManager(obj)
             if not manager.has_translation("en"):
@@ -238,9 +245,10 @@ def import_one_record(self, record, container, container_en, catalog, headers):
             obj_en = create_and_setup_object(
                 title, container_en, info, intl, "artwork"
             )  # English version
-            # log_to_file(f"{ccObjectID} English version of object is created")
-            # for author_en in authors_en:
-            # relation.create(source=obj_en, target=author_en, relationship="authors")
+            # log_to_file(f"{ObjectNumber} English version of object is created")
+            if authors_en != "null":
+                for author in authors_en:
+                    relation.create(source=obj_en, target=author, relationship="authors")
 
             manager = ITranslationManager(obj_en)
             if not manager.has_translation("nl"):
@@ -255,11 +263,23 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
             obj_en.reindexObject()
 
-    # # Check if object with ccObjectID already exists in the container
+    # # Check if object with ObjectNumber already exists in the container
     elif brains:
         for brain in brains:
             # Object exists, so we fetch it and update it
             obj = brain.getObject()
+
+            #First clear all of the fields
+            schema = obj.getTypeInfo().lookupSchema()
+            fields = getFields(schema)
+
+            # Exclude these fields from clearing
+            exclude_fields = ['id', 'UID', 'title', 'description', 'authors']
+
+            for field_name, field in fields.items():
+                if field_name not in exclude_fields:
+                    # Clear the field by setting it to its missing_value
+                    setattr(obj, field_name, field.missing_value)
 
             # Update the object's fields with new data
             lang = obj.language
@@ -271,19 +291,21 @@ def import_one_record(self, record, container, container_en, catalog, headers):
                 if v:
                     setattr(obj, k, json.dumps(v))
 
-            # print(f"Updated Object ID: {obj.getId()}, Path: {obj.absolute_url()}, Workflow State: {api.content.get_state(obj)}")
+            if lang == "nl":
+                if authors != "null":
+                    log_to_file(f"authors {authors}")
+                    for author in authors:
+                        log_to_file(f"author {author}")
+                        relation.delete(source=obj, target=author, relationship="authors")
+                        relation.create(source=obj, target=author, relationship="authors")
 
-            # if lang == "nl":
-            #     for author in authors:
-            #         relation.delete(source=obj, target=author, relationship="authors")
-            #         relation.create(source=obj, target=author, relationship="authors")
+            else:
+                if authors != "null":
+                    for author_en in authors_en:
+                        relation.delete(source=obj, target=author_en, relationship="authors")
+                        relation.create(source=obj, target=author_en, relationship="authors")
 
-            # else:
-            #     for author_en in authors_en:
-            #         relation.delete(source=obj, target=author_en, relationship="authors")
-            #         relation.create(source=obj, target=author_en, relationship="authors")
-
-            # log_to_file(f"{ccObjectID} object is updated")
+            log_to_file(f"{ObjectNumber} object is updated")
 
             # adding images
             if info["en"]["images"] != "null":
@@ -351,7 +373,6 @@ def create_and_setup_object(title, container, info, intl, object_type):
         content.transition(obj=obj, transition="publish")
 
     # Reindex the object
-    # obj.reindexObject(idxs=['objectTitle', 'Title', 'sortable_title', 'ccObjectID'])
     obj.reindexObject()
 
     return obj
@@ -386,7 +407,6 @@ def import_images(container, image, headers):
             image_url = (
                 f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten{image}"
             )
-            print(image_url)
             with requests.get(
                 url=image_url, stream=True, verify=False, headers=headers
             ) as req:  # noqa
@@ -473,8 +493,7 @@ def import_authors(self, record, use_archive=True):
         and "ReferencedId" in record["ObjPersonRef"]["Items"][0]
     ):
         authorID = record["ObjPersonRef"]["Items"][0]["ReferencedId"]
-    else:
-        return
+
     # authorID = record["ObjPersonRef"]["Items"][0]["ReferencedId"]
     found = content.find(
         portal_type="author",
@@ -487,9 +506,16 @@ def import_authors(self, record, use_archive=True):
         Language="en",
     )
     if found:
-        authors += [b.getObject() for b in found]
-        authors_en += [b.getObject() for b in found_en]
+        for brain in found:
+            # authors.append(brain.getObject())
+            authors.append(found[0].getObject())
+
+        for brain in found_en:
+            # authors_en.append(brain.getObject())
+            authors_en.append(found_en[0].getObject())
         return [authors, authors_en]
+
+
 
     authorName = record["ObjPersonRef"]["Items"][0]["LinkLabelTxt"]
 
@@ -497,14 +523,16 @@ def import_authors(self, record, use_archive=True):
         type="author",
         # id=authorID,
         container=container,
-        title=authorName
+        title=authorName,
+        authorID = authorID,
         # **fields,
     )
     author_en = content.create(
         type="author",
         # id=authorID,
         container=container_en,
-        title=authorName
+        title=authorName,
+        authorID = authorID,
         # **fields_en,
     )  # English version
 

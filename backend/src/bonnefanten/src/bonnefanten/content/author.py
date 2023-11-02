@@ -8,7 +8,6 @@ class IAuthor(model.Schema):
     """Schema for Author content type."""
 
     authorID = schema.TextLine(title="authorID", required=False)
-    AuthorBio = schema.Int(title="AuthorBio", required=False)
 
     # TODO: make it a date?
     authorBirthDate = schema.TextLine(title="authorBirthDate", required=False)
@@ -29,4 +28,4 @@ class IAuthor(model.Schema):
         "authorName",
     )
 
-    searchable("AuthorBio", "authorName")
+    searchable("authorID", "authorName")

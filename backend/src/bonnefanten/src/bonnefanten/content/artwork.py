@@ -116,9 +116,9 @@ class IArtwork(model.Schema):
     ObjHistoricLocationTxt = schema.TextLine(
         title="ObjHistoricLocationTxt", required=False
     )
-    ObjPersonRef = schema.List(
-        title="ObjPersonRef", required=False, value_type=schema.TextLine(title="Artist")
-    )
+    # ObjPersonRef = schema.List(
+    #     title="ObjPersonRef", required=False, value_type=schema.TextLine(title="Artist")
+    # )
     rawdata = schema.Text(title="Rawdata", required=False)
 
     authors = RelationList(
@@ -156,7 +156,7 @@ class IArtwork(model.Schema):
         # "ObjAcquisitionMethodTxt",
         "ObjAcquisitionDateTxt",
         "ObjHistoricLocationTxt",
-        "ObjPersonRef",
+        # "ObjPersonRef",
     )
 
-    searchable("Id", "ObjTitleTxt", "ObjPersonRef", "ObjCategoryTxt")
+    searchable("Id", "ObjTitleTxt", "ObjCategoryTxt")

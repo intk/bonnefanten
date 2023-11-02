@@ -234,6 +234,8 @@ export default function ArtworkView(props) {
     </>
   );
 
+  const authors = content.authors?.map((auth) => auth?.title).join(', ');
+
   return (
     <div id="object-block">
       <Container>
@@ -334,7 +336,8 @@ export default function ArtworkView(props) {
                           href={auth['@id']}
                           // title={auth.detailsHrefTitle}
                         >
-                          {auth.title}
+                          {/* {auth.title} */}
+                          {authors}
                         </a>
                       </p>
                     </td>

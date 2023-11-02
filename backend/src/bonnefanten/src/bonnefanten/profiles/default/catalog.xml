@@ -20,5 +20,10 @@
   >
     <indexed_attr value="ObjTitleTxt" />
   </index>
+  <index meta_type="FieldIndex"
+         name="authorID"
+  >
+    <indexed_attr value="authorID" />
+  </index>
 
 </object>

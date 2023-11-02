@@ -10,4 +10,5 @@ _ = MessageFactory("bonnefanten")
 
 logger = logging.getLogger("bonnefanten")
 
-# from .content.artwork import IArtwork
+from .content.artwork import IArtwork
+from .content.author import IAuthor

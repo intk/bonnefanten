@@ -86,6 +86,10 @@ const messages = defineMessages({
     id: 'details',
     defaultMessage: 'Objectgegevens',
   },
+  nowonview: {
+    id: 'nowonview',
+    defaultMessage: 'Nu te zien',
+  },
 });
 
 export default function ArtworkView(props) {
@@ -323,12 +327,22 @@ export default function ArtworkView(props) {
           >
             <table>
               <tbody>
+                {
+                  <tr>
+                    <td className="columnone">
+                      <p></p>
+                    </td>
+                    <td className="columntwo">
+                      <p>{intl.formatMessage(messages.nowonview)}</p>
+                    </td>
+                  </tr>
+                }
                 {linkAuthors && (
                   <tr>
                     <td className="columnone">
                       <p>{intl.formatMessage(messages.artist)}</p>
                     </td>
-                    <td>
+                    <td className="columntwo">
                       {linkAuthors?.map((auth, index) => (
                         <p key={index}>
                           <a href={auth['@id']}>{auth.title}</a>

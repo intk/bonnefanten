@@ -180,6 +180,11 @@ msgid "moreInfo"
 msgstr ""
 
 #: components/theme/View/ArtworkView
+# defaultMessage: Nu te zien
+msgid "nowonview"
+msgstr ""
+
+#: components/theme/View/ArtworkView
 # defaultMessage: Objectcategorie
 msgid "objectCategory"
 msgstr ""

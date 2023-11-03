@@ -203,6 +203,11 @@ msgstr "Questions?"
 msgid "questionText"
 msgstr "Do you have a remark or extra information on this object? "
 
+#: components/theme/View/SeeMore
+# defaultMessage: Kijk verder
+msgid "seemore"
+msgstr "See Also"
+
 #: components/theme/View/ArtworkView
 # defaultMessage: Delen
 msgid "share"

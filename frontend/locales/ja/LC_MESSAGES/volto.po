@@ -210,6 +210,11 @@ msgstr ""
 msgid "questionText"
 msgstr ""
 
+#: components/theme/View/SeeMore
+# defaultMessage: Kijk verder
+msgid "seemore"
+msgstr ""
+
 #: components/theme/View/ArtworkView
 # defaultMessage: Delen
 msgid "share"

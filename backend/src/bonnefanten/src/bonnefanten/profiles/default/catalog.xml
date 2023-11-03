@@ -33,6 +33,12 @@
   </index>
 
   <index meta_type="KeywordIndex"
+         name="artwork_author"
+  >
+    <indexed_attr value="artwork_author" />
+  </index>
+
+  <index meta_type="KeywordIndex"
          name="artwork_name"
   >
     <indexed_attr value="artwork_name" />

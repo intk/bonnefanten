@@ -34,6 +34,7 @@
     <element value="plone.translatable" />
     <element value="plone.categorization" />
     <element value="plone.textindexer" />
+    <element value="volto.preview_image" />
   </property>
   <property name="schema">bonnefanten.content.artwork.IArtwork</property>
   <alias from="(Default)"

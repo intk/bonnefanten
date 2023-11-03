@@ -2,6 +2,7 @@ from plone.app.dexterity.textindexer.directives import searchable
 from plone.app.multilingual.dx import directives as lang_directives
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives as form_directives
+from plone.namedfile.field import NamedBlobImage
 from plone.supermodel import model
 from z3c.relationfield.schema import RelationChoice
 from z3c.relationfield.schema import RelationList
@@ -91,6 +92,11 @@ from zope import schema
 class IArtwork(model.Schema):
     """Schema for Artwork content type."""
 
+    # previewImage = NamedBlobImage(
+    #     title=u"Preview Image",
+    #     description=u"Image that will be used as a preview for this artwork.",
+    #     required=False,
+    # )
     ObjDimensionTxt = schema.TextLine(title="ObjDimensionTxt", required=False)
     ObjMaterialTxt = schema.TextLine(title="ObjMaterialTxt", required=False)
     ObjObjectNumberTxt = schema.TextLine(title="ObjObjectNumberTxt", required=False)

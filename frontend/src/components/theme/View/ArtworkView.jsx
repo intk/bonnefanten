@@ -19,6 +19,8 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import fbbutton from './assets/soc_fb_wBG.svg';
 import twbutton from './assets/share_button_twitter.svg';
 import { defineMessages, useIntl } from 'react-intl';
+// eslint-disable-next-line import/no-unresolved
+import SeeMmore from './Seemore';
 
 const messages = defineMessages({
   artist: {
@@ -535,6 +537,7 @@ export default function ArtworkView(props) {
               </tbody>
             </table>
           </div>
+          <SeeMmore {...props} />
         </div>
       </Container>
     </div>

@@ -28,6 +28,7 @@ import json
 import logging
 import lxml.etree
 import os
+import re
 import requests
 import time
 import transaction
@@ -181,6 +182,9 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["nl"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
     info["en"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
 
+    info["en"]["authorText"] = []
+    info["nl"]["authorText"] = []
+
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",
         "ObjTitleTxt": "ObjTitleTxt",
@@ -200,15 +204,28 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     }
 
     if "ObjPersonRef" in record and "Items" in record["ObjPersonRef"]:
-        # Loop through each author in the record
-        roles_dict = {}  # Dictionary to store the name and role pairs
+        roles_dict = {}
         roles_dict_en = {}
         for item in record["ObjPersonRef"]["Items"]:
-            authorName = item["LinkLabelTxt"]
-            authorRole = item["RoleTxt"]["LabelTxt_nl"]
-            authorRole_en = item["RoleTxt"]["LabelTxt_en"]
-            roles_dict[authorName] = authorRole
-            roles_dict_en[authorName] = authorRole_en
+            if (
+                item.get("LinkLabelTxt")
+                and item.get("RoleTxt")
+                and "LabelTxt_nl" in item["RoleTxt"]
+            ):
+                authorName = item["LinkLabelTxt"]
+                authorRole = item["RoleTxt"]["LabelTxt_nl"]
+                authorRole_en = item["RoleTxt"].get("LabelTxt_en", "")
+                roles_dict[authorName] = authorRole
+                roles_dict_en[authorName] = authorRole_en
+
+                info["en"]["authorText"].append(authorName)
+                info["nl"]["authorText"].append(authorName)
+
+            else:
+                roles_dict = None
+                roles_dict_en = None
+                break  # Exit the loop early if a required key is missing
+
         info["en"]["ObjPersonRole"] = roles_dict
         info["nl"]["ObjPersonRole"] = roles_dict_en
 
@@ -380,8 +397,14 @@ def create_and_setup_object(title, container, info, intl, object_type):
     Create an object with the given title and container, then set its attributes
     using the provided info and intl dictionaries.
     """
+    log_to_file(f"This is for create and setup {title}")
     urlTitle = title.replace(" ", "-").lower()
-    obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{urlTitle}"
+    raw_obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{urlTitle}"
+    log_to_file(f"raw id {raw_obj_id}")
+
+    # Using regex to sanitize the ID
+    obj_id = re.sub(r"[^a-zA-Z0-9-_]", "", raw_obj_id)
+    log_to_file(f"obj_id {obj_id}")
     try:
         obj = api.content.create(
             type=object_type,
@@ -465,6 +488,8 @@ def import_images(container, image, headers):
                     image=imagefield,
                     container=container,
                 )
+
+                container.preview_image = imagefield
 
                 success = True
                 break

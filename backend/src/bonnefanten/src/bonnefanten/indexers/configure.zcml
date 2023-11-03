@@ -13,4 +13,10 @@
       factory=".indexes.artwork_material"
       name="artwork_material"
       />
+
+  <adapter
+      factory=".indexes.artwork_author"
+      name="artwork_author"
+      />
+
 </configure>

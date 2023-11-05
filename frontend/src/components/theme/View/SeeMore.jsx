@@ -39,7 +39,7 @@ const Search = (props) => {
 
   return (
     <Container id="page-search">
-      <div className="page-search-title">
+      <div id="page-search-title" className="page-search-title">
         <h1 style={{ fontFamily: 'BonnefantenBlock, Arial, sans-serif' }}>
           {intl.formatMessage(messages.seemore)}
         </h1>
@@ -47,7 +47,7 @@ const Search = (props) => {
 
       {/* Display all item titles with their preview images */}
       <div className="search-items">
-        {props.items.map((item) =>
+        {props.items.slice(0, 20).map((item) =>
           props.location.pathname !== item['@id'] ? (
             <div className="SeeMoreItem" key={item['@id']}>
               <ArtworkPreview {...item} />

@@ -122,11 +122,15 @@ export default function ArtworkView(props) {
   const expandData = () => {
     setDataExpand(!dataExpand);
     const sliderElement = document.getElementById('swipe-slider');
-    const rawDataElement = document.getElementById('site-footer');
+    const rawDataElement = document.getElementById('rawdata');
+    const viewportHeight = window.innerHeight;
+
     if (dataExpand === false && sliderElement) {
-      rawDataElement.scrollIntoView({ behavior: 'smooth' });
+      const topPosition = rawDataElement.offsetTop - 160;
+      window.scrollTo({ top: topPosition, behavior: 'smooth' });
     } else if (dataExpand === true && rawDataElement) {
-      sliderElement.scrollIntoView({ behavior: 'smooth' });
+      const topPosition = sliderElement.offsetTop - 160;
+      window.scrollTo({ top: topPosition, behavior: 'smooth' });
     }
   };
 
@@ -347,7 +351,7 @@ export default function ArtworkView(props) {
                     </td>
                   </tr>
                 }
-                {linkAuthors && (
+                {linkAuthors.length !== 0 ? (
                   <tr>
                     <td className="columnone">
                       <p>{intl.formatMessage(messages.artist)}</p>
@@ -370,6 +374,8 @@ export default function ArtworkView(props) {
                       ))}
                     </td>
                   </tr>
+                ) : (
+                  ''
                 )}
                 {content.title && (
                   <tr>
@@ -465,8 +471,10 @@ export default function ArtworkView(props) {
                     </td>
                     <td className="columntwo">
                       <p>
-                        {content.ObjAcquisitionMethodTxt}{' '}
-                        {content.ObjAcquisitionDateTxt.slice(0, 4)}
+                        {content?.ObjAcquisitionMethodTxt}{' '}
+                        {content.ObjAcquisitionDateTxt
+                          ? content.ObjAcquisitionDateTxt.slice(0, 4)
+                          : ''}
                       </p>
                     </td>
                   </tr>

@@ -17,6 +17,9 @@
       padding-bottom: 100px;
     }
   }
+  #swipe-slider .react-swipe-container{
+    min-height: 400px;
+  }
 
   .buttons {
     padding-top: 23px;
@@ -456,10 +459,13 @@
 
 
 #page-search{
-  padding-left: 85px;
-  padding-right: 85px;
+  padding-left: 70px;
+  padding-right: 70px;
 
-
+  @media screen and (max-width: 768px) {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
 
   .page-search-title{
     text-align: center;
@@ -467,25 +473,41 @@
       color: #b6a782;
       font-size: 4vw;
       margin-top: 10px;
+      @media screen and (max-width: 992px) {
+        font-size: 10vw;
+      }
+      @media screen and (max-width: 992px) {
+        font-size: 6vw;
+      }
     }
   }
 
   .search-items{
-    display: flex;
-    // flex-direction: row;
-    flex-wrap: column;
-    flex-wrap: wrap;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+    -moz-column-gap: 10px;
+    -webkit-column-gap: 10px;
+    column-gap: 10px;
+    @media  screen and (max-width: 768px) {
+      -moz-column-count: 1;
+      -webkit-column-count: 1;
+      column-count: 1;
+    }
   }
   .SeeMoreItem{
+      break-inside: avoid;
     padding: 20px;
-    flex-basis: 50%;
-    width: 50%;
+    box-sizing: border-box;
+    width: 100% !important;
+    height: auto;
     a{
       text-decoration: none;
       font-family: 'StyreneBold',Arial,sans-serif;
     }
     img {
       margin-bottom: 10px !important;
+      width: 100% !important;
     }
   }
   .item_title{

@@ -123,7 +123,6 @@ export default function ArtworkView(props) {
     setDataExpand(!dataExpand);
     const sliderElement = document.getElementById('swipe-slider');
     const rawDataElement = document.getElementById('rawdata');
-    const viewportHeight = window.innerHeight;
 
     if (dataExpand === false && sliderElement) {
       const topPosition = rawDataElement.offsetTop - 160;

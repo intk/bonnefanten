@@ -24,6 +24,7 @@ const Search = (props) => {
   if (authorQueryString === '') {
     authorQueryString = undefined;
   }
+  console.log(authors);
 
   const intl = useIntl();
 
@@ -47,23 +48,25 @@ const Search = (props) => {
 
       {/* Display all item titles with their preview images */}
       <div className="search-items">
-        {props.items.slice(0, 20).map((item) =>
-          props.location.pathname !== item['@id'] ? (
-            <div className="SeeMoreItem" key={item['@id']}>
-              <ArtworkPreview {...item} />
-              <UniversalLink item={item}>
-                <div className="item_title">{item.title}</div>
-              </UniversalLink>
-              {/* <div>
+        {authors.length != 0
+          ? props.items.slice(0, 20).map((item) =>
+              props.location.pathname !== item['@id'] ? (
+                <div className="SeeMoreItem" key={item['@id']}>
+                  <ArtworkPreview {...item} />
+                  <UniversalLink item={item}>
+                    <div className="item_title">{item.title}</div>
+                  </UniversalLink>
+                  {/* <div>
                 <p>
                   {console.log(item)}
                 </p>
               </div> */}
-            </div>
-          ) : (
-            ''
-          ),
-        )}
+                </div>
+              ) : (
+                ''
+              ),
+            )
+          : ''}
       </div>
     </Container>
   );

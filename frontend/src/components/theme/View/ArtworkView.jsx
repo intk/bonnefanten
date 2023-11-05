@@ -125,7 +125,7 @@ export default function ArtworkView(props) {
     const viewportHeight = window.innerHeight;
 
     if (dataExpand === false && sliderElement) {
-      const topPosition = rawDataElement.offsetTop - viewportHeight / 6;
+      const topPosition = rawDataElement.offsetTop - viewportHeight / 7;
       window.scrollTo({ top: topPosition, behavior: 'smooth' });
     } else if (dataExpand === true && rawDataElement) {
       const topPosition = sliderElement.offsetTop - viewportHeight / 4;

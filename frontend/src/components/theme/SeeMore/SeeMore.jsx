@@ -19,8 +19,8 @@ const Search = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.searchableText]);
 
-  const authors = props.content.authors.map((author) => author.title);
-  let authorQueryString = authors.map((author) => `${author}`).join(' OR ');
+  const authors = props.content?.authors.map((author) => author.title);
+  let authorQueryString = authors?.map((author) => `${author}`).join(' OR ');
   if (authorQueryString === '') {
     authorQueryString = undefined;
   }

@@ -203,7 +203,7 @@ msgstr ""
 msgid "questionText"
 msgstr ""
 
-#: components/theme/View/SeeMore
+#: components/theme/SeeMore/SeeMore
 # defaultMessage: Kijk verder
 msgid "seemore"
 msgstr ""

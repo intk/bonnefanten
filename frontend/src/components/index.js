@@ -8,3 +8,6 @@
  *   Footer,
  * };
  */
+import SeeMore from './theme/SeeMore/SeeMore';
+
+export { SeeMore };

@@ -19,8 +19,7 @@ import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import fbbutton from './assets/soc_fb_wBG.svg';
 import twbutton from './assets/share_button_twitter.svg';
 import { defineMessages, useIntl } from 'react-intl';
-// eslint-disable-next-line import/no-unresolved
-import SeeMmore from './Seemore';
+import { SeeMore } from '../../index';
 
 const messages = defineMessages({
   artist: {
@@ -123,12 +122,13 @@ export default function ArtworkView(props) {
     setDataExpand(!dataExpand);
     const sliderElement = document.getElementById('swipe-slider');
     const rawDataElement = document.getElementById('rawdata');
+    const viewportHeight = window.innerHeight;
 
     if (dataExpand === false && sliderElement) {
-      const topPosition = rawDataElement.offsetTop - 160;
+      const topPosition = rawDataElement.offsetTop - viewportHeight / 6;
       window.scrollTo({ top: topPosition, behavior: 'smooth' });
     } else if (dataExpand === true && rawDataElement) {
-      const topPosition = sliderElement.offsetTop - 160;
+      const topPosition = sliderElement.offsetTop - viewportHeight / 4;
       window.scrollTo({ top: topPosition, behavior: 'smooth' });
     }
   };
@@ -544,7 +544,7 @@ export default function ArtworkView(props) {
               </tbody>
             </table>
           </div>
-          <SeeMmore {...props} />
+          <SeeMore {...props} />
         </div>
       </Container>
     </div>

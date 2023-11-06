@@ -366,7 +366,10 @@ export default function ArtworkView(props) {
                               }`}
                             >
                               {' '}
-                              ({content.ObjPersonRole[auth.title]})
+                              (
+                              {content.ObjPersonRole[auth.title] &&
+                                content.ObjPersonRole[auth.title]}
+                              )
                             </a>
                           </span>
                         </p>

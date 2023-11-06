@@ -356,24 +356,25 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.artist)}</p>
                     </td>
                     <td className="columntwo">
-                      {linkAuthors?.map((auth, index) => (
-                        <p key={index}>
-                          <a href={auth['@id']}>{auth.title}</a>
-                          <span>
-                            <a
-                              href={`/search?SearchableText=${
-                                content.ObjPersonRole[auth.title]
-                              }`}
-                            >
-                              {' '}
-                              (
-                              {content.ObjPersonRole[auth.title] &&
-                                content.ObjPersonRole[auth.title]}
-                              )
-                            </a>
-                          </span>
-                        </p>
-                      ))}
+                      {linkAuthors &&
+                        linkAuthors.map((auth, index) => (
+                          <p key={index}>
+                            <a href={auth['@id']}>{auth.title}</a>
+                            <span>
+                              <a
+                                href={`/search?SearchableText=${
+                                  content.ObjPersonRole[auth.title]
+                                }`}
+                              >
+                                {' '}
+                                (
+                                {content.ObjPersonRole[auth.title] &&
+                                  content.ObjPersonRole[auth.title]}
+                                )
+                              </a>
+                            </span>
+                          </p>
+                        ))}
                     </td>
                   </tr>
                 ) : (

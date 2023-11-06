@@ -20,6 +20,7 @@ const Search = (props) => {
   }, [props.searchableText]);
 
   const authors = props.content?.authors.map((author) => author.title);
+  const authors_text = authors.join(', ');
   let authorQueryString = authors?.map((author) => `${author}`).join(' OR ');
   if (authorQueryString === '') {
     authorQueryString = undefined;
@@ -33,6 +34,7 @@ const Search = (props) => {
       portal_type: 'artwork',
       artwork_author: authorQueryString,
       path: currentPath,
+      metadata_fields: ['ObjDateFromTxt'],
     };
     props.searchContent('', options);
   };
@@ -55,11 +57,14 @@ const Search = (props) => {
                   <UniversalLink item={item}>
                     <div className="item_title">{item.title}</div>
                   </UniversalLink>
-                  {/* <div>
-                <p>
-                  {console.log(item)}
-                </p>
-              </div> */}
+                  <div className="desctiption">
+                    <span className="item-description">
+                      {authors_text && authors_text}
+                    </span>
+                    <span className="item-description">
+                      , {item.ObjDateFromTxt && item.ObjDateFromTxt}
+                    </span>
+                  </div>
                 </div>
               ) : (
                 ''

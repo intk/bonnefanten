@@ -488,27 +488,33 @@
 #page-search{
   padding-left: 85px;
   padding-right: 85px;
-
-  @media screen and (min-width: 992px) {
-    width: 1119px !important;
+  max-width: 1250px !important;
+  @media screen and (max-width: 1200px) {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   @media screen and (max-width: 992px) {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    width: auto !important;
   }
 
   .page-search-title{
     text-align: center;
     margin-bottom: 60px;
+
+    @media screen and (max-width: 992px) {
+      margin-bottom: 30px;
+    }
     h1{
       color: #b6a782;
       font-size: 4vw;
       margin-top: 10px;
       @media screen and (max-width: 992px) {
-        font-size: 10vw;
+        font-size: 8vw;
       }
-      @media screen and (max-width: 992px) {
+      @media screen and (max-width: 768px) {
         font-size: 6vw;
       }
     }

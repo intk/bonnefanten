@@ -21,7 +21,7 @@ const TextInputFacet = (props) => {
       <Input
         value={inputValue}
         onChange={handleInputChange}
-        placeholder={`Search ${facet.field.label}...`}
+        placeholder={`Typ om te zoeken`}
       />
     </div>
   );

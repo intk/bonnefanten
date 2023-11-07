@@ -1,12 +1,12 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { flushSync } from 'react-dom';
 import { defineMessages, useIntl } from 'react-intl';
 import { Button, Grid } from 'semantic-ui-react';
-import { Icon } from '@plone/volto/components';
-import downSVG from '@plone/volto/icons/down-key.svg';
-import upSVG from '@plone/volto/icons/up-key.svg';
-import cx from 'classnames';
+// import { Icon } from '@plone/volto/components';
+// import downSVG from '@plone/volto/icons/down-key.svg';
+// import upSVG from '@plone/volto/icons/up-key.svg';
+// import cx from 'classnames';
 import { isEqual } from 'lodash';
 import { useDeepCompareMemoize } from 'use-deep-compare-effect';
 
@@ -72,6 +72,7 @@ const TopSideFacets = (props) => {
     searchData.query || [],
     data.query?.query || [],
   );
+  // eslint-disable-next-line no-unused-vars
   const [showFilters, setShowFilters] = React.useState(defaultOpened);
 
   React.useState(() => {
@@ -110,17 +111,11 @@ const TopSideFacets = (props) => {
             : true) && (
             <div className="search-wrapper">
               <SearchInput {...props} isLive={isLive} />
-              {data.showSearchButton && (
-                <Button primary onClick={() => onTriggerSearch(searchText)}>
-                  {data.searchButtonLabel ||
-                    intl.formatMessage(messages.searchButtonText)}
-                </Button>
-              )}
             </div>
           )}
 
           <div className="search-filters-sort">
-            {data.facets?.length > 0 && data?.facets[0]?.field && (
+            {/* {data.facets?.length > 0 && data?.facets[0]?.field && (
               <Button
                 className={cx('secondary filters-btn', {
                   open: showFilters,
@@ -134,7 +129,7 @@ const TopSideFacets = (props) => {
                   <Icon name={downSVG} size="30px" />
                 )}
               </Button>
-            )}
+            )} */}
 
             {data.showSortOn && (
               <SortOn
@@ -166,7 +161,7 @@ const TopSideFacets = (props) => {
               <ViewSwitcher {...props} />
             )}
           </div>
-          {showFilters && data.facets?.length > 0 && (
+          {data.facets?.length > 0 && (
             <div className="facets">
               {data.facetsTitle && <h3>{data.facetsTitle}</h3>}
 
@@ -197,15 +192,28 @@ const TopSideFacets = (props) => {
               />
             </div>
           )}
-          <SearchDetails
-            text={searchedText}
-            total={totalItems}
-            as="h5"
-            data={data}
-          />
         </Grid.Column>
       </Grid.Row>
-
+      <Grid.Row>
+        {data.showSearchButton && (
+          <Button
+            className="Search-main-button"
+            primary
+            onClick={() => onTriggerSearch(searchText)}
+          >
+            {data.searchButtonLabel ||
+              intl.formatMessage(messages.searchButtonText)}
+          </Button>
+        )}
+      </Grid.Row>
+      <Grid.Row>
+        <SearchDetails
+          text={searchedText}
+          total={totalItems}
+          as="h5"
+          data={data}
+        />
+      </Grid.Row>
       <Grid.Row>
         <Grid.Column>{children}</Grid.Column>
       </Grid.Row>

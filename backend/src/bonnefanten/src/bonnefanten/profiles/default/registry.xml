@@ -12,7 +12,8 @@
     <value key="operations">
       <element>plone.app.querystring.operation.string.contains</element>
       <element>plone.app.querystring.operation.string.is</element>
-      <element>plone.app.querystring.operation.string.isNot</element>    </value>
+      <element>plone.app.querystring.operation.string.isNot</element>
+    </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
@@ -28,7 +29,8 @@
     <value key="operations">
       <element>plone.app.querystring.operation.string.contains</element>
       <element>plone.app.querystring.operation.string.is</element>
-      <element>plone.app.querystring.operation.string.isNot</element>    </value>
+      <element>plone.app.querystring.operation.string.isNot</element>
+    </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
@@ -45,7 +47,8 @@
     <value key="operations">
       <element>plone.app.querystring.operation.string.contains</element>
       <element>plone.app.querystring.operation.string.is</element>
-      <element>plone.app.querystring.operation.string.isNot</element>    </value>
+      <element>plone.app.querystring.operation.string.isNot</element>
+    </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
@@ -62,7 +65,8 @@
     <value key="operations">
       <element>plone.app.querystring.operation.string.contains</element>
       <element>plone.app.querystring.operation.string.is</element>
-      <element>plone.app.querystring.operation.string.isNot</element>    </value>
+      <element>plone.app.querystring.operation.string.isNot</element>
+    </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
@@ -78,7 +82,8 @@
     <value key="operations">
       <element>plone.app.querystring.operation.string.contains</element>
       <element>plone.app.querystring.operation.string.is</element>
-      <element>plone.app.querystring.operation.string.isNot</element>    </value>
+      <element>plone.app.querystring.operation.string.isNot</element>
+    </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
@@ -94,7 +99,8 @@
     <value key="operations">
       <element>plone.app.querystring.operation.string.contains</element>
       <element>plone.app.querystring.operation.string.is</element>
-      <element>plone.app.querystring.operation.string.isNot</element>    </value>
+      <element>plone.app.querystring.operation.string.isNot</element>
+    </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
@@ -111,7 +117,8 @@
     <value key="operations">
       <element>plone.app.querystring.operation.string.contains</element>
       <element>plone.app.querystring.operation.string.is</element>
-      <element>plone.app.querystring.operation.string.isNot</element>    </value>
+      <element>plone.app.querystring.operation.string.isNot</element>
+    </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>

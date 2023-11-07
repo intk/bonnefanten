@@ -16,7 +16,7 @@ artwork_techniqueVocabularyFactory = KeywordsVocabulary("artwork_technique")
 
 artwork_materialVocabularyFactory = KeywordsVocabulary("artwork_material")
 
-artwork_materialVocabularyFactory = KeywordsVocabulary("artwork_type")
+artwork_typeVocabularyFactory = KeywordsVocabulary("artwork_type")
 
 
 # from plone.api import content

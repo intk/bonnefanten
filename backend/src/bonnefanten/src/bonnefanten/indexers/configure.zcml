@@ -1,6 +1,6 @@
 <configure xmlns="http://namespaces.zope.org/zope">
   <adapter
-      factory=".indexes.artwork_name"
+      factory=".indexes.artwork_type"
       name="artwork_name"
       />
 

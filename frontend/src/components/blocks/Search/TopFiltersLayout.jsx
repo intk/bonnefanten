@@ -9,7 +9,6 @@ import upSVG from '@plone/volto/icons/up-key.svg';
 import cx from 'classnames';
 import { isEqual } from 'lodash';
 import { useDeepCompareMemoize } from 'use-deep-compare-effect';
-// import { useHistory, useLocation } from 'react-router-dom';
 
 import {
   SearchInput,
@@ -69,64 +68,30 @@ const TopSideFacets = (props) => {
   const isLive = !showSearchButton;
   const intl = useIntl();
 
-  // const history = useHistory();
-  // const location = useLocation();
-
-  // React.useEffect(() => {
-  //   const allowedPaths = [
-  //     '/nl/collectie-onderzoek/collectie',
-  //     '/en/collection-research/collection',
-  //   ];
-
-  //   // Check if the current URL is one of the allowed paths and the specific query isn't present
-  //   if (
-  //     allowedPaths.includes(location.pathname) &&
-  //     !location.hash.includes('#query')
-  //   ) {
-  //     // Construct the new URL
-  //     const newURL = `${location.pathname}${location.search}#query=%5B%7B"i"%3A"portal_type"%2C"o"%3A"paqo.selection.any"%2C"v"%3A%5B"artwork"%5D%7D%2C%7B"i"%3A"objectOnDisplay"%2C"o"%3A"paqo.boolean.isTrue"%2C"v"%3A""%7D%2C%7B"i"%3A"hasImage"%2C"o"%3A"paqo.boolean.isTrue"%2C"v"%3A""%7D%5D&sort_order=ascending`;
-
-  //     history.replace(newURL); // Update the URL
-
-  //     // Refresh the page to apply changes
-  //     window.location.reload();
-  //   }
-  // }, []);
-
   const defaultOpened = isDirty(
     searchData.query || [],
     data.query?.query || [],
   );
   const [showFilters, setShowFilters] = React.useState(defaultOpened);
 
+  React.useState(() => {
+    if (isEditMode) {
+      setShowFilters(true);
+    }
+  }, [isEditMode]);
+
   const _hiddenData = {
     ...data,
     facets: data.facets?.map((f) => ({
       ...f,
       hidden: f.hidden
-        ? Object.keys(facets).includes(f.field?.value) && facets[f.field?.value]
+        ? Object.keys(facets).includes(f.field.value) && facets[f.field.value]
           ? false
           : true
         : false,
     })),
   };
   const hiddenData = useDeepCompareMemoize(_hiddenData);
-
-  let facetOnView = {
-    facets: hiddenData.facets?.filter(
-      (facet) =>
-        facet.field?.value === 'objectOnDisplay' ||
-        facet.field?.value === 'hasImage',
-    ),
-  };
-
-  let facetRest = {
-    facets: hiddenData.facets?.filter(
-      (facet) =>
-        facet.field?.value !== 'objectOnDisplay' &&
-        facet.field?.value !== 'hasImage',
-    ),
-  };
 
   return (
     <Grid className="searchBlock-facets" stackable>
@@ -156,35 +121,19 @@ const TopSideFacets = (props) => {
 
           <div className="search-filters-sort">
             {data.facets?.length > 0 && data?.facets[0]?.field && (
-              <div className="search-button-wrapper">
-                <Button
-                  className={cx('secondary filters-btn', {
-                    open: showFilters,
-                  })}
-                  onClick={() => setShowFilters(!showFilters)}
-                >
-                  <FormattedMessage id="Filters" defaultMessage="Filters" />
-                  {showFilters ? (
-                    <Icon name={upSVG} size="30px" />
-                  ) : (
-                    <Icon name={downSVG} size="30px" />
-                  )}
-                </Button>
-                <div className="facetOnView">
-                  <Facets
-                    data={facetOnView}
-                    querystring={querystring}
-                    facets={facets}
-                    setFacets={(f) => {
-                      flushSync(() => {
-                        setFacets(f);
-                        onTriggerSearch(searchedText || '', f);
-                      });
-                    }}
-                    facetWrapper={FacetWrapper}
-                  />
-                </div>
-              </div>
+              <Button
+                className={cx('secondary filters-btn', {
+                  open: showFilters,
+                })}
+                onClick={() => setShowFilters(!showFilters)}
+              >
+                <FormattedMessage id="Filters" defaultMessage="Filters" />
+                {showFilters ? (
+                  <Icon name={upSVG} size="30px" />
+                ) : (
+                  <Icon name={downSVG} size="30px" />
+                )}
+              </Button>
             )}
 
             {data.showSortOn && (
@@ -235,7 +184,7 @@ const TopSideFacets = (props) => {
               {/* /> */}
 
               <Facets
-                data={facetRest}
+                data={hiddenData}
                 querystring={querystring}
                 facets={facets}
                 setFacets={(f) => {

@@ -6,13 +6,13 @@
       />
 
   <utility
-      name="artwork_name"
-      component=".searchindex.artwork_nameVocabularyFactory"
+      name="artwork_material"
+      component=".searchindex.artwork_materialVocabularyFactory"
       />
 
   <utility
-      name="artwork_material"
-      component=".searchindex.artwork_materialVocabularyFactory"
+      name="artwork_type"
+      component=".searchindex.artwork_typeVocabularyFactory"
       />
 
 </configure>

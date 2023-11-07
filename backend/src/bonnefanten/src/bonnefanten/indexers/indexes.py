@@ -8,8 +8,8 @@ def artwork_material(obj):
 
 
 @indexer(IArtwork)
-def artwork_name(obj):
-    return obj.ObjTitleTxt
+def artwork_type(obj):
+    return obj.ObjObjectTypeTxt
 
 
 @indexer(IArtwork)

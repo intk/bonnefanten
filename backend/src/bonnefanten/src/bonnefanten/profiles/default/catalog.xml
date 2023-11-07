@@ -49,4 +49,18 @@
   >
     <indexed_attr value="artwork_material" />
   </index>
+
+  <index meta_type="KeywordIndex"
+         name="artwork_type"
+  >
+    <indexed_attr value="artwork_type" />
+  </index>
+
+  <column value="artwork_name" />
+  <column value="artwork_material" />
+  <column value="artwork_author" />
+  <column value="artwork_technique" />
+  <column value="ObjTitleTxt" />
+  <column value="ObjObjectNumberTxt" />
+  <column value="artwork_type" />
 </object>

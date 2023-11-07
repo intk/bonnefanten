@@ -14,9 +14,9 @@ class KeywordsVocabulary(BKV):
 
 artwork_techniqueVocabularyFactory = KeywordsVocabulary("artwork_technique")
 
-artwork_nameVocabularyFactory = KeywordsVocabulary("artwork_name")
-
 artwork_materialVocabularyFactory = KeywordsVocabulary("artwork_material")
+
+artwork_materialVocabularyFactory = KeywordsVocabulary("artwork_type")
 
 
 # from plone.api import content

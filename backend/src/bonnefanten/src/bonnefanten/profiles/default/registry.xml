@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-          i18n:domain="bonnefanten"
+          i18n:domain="plone"
 >
   <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.artwork_author"
@@ -10,8 +10,7 @@
     <value key="enabled">True</value>
     <value key="sortable">True</value>
     <value key="operations">
-      <element>plone.app.querystring.operation.string.is</element>
-      <!-- <element>plone.app.querystring.operation.string.isNot</element> -->
+      <element>plone.app.querystring.operation.string.contains</element>
     </value>
     <value key="group"
            i18n:translate=""
@@ -26,26 +25,12 @@
     <value key="enabled">True</value>
     <value key="sortable">True</value>
     <value key="operations">
-      <element>plone.app.querystring.operation.string.is</element>
+      <element>plone.app.querystring.operation.string.contains</element>
     </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
-  </records>
-
-  <records interface="plone.app.querystring.interfaces.IQueryField"
-           prefix="plone.app.querystring.field.artwork_name"
-  >
-    <value key="title">Artwork's Title Dictionary</value>
-    <value key="description" />
-    <value key="enabled">True</value>
-    <value key="sortable">True</value>
-    <value key="operations">
-      <element>plone.app.querystring.operation.string.is</element>
-    </value>
-    <value key="group"
-           i18n:translate=""
-    >Bonnefanten</value>
+    <value key="vocabulary">artwork_material</value>
   </records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
@@ -56,22 +41,23 @@
     <value key="enabled">True</value>
     <value key="sortable">True</value>
     <value key="operations">
-      <element>plone.app.querystring.operation.string.is</element>
+      <element>plone.app.querystring.operation.string.contains</element>
     </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
+    <value key="vocabulary">artwork_technique</value>
   </records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.ObjObjectNumberTxt"
   >
-    <value key="title">Object Number</value>
+    <value key="title">Artwork's Number</value>
     <value key="description" />
     <value key="enabled">True</value>
     <value key="sortable">True</value>
     <value key="operations">
-      <element>plone.app.querystring.operation.string.is</element>
+      <element>plone.app.querystring.operation.string.contains</element>
     </value>
     <value key="group"
            i18n:translate=""
@@ -81,15 +67,48 @@
   <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.ObjTitleTxt"
   >
-    <value key="title">Object's Title</value>
+    <value key="title">Artwork's Title</value>
     <value key="description" />
     <value key="enabled">True</value>
     <value key="sortable">True</value>
     <value key="operations">
-      <element>plone.app.querystring.operation.string.is</element>
+      <element>plone.app.querystring.operation.string.contains</element>
     </value>
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
   </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.ObjObjectTypeTxt"
+  >
+    <value key="title">Artwork's Type</value>
+    <value key="description" />
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.contains</element>
+    </value>
+    <value key="group"
+           i18n:translate=""
+    >Bonnefanten</value>
+    <value key="vocabulary">artwork_type</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.ObjCreditlineTxt"
+  >
+    <value key="title">Credit Line</value>
+    <value key="description" />
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.contains</element>
+    </value>
+    <value key="group"
+           i18n:translate=""
+    >Bonnefanten</value>
+    <value key="vocabulary">artwork_type</value>
+  </records>
+
 </registry>

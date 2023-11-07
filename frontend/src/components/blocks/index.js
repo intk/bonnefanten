@@ -6,6 +6,8 @@ import installTeaserBlock from './Teaser';
 import installSliderBlock from './Slider';
 import installListingBlock from './Listing';
 import installNewsletterBlock from './Newsletter';
+import installSearchBlock from './Search';
+
 import { compose } from 'redux';
 
 const installBlocks = (config) => {
@@ -20,6 +22,7 @@ const installBlocks = (config) => {
     installSliderBlock,
     installListingBlock,
     installNewsletterBlock,
+    installSearchBlock,
   )(config);
 };
 

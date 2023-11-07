@@ -18,11 +18,7 @@ const TextInputFacet = (props) => {
   return (
     <div className="text-input-facet">
       <Header as="h4">{facet.title ?? facet?.field?.label}</Header>
-      <Input
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder={`Typ om te zoeken`}
-      />
+      <Input value={inputValue} onChange={handleInputChange} placeholder={``} />
     </div>
   );
 };

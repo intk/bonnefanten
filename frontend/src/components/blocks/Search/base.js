@@ -43,7 +43,9 @@ export const selectFacetValueToQuery = ({ value, facet }) => {
   return !isEmpty(value)
     ? {
         i: facet.field.value,
-        o: 'plone.app.querystring.operation.string.contains',
+        o: Array.isArray(value)
+          ? 'plone.app.querystring.operation.list.contains'
+          : 'plone.app.querystring.operation.string.contains',
         v: value,
       }
     : undefined;

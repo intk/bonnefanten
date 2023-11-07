@@ -4,7 +4,7 @@ import {
   selectFacetSchemaEnhancer,
   selectFacetStateToValue,
   selectFacetValueToQuery,
-} from './bases';
+} from './base';
 
 const TextInputFacet = (props) => {
   const { facet, onChange, value } = props;
@@ -12,7 +12,7 @@ const TextInputFacet = (props) => {
 
   const handleInputChange = (e, { value }) => {
     setInputValue(value);
-    onChange(facet.field.value, value ? value : null); // Call onChange when input changes
+    onChange(facet.field.value, value ? value : null);
   };
 
   return (

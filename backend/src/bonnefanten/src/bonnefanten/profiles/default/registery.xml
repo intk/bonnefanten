@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<registry xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="bonnefanten"
+>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+          prefix="plone.app.querystring.field.artwork_author">
+    <value key="title">Author's name</value>
+    <value key="description"></value>
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.is</element>
+      <!-- <element>plone.app.querystring.operation.string.isNot</element> -->
+    </value>
+    <value key="group" i18n:translate="">Bonnefanten</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+          prefix="plone.app.querystring.field.artwork_material">
+    <value key="title">Artwork's Material</value>
+    <value key="description"></value>
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.is</element>
+    </value>
+    <value key="group" i18n:translate="">Bonnefanten</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+          prefix="plone.app.querystring.field.artwork_name">
+    <value key="title">Artwork's Title Dictionary</value>
+    <value key="description"></value>
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.is</element>
+    </value>
+    <value key="group" i18n:translate="">Bonnefanten</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+          prefix="plone.app.querystring.field.artwork_technique">
+    <value key="title">Artwork's Technique</value>
+    <value key="description"></value>
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.is</element>
+    </value>
+    <value key="group" i18n:translate="">Bonnefanten</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+          prefix="plone.app.querystring.field.ObjObjectNumberTxt">
+    <value key="title">Object Number</value>
+    <value key="description"></value>
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.is</element>
+    </value>
+    <value key="group" i18n:translate="">Bonnefanten</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+          prefix="plone.app.querystring.field.ObjTitleTxt">
+    <value key="title">Object's Title</value>
+    <value key="description"></value>
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.is</element>
+    </value>
+    <value key="group" i18n:translate="">Bonnefanten</value>
+  </records>
+</registry>>

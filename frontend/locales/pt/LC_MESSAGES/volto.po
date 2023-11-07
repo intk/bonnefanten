@@ -24,6 +24,11 @@ msgstr ""
 msgid "Alignment"
 msgstr ""
 
+#: components/blocks/Search/SortOn
+# defaultMessage: Ascending
+msgid "Ascending"
+msgstr ""
+
 #: components/blocks/Break/schema
 # defaultMessage: Break
 msgid "Break"
@@ -44,9 +49,19 @@ msgstr ""
 msgid "Close menu"
 msgstr ""
 
+#: components/blocks/Search/SortOn
+# defaultMessage: Descending
+msgid "Descending"
+msgstr ""
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Description
 msgid "Description"
+msgstr ""
+
+#: components/blocks/Search/TopFiltersLayout
+# defaultMessage: Filters
+msgid "Filters"
 msgstr ""
 
 #: components/blocks/Teaser/TeaserDefaultTemplate
@@ -62,6 +77,11 @@ msgstr ""
 #: components/blocks/Newsletter/schema
 # defaultMessage: Newsletter
 msgid "Newsletter"
+msgstr ""
+
+#: components/blocks/Search/SortOn
+# defaultMessage: No selection
+msgid "No selection"
 msgstr ""
 
 #: components/blocks/Teaser/TeaserDefaultTemplate
@@ -98,6 +118,16 @@ msgstr ""
 #: components/blocks/Quote/schema
 # defaultMessage: Quote
 msgid "Quote"
+msgstr ""
+
+#: components/blocks/Search/TopFiltersLayout
+# defaultMessage: Search
+msgid "Search"
+msgstr ""
+
+#: components/blocks/Search/SortOn
+# defaultMessage: Sort
+msgid "Sort"
 msgstr ""
 
 #: components/blocks/Newsletter/NewsletterView

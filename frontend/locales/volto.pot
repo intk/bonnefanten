@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-11-05T20:06:32.916Z\n"
+"POT-Creation-Date: 2023-11-07T13:42:04.409Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,11 @@ msgstr ""
 #: components/blocks/Teaser/schema
 # defaultMessage: Alignment
 msgid "Alignment"
+msgstr ""
+
+#: components/blocks/Search/SortOn
+# defaultMessage: Ascending
+msgid "Ascending"
 msgstr ""
 
 #: components/blocks/Break/schema
@@ -38,9 +43,19 @@ msgstr ""
 msgid "Close menu"
 msgstr ""
 
+#: components/blocks/Search/SortOn
+# defaultMessage: Descending
+msgid "Descending"
+msgstr ""
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Description
 msgid "Description"
+msgstr ""
+
+#: components/blocks/Search/TopFiltersLayout
+# defaultMessage: Filters
+msgid "Filters"
 msgstr ""
 
 #: components/blocks/Teaser/TeaserDefaultTemplate
@@ -56,6 +71,11 @@ msgstr ""
 #: components/blocks/Newsletter/schema
 # defaultMessage: Newsletter
 msgid "Newsletter"
+msgstr ""
+
+#: components/blocks/Search/SortOn
+# defaultMessage: No selection
+msgid "No selection"
 msgstr ""
 
 #: components/blocks/Teaser/TeaserDefaultTemplate
@@ -92,6 +112,16 @@ msgstr ""
 #: components/blocks/Quote/schema
 # defaultMessage: Quote
 msgid "Quote"
+msgstr ""
+
+#: components/blocks/Search/TopFiltersLayout
+# defaultMessage: Search
+msgid "Search"
+msgstr ""
+
+#: components/blocks/Search/SortOn
+# defaultMessage: Sort
+msgid "Sort"
 msgstr ""
 
 #: components/blocks/Newsletter/NewsletterView

@@ -108,7 +108,6 @@
     <value key="group"
            i18n:translate=""
     >Bonnefanten</value>
-    <value key="vocabulary">artwork_type</value>
   </records>
 
 </registry>

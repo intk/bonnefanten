@@ -170,4 +170,4 @@ class IArtwork(model.Schema):
         # "ObjPersonRef",
     )
 
-    searchable("Id", "ObjTitleTxt", "ObjCategoryTxt")
+    searchable("ObjTitleTxt", "ObjObjectTypeTxt", "ObjMaterialTxt", "ObjObjectNumberTxt", "ObjTechniqueTxt", "ObjCreditlineTxt")

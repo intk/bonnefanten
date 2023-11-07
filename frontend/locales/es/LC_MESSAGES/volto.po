@@ -46,9 +46,19 @@ msgstr ""
 msgid "Button"
 msgstr ""
 
+#: components/blocks/Search/FilterList
+# defaultMessage: Clear filters
+msgid "Clear filters"
+msgstr ""
+
 #: components/theme/Navigation/Navigation
 # defaultMessage: Close menu
 msgid "Close menu"
+msgstr ""
+
+#: components/blocks/Search/FilterList
+# defaultMessage: Current filters applied
+msgid "Current filters applied"
 msgstr ""
 
 #: components/blocks/Search/SortOn
@@ -59,11 +69,6 @@ msgstr ""
 #: components/blocks/Teaser/schema
 # defaultMessage: Description
 msgid "Description"
-msgstr ""
-
-#: components/blocks/Search/TopFiltersLayout
-# defaultMessage: Filters
-msgid "Filters"
 msgstr ""
 
 #: components/blocks/Teaser/TeaserDefaultTemplate

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-11-07T13:42:04.409Z\n"
+"POT-Creation-Date: 2023-11-07T15:44:46.347Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -38,9 +38,19 @@ msgstr ""
 msgid "Button"
 msgstr ""
 
+#: components/blocks/Search/FilterList
+# defaultMessage: Clear filters
+msgid "Clear filters"
+msgstr ""
+
 #: components/theme/Navigation/Navigation
 # defaultMessage: Close menu
 msgid "Close menu"
+msgstr ""
+
+#: components/blocks/Search/FilterList
+# defaultMessage: Current filters applied
+msgid "Current filters applied"
 msgstr ""
 
 #: components/blocks/Search/SortOn
@@ -51,11 +61,6 @@ msgstr ""
 #: components/blocks/Teaser/schema
 # defaultMessage: Description
 msgid "Description"
-msgstr ""
-
-#: components/blocks/Search/TopFiltersLayout
-# defaultMessage: Filters
-msgid "Filters"
 msgstr ""
 
 #: components/blocks/Teaser/TeaserDefaultTemplate

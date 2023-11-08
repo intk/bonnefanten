@@ -40,7 +40,7 @@ const Search = (props) => {
   };
 
   return (
-    <Container id="page-search">
+    <Container id="page-search-artwork">
       <div id="page-search-title" className="page-search-title">
         <h1 style={{ fontFamily: 'BonnefantenBlock, Arial, sans-serif' }}>
           {intl.formatMessage(messages.seemore)}

@@ -9,6 +9,7 @@ import { withSearch, withQueryString } from './hocs';
 import { compose } from 'redux';
 import { useSelector } from 'react-redux';
 import { isEqual, isFunction } from 'lodash';
+import './SearchBlock.less';
 
 const getListingBodyVariation = (data) => {
   const { variations } = config.blocks.blocksConfig.listing;

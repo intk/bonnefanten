@@ -21,6 +21,11 @@ msgstr ""
 msgid "Ascending"
 msgstr ""
 
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Base search query
+msgid "Base search query"
+msgstr ""
+
 #: components/blocks/Break/schema
 # defaultMessage: Break
 msgid "Break"
@@ -46,6 +51,16 @@ msgstr ""
 msgid "Close menu"
 msgstr ""
 
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Controls
+msgid "Controls"
+msgstr ""
+
+#: components/theme/AdvancedSearch/AdvancedSearch
+# defaultMessage: Credit Line
+msgid "Credit Line"
+msgstr ""
+
 #: components/blocks/Search/FilterList
 # defaultMessage: Current filters applied
 msgid "Current filters applied"
@@ -61,14 +76,64 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Facet
+msgid "Facet"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Facet widget
+msgid "Facet widget"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Facets
+msgid "Facets"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Field
+msgid "Field"
+msgstr ""
+
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: Future
 msgid "Future"
 msgstr ""
 
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Headline
+msgid "Headline"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Hidden facets will still filter the results if proper parameters are passed in URLs
+msgid "Hidden facets will still filter the results if proper parameters are passed in URLs"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Hide facet?
+msgid "Hide facet?"
+msgstr ""
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Image override
 msgid "Image override"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Label
+msgid "Label"
+msgstr ""
+
+#: components/theme/AdvancedSearch/AdvancedSearch
+# defaultMessage: Materiaal
+msgid "Materiaal"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Multiple choices?
+msgid "Multiple choices?"
 msgstr ""
 
 #: components/blocks/Newsletter/schema
@@ -84,6 +149,16 @@ msgstr ""
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: Now on display
 msgid "Now on display"
+msgstr ""
+
+#: components/theme/AdvancedSearch/AdvancedSearch
+# defaultMessage: Objectnaam
+msgid "Objectnaam"
+msgstr ""
+
+#: components/theme/AdvancedSearch/AdvancedSearch
+# defaultMessage: Objectnummer
+msgid "Objectnummer"
 msgstr ""
 
 #: components/blocks/Teaser/schema
@@ -118,13 +193,59 @@ msgid "Quote"
 msgstr ""
 
 #: components/blocks/Search/TopFiltersLayout
+#: components/theme/AdvancedSearch/schema
 # defaultMessage: Search
 msgid "Search"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Search block
+msgid "Search block"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Search button label
+msgid "Search button label"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Search input label
+msgid "Search input label"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Section title
+msgid "Section title"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Show search button?
+msgid "Show search button?"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Show search input?
+msgid "Show search input?"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Show sorting?
+msgid "Show sorting?"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Show total results
+msgid "Show total results"
 msgstr ""
 
 #: components/blocks/Search/SortOn
 # defaultMessage: Sort
 msgid "Sort"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Sort on options
+msgid "Sort on options"
 msgstr ""
 
 #: components/blocks/Newsletter/NewsletterView
@@ -148,6 +269,21 @@ msgstr ""
 msgid "Teaser"
 msgstr ""
 
+#: components/theme/AdvancedSearch/AdvancedSearch
+# defaultMessage: Techniek
+msgid "Techniek"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: The button presence disables the live search, the query is issued when you press ENTER
+msgid "The button presence disables the live search, the query is issued when you press ENTER"
+msgstr ""
+
+#: components/theme/AdvancedSearch/AdvancedSearch
+# defaultMessage: Titel
+msgid "Titel"
+msgstr ""
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Title
 msgid "Title"
@@ -159,36 +295,48 @@ msgid "Your email address"
 msgstr ""
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Verwerving
 msgid "acquisition"
 msgstr "Acquisition"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Vervaardiger
 msgid "artist"
 msgstr "Artist"
 
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Available views
+msgid "availableViews"
+msgstr ""
+
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Credit line
 msgid "credit"
 msgstr "Credit line"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Datering
 msgid "date"
 msgstr "Dating"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Fysieke beschrijving
 msgid "description"
 msgstr "Physical description"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Objectgegevens
 msgid "details"
 msgstr "Object details"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Afmetingen
 msgid "dimension"
 msgstr "Dimensions"
@@ -199,6 +347,7 @@ msgid "head_title"
 msgstr ""
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Materialen
 msgid "material"
 msgstr "Materials"
@@ -209,31 +358,37 @@ msgid "moreInfo"
 msgstr ""
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Nu te zien
 msgid "nowonview"
 msgstr "Now on view"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Objectcategorie
 msgid "objectCategory"
 msgstr "Object category"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Objectnummer
 msgid "objectNumber"
 msgstr "Object number"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Objectnaam
 msgid "objectType"
 msgstr "Object type"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Vragen?
 msgid "question"
 msgstr "Questions?"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Ziet u een fout? Of heeft u extra informatie over dit object?
 msgid "questionText"
 msgstr "Do you have a remark or extra information on this object? "
@@ -244,16 +399,34 @@ msgid "seemore"
 msgstr "See Also"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Delen
 msgid "share"
 msgstr "Share"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Techniek
 msgid "technique"
 msgstr "Technique"
 
 #: components/theme/View/ArtworkView
+#: components/theme/View/AuthorView
 # defaultMessage: Titel
 msgid "title"
 msgstr "Title"
+
+#: components/theme/AdvancedSearch/AdvancedSearch
+# defaultMessage: Vervaardiger
+msgid "vervaardiger"
+msgstr ""
+
+#: components/theme/AdvancedSearch/schema
+# defaultMessage: Views
+msgid "views"
+msgstr ""
+
+#: components/theme/AdvancedSearch/AdvancedSearch
+# defaultMessage: Zoeken
+msgid "zoeken"
+msgstr ""

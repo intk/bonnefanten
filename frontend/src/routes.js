@@ -5,6 +5,7 @@
 
 import { defaultRoutes } from '@plone/volto/routes';
 import config from '@plone/volto/registry';
+import AdvancedSearch from './components/theme/AdvancedSearch/AdvancedSearch';
 
 /**
  * Routes array.
@@ -17,6 +18,7 @@ const routes = [
     component: config.getComponent('App').component, // Change this if you want a different component
     routes: [
       // Add your routes here
+      { path: '/advancedsearch', component: AdvancedSearch },
       ...(config.addonRoutes || []),
       ...defaultRoutes,
     ],

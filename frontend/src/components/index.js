@@ -9,5 +9,6 @@
  * };
  */
 import SeeMore from './theme/SeeMore/SeeMore';
+import AdvancedSearch from './theme/AdvancedSearch/AdvancedSearch';
 
-export { SeeMore };
+export { SeeMore, AdvancedSearch };

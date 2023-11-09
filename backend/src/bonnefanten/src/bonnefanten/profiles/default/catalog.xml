@@ -79,13 +79,13 @@
   <index meta_type="FieldIndex"
          name="ObjDateFromTxt"
   >
-    <indexed_attr value="ObjDateFromTxt"/>
+    <indexed_attr value="ObjDateFromTxt" />
   </index>
 
   <index meta_type="FieldIndex"
          name="artwork_date"
   >
-    <indexed_attr value="artwork_date"/>
+    <indexed_attr value="artwork_date" />
   </index>
 
   <index meta_type="ZCTextIndex"
@@ -110,7 +110,3 @@
   <column value="ObjDateFromTxt" />
   <column value="artwork_date" />
 </object>
-
-
-
-

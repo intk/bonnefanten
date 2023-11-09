@@ -2,7 +2,9 @@ from plone.api import portal
 from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
 from zope.interface import implementer
 from zope.schema.interfaces import IVocabularyFactory
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
+
 
 @implementer(IVocabularyFactory)
 class KeywordsVocabulary(BKV):
@@ -23,14 +25,16 @@ class ArtworkMaterialVocabulary(KeywordsVocabulary):
         all_terms = set()
         for term in vocabulary:
             # Here you split the term by a specific separator, like a comma
-            split_terms = term.title.split(',')
+            split_terms = term.title.split(",")
             for split_term in split_terms:
                 split_term = split_term.strip()
                 if split_term and split_term not in all_terms:
                     all_terms.add(split_term)
 
         # Create a new SimpleVocabulary from the split terms
-        return SimpleVocabulary([SimpleTerm(value=term, title=term) for term in all_terms])
+        return SimpleVocabulary(
+            [SimpleTerm(value=term, title=term) for term in all_terms]
+        )
 
 
 artwork_techniqueVocabularyFactory = KeywordsVocabulary("artwork_technique")

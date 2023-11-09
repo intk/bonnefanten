@@ -16,9 +16,11 @@ def artwork_type(obj):
 def artwork_technique(obj):
     return obj.ObjTechniqueTxt
 
+
 @indexer(IArtwork)
 def artwork_date(obj):
     return str(obj.ObjDateFromTxt)
+
 
 @indexer(IArtwork)
 def artwork_author(obj):

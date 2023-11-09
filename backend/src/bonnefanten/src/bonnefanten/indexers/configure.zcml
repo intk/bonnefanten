@@ -19,4 +19,9 @@
       name="artwork_author"
       />
 
+  <adapter
+      factory=".indexes.artwork_date"
+      name="artwork_date"
+      />
+
 </configure>

@@ -177,4 +177,5 @@ class IArtwork(model.Schema):
         "ObjObjectNumberTxt",
         "ObjTechniqueTxt",
         "ObjCreditlineTxt",
+        "ObjDateFromTxt",
     )

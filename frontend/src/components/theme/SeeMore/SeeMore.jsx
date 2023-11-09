@@ -19,7 +19,9 @@ const Search = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.searchableText]);
 
-  const authors = props.content?.authors.map((author) => author.title);
+  const authors = props.content?.authors.map(
+    (author) => author.title.split('(', 1)[0],
+  );
   const authors_text = authors.join(', ');
   let authorQueryString = authors?.map((author) => `${author}`).join(' OR ');
   if (authorQueryString === '') {
@@ -58,12 +60,15 @@ const Search = (props) => {
                     <div className="item_title">{item.title}</div>
                   </UniversalLink>
                   <div className="desctiption">
-                    <span className="item-description">
-                      {authors_text && authors_text}
-                    </span>
-                    <span className="item-description">
-                      , {item.ObjDateFromTxt && item.ObjDateFromTxt}
-                    </span>
+                    {authors_text && (
+                      <span className="item-description">{authors_text}</span>
+                    )}
+                    {authors_text && item.ObjDateFromTxt && <span>, </span>}
+                    {item.ObjDateFromTxt && (
+                      <span className="item-description">
+                        {item.ObjDateFromTxt}
+                      </span>
+                    )}
                   </div>
                 </div>
               ) : (

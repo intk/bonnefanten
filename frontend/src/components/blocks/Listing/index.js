@@ -1,4 +1,5 @@
 import ListingsBlockTemplate from '@package/components/blocks/Listing/ListingTemplate';
+// import MasonryTemplate from './MasonryTemplate';
 
 export default (config) => {
   config.blocks.blocksConfig.listing.schemaEnhancer = ({ schema }) => {
@@ -51,6 +52,23 @@ export default (config) => {
       template: ListingsBlockTemplate,
     },
   ];
+
+  // config.blocks.blocksConfig.listing.variations = [
+  //   // ...config.blocks.blocksConfig.listing.variations,
+
+  //   {
+  //     id: 'listings',
+  //     isDefault: true,
+  //     title: 'Cards',
+  //     template: ListingsBlockTemplate,
+  //   },
+  //   {
+  //     id: 'search_listing',
+  //     isDefault: false,
+  //     title: 'Masonry',
+  //     template: MasonryTemplate,
+  //   },
+  // ];
 
   return config;
 };

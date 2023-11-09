@@ -20,9 +20,21 @@ const Card = ({ item, showDescription = true }) => {
             <img src={image} alt="" role="presentation" />
           </figure>
         )}
-        <h3 className="plone-item-title">
-          <span>{item.title}</span>
-        </h3>
+        <div className="title-description">
+          <h3 className="plone-item-title">
+            <span>{item.title}</span>
+          </h3>
+          <div className="desctiption">
+            <span className="item-description">
+              {item.artwork_author.map((author) => (
+                <span key={author}>{author}, </span> // Added 'key' prop for unique identification of each child
+              ))}
+            </span>
+            <span className="item-description">
+              {item.ObjDateFromTxt && item.ObjDateFromTxt}
+            </span>
+          </div>
+        </div>
       </UniversalLink>
       {!!showDescription && (
         <p className="plone-item-description">

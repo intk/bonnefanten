@@ -148,7 +148,7 @@ msgstr ""
 #: components/theme/AdvancedSearch/AdvancedSearch
 # defaultMessage: Materiaal
 msgid "Materiaal"
-msgstr ""
+msgstr "Materiaal"
 
 #: components/theme/AdvancedSearch/schema
 # defaultMessage: Multiple choices?
@@ -173,7 +173,7 @@ msgstr ""
 #: components/theme/AdvancedSearch/AdvancedSearch
 # defaultMessage: Objectnaam
 msgid "Objectnaam"
-msgstr ""
+msgstr "Objectnaam"
 
 #: components/theme/AdvancedSearch/AdvancedSearch
 # defaultMessage: Objectnummer
@@ -215,7 +215,7 @@ msgstr ""
 #: components/theme/AdvancedSearch/schema
 # defaultMessage: Search
 msgid "Search"
-msgstr ""
+msgstr "Zoeken"
 
 #: components/theme/AdvancedSearch/schema
 # defaultMessage: Search block
@@ -323,7 +323,7 @@ msgstr ""
 #: components/theme/View/AuthorView
 # defaultMessage: Vervaardiger
 msgid "artist"
-msgstr ""
+msgstr "Vervaardiger"
 
 #: components/theme/AdvancedSearch/schema
 # defaultMessage: Available views
@@ -334,7 +334,7 @@ msgstr ""
 #: components/theme/View/AuthorView
 # defaultMessage: Credit line
 msgid "credit"
-msgstr ""
+msgstr "Credit line"
 
 #: components/theme/View/ArtworkView
 #: components/theme/View/AuthorView
@@ -392,7 +392,7 @@ msgstr ""
 #: components/theme/View/AuthorView
 # defaultMessage: Objectnummer
 msgid "objectNumber"
-msgstr ""
+msgstr "Objectnummer"
 
 #: components/theme/View/ArtworkView
 #: components/theme/View/AuthorView
@@ -433,7 +433,7 @@ msgstr ""
 #: components/theme/View/AuthorView
 # defaultMessage: Titel
 msgid "title"
-msgstr ""
+msgstr "Titel"
 
 #: components/theme/AdvancedSearch/AdvancedSearch
 # defaultMessage: Vervaardiger

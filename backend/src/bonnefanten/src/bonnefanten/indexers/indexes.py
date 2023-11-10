@@ -26,12 +26,44 @@ def artwork_material(obj):
 
 @indexer(IArtwork)
 def artwork_type(obj):
-    return obj.ObjObjectTypeTxt
+    # Retrieve the ObjObjectTypeTxt attribute, which could be None, a single type, or multiple types
+    types = getattr(obj, "ObjObjectTypeTxt", None)
+
+    # If it's a string, split by comma and strip each type of surrounding whitespace
+    if isinstance(types, str):
+        types_list = [
+            material.strip() for material in types.split(",") if material.strip()
+        ]
+    # If it's already a list or a tuple (or any iterable but string), just strip the techniques
+    elif hasattr(types, "__iter__") and not isinstance(types, str):
+        types_list = [material.strip() for material in types if material.strip()]
+    # If it's None or empty string, return an empty list
+    else:
+        types_list = []
+
+    return types_list
 
 
 @indexer(IArtwork)
 def artwork_technique(obj):
-    return obj.ObjTechniqueTxt
+    # Retrieve the ObjTechniqueTxt attribute, which could be None, a single technique, or multiple techniques
+    techniques = getattr(obj, "ObjTechniqueTxt", None)
+
+    # If it's a string, split by comma and strip each technique of surrounding whitespace
+    if isinstance(techniques, str):
+        techniques_list = [
+            material.strip() for material in techniques.split(",") if material.strip()
+        ]
+    # If it's already a list or a tuple (or any iterable but string), just strip the techniques
+    elif hasattr(techniques, "__iter__") and not isinstance(techniques, str):
+        techniques_list = [
+            material.strip() for material in techniques if material.strip()
+        ]
+    # If it's None or empty string, return an empty list
+    else:
+        techniques_list = []
+
+    return techniques_list
 
 
 @indexer(IArtwork)

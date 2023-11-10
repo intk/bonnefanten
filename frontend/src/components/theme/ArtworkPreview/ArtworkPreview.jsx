@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { flattenToAppURL } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
+import { Link } from 'react-router-dom';
 
 import DefaultImageSVG from '@plone/volto/components/manage/Blocks/Listing/default-image.svg';
 
@@ -20,7 +21,11 @@ function ArtworkPreview(props) {
         dependencies: ['listing', 'summary'],
       }).component || DefaultImageSVG;
 
-  return <img src={src} alt={'alt' ?? item.title} />;
+  return (
+    <Link to={props['@id']}>
+      <img src={src} alt={item.title ?? 'alt'} />
+    </Link>
+  );
 }
 
 ArtworkPreview.propTypes = {

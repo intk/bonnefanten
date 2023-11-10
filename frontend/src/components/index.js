@@ -9,8 +9,7 @@
  * };
  */
 import SeeMore from './theme/SeeMore/SeeMore';
-import AdvancedSearch from './theme/AdvancedSearch/AdvancedSearch';
 // import ListingBlockHeader from './blocks/Listing/ListingBlockHeader';
 // import PreviewImage from './theme/PreviewImage/PreviewImage';
 
-export { SeeMore, AdvancedSearch };
+export { SeeMore };

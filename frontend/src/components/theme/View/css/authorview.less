@@ -78,7 +78,10 @@
     }
     a {
       font-family: 'StyreneBold', Arial, sans-serif;
-      text-decoration: none;
+      text-decoration: none !important;
+    }
+    a:hover{
+      text-decoration: underline !important;
     }
 
     img {
@@ -128,8 +131,8 @@
     color: var(--bonnefanten-primary, #f9423a);
     font-family: 'StyreneBold', Arial, sans-serif;
     font-size: 26px;
-    text-decoration: none;
     line-height: 30px;
+    text-decoration: none !important;
     @media screen and (max-width: 992px) {
       padding-top: 3px;
     }

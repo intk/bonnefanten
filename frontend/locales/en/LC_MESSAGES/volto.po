@@ -209,6 +209,11 @@ msgid "moreInfo"
 msgstr ""
 
 #: components/theme/View/ArtworkView
+# defaultMessage: Dit object is nu niet in het museum te zien
+msgid "notonview"
+msgstr ""
+
+#: components/theme/View/ArtworkView
 # defaultMessage: Nu te zien
 msgid "nowonview"
 msgstr "Now on view"
@@ -239,6 +244,7 @@ msgid "questionText"
 msgstr "Do you have a remark or extra information on this object? "
 
 #: components/theme/SeeMore/SeeMore
+#: components/theme/SeeMore/SeeMoreAuthor
 # defaultMessage: Kijk verder
 msgid "seemore"
 msgstr "See Also"

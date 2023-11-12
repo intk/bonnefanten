@@ -54,8 +54,8 @@ const Search = (props) => {
   const authors_text = authors.join(', ');
 
   const breakpointColumnsObj = {
-    // default: 3,
-    // 1200: 3,
+    default: 3,
+    1200: 3,
     992: 2,
     768: 1,
   };
@@ -88,9 +88,7 @@ const Search = (props) => {
                       {authors_text && (
                         <span className="item-description">{authors_text}</span>
                       )}
-                      {authors_text && item.ObjDateFromTxt && (
-                        <span className="item-description">, </span>
-                      )}
+                      {authors_text && item.ObjDateFromTxt && <span>, </span>}
                       {item.ObjDateFromTxt && (
                         <span className="item-description">
                           {item.ObjDateFromTxt}

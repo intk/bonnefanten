@@ -91,6 +91,10 @@ const messages = defineMessages({
     id: 'nowonview',
     defaultMessage: 'Nu te zien',
   },
+  notonview: {
+    id: 'notonview',
+    defaultMessage: 'Dit object is nu niet in het museum te zien',
+  },
 });
 
 export default function ArtworkView(props) {
@@ -134,9 +138,7 @@ export default function ArtworkView(props) {
   };
 
   const materials = content.ObjMaterialTxt.split(',');
-  const materialsArray = materials.map((material, index) =>
-    index !== materials.length - 1 ? material + ',' : material.trim(),
-  );
+  const materialsArray = materials.map((material, index) => material.trim());
 
   // Buttons for the image and text
   const Controls = ({ zoomIn, zoomOut, resetTransform }) => (
@@ -346,7 +348,11 @@ export default function ArtworkView(props) {
                       <p></p>
                     </td>
                     <td className="columntwo">
-                      <p>{intl.formatMessage(messages.nowonview)}</p>
+                      <p>
+                        {content.ObjOnDisplay === true
+                          ? intl.formatMessage(messages.nowonview)
+                          : intl.formatMessage(messages.notonview)}
+                      </p>
                     </td>
                   </tr>
                 }
@@ -361,17 +367,43 @@ export default function ArtworkView(props) {
                           <p key={index}>
                             <a href={auth['@id']}>{auth.title}</a>
                             <span>
-                              <a
-                                href={`/search?SearchableText=${
-                                  content.ObjPersonRole[auth.title]
-                                }`}
-                              >
-                                {' '}
-                                (
-                                {content.ObjPersonRole[auth.title] &&
-                                  content.ObjPersonRole[auth.title]}
-                                )
-                              </a>
+                              {content.ObjPersonRole[auth.title] && (
+                                <>
+                                  <span> (</span>
+                                  <a
+                                    href={`/search?SearchableText=${
+                                      content?.ObjPersonRole[auth.title]
+                                    }`}
+                                  >
+                                    {content.ObjPersonRole[auth.title]}
+                                  </a>
+                                  <span>) </span>
+                                </>
+                              )}
+                            </span>
+                            <span>
+                              {(content.PerBirthDateTxt[auth.title] !== null ||
+                                content.PerDeatchDateTxt)[auth.title] !==
+                                null && (
+                                <>
+                                  <span> (</span>
+                                  <span>
+                                    {content?.PerBirthDateTxt[
+                                      auth.title
+                                    ]?.slice(-4)}
+                                  </span>
+                                  {content.PerBirthDateTxt[auth.title] !==
+                                    null &&
+                                    content.PerDeathDateTxt[auth.title] !==
+                                      null && <span> - </span>}
+                                  <span>
+                                    {content?.PerDeathDateTxt[
+                                      auth.title
+                                    ]?.slice(-4)}
+                                  </span>
+                                  <span>) </span>
+                                </>
+                              )}
                             </span>
                           </p>
                         ))}
@@ -439,12 +471,14 @@ export default function ArtworkView(props) {
                     </td>
                     <td className="columntwo">
                       <p>
-                        {materialsArray.map((material) => (
+                        {materialsArray.map((material, index) => (
                           <span>
-                            <a href={`/search?SearchableText=${material}`}>
-                              {' '}
+                            <a
+                              href={`${intl.locale}/advancedsearch/#query=%5B%7B"i"%3A"portal_type"%2C"o"%3A"paqo.selection.any"%2C"v"%3A%5B"artwork"%5D%7D%2C%7B"i"%3A"artwork_material"%2C"o"%3A"paqo.list.contains"%2C"v"%3A%5B"${material}"%5D%7D%5D&sort_order=ascending`}
+                            >
                               {material}
                             </a>
+                            {index !== materials.length - 1 ? ', ' : ''}
                           </span>
                         ))}
                       </p>
@@ -488,7 +522,12 @@ export default function ArtworkView(props) {
                       <p>{intl.formatMessage(messages.dimension)}</p>
                     </td>
                     <td className="columntwo">
-                      <p>{content.ObjDimensionTxt}</p>
+                      {/* Split the text and render each line separately */}
+                      {content.ObjDimensionTxt.split('\n').map(
+                        (line, index) => (
+                          <p key={index}>{line}</p>
+                        ),
+                      )}
                     </td>
                   </tr>
                 )}

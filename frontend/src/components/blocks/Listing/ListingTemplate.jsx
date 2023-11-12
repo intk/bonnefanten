@@ -26,9 +26,10 @@ const Card = ({ item, showDescription = true }) => {
           </h3>
           <div className="desctiption">
             <span className="item-description">
-              {item.artwork_author.map((author) => (
-                <span key={author}>{author}, </span> // Added 'key' prop for unique identification of each child
-              ))}
+              {item.artwork_author &&
+                item.artwork_author.map((author) => (
+                  <span key={author}>{author}, </span>
+                ))}
             </span>
             <span className="item-description">
               {item.ObjDateFromTxt && item.ObjDateFromTxt}

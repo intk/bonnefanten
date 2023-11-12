@@ -97,7 +97,7 @@ class IArtwork(model.Schema):
     #     description=u"Image that will be used as a preview for this artwork.",
     #     required=False,
     # )
-    ObjDimensionTxt = schema.TextLine(title="ObjDimensionTxt", required=False)
+    ObjDimensionTxt = schema.Text(title="ObjDimensionTxt", required=False)
     ObjMaterialTxt = schema.TextLine(title="ObjMaterialTxt", required=False)
     ObjObjectNumberTxt = schema.TextLine(title="ObjObjectNumberTxt", required=False)
     ObjTitleTxt = schema.TextLine(title="ObjTitleTxt", required=False)
@@ -105,6 +105,7 @@ class IArtwork(model.Schema):
         title="ObjPhysicalDescriptionTxt", required=False
     )
     ObjCreditlineTxt = schema.TextLine(title="ObjCreditlineTxt", required=False)
+    ObjOnDisplay = schema.Bool(title="ObjOnDisplay", required=False)
     ObjTechniqueTxt = schema.TextLine(title="ObjTechniqueTxt", required=False)
     ObjCurrentLocationTxt = schema.TextLine(
         title="ObjCurrentLocationTxt", required=False
@@ -125,6 +126,22 @@ class IArtwork(model.Schema):
     )
     ObjPersonRole = schema.Dict(
         title="ObjPersonRole",
+        key_type=schema.TextLine(title="Author Name"),  # define the type for the key
+        value_type=schema.TextLine(
+            title="Author Role"
+        ),  # define the type for the value
+        required=False,
+    )
+    PerBirthDateTxt = schema.Dict(
+        title="PerBirthDateTxt",
+        key_type=schema.TextLine(title="Author Name"),  # define the type for the key
+        value_type=schema.TextLine(
+            title="Author Role"
+        ),  # define the type for the value
+        required=False,
+    )
+    PerDeathDateTxt = schema.Dict(
+        title="PerBirthDateTxt",
         key_type=schema.TextLine(title="Author Name"),  # define the type for the key
         value_type=schema.TextLine(
             title="Author Role"

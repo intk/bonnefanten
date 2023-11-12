@@ -6,7 +6,7 @@
   <modules>
     <module name="Object">
       <search limit="100"
-              offset="3400"
+              offset="6700"
       >
         <expert>
           <!-- <equalsField fieldPath="ObjTitleTxt" operand="The Walthamstow Tapestry" /> -->

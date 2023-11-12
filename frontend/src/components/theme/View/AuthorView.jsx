@@ -8,13 +8,14 @@ export default function AuthorView(props) {
   // const { content } = props;
   return (
     <div id="object-block">
-      {props.content.description && (
+      {props.content.title && (
         <div className="description-wrapper">
           <div className="header-quotes-wrapper">
             <div className="quote-top-left quote-bonnefanten">“</div>
             <div className="quote-top-right quote-bonnefanten">”</div>
           </div>
-          <p className="documentDescription">{props.content.description}</p>
+
+          <p className="documentDescription author">{props.content.title}</p>
         </div>
       )}
       <Container>

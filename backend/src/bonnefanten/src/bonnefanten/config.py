@@ -9,8 +9,8 @@ IMPORT_LOCATIONS = {
     # "exhibition_en": "en/exhibitions",
     # "author": "nl/collectie-onderzoek/kunstenaars",
     # "author_en": "en/collection-research/artists"
-    "author": "nl/kunstenaars",
-    "author_en": "en/artists",
+    "author": "nl/maker",
+    "author_en": "en/maker",
 }
 
 IMAGE_BASE_URL = "https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten"

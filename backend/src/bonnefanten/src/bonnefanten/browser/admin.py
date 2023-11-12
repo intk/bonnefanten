@@ -23,6 +23,7 @@ from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.schema import getFields
 
+import re
 import base64
 import json
 import logging
@@ -166,6 +167,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     intl = {"nl": {}, "en": {}}
 
     title = record["ObjTitleTxt"]
+    title_url = re.sub(r'[^a-zA-Z0-9 ]', '', title).strip().replace("  ", " ").replace(" ", "-").lower()
     info["nl"]["title"] = title
     info["en"]["title"] = title
 
@@ -178,12 +180,15 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["en"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"][
         "LabelTxt_en"
     ]
+    info["nl"]["ObjOnDisplay"] = record["ObjOnDisplay"]
+    info["en"]["ObjOnDisplay"] = record["ObjOnDisplay"]
 
     info["nl"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
     info["en"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
 
     info["en"]["authorText"] = []
     info["nl"]["authorText"] = []
+
 
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",
@@ -206,17 +211,28 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     if "ObjPersonRef" in record and "Items" in record["ObjPersonRef"]:
         roles_dict = {}
         roles_dict_en = {}
+        birth_dict = {}
+        death_dict = {}
+
         for item in record["ObjPersonRef"]["Items"]:
             if (
                 item.get("LinkLabelTxt")
                 and item.get("RoleTxt")
                 and "LabelTxt_nl" in item["RoleTxt"]
             ):
+
+                info["en"]["PerBirthDateTxt"] = item["PerBirthDateTxt"]
+                info["en"]["PerDeathDateTxt"] = item["PerDeathDateTxt"]
+
                 authorName = item["LinkLabelTxt"]
+                authorBirth = item["PerBirthDateTxt"]
+                authorDeath = item["PerDeathDateTxt"]
                 authorRole = item["RoleTxt"]["LabelTxt_nl"]
                 authorRole_en = item["RoleTxt"].get("LabelTxt_en", "")
                 roles_dict[authorName] = authorRole
                 roles_dict_en[authorName] = authorRole_en
+                birth_dict[authorName] = authorBirth
+                death_dict[authorName] = authorDeath
 
                 info["en"]["authorText"].append(authorName)
                 info["nl"]["authorText"].append(authorName)
@@ -228,6 +244,10 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
         info["en"]["ObjPersonRole"] = roles_dict
         info["nl"]["ObjPersonRole"] = roles_dict_en
+        info["en"]["PerBirthDateTxt"] = birth_dict
+        info["nl"]["PerBirthDateTxt"] = birth_dict
+        info["en"]["PerDeathDateTxt"] = death_dict
+        info["nl"]["PerDeathDateTxt"] = death_dict
 
     for xml_field, info_field in fields_to_extract.items():
         value = record[xml_field]
@@ -261,7 +281,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         missing_lang = "en" if lang == "nl" else "nl"
         if missing_lang == "nl":
             obj = create_and_setup_object(
-                title, container, info, intl, "artwork"
+                title, container, info, intl, "artwork", title_url
             )  # Dutch version
             # log_to_file(f"{ObjectNumber} Dutch version of object is created")
 
@@ -283,7 +303,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
         else:
             obj_en = create_and_setup_object(
-                title, container_en, info, intl, "artwork"
+                title, container_en, info, intl, "artwork", title_url
             )  # English version
             # log_to_file(f"{ObjectNumber} English version of object is created")
             if authors_en != "null":
@@ -373,7 +393,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
             title = "Untitled Object"  # default value for untitled objects
 
         obj = create_and_setup_object(
-            title, container, info, intl, "artwork"
+            title, container, info, intl, "artwork", title_url
         )  # Dutch version
 
         # log_to_file(f"{ObjObjectNumberTxt} object is created")
@@ -392,23 +412,23 @@ def import_one_record(self, record, container, container_en, catalog, headers):
                 relation.create(source=obj_en, target=author_en, relationship="authors")
 
 
-def create_and_setup_object(title, container, info, intl, object_type):
+def create_and_setup_object(title, container, info, intl, object_type, obj_id):
     """
     Create an object with the given title and container, then set its attributes
     using the provided info and intl dictionaries.
     """
     log_to_file(f"This is for create and setup {title}")
-    urlTitle = title.replace(" ", "-").lower()
-    raw_obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{urlTitle}"
+    # urlTitle = title.replace(" ", "-").lower()
+    raw_obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{obj_id}"
     log_to_file(f"raw id {raw_obj_id}")
 
     # Using regex to sanitize the ID
-    obj_id = re.sub(r"[^a-zA-Z0-9-_]", "", raw_obj_id)
+    # obj_id = re.sub(r"[^a-zA-Z0-9-_]", "", raw_obj_id)
     log_to_file(f"obj_id {obj_id}")
     try:
         obj = api.content.create(
             type=object_type,
-            id=obj_id,
+            id=raw_obj_id,
             title=title,
             container=container,
         )

@@ -23,7 +23,6 @@ from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.schema import getFields
 
-import re
 import base64
 import json
 import logging
@@ -167,7 +166,13 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     intl = {"nl": {}, "en": {}}
 
     title = record["ObjTitleTxt"]
-    title_url = re.sub(r'[^a-zA-Z0-9 ]', '', title).strip().replace("  ", " ").replace(" ", "-").lower()
+    title_url = (
+        re.sub(r"[^a-zA-Z0-9 ]", "", title)
+        .strip()
+        .replace("  ", " ")
+        .replace(" ", "-")
+        .lower()
+    )
     info["nl"]["title"] = title
     info["en"]["title"] = title
 
@@ -188,7 +193,6 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
     info["en"]["authorText"] = []
     info["nl"]["authorText"] = []
-
 
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",

@@ -383,7 +383,7 @@ export default function ArtworkView(props) {
                             </span>
                             <span>
                               {(content.PerBirthDateTxt[auth.title] !== null ||
-                                content.PerDeatchDateTxt)[auth.title] !==
+                                content.PerDeathDateTxt)[auth.title] !==
                                 null && (
                                 <>
                                   <span> (</span>

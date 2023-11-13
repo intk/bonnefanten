@@ -5,11 +5,13 @@
 >
   <modules>
     <module name="Object">
-      <search limit="200"
-              offset="3400"
+      <search limit="100"
+              offset="0"
       >
         <expert>
-          <equalsField fieldPath="ObjTitleTxt" operand="The Walthamstow Tapestry" />
+          <equalsField fieldPath="ObjTitleTxt"
+                       operand="The Walthamstow Tapestry"
+          />
           <!-- <equalsField fieldPath="ObjObjectTitleGrp.TitleTxt"
                        operand="The Walthamstow Tapestry"
           /> -->

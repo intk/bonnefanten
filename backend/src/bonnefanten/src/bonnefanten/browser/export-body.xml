@@ -9,18 +9,18 @@
               offset="0"
       >
         <expert>
-          <equalsField fieldPath="ObjTitleTxt"
+          <!-- <equalsField fieldPath="ObjTitleTxt"
                        operand="The Walthamstow Tapestry"
-          />
+          /> -->
           <!-- <equalsField fieldPath="ObjObjectTitleGrp.TitleTxt"
                        operand="The Walthamstow Tapestry"
           /> -->
           <!-- <equalsField fieldPath="ObjObjectTypeTxt"
                        operand="beeld"
           /> -->
-          <!-- <equalsField fieldPath="__id"
+          <equalsField fieldPath="__id"
                        operand="11678"
-          /> -->
+          />
           <!-- <greater fieldPath="__lastModified"
                    operand="2022-08-01T00:00:00"
           /> -->

@@ -108,6 +108,7 @@ const Footer = ({ intl }) => {
           <i class="glyphicon link-https"></i>
           <a
             href="https://new.bonnefanten.nl/nl/mensen-organisatie/organisatie/privacy"
+            // eslint-disable-next-line react/jsx-no-target-blank
             target="_blank"
           >
             Privacyreglement

@@ -46,6 +46,9 @@ footer#site-footer {
     -webkit-hyphens: auto;
     hyphens: auto;
 
+    @media (max-width: 767px) {
+      padding-left: 0px;
+    }
     .column {
       position: relative;
       display: inline-block;
@@ -240,6 +243,156 @@ footer#site-footer {
       }
     }
   }
+  #Newsletter{
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 115px;
+      @media screen and (max-width:992px) and (min-width: 768px) {
+        margin-bottom: 115px;
+      }
+      @media screen and (max-width: 768px) {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 70px;
+      }
+  .newsletter-footer-seperator {
+      font-family: 'BonnefantenBlock', Arial, sans-serif !important;
+      text-align: center;
+      font-size: 100px;
+      color: var(--bonnefanten-secondary);
+      padding-left:25px;
+      line-height: 48px;
+      padding-bottom: 79px;
+      @media screen and (max-width: 992px) {
+        padding-left: 0;
+        padding-bottom: 69px;
+      }
+      @media screen and (max-width: 768px) {
+        padding-bottom: 10px;
+      }
+    }
+    h3.Header{
+      text-align: center;
+      margin-top: 25px;
+      padding-left: 25px;
+      margin-bottom:38px;
+      letter-spacing: 0px;
+      font-size: 75px;
+      @media screen and (max-width: 992px) {
+          padding-left: 20px;
+          padding-right: 20px;
+          font-size: 70px;
+        }
+      @media screen and (max-width: 768px) {
+        font-size: 8vw;
+        padding-left: 17px;
+        margin-bottom: 3px;
+        line-height: 10vw;
+      }
+    }
+    #newsletter-form{
+      padding-top: 56px;
+      display: flex;
+      width: 85%;
+      justify-content:space-between;
+      margin-left: auto;
+      margin-right: auto;
+
+      @media screen and (max-width:992px) {
+        flex-direction: column;
+        width: 100%;
+        padding-top: 40px;
+      }
+      @media screen and (max-width:992px) and (min-width: 768px) {
+        padding-top: 57px;
+        padding-left: 17px;
+        padding-right: 21px;
+      }
+    }
+    .formControls{
+      width: 23.7%;
+      padding-left: 16.5px;
+      padding-right: 8px;
+      transition: all 0.3s ease-in !important;
+      @media screen and (max-width:992px) {
+          width: 100%;
+          padding-left: 0%;
+          padding-right: 0px;
+        }
+      button#form-buttons-subscribe{
+        clip-path: polygon(0% 20px,
+          20px 0%,
+          calc(100%) 0%,
+          100% 20px,
+          100% calc(100% - 20px),
+          calc(100% - 20px) 100%,
+          20px 100%,
+          0 calc(100%));
+        transition: all 0.3s ease-in !important;
+      }
+      #form-buttons-subscribe:hover {
+        clip-path: polygon(0% 20px, 0px 0%, calc(100%) 0%, 100% 10px, 100% calc(100% - 20px), calc(100% - 0px) 100%, 10px 100%, 0 calc(100%));
+        transition: all 0.3s ease-in !important;
+      }
+    }
+    #formfield-form-widgets-email{
+      width: 77%;
+      padding-left: 2px;
+      line-height: 0px;
+      padding-bottom: 10px;
+      @media screen and (max-width:992px) {
+          width: 100%;
+        }
+      #form-widgets-email{
+        padding: 15.5px 20px;
+        width: 100%;
+        line-height: 35.7px;
+        @media screen and (max-width:992px) and (min-width: 768px) {
+          padding: 15px 20px;
+        }
+        @media screen and (max-width:768px) {
+          line-height: 30px;
+          padding: 18px 20px;
+        }
+      }
+    }
+    .formControls button{
+      padding: 15px 10px;
+      line-height: 35.7px;
+      font-family: StyreneBold, Arial, sans-serif;
+      font-size: 25px;
+      width: 100%;
+      color: var(--bonnefanten-bg);
+      background-color: var(--bonnefanten-primary);
+      border-color: var(--bonnefanten-primary);
+      @media screen and (min-width: 992px) {
+        // padding: 15px 15px;
+      }
+    }
+    .formControls button:hover {
+      background-color: var(--bonnefanten-bg);
+      border-color: var(--bonnefanten-primary);
+      color: var(--bonnefanten-primary);
+    }
+  }
+  #privacy-statement-wrapper{
+    margin-left: 9%;
+    font-family: 'StyreneBold', Arial, sans-serif;
+    font-size: 13px;
+    margin-top: 18px;
+    letter-spacing: 0.8px;
+    padding-left: 5px;
+      @media screen and (max-width:992px) and (min-width: 768px) {
+        margin-left: 36px;
+        margin-top: 29px;
+        padding-left: 8px;
+      }
+    @media screen and (max-width:768px) {
+      margin-left: 20px;
+      margin-top: 29px;
+    }
+  }
+
 }
 
 #footer-configuration .slate-editor {

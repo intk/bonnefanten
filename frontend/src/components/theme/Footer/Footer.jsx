@@ -8,6 +8,61 @@ import { injectIntl } from 'react-intl';
 import FooterColumns from '@package/components/theme/Footer/FooterColumns';
 import useInView from '@package/helpers/useInView';
 import { BodyClass } from '@plone/volto/helpers';
+import MailchimpSubscribe from 'react-mailchimp-subscribe';
+
+const MailChimpForm = ({ status, message, onValidated }) => {
+  let email;
+  const submit = () =>
+    email &&
+    email.value.indexOf('@') > -1 &&
+    onValidated({
+      EMAIL: email.value,
+    });
+
+  return (
+    <>
+      <div id="newsletter-form">
+        <div id="formfield-form-widgets-email">
+          <input
+            id="form-widgets-email"
+            ref={(node) => (email = node)}
+            type="email"
+            placeholder="Uw mailadres"
+          />
+          <br />
+        </div>
+        <div className="formControls">
+          <button id="form-buttons-subscribe" onClick={submit}>
+            Inschrijven
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <div className="message">
+          {status === 'sending' && <div style={{ color: 'blue' }}>...</div>}
+          {status === 'error' && (
+            <div
+              style={{ color: 'red' }}
+              // dangerouslySetInnerHTML={{ __html: message }}
+            >
+              <p>asdf</p>
+            </div>
+          )}
+          {status === 'success' && (
+            <div
+              className="success-msg"
+              style={{ color: 'blue' }}
+              // dangerouslySetInnerHTML={{ __html: message }}
+            >
+              <p>asdf</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
 
 /**
  * Component to display the footer.
@@ -16,6 +71,8 @@ import { BodyClass } from '@plone/volto/helpers';
  * @returns {string} Markup of the component
  */
 const Footer = ({ intl }) => {
+  const mailchimp_url =
+    'https://bonnefanten.us15.list-manage.com/subscribe/post-json?c=?';
   const footerInView = useInView(
     'footer#site-footer',
     {
@@ -33,6 +90,30 @@ const Footer = ({ intl }) => {
           <BodyClass className="footer-in-view" />
         </>
       )}
+
+      <div id="Newsletter">
+        <p className="newsletter-footer-seperator">--</p>
+        <h3 className="Header">Blijf op de hoogte</h3>
+        <MailchimpSubscribe
+          url={mailchimp_url}
+          render={({ subscribe, status, message }) => (
+            <MailChimpForm
+              status={status}
+              message={message}
+              onValidated={(formData) => subscribe(formData)}
+            />
+          )}
+        />
+        <div id="privacy-statement-wrapper">
+          <i class="glyphicon link-https"></i>
+          <a
+            href="https://new.bonnefanten.nl/nl/mensen-organisatie/organisatie/privacy"
+            target="_blank"
+          >
+            Privacyreglement
+          </a>
+        </div>
+      </div>
 
       <div className="footer-content">
         <FooterColumns />

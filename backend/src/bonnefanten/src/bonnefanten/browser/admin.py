@@ -515,7 +515,7 @@ def import_images(container, object_id, headers):
 
     print(object_id)
 
-    # This version saves the image file to the 
+    # This version saves the image file to the server
     # while retries < MAX_RETRIES:
     #     try:
     #         # Form the new URL for fetching the image as XML

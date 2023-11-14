@@ -18,12 +18,12 @@
           <!-- <equalsField fieldPath="ObjObjectTypeTxt"
                        operand="beeld"
           /> -->
-          <equalsField fieldPath="__id"
+          <!-- <equalsField fieldPath="__id"
                        operand="11678"
-          />
-          <!-- <greater fieldPath="__lastModified"
-                   operand="2022-08-01T00:00:00"
           /> -->
+          <greater fieldPath="__lastModified"
+                   operand="2022-08-01T00:00:00"
+          />
         </expert>
       </search>
     </module>

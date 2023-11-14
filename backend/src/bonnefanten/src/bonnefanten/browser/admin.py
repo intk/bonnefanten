@@ -16,6 +16,10 @@ from plone.folder.interfaces import IExplicitOrdering
 from plone.namedfile.file import NamedBlobImage
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
+from xml.dom import minidom
+from xml.etree.ElementTree import Element
+from xml.etree.ElementTree import SubElement
+from xml.etree.ElementTree import tostring
 from zc.relation.interfaces import ICatalog
 from zope import component
 from zope.component import getUtility
@@ -80,6 +84,9 @@ class AdminFixes(BrowserView):
     def import_objects(self):
         start_range = self.request.form.get("start_range", 0)
         end_range = self.request.form.get("end_range", 3000)
+        object_id = self.request.form.get("object_id")
+        limit = self.request.form.get("limit", "100")
+        offset = self.request.form.get("offset", "0")
 
         counter = 0
 
@@ -92,7 +99,7 @@ class AdminFixes(BrowserView):
         log_to_file(f"========================")
         log_to_file(f"========================")
         log_to_file(
-            f"The sync function started at {start_time} for the range of objects between {start_range} and {end_range} "
+            f"The sync function started at {start_time} for the range of objects between {offset} and {limit} "
         )
 
         if not os.environ.get("DOCKER_DEPLOYMENT"):
@@ -115,12 +122,40 @@ class AdminFixes(BrowserView):
         current_directory = os.path.dirname(os.path.abspath(__file__))
 
         # Construct the path to the XML file
-        xml_file_path = os.path.join(current_directory, "export-body.xml")
+        # Construct XML dynamically
+        root = Element("application")
+        root.set("xmlns", "http://www.zetcom.com/ria/ws/module/search")
+        root.set("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
+        root.set(
+            "xsi:schemaLocation",
+            "http://www.zetcom.com/ria/ws/module/search http://www.zetcom.com/ria/ws/module/search/search_1_1.xsd",
+        )
 
-        with open(xml_file_path, "r") as xml_file:
-            xml_content = xml_file.read()
+        modules = SubElement(root, "modules")
+        module = SubElement(modules, "module")
+        module.set("name", "Object")
 
-        response = requests.post(api_url, data=xml_content, headers=headers)
+        search = SubElement(module, "search")
+        search.set("limit", limit)
+        search.set("offset", offset)
+
+        expert = SubElement(search, "expert")
+
+        if object_id:
+            equalsField = SubElement(expert, "equalsField")
+            equalsField.set("fieldPath", "__id")
+            equalsField.set("operand", object_id)
+        else:
+            # Default search criterion when object_id is not provided
+            greater = SubElement(expert, "greater")
+            greater.set("fieldPath", "__lastModified")
+            greater.set("operand", "2022-08-01T00:00:00")
+
+        # Convert to string
+        xml_str = minidom.parseString(tostring(root)).toprettyxml(indent="   ")
+
+        # Use the dynamic XML content
+        response = requests.post(api_url, data=xml_str, headers=headers)
         response.raise_for_status()
         api_answer = response.text
 

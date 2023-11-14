@@ -115,4 +115,5 @@
   <column value="artwork_type" />
   <column value="ObjDateFromTxt" />
   <column value="artwork_date" />
+  <column value="ObjCollectionGrp" />
 </object>

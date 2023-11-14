@@ -56,6 +56,24 @@
   </records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
+           prefix="plone.app.querystring.field.ObjCollectionGrp"
+  >
+    <value key="title">Artwork's Collection Group</value>
+    <value key="description" />
+    <value key="enabled">True</value>
+    <value key="sortable">True</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.string.contains</element>
+      <element>plone.app.querystring.operation.string.is</element>
+      <element>plone.app.querystring.operation.string.isNot</element>
+    </value>
+    <value key="group"
+           i18n:translate=""
+    >Bonnefanten</value>
+    <value key="vocabulary" />
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
            prefix="plone.app.querystring.field.artwork_technique"
   >
     <value key="title">Artwork's Technique</value>

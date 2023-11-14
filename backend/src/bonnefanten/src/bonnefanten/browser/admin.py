@@ -233,6 +233,13 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["nl"]["Id"] = record["Id"]
     info["en"]["Id"] = record["Id"]
 
+    info["nl"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"][
+        "LabelTxt_en"
+    ]
+    info["en"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"][
+        "LabelTxt_en"
+    ]
+
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",
         "ObjTitleTxt": "ObjTitleTxt",

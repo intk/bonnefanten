@@ -115,6 +115,7 @@ class IArtwork(model.Schema):
     ObjDateFromTxt = schema.TextLine(title="ObjDateFromTxt", required=False)
     ObjDateToTxt = schema.TextLine(title="ObjDateToTxt", required=False)
     ObjDateNotesTxt = schema.TextLine(title="ObjDateNotesTxt", required=False)
+    ObjCollectionGrp = schema.TextLine(title="ObjCollectionGrp", required=False)
     ObjAcquisitionMethodTxt = schema.TextLine(
         title="ObjAcquisitionMethodTxt", required=False
     )

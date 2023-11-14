@@ -14,6 +14,12 @@
          name="ObjObjectNumberTxt"
   >
     <indexed_attr value="ObjObjectNumberTxt" />
+  </index>ObjCollectionGrp
+
+  <index meta_type="FieldIndex"
+         name="ObjCollectionGrp"
+  >
+    <indexed_attr value="ObjCollectionGrp" />
   </index>
 
   <index meta_type="ZCTextIndex"

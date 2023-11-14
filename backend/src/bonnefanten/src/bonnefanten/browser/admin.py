@@ -208,6 +208,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         .replace(" ", "-")
         .lower()
     )
+
     info["nl"]["title"] = title
     info["en"]["title"] = title
 
@@ -228,6 +229,9 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
     info["en"]["authorText"] = []
     info["nl"]["authorText"] = []
+
+    info["nl"]["Id"] = record["Id"]
+    info["en"]["Id"] = record["Id"]
 
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",
@@ -296,17 +300,17 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     extra_large_uri = None
     thumbnails = record.get("Thumbnails", [])
 
-    if (
-        thumbnails
-        and isinstance(thumbnails, list)
-        and "Sizes" in thumbnails[0]
-        and "ExtraLargeUri" in thumbnails[0]["Sizes"]
-    ):
-        info["nl"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
-        info["en"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
-        print(info["nl"]["images"])
-    else:
-        info["en"]["images"] = "null"
+    # if (
+    #     thumbnails
+    #     and isinstance(thumbnails, list)
+    #     and "Sizes" in thumbnails[0]
+    #     and "ExtraLargeUri" in thumbnails[0]["Sizes"]
+    # ):
+    #     info["nl"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
+    #     info["en"]["images"] = record["Thumbnails"][0]["Sizes"]["ExtraLargeUri"]
+    #     print(info["nl"]["images"])
+    # else:
+    #     info["en"]["images"] = "null"
 
     # Find the existing object
     ObjectNumber = info["nl"]["ObjObjectNumberTxt"]
@@ -333,11 +337,8 @@ def import_one_record(self, record, container, container_en, catalog, headers):
                 manager.register_translation("en", brains[0].getObject())
 
             # adding images
-            if info["en"]["images"]:
-                import_images(
-                    container=obj, image=info["en"]["images"], headers=headers
-                )
-                obj.hasImage = True
+            import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
+            obj.hasImage = True
             obj.reindexObject()
 
         else:
@@ -356,11 +357,8 @@ def import_one_record(self, record, container, container_en, catalog, headers):
                 manager.register_translation("nl", brains[0].getObject())
 
             # adding images
-            if info["en"]["images"]:
-                import_images(
-                    container=obj_en, image=info["en"]["images"], headers=headers
-                )
-                obj_en.hasImage = True
+            import_images(container=obj_en, object_id=info["en"]["Id"], headers=headers)
+            obj_en.hasImage = True
 
             obj_en.reindexObject()
 
@@ -417,11 +415,8 @@ def import_one_record(self, record, container, container_en, catalog, headers):
             log_to_file(f"{ObjectNumber} object is updated")
 
             # adding images
-            if info["en"]["images"] != "null":
-                import_images(
-                    container=obj, image=info["en"]["images"], headers=headers
-                )
-                obj.hasImage = True
+            import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
+            obj.hasImage = True
 
             # Reindex the updated object
             obj.reindexObject()
@@ -438,9 +433,9 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         # log_to_file(f"{ObjObjectNumberTxt} object is created")
 
         # adding images
-        if info["en"]["images"] != "null":
-            import_images(container=obj, image=info["en"]["images"], headers=headers)
-            obj.hasImage = True
+
+        import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
+        # obj.hasImage = True
 
         obj_en = self.translate(obj, info["en"])
 
@@ -496,7 +491,7 @@ def create_and_setup_object(title, container, info, intl, object_type, obj_id):
     return obj
 
 
-def import_images(container, image, headers):
+def import_images(container, object_id, headers):
     MAX_RETRIES = 2
     DELAY_SECONDS = 1
 
@@ -517,53 +512,91 @@ def import_images(container, image, headers):
 
     retries = 0
     success = False
-    imageTitle = image
 
-    # Tries MAX_RETRIES times and then raise exception
+    print(object_id)
+
+    # This version saves the image file to the 
+    # while retries < MAX_RETRIES:
+    #     try:
+    #         # Form the new URL for fetching the image as XML
+    #         image_url = f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten/ria-ws/application/module/Multimedia/{object_id}/attachment"
+
+    #         with requests.get(url=image_url, headers=headers) as req:
+    #             req.raise_for_status()
+    #             xml_response = req.text
+
+    #             # Use the xml_to_image function to extract and decode the image
+    #             image_data, file_name = xml_to_image(xml_response)
+
+    #             if image_data and file_name:
+    #                 # Save the image data to a file
+    #                 image_file_path = os.path.join('/Users/cihanandac/Documents/bonnefanten/collection/images/', file_name)  # Update the path as needed
+    #                 with open(image_file_path, 'wb') as image_file:
+    #                     image_file.write(image_data)
+
+    #                 log_to_file(f"{file_name} image is downloaded and saved")
+
+    #                 # Update the content in Plone
+    #                 imagefield = NamedBlobImage(
+    #                     data=image_data,
+    #                     contentType="image/jpeg",  # Update if different
+    #                     filename=file_name,
+    #                 )
+    #                 api.content.create(
+    #                     type="Image",
+    #                     title=file_name,
+    #                     image=imagefield,
+    #                     container=container,
+    #                 )
+    #                 container.preview_image = imagefield
+
+    #                 success = True
+    #                 break
+    #             else:
+    #                 print("Failed to extract image data.")
+
     while retries < MAX_RETRIES:
         try:
-            image_url = (
-                f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten{image}"
-            )
-            with requests.get(
-                url=image_url, stream=True, verify=False, headers=headers
-            ) as req:  # noqa
+            image_url = f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten/ria-ws/application/module/Object/{object_id}/attachment"
+
+            with requests.get(url=image_url, headers=headers) as req:
                 req.raise_for_status()
-                data = req.raw.read()
+                xml_response = req.text
 
-                if "DOCTYP" in str(data[:10]):
-                    continue
+                # Extract and decode the image data
+                image_data, file_name = xml_to_image(xml_response)
 
-                log_to_file(f"{image} image is created")
+                if image_data and file_name:
+                    # Create a new image content in Plone directly with the image data
+                    imagefield = NamedBlobImage(
+                        data=image_data,
+                        contentType="image/jpeg",  # Update if different
+                        filename=file_name,
+                    )
+                    api.content.create(
+                        type="Image",
+                        title=file_name,
+                        image=imagefield,
+                        container=container,
+                    )
+                    container.preview_image = imagefield
 
-                imagefield = NamedBlobImage(
-                    data=data,
-                    contentType="image/jpeg",
-                    filename=f"{image}.jpeg",
-                )
-                created_image = api.content.create(
-                    type="Image",
-                    title="test",
-                    image=imagefield,
-                    container=container,
-                )
-
-                container.preview_image = imagefield
-
-                success = True
-                break
+                    success = True
+                    break
+                else:
+                    print("Failed to extract image data.")
 
         except requests.RequestException as e:
             retries += 1
             if retries < MAX_RETRIES:
                 time.sleep(DELAY_SECONDS)
             else:
-                log_to_file(f"failed to create {image} image")
+                log_to_file(f"failed to download {object_id} image")
 
     if not success:
-        log_to_file(f"Skipped image {image} due to repeated fetch failures.")
+        log_to_file(f"Skipped image {object_id} due to repeated fetch failures.")
 
-    return f"Image {image} created successfully"
+    return f"Image {object_id} created successfully"
 
 
 def log_to_file(message):
@@ -655,3 +688,31 @@ def import_authors(self, record, use_archive=True):
                 log_to_file(f"Created author {author.getId()}")
 
     return [authors, authors_en]
+
+
+def xml_to_image(xml_content):
+    """
+    Parse the XML content, extract the base64-encoded image data, and return it.
+    """
+    # Parse the XML content
+    root = ET.fromstring(xml_content)
+
+    # Define the namespace if there is one
+    namespace = {"ns": "http://www.zetcom.com/ria/ws/module"}
+
+    # Find the attachment element and extract the base64 data
+    attachment = root.find(".//ns:attachment", namespace)
+    if attachment is not None and "name" in attachment.attrib:
+        value_element = attachment.find("ns:value", namespace)
+        if value_element is not None:
+            base64_data = value_element.text
+            if base64_data:
+                # Decode the base64 data
+                return base64.b64decode(base64_data), attachment.attrib["name"]
+            else:
+                print("No base64 data found.")
+        else:
+            print("No value element found.")
+    else:
+        print("No attachment element with a name attribute found.")
+    return None, None

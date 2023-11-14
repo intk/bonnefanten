@@ -492,9 +492,6 @@ def create_and_setup_object(title, container, info, intl, object_type, obj_id):
 
 
 def import_images(container, object_id, headers):
-    MAX_RETRIES = 2
-    DELAY_SECONDS = 1
-
     # Extract the API authentication from the headers (if available)
     API_USERNAME = os.environ.get("API_USERNAME")
     API_PASSWORD = os.environ.get("API_PASSWORD")
@@ -555,43 +552,37 @@ def import_images(container, object_id, headers):
     #             else:
     #                 print("Failed to extract image data.")
 
-    while retries < MAX_RETRIES:
-        try:
-            image_url = f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten/ria-ws/application/module/Object/{object_id}/attachment"
+    try:
+        image_url = f"https://de1.zetcom-group.de/MpWeb-mpMaastrichtBonnefanten/ria-ws/application/module/Object/{object_id}/attachment"
 
-            with requests.get(url=image_url, headers=headers) as req:
-                req.raise_for_status()
-                xml_response = req.text
+        with requests.get(url=image_url, headers=headers) as req:
+            req.raise_for_status()
+            xml_response = req.text
 
-                # Extract and decode the image data
-                image_data, file_name = xml_to_image(xml_response)
+            # Extract and decode the image data
+            image_data, file_name = xml_to_image(xml_response)
 
-                if image_data and file_name:
-                    # Create a new image content in Plone directly with the image data
-                    imagefield = NamedBlobImage(
-                        data=image_data,
-                        contentType="image/jpeg",  # Update if different
-                        filename=file_name,
-                    )
-                    api.content.create(
-                        type="Image",
-                        title=file_name,
-                        image=imagefield,
-                        container=container,
-                    )
-                    container.preview_image = imagefield
+            if image_data and file_name:
+                # Create a new image content in Plone directly with the image data
+                imagefield = NamedBlobImage(
+                    data=image_data,
+                    contentType="image/jpeg",  # Update if different
+                    filename=file_name,
+                )
+                api.content.create(
+                    type="Image",
+                    title=file_name,
+                    image=imagefield,
+                    container=container,
+                )
+                container.preview_image = imagefield
 
-                    success = True
-                    break
-                else:
-                    print("Failed to extract image data.")
-
-        except requests.RequestException as e:
-            retries += 1
-            if retries < MAX_RETRIES:
-                time.sleep(DELAY_SECONDS)
+                success = True
             else:
-                log_to_file(f"failed to download {object_id} image")
+                print("Failed to extract image data.")
+
+    except requests.RequestException as e:
+        log_to_file(f"failed to download {object_id} image")
 
     if not success:
         log_to_file(f"Skipped image {object_id} due to repeated fetch failures.")

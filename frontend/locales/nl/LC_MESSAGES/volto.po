@@ -40,6 +40,11 @@ msgstr ""
 msgid "Ascending"
 msgstr ""
 
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Base search query
+msgid "Base search query"
+msgstr ""
+
 #: components/blocks/Break/schema
 # defaultMessage: Break
 msgid "Break"
@@ -60,9 +65,20 @@ msgstr ""
 msgid "Clear filters"
 msgstr ""
 
+#: components/theme/Footer/Footer
 #: components/theme/Navigation/Navigation
-# defaultMessage: Close menu
+# defaultMessage: Error
 msgid "Close menu"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Controls
+msgid "Controls"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Credit Line
+msgid "Credit Line"
 msgstr ""
 
 #: components/blocks/Search/FilterList
@@ -80,14 +96,64 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Facet
+msgid "Facet"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Facet widget
+msgid "Facet widget"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Facets
+msgid "Facets"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Field
+msgid "Field"
+msgstr ""
+
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: Future
 msgid "Future"
 msgstr ""
 
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Headline
+msgid "Headline"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Hidden facets will still filter the results if proper parameters are passed in URLs
+msgid "Hidden facets will still filter the results if proper parameters are passed in URLs"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Hide facet?
+msgid "Hide facet?"
+msgstr ""
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Image override
 msgid "Image override"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Label
+msgid "Label"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Materiaal
+msgid "Materiaal"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Multiple choices?
+msgid "Multiple choices?"
 msgstr ""
 
 #: components/blocks/Newsletter/schema
@@ -105,13 +171,24 @@ msgstr ""
 msgid "Now on display"
 msgstr ""
 
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Objectnaam
+msgid "Objectnaam"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Objectnummer
+msgid "Objectnummer"
+msgstr ""
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Open in a new tab
 msgid "Open in a new tab"
 msgstr ""
 
+#: components/theme/Footer/Footer
 #: components/theme/Navigation/Navigation
-# defaultMessage: Open menu
+# defaultMessage: Success
 msgid "Open menu"
 msgstr ""
 
@@ -136,14 +213,72 @@ msgstr "Privacyreglement"
 msgid "Quote"
 msgstr ""
 
+#: components/blocks/AdvancedSearch/schema
 #: components/blocks/Search/TopFiltersLayout
+#: components/theme/Search/NotFoundSearch
+#: components/theme/Search/SearchBar
 # defaultMessage: Search
 msgid "Search"
 msgstr "Zoeken"
 
+#: components/theme/Search/SearchBar
+# defaultMessage: Search Site
+msgid "Search Site"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Search block
+msgid "Search block"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Search button label
+msgid "Search button label"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Search input label
+msgid "Search input label"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Section title
+msgid "Section title"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Show search button?
+msgid "Show search button?"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Show search input?
+msgid "Show search input?"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Show sorting?
+msgid "Show sorting?"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Show total results
+msgid "Show total results"
+msgstr ""
+
 #: components/blocks/Search/SortOn
 # defaultMessage: Sort
 msgid "Sort"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Sort on options
+msgid "Sort on options"
+msgstr ""
+
+#: components/theme/Footer/Footer
+# defaultMessage: Inschrijven
+msgid "Submit"
 msgstr ""
 
 #: components/blocks/Newsletter/NewsletterView
@@ -167,6 +302,21 @@ msgstr ""
 msgid "Teaser"
 msgstr ""
 
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Techniek
+msgid "Techniek"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: The button presence disables the live search, the query is issued when you press ENTER
+msgid "The button presence disables the live search, the query is issued when you press ENTER"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Titel
+msgid "Titel"
+msgstr ""
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Title
 msgid "Title"
@@ -186,6 +336,11 @@ msgstr ""
 # defaultMessage: Vervaardiger
 msgid "artist"
 msgstr "Vervaardiger"
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Available views
+msgid "availableViews"
+msgstr ""
 
 #: components/theme/View/ArtworkView
 # defaultMessage: Credit line
@@ -282,3 +437,18 @@ msgstr ""
 # defaultMessage: Titel
 msgid "title"
 msgstr "Titel"
+
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Vervaardiger
+msgid "vervaardiger"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/schema
+# defaultMessage: Views
+msgid "views"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Zoeken
+msgid "zoeken"
+msgstr ""

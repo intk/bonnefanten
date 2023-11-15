@@ -199,7 +199,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         authors_en = "null"
 
     log_to_file(
-        f"After calling import_authors: authors = {authors}, authors_en = {authors_en}"
+        f"import_authors: authors = {authors}, authors_en = {authors_en}"
     )
 
     record_text = json.dumps(record)
@@ -239,12 +239,9 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["nl"]["Id"] = record["Id"]
     info["en"]["Id"] = record["Id"]
 
-    info["nl"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"][
-        "LabelTxt_en"
-    ]
-    info["en"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"][
-        "LabelTxt_en"
-    ]
+    if "ObjCollectionGrp" in record and len(record["ObjCollectionGrp"]) > 0:
+        info["nl"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"]["LabelTxt_en"]
+        info["en"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"]["LabelTxt_en"]
 
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",

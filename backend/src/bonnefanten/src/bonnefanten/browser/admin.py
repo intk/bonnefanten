@@ -170,7 +170,6 @@ class AdminFixes(BrowserView):
         catalog = site.portal_catalog
 
         records = json.loads(api_answer)
-        print(records)
         for record in records:
 
             import_one_record(
@@ -198,9 +197,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         authors = "null"
         authors_en = "null"
 
-    log_to_file(
-        f"import_authors: authors = {authors}, authors_en = {authors_en}"
-    )
+    log_to_file(f"import_authors: authors = {authors}, authors_en = {authors_en}")
 
     record_text = json.dumps(record)
     info = {"nl": {}, "en": {}}
@@ -240,8 +237,12 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["en"]["Id"] = record["Id"]
 
     if "ObjCollectionGrp" in record and len(record["ObjCollectionGrp"]) > 0:
-        info["nl"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"]["LabelTxt_en"]
-        info["en"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"]["LabelTxt_en"]
+        info["nl"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"][
+            "LabelTxt_en"
+        ]
+        info["en"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"][
+            "LabelTxt_en"
+        ]
 
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",

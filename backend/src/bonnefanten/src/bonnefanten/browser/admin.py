@@ -218,17 +218,24 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["nl"]["rawdata"] = record_text
     info["en"]["rawdata"] = record_text
 
-    info["nl"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"][
-        "LabelTxt_nl"
-    ]
-    info["en"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"][
-        "LabelTxt_en"
-    ]
-    info["nl"]["ObjOnDisplay"] = record["ObjOnDisplay"]
-    info["en"]["ObjOnDisplay"] = record["ObjOnDisplay"]
+    # ObjAcquisitionMethodTxt
+    if (
+        "ObjAcquisitionMethodTxt" in record
+        and "LabelTxt_en" in record["ObjAcquisitionMethodTxt"]
+    ):
+        info["en"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"][
+            "LabelTxt_en"
+        ]
 
-    info["nl"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
-    info["en"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
+    # ObjOnDisplay
+    if "ObjOnDisplay" in record:
+        info["nl"]["ObjOnDisplay"] = record["ObjOnDisplay"]
+        info["en"]["ObjOnDisplay"] = record["ObjOnDisplay"]
+
+    # ObjAcquisitionDateTxt
+    if "ObjAcquisitionDateTxt" in record:
+        info["nl"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
+        info["en"]["ObjAcquisitionDateTxt"] = record["ObjAcquisitionDateTxt"]
 
     info["en"]["authorText"] = []
     info["nl"]["authorText"] = []

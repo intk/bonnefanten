@@ -7,6 +7,7 @@ import installSliderBlock from './Slider';
 import installListingBlock from './Listing';
 import installNewsletterBlock from './Newsletter';
 import installSearchBlock from './Search';
+import installAdvancedSearch from './AdvancedSearch';
 
 import { compose } from 'redux';
 
@@ -23,6 +24,7 @@ const installBlocks = (config) => {
     installListingBlock,
     installNewsletterBlock,
     installSearchBlock,
+    installAdvancedSearch,
   )(config);
 };
 

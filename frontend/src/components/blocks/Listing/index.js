@@ -1,4 +1,5 @@
 import ListingsBlockTemplate from '@package/components/blocks/Listing/ListingTemplate';
+import CategoryBlockTemplate from '@package/components/blocks/Listing/CategoryTemplate';
 // import MasonryTemplate from './MasonryTemplate';
 
 export default (config) => {
@@ -50,6 +51,12 @@ export default (config) => {
       isDefault: true,
       title: 'Listing',
       template: ListingsBlockTemplate,
+    },
+    {
+      id: 'categories',
+      isDefault: false,
+      title: 'Category',
+      template: CategoryBlockTemplate,
     },
   ];
 

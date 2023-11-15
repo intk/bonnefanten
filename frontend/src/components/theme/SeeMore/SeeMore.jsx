@@ -60,6 +60,11 @@ const Search = (props) => {
     768: 1,
   };
 
+  let pathname = props.location.pathname;
+  if (pathname.charAt(pathname.length - 1) === '/') {
+    pathname = pathname.slice(0, -1);
+  }
+
   return (
     <Container id="page-search-artwork">
       <div id="page-search-title" className="page-search-title">
@@ -77,7 +82,7 @@ const Search = (props) => {
         {authors.length !== 0 &&
           sortedItems.slice(0, 20).map(
             (item) =>
-              props.location.pathname !== item['@id'] && (
+              pathname !== item['@id'] && (
                 <div className="SeeMoreItem" key={item['@id']}>
                   <ArtworkPreview {...item} />
                   <UniversalLink item={item}>

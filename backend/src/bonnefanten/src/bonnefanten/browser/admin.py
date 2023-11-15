@@ -82,11 +82,12 @@ class AdminFixes(BrowserView):
         return trans
 
     def import_objects(self):
-        start_range = self.request.form.get("start_range", 0)
-        end_range = self.request.form.get("end_range", 3000)
+        # start_range = self.request.form.get("start_range", 0)
+        # end_range = self.request.form.get("end_range", 3000)
         object_id = self.request.form.get("object_id")
         limit = self.request.form.get("limit", "100")
         offset = self.request.form.get("offset", "0")
+        category = self.request.form.get("category")
 
         counter = 0
 
@@ -145,6 +146,10 @@ class AdminFixes(BrowserView):
             equalsField = SubElement(expert, "equalsField")
             equalsField.set("fieldPath", "__id")
             equalsField.set("operand", object_id)
+        elif category:
+            equalsField = SubElement(expert, "equalsField")
+            equalsField.set("fieldPath", "ObjCollectionGrp.CollectionVoc.LabelTxt_en")
+            equalsField.set("operand", category)
         else:
             # Default search criterion when object_id is not provided
             greater = SubElement(expert, "greater")
@@ -165,6 +170,7 @@ class AdminFixes(BrowserView):
         catalog = site.portal_catalog
 
         records = json.loads(api_answer)
+        print(records)
         for record in records:
 
             import_one_record(

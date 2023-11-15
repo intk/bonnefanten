@@ -14,7 +14,13 @@
          name="ObjObjectNumberTxt"
   >
     <indexed_attr value="ObjObjectNumberTxt" />
-  </index>ObjCollectionGrp
+  </index>
+
+  <index meta_type="KeywordIndex"
+         name="Artwork_Collection_Group"
+  >
+    <indexed_attr value="Artwork_Collection_Group" />
+  </index>
 
   <index meta_type="FieldIndex"
          name="ObjCollectionGrp"
@@ -116,4 +122,5 @@
   <column value="ObjDateFromTxt" />
   <column value="artwork_date" />
   <column value="ObjCollectionGrp" />
+  <column value="Artwork_Collection_Group" />
 </object>

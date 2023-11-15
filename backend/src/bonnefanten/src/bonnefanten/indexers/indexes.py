@@ -82,3 +82,23 @@ def artwork_author(obj):
         title = target_object.Title().strip()  # Strip leading and trailing spaces
         titles.append(title)
     return titles
+
+
+@indexer(IArtwork)
+def Artwork_Collection_Group(obj):
+    collections = getattr(obj, "ObjCollectionGrp", None)
+
+    if isinstance(collections, str):
+        collections_list = [
+            collection.strip()
+            for collection in collections.split("|")
+            if collection.strip()
+        ]
+    elif hasattr(collections, "__iter__") and not isinstance(collections, str):
+        collections_list = [
+            collection.strip() for collection in collections if collection.strip()
+        ]
+    else:
+        collections_list = []
+
+    return collections_list

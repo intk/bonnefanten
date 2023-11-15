@@ -243,13 +243,16 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     info["nl"]["Id"] = record["Id"]
     info["en"]["Id"] = record["Id"]
 
-    if "ObjCollectionGrp" in record and len(record["ObjCollectionGrp"]) > 0:
-        info["nl"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"][
-            "LabelTxt_en"
+    if "ObjCollectionGrp" in record:
+        collection_grp_values = [
+            grp["CollectionVoc"]["LabelTxt_en"]
+            for grp in record["ObjCollectionGrp"]
+            if "LabelTxt_en" in grp.get("CollectionVoc", {})
         ]
-        info["en"]["ObjCollectionGrp"] = record["ObjCollectionGrp"][0]["CollectionVoc"][
-            "LabelTxt_en"
-        ]
+        info["nl"]["ObjCollectionGrp"] = " | ".join(
+            collection_grp_values
+        )  # Using '|' as a delimiter
+        info["en"]["ObjCollectionGrp"] = " | ".join(collection_grp_values)
 
     fields_to_extract = {
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",

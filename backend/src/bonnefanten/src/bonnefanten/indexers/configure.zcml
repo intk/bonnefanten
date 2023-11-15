@@ -23,5 +23,9 @@
       factory=".indexes.artwork_date"
       name="artwork_date"
       />
+  <adapter
+      factory=".indexes.Artwork_Collection_Group"
+      name="Artwork_Collection_Group"
+      />
 
 </configure>

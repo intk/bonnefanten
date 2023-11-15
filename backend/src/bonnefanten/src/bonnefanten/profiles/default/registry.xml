@@ -56,7 +56,7 @@
   </records>
 
   <records interface="plone.app.querystring.interfaces.IQueryField"
-           prefix="plone.app.querystring.field.ObjCollectionGrp"
+           prefix="plone.app.querystring.field.Artwork_Collection_Group"
   >
     <value key="title">Artwork's Collection Group</value>
     <value key="description" />

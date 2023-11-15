@@ -221,6 +221,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     # ObjAcquisitionMethodTxt
     if (
         "ObjAcquisitionMethodTxt" in record
+        and record["ObjAcquisitionMethodTxt"] is not None
         and "LabelTxt_en" in record["ObjAcquisitionMethodTxt"]
     ):
         info["en"]["ObjAcquisitionMethodTxt"] = record["ObjAcquisitionMethodTxt"][

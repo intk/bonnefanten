@@ -1,5 +1,6 @@
 import ListingsBlockTemplate from '@package/components/blocks/Listing/ListingTemplate';
 import CategoryBlockTemplate from '@package/components/blocks/Listing/CategoryTemplate';
+import MasonryBlockTemplate from '@package/components/blocks/Listing/MasonryTemplate';
 // import MasonryTemplate from './MasonryTemplate';
 
 export default (config) => {
@@ -57,6 +58,12 @@ export default (config) => {
       isDefault: false,
       title: 'Category',
       template: CategoryBlockTemplate,
+    },
+    {
+      id: 'masonary',
+      isDefault: false,
+      title: 'Masonry',
+      template: MasonryBlockTemplate,
     },
   ];
 

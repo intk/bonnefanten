@@ -367,13 +367,13 @@ export default function ArtworkView(props) {
                           <p key={index}>
                             <a href={auth['@id']}>{auth.title}</a>
                             <span>
-                              {content.ObjPersonRole[auth.title] && (
+                              {content?.ObjPersonRole?.[auth.title] && (
                                 <>
                                   <span> (</span>
                                   <a
-                                    href={`/search?SearchableText=${
-                                      content?.ObjPersonRole[auth.title]
-                                    }`}
+                                    href={`/search?SearchableText=${encodeURIComponent(
+                                      content.ObjPersonRole[auth.title],
+                                    )}`}
                                   >
                                     {content.ObjPersonRole[auth.title]}
                                   </a>
@@ -381,29 +381,34 @@ export default function ArtworkView(props) {
                                 </>
                               )}
                             </span>
+
                             <span>
-                              {(content.PerBirthDateTxt[auth.title] !== null ||
-                                content.PerDeathDateTxt)[auth.title] !==
-                                null && (
-                                <>
-                                  <span> (</span>
-                                  <span>
-                                    {content?.PerBirthDateTxt[
-                                      auth.title
-                                    ]?.slice(-4)}
-                                  </span>
-                                  {content.PerBirthDateTxt[auth.title] !==
-                                    null &&
-                                    content.PerDeathDateTxt[auth.title] !==
-                                      null && <span> - </span>}
-                                  <span>
-                                    {content?.PerDeathDateTxt[
-                                      auth.title
-                                    ]?.slice(-4)}
-                                  </span>
-                                  <span>) </span>
-                                </>
-                              )}
+                              {content &&
+                                (content?.PerBirthDateTxt?.[auth.title] ||
+                                  content?.PerDeathDateTxt?.[auth.title]) && (
+                                  <>
+                                    <span> (</span>
+                                    {content?.PerBirthDateTxt?.[auth.title] && (
+                                      <span>
+                                        {content?.PerBirthDateTxt[
+                                          auth.title
+                                        ].slice(-4)}
+                                      </span>
+                                    )}
+                                    {content?.PerBirthDateTxt?.[auth.title] &&
+                                      content?.PerDeathDateTxt?.[
+                                        auth.title
+                                      ] && <span> - </span>}
+                                    {content?.PerDeathDateTxt?.[auth.title] && (
+                                      <span>
+                                        {content?.PerDeathDateTxt[
+                                          auth.title
+                                        ].slice(-4)}
+                                      </span>
+                                    )}
+                                    <span>) </span>
+                                  </>
+                                )}
                             </span>
                           </p>
                         ))}

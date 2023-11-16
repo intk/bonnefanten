@@ -22,9 +22,19 @@ function ArtworkPreview(props) {
       }).component || DefaultImageSVG;
 
   return (
-    <Link to={props['@id']}>
-      <img src={src} alt={item.title ?? 'alt'} />
-    </Link>
+    <>
+      {item.image_field !== '' ? (
+        <Link to={props['@id']}>
+          <img src={src} alt={item.title ?? 'alt'} />
+        </Link>
+      ) : (
+        <img
+          src={src}
+          alt={item.title ?? 'alt'}
+          style={{ visibility: 'hidden' }}
+        />
+      )}
+    </>
   );
 }
 

@@ -138,7 +138,11 @@ export default function ArtworkView(props) {
   };
 
   const materials = content.ObjMaterialTxt.split(',');
+  const techniques = content.ObjTechniqueTxt.split(',');
   const materialsArray = materials.map((material, index) => material.trim());
+  const techniquesArray = techniques.map((technique, index) =>
+    technique.trim(),
+  );
 
   // Buttons for the image and text
   const Controls = ({ zoomIn, zoomOut, resetTransform }) => (
@@ -497,11 +501,16 @@ export default function ArtworkView(props) {
                     </td>
                     <td className="columntwo">
                       <p>
-                        <a
-                          href={`/search?SearchableText=${content.ObjTechniqueTxt}`}
-                        >
-                          {content.ObjTechniqueTxt}
-                        </a>
+                        {techniquesArray.map((technique, index) => (
+                          <span>
+                            <a
+                              href={`${intl.locale}/advancedsearch/#query=%5B%7B"i"%3A"portal_type"%2C"o"%3A"paqo.selection.any"%2C"v"%3A%5B"artwork"%5D%7D%2C%7B"i"%3A"artwork_technique"%2C"o"%3A"paqo.list.contains"%2C"v"%3A%5B"${technique}"%5D%7D%5D&sort_order=ascending`}
+                            >
+                              {technique}
+                            </a>
+                            {index !== techniques.length - 1 ? ', ' : ''}
+                          </span>
+                        ))}
                       </p>
                     </td>
                   </tr>

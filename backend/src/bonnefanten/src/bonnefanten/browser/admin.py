@@ -88,7 +88,7 @@ class AdminFixes(BrowserView):
         # end_range = self.request.form.get("end_range", 3000)
         object_id = self.request.form.get("object_id")
         limit = self.request.form.get("limit", "1000")
-        offset = self.request.form.get("offset", "0")
+        offset = self.request.form.get("offset", "4000")
         if top_limit != "0":
             offset = str(top_limit)
         category = self.request.form.get("category")
@@ -197,7 +197,7 @@ class AdminFixes(BrowserView):
         return "all done"
 
     def serial_import(self):
-        start_value = self.request.form.get("start_limit", "0")
+        start_value = self.request.form.get("start_limit", "4000")
         top_limit = self.request.form.get("top_limit", "0")
         for offset in range(int(start_value), int(top_limit), 1000):
             self.import_objects(top_limit=offset)

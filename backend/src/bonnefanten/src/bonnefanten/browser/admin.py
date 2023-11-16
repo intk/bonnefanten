@@ -81,14 +81,16 @@ class AdminFixes(BrowserView):
 
         return trans
 
-    def import_objects(self):
+    def import_objects(self, top_limit="0"):
         global counter
         counter = 1
         # start_range = self.request.form.get("start_range", 0)
         # end_range = self.request.form.get("end_range", 3000)
         object_id = self.request.form.get("object_id")
-        limit = self.request.form.get("limit", "100")
+        limit = self.request.form.get("limit", "1000")
         offset = self.request.form.get("offset", "0")
+        if top_limit != "0":
+            offset = str(top_limit)
         category = self.request.form.get("category")
 
         start_time_count = datetime.now()
@@ -193,6 +195,11 @@ class AdminFixes(BrowserView):
             f"The sync function ended at {end_time} for the range of objects between offset {offset} and limit {limit}. It took {durationhours} hour {durationminutes} minutes and {durationseconds} seconds"
         )
         return "all done"
+
+    def serial_import(self):
+        top_limit = self.request.form.get("top_limit", "0")
+        for offset in range(0, int(top_limit), 1000):
+            self.import_objects(top_limit=offset)
 
 
 def import_one_record(self, record, container, container_en, catalog, headers):

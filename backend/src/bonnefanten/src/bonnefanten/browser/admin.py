@@ -82,6 +82,8 @@ class AdminFixes(BrowserView):
         return trans
 
     def import_objects(self):
+        global counter
+        counter = 1
         # start_range = self.request.form.get("start_range", 0)
         # end_range = self.request.form.get("end_range", 3000)
         object_id = self.request.form.get("object_id")
@@ -89,8 +91,7 @@ class AdminFixes(BrowserView):
         offset = self.request.form.get("offset", "0")
         category = self.request.form.get("category")
 
-        counter = 0
-
+        start_time_count = datetime.now()
         start_time = datetime.now().strftime(
             "%Y-%m-%d %H:%M:%S"
         )  # Record the start time
@@ -100,7 +101,7 @@ class AdminFixes(BrowserView):
         log_to_file(f"========================")
         log_to_file(f"========================")
         log_to_file(
-            f"The sync function started at {start_time} for the range of objects between {offset} and {limit} "
+            f"The sync function started at {start_time} for the range of objects between {offset} offset and {limit} limit"
         )
 
         if not os.environ.get("DOCKER_DEPLOYMENT"):
@@ -171,7 +172,6 @@ class AdminFixes(BrowserView):
 
         records = json.loads(api_answer)
         for record in records:
-
             import_one_record(
                 self,
                 record=record,
@@ -181,23 +181,30 @@ class AdminFixes(BrowserView):
                 headers=headers,
             )
 
+        end_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        end_time_couunt = datetime.now()
+        duration = end_time_couunt - start_time_count
+        durationhours = duration.total_seconds() // 3600
+        durationminutes = (duration.total_seconds() % 3600) // 60
+        durationseconds = duration.total_seconds() % 60
+
+        log_to_file("--------------")
+        log_to_file(
+            f"The sync function ended at {end_time} for the range of objects between offset {offset} and limit {limit}. It took {durationhours} hour {durationminutes} minutes and {durationseconds} seconds"
+        )
         return "all done"
 
 
 def import_one_record(self, record, container, container_en, catalog, headers):
-    # Convert <dc_record> element to XML string
-    # dc_record_xml = ET.tostring(record, encoding='unicode')
+    global counter
+    log_to_file(f"{counter}. object")
 
-    # print(dc_record_xml)
-    # element = lxml.etree.fromstring(dc_record_xml)
     importedAuthors = import_authors(self, record)
     if importedAuthors:
         authors, authors_en = importedAuthors
     else:
         authors = "null"
         authors_en = "null"
-
-    log_to_file(f"import_authors: authors = {authors}, authors_en = {authors_en}")
 
     record_text = json.dumps(record)
     info = {"nl": {}, "en": {}}
@@ -414,9 +421,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
             if lang == "nl":
                 if authors != "null":
-                    log_to_file(f"authors {authors}")
                     for author in authors:
-                        log_to_file(f"author {author}")
                         relation.delete(
                             source=obj, target=author, relationship="authors"
                         )
@@ -434,7 +439,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
                             source=obj, target=author_en, relationship="authors"
                         )
 
-            log_to_file(f"{ObjectNumber} object is updated")
+            log_to_file(f"Object is updated: {ObjectNumber} id and {title} title")
 
             # adding images
             import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
@@ -467,20 +472,18 @@ def import_one_record(self, record, container, container_en, catalog, headers):
             for author_en in authors_en:
                 relation.create(source=obj_en, target=author_en, relationship="authors")
 
+    counter = counter + 1
+
 
 def create_and_setup_object(title, container, info, intl, object_type, obj_id):
     """
     Create an object with the given title and container, then set its attributes
     using the provided info and intl dictionaries.
     """
-    log_to_file(f"This is for create and setup {title}")
+    log_to_file(f"Creating the object with title = ' {title} '")
     # urlTitle = title.replace(" ", "-").lower()
     raw_obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{obj_id}"
-    log_to_file(f"raw id {raw_obj_id}")
 
-    # Using regex to sanitize the ID
-    # obj_id = re.sub(r"[^a-zA-Z0-9-_]", "", raw_obj_id)
-    log_to_file(f"obj_id {obj_id}")
     try:
         obj = api.content.create(
             type=object_type,
@@ -613,8 +616,8 @@ def import_images(container, object_id, headers):
 
 
 def log_to_file(message):
-    # log_file_path = "/app/logs/collectionLogs.txt"
-    log_file_path = "/var/local/bonnefanten/collectionLogs.txt"
+    log_file_path = "/app/logs/collectionLogs.txt"
+    # log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
 
     # Attempt to create the file if it doesn't exist
     try:

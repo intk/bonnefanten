@@ -614,7 +614,7 @@ def import_images(container, object_id, headers):
 
 def log_to_file(message):
     # log_file_path = "/app/logs/collectionLogs.txt"
-    log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
+    log_file_path = "/var/local/bonnefanten/collectionLogs.txt"
 
     # Attempt to create the file if it doesn't exist
     try:

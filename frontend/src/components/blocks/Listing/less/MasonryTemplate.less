@@ -1,5 +1,11 @@
 .masonary-template{
-  padding-top: 173px;
+  @media screen and (min-width: 768px){
+    padding-top: 10px;
+  }
+  @media screen and (min-width: 992px) {
+    padding-top: 106px;
+  }
+
 
   a.plone-item-card-link{
     text-decoration: none !important;
@@ -14,7 +20,11 @@
   }
 
   .masonry-multiple-column{
-    padding: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    @media screen and (min-width: 768px) {
+      padding: 20px;
+    }
     .plone-item-card{
       img{
         max-width: 100% !important;
@@ -23,12 +33,21 @@
     }
   }
   .masonry-multiple-column > div {
-    padding-bottom: 40px;
+    padding-bottom: 8px;
+    @media screen and (min-width: 992px) {
+      padding-bottom: 17px;
+    }
   }
   .plone-item-title{
     text-decoration: none !important;
     border-bottom: 0px;
-    margin-top: 15px;
+    margin-top: 8px;
+    margin-bottom: 12.5px;
+    @media screen and (min-width: 992px) {
+      margin-top: 8px;
+      margin-bottom: 13px;
+    }
+
   }
   .plone-item-title p{
     color: var(--bonnefanten-primary, #f9423a) !important;
@@ -46,9 +65,46 @@
     margin-bottom: 5px;
     color: #575756;
     font-family: StyreneRegular, Arial, sans-serif;
-    font-size: 19px;
-    letter-spacing: 0;
+    // font-size: 1.063em;
+    font-size: 17px !important;
+    letter-spacing: 0 !important;
     line-height: 25px;
+    @media screen and (max-width: 992px){
+      font-size: 17px !important;
+    }
+  }
+  .item-description{
+    // font-size: 1.063em;
+    font-size: 17px !important;
+    @media screen and (max-width: 992px) {
+        font-size: 17px !important;
+      }
   }
 }
 
+.masonary-listing-page{
+  #view{
+    padding-right: 0.5px;
+    @media screen and (min-width: 768px) and (max-width: 992px){
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    .documentFirstHeading{
+        margin-top: 80px;
+        // margin-bottom: 0px;
+            @media screen and (min-width: 768px) and (max-width: 992px) {
+              padding-left: 25px;
+            }
+      @media screen and (min-width: 768px){
+        margin-top: 150px !important;
+        // margin-bottom: 10px;
+      }
+    }
+    #page-document > .content-container{
+      margin-top: 37px;
+        @media screen and (min-width: 992px) {
+          margin-top: 50px;
+        }
+    }
+  }
+}

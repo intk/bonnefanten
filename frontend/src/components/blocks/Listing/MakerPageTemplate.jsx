@@ -12,7 +12,7 @@ const Masonry = loadable(() => import('react-masonry-css'));
 const Card = ({ item, showDescription = true }) => {
   return (
     <div className="plone-item-card">
-      <BodyClass className="masonary-listing-page" />
+      <BodyClass className="maker-page-listing" />
       <UniversalLink href={item['@id']} className="plone-item-card-link">
         {/* {image && (
           <figure className="listing-image">
@@ -25,19 +25,15 @@ const Card = ({ item, showDescription = true }) => {
             <p>{item.title}</p>
           </h3>
           <div className="desctiption">
-            <span className="item-description">
+            {/* <span className="item-description">
               {item.artwork_author &&
-                item.artwork_author.map((author, index) => (
-                  <span key={author}>
-                    {author}
-                    {index + 1 !== item.artwork_author.length && ', '}
-                  </span>
+                item.artwork_author.map((author) => (
+                  <span key={author}>{author}, </span>
                 ))}
             </span>
             <span className="item-description">
-              {item.ObjDateFromTxt && ', '}
               {item.ObjDateFromTxt && item.ObjDateFromTxt}
-            </span>
+            </span> */}
           </div>
         </div>
       </UniversalLink>
@@ -51,13 +47,13 @@ const Card = ({ item, showDescription = true }) => {
 };
 
 const breakpointColumnsObj = {
-  default: 4,
-  1200: 4,
+  default: 3,
+  1200: 3,
   992: 2,
   768: 1,
 };
 
-const MasonryTemplate = (props) => {
+const MakerPageTemplate = (props) => {
   const { items } = props;
 
   return (
@@ -78,8 +74,8 @@ const MasonryTemplate = (props) => {
   );
 };
 
-MasonryTemplate.propTypes = {
+MakerPageTemplate.propTypes = {
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-export default MasonryTemplate;
+export default MakerPageTemplate;

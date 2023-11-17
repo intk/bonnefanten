@@ -2,6 +2,7 @@ import ListingsBlockTemplate from '@package/components/blocks/Listing/ListingTem
 import CategoryBlockTemplate from '@package/components/blocks/Listing/CategoryTemplate';
 import MasonryBlockTemplate from '@package/components/blocks/Listing/MasonryTemplate';
 import MakerPageTemplate from '@package/components/blocks/Listing/MasonryTemplate';
+import SliderTemplate from '@package/components/blocks/Listing/SliderTemplate';
 // import MasonryTemplate from './MasonryTemplate';
 
 export default (config) => {
@@ -71,6 +72,12 @@ export default (config) => {
       isDefault: false,
       title: 'Maker Page',
       template: MakerPageTemplate,
+    },
+    {
+      id: 'sliderview',
+      isDefault: false,
+      title: 'Slider Wiew',
+      template: SliderTemplate,
     },
   ];
 

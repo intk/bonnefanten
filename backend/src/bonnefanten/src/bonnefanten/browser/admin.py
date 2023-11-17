@@ -503,7 +503,7 @@ def create_and_setup_object(title, container, info, intl, object_type, obj_id):
     """
     log_to_file(f"Creating the object with title = ' {title} '")
     raw_obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{obj_id}"
-    sanitized_id = re.sub(r"[^a-zA-Z0-9-]", "-", raw_obj_id)
+    sanitized_id = re.sub(r"[^a-zA-Z0-9-]", "", raw_obj_id)
 
     try:
         obj = api.content.create(

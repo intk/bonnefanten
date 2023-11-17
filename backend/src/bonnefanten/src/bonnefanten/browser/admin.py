@@ -185,7 +185,7 @@ class AdminFixes(BrowserView):
                     headers=headers,
                 )
                 transaction_counter += 1
-                if transaction_counter >= 500: # Checking for 500. transaction
+                if transaction_counter >= 500:  # Checking for 500. transaction
                     transaction.commit()  # Commit the transaction
                     transaction_counter = 0
             except Exception as e:
@@ -637,8 +637,8 @@ def import_images(container, object_id, headers):
 
 
 def log_to_file(message):
-    # log_file_path = "/app/logs/collectionLogs.txt"
-    log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
+    log_file_path = "/app/logs/collectionLogs.txt"
+    # log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
 
     # Attempt to create the file if it doesn't exist
     try:

@@ -84,11 +84,12 @@ class AdminFixes(BrowserView):
     def import_objects(self, top_limit="0"):
         global counter
         counter = 1
+        transaction_counter = 0
         # start_range = self.request.form.get("start_range", 0)
         # end_range = self.request.form.get("end_range", 3000)
         object_id = self.request.form.get("object_id")
         limit = self.request.form.get("limit", "1000")
-        offset = self.request.form.get("offset", "4000")
+        offset = self.request.form.get("offset", "0")
         if top_limit != "0":
             offset = str(top_limit)
         category = self.request.form.get("category")
@@ -174,14 +175,26 @@ class AdminFixes(BrowserView):
 
         records = json.loads(api_answer)
         for record in records:
-            import_one_record(
-                self,
-                record=record,
-                container=container,
-                container_en=container_en,
-                catalog=catalog,
-                headers=headers,
-            )
+            try:
+                import_one_record(
+                    self,
+                    record=record,
+                    container=container,
+                    container_en=container_en,
+                    catalog=catalog,
+                    headers=headers,
+                )
+                transaction_counter += 1
+                if transaction_counter >= 500: # Checking for 500. transaction
+                    transaction.commit()  # Commit the transaction
+                    transaction_counter = 0
+            except Exception as e:
+                log_to_file(
+                    f"Error importing record: {record.get('Id', 'Unknown ID')} - {e}"
+                )
+
+        if transaction_counter > 0:
+            transaction.commit()  # Final commit for any remaining records
 
         end_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         end_time_couunt = datetime.now()
@@ -197,7 +210,7 @@ class AdminFixes(BrowserView):
         return "all done"
 
     def serial_import(self):
-        start_value = self.request.form.get("start_limit", "4000")
+        start_value = self.request.form.get("start_value", "4000")
         top_limit = self.request.form.get("top_limit", "0")
         for offset in range(int(start_value), int(top_limit), 1000):
             self.import_objects(top_limit=offset)
@@ -489,21 +502,21 @@ def create_and_setup_object(title, container, info, intl, object_type, obj_id):
     using the provided info and intl dictionaries.
     """
     log_to_file(f"Creating the object with title = ' {title} '")
-    # urlTitle = title.replace(" ", "-").lower()
     raw_obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{obj_id}"
+    sanitized_id = re.sub(r"[^a-zA-Z0-9-]", "-", raw_obj_id)
 
     try:
         obj = api.content.create(
             type=object_type,
-            id=raw_obj_id,
+            id=sanitized_id,
             title=title,
             container=container,
         )
-    except TypeError as e:
+    except Exception as e:
         log_to_file(
             f"Error while creating the Object {title}, -> info {info} -> error {e}"
         )
-        raise e
+        return None
 
     lang = obj.language
     for k, v in info[lang].items():
@@ -624,8 +637,8 @@ def import_images(container, object_id, headers):
 
 
 def log_to_file(message):
-    log_file_path = "/app/logs/collectionLogs.txt"
-    # log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
+    # log_file_path = "/app/logs/collectionLogs.txt"
+    log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
 
     # Attempt to create the file if it doesn't exist
     try:

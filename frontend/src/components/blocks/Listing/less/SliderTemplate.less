@@ -8,7 +8,7 @@
   height: 80vh;
   .listing-slider{
     img{
-      max-height: 80vh !important;
+      max-height: calc(80vh - 190px) !important;
       height: auto;
       max-width: 100%;
       object-fit: contain;
@@ -44,7 +44,7 @@
         padding: 15px 240px;
     }
     @media screen and (min-width: 1400px) {
-      padding: 15px 345px;
+      padding: 15px 280px;
     }
   }
   .plone-item-card-link{
@@ -53,6 +53,7 @@
     margin-right: auto !important;
     text-decoration: none !important;
     margin-bottom: 35px;
+    max-height: 100%;
     @media screen and (min-width: 768px) {}
   }
   .plone-item-card-link > * {
@@ -75,7 +76,7 @@
       height: 80px;
       margin-left: 12px;
     }
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1400px) {
       // width: 70px;
       // height: 85px;
       margin-left: 65px;
@@ -149,13 +150,17 @@
   }
 
   .collectie-header{
-    margin-bottom: 65px;
-    margin-left: 10px;
+    margin-bottom: 60px;
+    margin-left: 17px;
+    @media screen and (min-width: 992px) {
+      margin-bottom: 65px;
+      margin-left: 10px;
+      }
     @media screen and (min-width: 992px) {
       margin-bottom: 80px;
     }
     @media screen and (min-width: 1400px) {
-      margin-bottom: 85px;
+      margin-bottom: 80px;
     }
     h3{
       font-size: 11vw;

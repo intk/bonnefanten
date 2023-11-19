@@ -12,38 +12,30 @@ const Card = ({ item, showDescription = true }) => {
     <div className="plone-item-card">
       <BodyClass className="masonary-listing-page" />
       <UniversalLink href={item['@id']} className="plone-item-card-link">
-        {/* {image && (
-          <figure className="listing-image">
-            <img src={image} alt="" role="presentation" />
-          </figure>
-        )} */}
-        <ArtworkPreview {...item} />
-        <div className="title-description">
-          <h3 className="plone-item-title">
-            <p>{item.title}</p>
-          </h3>
-          <div className="desctiption">
-            <span className="item-description">
-              {item.artwork_author &&
-                item.artwork_author.map((author, index) => (
-                  <span key={author}>
-                    {author}
-                    {index + 1 !== item.artwork_author.length && ', '}
-                  </span>
-                ))}
-            </span>
-            <span className="item-description">
-              {item.ObjDateFromTxt && ', '}
-              {item.ObjDateFromTxt && item.ObjDateFromTxt}
-            </span>
+        <div className="content">
+          <ArtworkPreview {...item} />
+          <div className="title-description">
+            <h3 className="plone-item-title">
+              <p>{item.title}</p>
+            </h3>
+            <div className="desctiption">
+              <span className="item-description">
+                {item.artwork_author &&
+                  item.artwork_author.map((author, index) => (
+                    <span key={author}>
+                      {author}
+                      {index + 1 !== item.artwork_author.length && ', '}
+                    </span>
+                  ))}
+              </span>
+              <span className="item-description">
+                {item.ObjDateFromTxt && ', '}
+                {item.ObjDateFromTxt && item.ObjDateFromTxt}
+              </span>
+            </div>
           </div>
         </div>
       </UniversalLink>
-      {/* {!!showDescription && (
-        <p className="plone-item-description">
-          <div>{item.description}</div>
-        </p>
-      )} */}
     </div>
   );
 };

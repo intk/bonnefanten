@@ -5,7 +5,7 @@
 }
 
 .slider-template {
-  height: 80vh;
+  // height: 80vh;
   .listing-slider{
     img{
       max-height: calc(80vh - 190px) !important;
@@ -14,6 +14,13 @@
       object-fit: contain;
       margin-top: auto;
       margin-bottom: auto;
+      overflow: hidden;
+      @media screen and (min-width: 768px){
+        max-height: 80vh !important;
+      }
+      @media screen and (min-width:1200px) {
+        margin-top: 12px;
+      }
     }
   }
   .content-wrapper{
@@ -21,14 +28,14 @@
   }
   .buttons{
     position: absolute;
-    top: calc(50% - 50px);
+    top: calc(50% - 33px);
     margin-left: auto;
     margin-right: auto;
     display: flex;
     justify-content: space-between;
     width: 100%;
     @media screen and (min-width: 768px) {
-      top: calc(50% - 65px);
+      top: calc(50% - 45px);
     }
   }
   .plone-item-card {
@@ -39,12 +46,21 @@
     margin-right: auto;
     padding: 15px 46px;
     width: auto;
+    // height: 80vh;
     height: calc(80vh - 50px);
+    overflow: hidden;
+
+    @media screen and (min-width: 768px){
+      padding: 0px 40px;
+      height: 80vh;
+    }
     @media screen and (min-width: 992px) {
-        padding: 15px 240px;
+      padding: 0px 220px;
+      // height: 80vh;
     }
     @media screen and (min-width: 1400px) {
-      padding: 15px 280px;
+      // padding: 15px 280px;
+      // height: 80vh;
     }
   }
   .plone-item-card-link{
@@ -52,9 +68,11 @@
     margin-left: auto !important;
     margin-right: auto !important;
     text-decoration: none !important;
-    margin-bottom: 35px;
     max-height: 100%;
-    @media screen and (min-width: 768px) {}
+    overflow: hidden;
+     @media screen and (min-width: 992px) {
+        // margin-top: 30px;
+     }
   }
   .plone-item-card-link > * {
     margin-left: auto !important;
@@ -75,12 +93,12 @@
     @media screen and (min-width: 768px) {
       width: 62px;
       height: 80px;
-      margin-left: 12px;
+      margin-left: 10px;
     }
-    @media screen and (min-width: 1400px) {
+    @media screen and (min-width: 1480px) {
       // width: 70px;
       // height: 85px;
-      margin-left: 65px;
+      margin-left: 70px;
     }
   }
   .right-button {
@@ -92,14 +110,14 @@
     border: none;
     opacity: 60%;
     @media screen and (min-width: 768px) {
-      margin-left: 12px;
+      margin-left: 10px;
       width: 62px;
       height: 80px;
     }
-    @media screen and (min-width: 1400px) {
+    @media screen and (min-width: 1480px) {
       // width: 70px;
       // height: 85px;
-      margin-right: 65px;
+      margin-right: 70px;
     }
   }
   .title-description{
@@ -107,7 +125,7 @@
     margin-top: 10px;
     @media screen and (min-width: 992px) {
       position: absolute;
-      bottom: 23px;
+      bottom: 7px;
       margin-left: 25px !important;
       visibility: hidden;
     }
@@ -152,17 +170,20 @@
   }
 
   .collectie-header{
-    margin-bottom: 66px;
+    margin-bottom: 49px;
     margin-left: 17px;
-    @media screen and (min-width: 992px) {
-      margin-bottom: 65px;
+    @media screen and (min-width: 768px) {
+      margin-bottom: 35px;
       margin-left: 10px;
       }
     @media screen and (min-width: 992px) {
-      margin-bottom: 80px;
+      margin-bottom: 35px;
+    }
+    @media screen and (min-width: 1200px) {
+      margin-bottom: 36px;
     }
     @media screen and (min-width: 1400px) {
-      margin-bottom: 80px;
+      margin-bottom: 40px;
     }
     h3{
       font-size: 11vw;

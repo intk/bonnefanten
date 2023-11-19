@@ -2,7 +2,9 @@ import ListingsBlockTemplate from '@package/components/blocks/Listing/ListingTem
 import CategoryBlockTemplate from '@package/components/blocks/Listing/CategoryTemplate';
 import MasonryBlockTemplate from '@package/components/blocks/Listing/MasonryTemplate';
 import MakerPageTemplate from '@package/components/blocks/Listing/MasonryTemplate';
-import SliderTemplate from '@package/components/blocks/Listing/SliderTemplate';
+import CollectionSliderTemplate from '@package/components/blocks/Listing/CollectionSliderTemplate';
+import PermanentExhibitionsTemplate from '@package/components/blocks/Listing/PermanentExhibitionsTemplate';
+import HomepageSliderTemplate from '@package/components/blocks/Listing/HomepageSliderTemplate';
 // import MasonryTemplate from './MasonryTemplate';
 
 export default (config) => {
@@ -74,10 +76,22 @@ export default (config) => {
       template: MakerPageTemplate,
     },
     {
-      id: 'sliderview',
+      id: 'collectionsliderview',
       isDefault: false,
-      title: 'Slider Wiew',
-      template: SliderTemplate,
+      title: 'Collection Slider Wiew',
+      template: CollectionSliderTemplate,
+    },
+    {
+      id: 'permanentexhibitionsview',
+      isDefault: false,
+      title: 'Permanent Exhibitions Wiew',
+      template: PermanentExhibitionsTemplate,
+    },
+    {
+      id: 'homepagesliderview',
+      isDefault: false,
+      title: 'Homepage Slider Wiew',
+      template: HomepageSliderTemplate,
     },
   ];
 

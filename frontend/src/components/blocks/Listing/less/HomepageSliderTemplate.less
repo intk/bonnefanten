@@ -1,0 +1,184 @@
+.block.listing.homepagesliderview {
+  height: auto;
+}
+
+.homepage-slider-template {
+  min-height: 500px;
+  max-height: 900px;
+  height: 70vh;
+
+  @media screen and (min-height: 768px) {
+    height: 90vh;
+  }
+
+  @media (min-width: 1640px) {
+    max-height: 90vh;
+  }
+  .listing-slider {
+    height: 100%;
+    img {
+      // width: 100vw;
+      height: 70vh;
+      max-height: 900px;
+      object-fit: contain;
+      margin-top: auto;
+      margin-bottom: auto;
+      overflow: hidden;
+
+      @media screen and (min-width: 768px) {
+        // max-height: 100vh !important;
+        height: 90vh;
+      }
+
+      @media screen and (min-width:1200px) {
+      }
+      @media (min-width: 1640px) {
+        max-height: 90vh;
+      }
+    }
+  }
+
+  .content-wrapper {
+    position: relative;
+    height: 100%;
+  }
+
+  .buttons {
+    position: absolute;
+    top: calc(50% - 33px);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    @media screen and (min-width: 768px) {
+      top: calc(50% - 45px);
+    }
+  }
+
+  .plone-item-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0%;
+    width: auto;
+    overflow: hidden;
+
+    @media screen and (min-width: 768px) {
+    }
+    @media screen and (min-width: 992px) {
+    }
+    @media screen and (min-width: 1400px) {
+    }
+  }
+
+  .plone-item-card-link {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-decoration: none !important;
+    max-height: 100%;
+    overflow: hidden;
+
+    @media screen and (min-width: 992px) {}
+  }
+
+  .plone-item-card-link>* {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    // max-width: 40%;
+  }
+
+  button>.icon {
+    background-color: transparent;
+  }
+
+  .left-button {
+    margin-top: 1px;
+    margin-left: 3px;
+    width: 36px;
+    height: 55px;
+    background-color: transparent;
+    border: none;
+    opacity: 60%;
+
+    @media screen and (min-width: 768px) {
+      width: 62px;
+      height: 80px;
+      margin-left: 10px;
+    }
+
+    @media screen and (min-width: 1480px) {
+      // width: 70px;
+      // height: 85px;
+      margin-left: 70px;
+    }
+  }
+
+  .right-button {
+    margin-top: 1px;
+    margin-right: 3px;
+    width: 36px;
+    height: 55px;
+    background-color: transparent;
+    border: none;
+    opacity: 60%;
+
+    @media screen and (min-width: 768px) {
+      margin-left: 10px;
+      width: 62px;
+      height: 80px;
+    }
+
+    @media screen and (min-width: 1480px) {
+      // width: 70px;
+      // height: 85px;
+      margin-right: 70px;
+    }
+  }
+
+  .title-description {
+    // margin-left: 20px !important;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 47px;
+    margin-left: 25px !important;
+  }
+
+  .plone-item-title {
+    margin-top: 15px;
+    margin-bottom: 5px;
+
+    p {
+      font-size: 20px;
+      color: #b6a782;
+      line-height: 28px;
+      margin-bottom: 0px;
+
+      @media screen and (min-width: 992px) {
+        font-size: 1.8vw;
+        line-height: 2.5vw;
+        color: #ffffff;
+      }
+
+      @media screen and (min-width: 1480px) {
+        font-size: 30px;
+      }
+    }
+  }
+
+  .item-description,
+  .item-description span {
+    font-size: 15px;
+    color: #b6a782;
+    line-height: 25px;
+
+    @media screen and (min-width: 992px) {
+      color: #ffffff;
+      font-size: 17px;
+      line-height: 25px !important;
+    }
+  }
+}

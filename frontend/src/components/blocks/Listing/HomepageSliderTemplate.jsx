@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 // import { ListingBlockHeader } from '@package/components';
 import { UniversalLink } from '@plone/volto/components';
 import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
-import { BodyClass } from '@plone/volto/helpers';
+// import { BodyClass } from '@plone/volto/helpers';
 import ReactSwipe from 'react-swipe';
-import './less/SliderTemplate.less';
+import './less/HomepageSliderTemplate.less';
 
 const Card = ({ item, showDescription = true }) => {
   return (
     <div className="plone-item-card">
-      <BodyClass className="masonary-listing-page" />
+      {/* <BodyClass className="masonary-listing-page" /> */}
       <UniversalLink href={item['@id']} className="plone-item-card-link">
         <div className="content">
           <ArtworkPreview {...item} />
@@ -40,17 +40,12 @@ const Card = ({ item, showDescription = true }) => {
   );
 };
 
-const SliderTemplate = (props) => {
+const HomepageSliderTemplate = (props) => {
   const { items } = props;
   let reactSwipeEl;
 
   return (
-    <div className="slider-template">
-      <div className="collectie-header">
-        <h3>
-          <span>Collectie</span> <span>—</span>
-        </h3>
-      </div>
+    <div className="homepage-slider-template full-width">
       <div className="content-wrapper">
         <ReactSwipe
           className="listing-slider"
@@ -118,8 +113,8 @@ const SliderTemplate = (props) => {
   );
 };
 
-SliderTemplate.propTypes = {
+HomepageSliderTemplate.propTypes = {
   items: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-export default SliderTemplate;
+export default HomepageSliderTemplate;

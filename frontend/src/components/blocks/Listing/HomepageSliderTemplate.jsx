@@ -6,6 +6,7 @@ import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 // import { BodyClass } from '@plone/volto/helpers';
 import ReactSwipe from 'react-swipe';
 import './less/HomepageSliderTemplate.less';
+import { When } from '@package/customizations/components/theme/View/EventDatesInfo';
 
 const Card = ({ item, showDescription = true }) => {
   return (
@@ -15,11 +16,24 @@ const Card = ({ item, showDescription = true }) => {
         <div className="content">
           <ArtworkPreview {...item} />
           <div className="title-description">
-            <h3 className="plone-item-title">
+            {/* <h3 className="plone-item-title">
               <p>{item.title}</p>
-            </h3>
-            <div className="desctiption">
-              <span className="item-description">
+            </h3> */}
+            <div className="slide-description">
+              <div className="header-quotes-wrapper">
+                <div className="quote-top-left quote-bonnefanten">“</div>
+                <div className="quote-top-right quote-bonnefanten">”</div>
+              </div>
+              <div className="slide-title-date">
+                <When
+                  start={item.start}
+                  end={item.end}
+                  whole_day={item.whole_day}
+                  open_end={item.open_end}
+                />
+              </div>
+              <p className="slide-title">{item.title}</p>
+              {/* <span className="documentDescription">
                 {item.artwork_author &&
                   item.artwork_author.map((author, index) => (
                     <span key={author}>
@@ -28,10 +42,10 @@ const Card = ({ item, showDescription = true }) => {
                     </span>
                   ))}
               </span>
-              <span className="item-description">
+              <span className="documentDescription">
                 {item.ObjDateFromTxt && ', '}
                 {item.ObjDateFromTxt && item.ObjDateFromTxt}
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

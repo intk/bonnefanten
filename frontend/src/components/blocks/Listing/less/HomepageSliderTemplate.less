@@ -102,7 +102,7 @@
     height: 55px;
     background-color: transparent;
     border: none;
-    opacity: 60%;
+    opacity: 0.6;
 
     @media screen and (min-width: 768px) {
       width: 62px;
@@ -124,7 +124,7 @@
     height: 55px;
     background-color: transparent;
     border: none;
-    opacity: 60%;
+    opacity: 0.6 !important;
 
     @media screen and (min-width: 768px) {
       margin-left: 10px;
@@ -143,8 +143,10 @@
     // margin-left: 20px !important;
     margin-top: 10px;
     position: absolute;
-    bottom: 47px;
+    bottom: 0px;
+    left: 103px;
     margin-left: 25px !important;
+    width: calc(100% - 250px)
   }
 
   .plone-item-title {
@@ -180,5 +182,29 @@
       font-size: 17px;
       line-height: 25px !important;
     }
+  }
+  .slide-title-date{
+    color: #ffd100 !important;
+    text-decoration: none !important;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .slide-title{
+    color: #ffd100 !important;
+    text-decoration: none !important;
+    font-size: 38px !important;
+    line-height: 45px !important;
+    font-family: 'StyreneBold', Arial, sans-serif;
+    margin-bottom: 32px;
+  }
+  .slide-title:hover {
+    // border-bottom: 1px solid #ffd100 !important;
+    text-decoration: underline !important;
+    text-decoration-color: #ffd100 !important;
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: 5px !important;
+  }
+  .quote-top-left, .quote-top-right{
+    top: 10px !important;
   }
 }

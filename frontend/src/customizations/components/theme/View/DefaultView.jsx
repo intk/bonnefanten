@@ -42,7 +42,7 @@ const DefaultView = (props) => {
       ) : (
         <>
           <h1 className="documentFirstHeading">{content.title}</h1>
-          {content.description && (
+          {content.description ? (
             <div className="description-wrapper">
               <div className="header-quotes-wrapper">
                 <div className="quote-top-left quote-bonnefanten">“</div>
@@ -50,6 +50,8 @@ const DefaultView = (props) => {
               </div>
               <p className="documentDescription">{content.description}</p>
             </div>
+          ) : (
+            <div className="empty-description-wrapper"> </div>
           )}
         </>
       )}

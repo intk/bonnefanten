@@ -4,6 +4,7 @@ import { Grid } from 'semantic-ui-react';
 import { ConditionalLink, UniversalLink } from '@plone/volto/components';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import './less/CategoryTemplate.less';
+import { BodyClass } from '@plone/volto/helpers';
 
 import { isInternalURL } from '@plone/volto/helpers/Url/Url';
 
@@ -15,6 +16,7 @@ const Card = ({ item, showDescription = true }) => {
     : null;
   return (
     <div className="categories plone-item-card">
+      <BodyClass className="category-page" />
       <UniversalLink href={item['@id']} className="plone-item-card-link">
         {image && (
           <figure className="listing-image">
@@ -26,10 +28,19 @@ const Card = ({ item, showDescription = true }) => {
             <span>{item.title}</span>
           </h3>
           <div className="desctiption">
-            <span className="item-description">
+            {/* <span className="item-description">
               {item.artwork_author &&
                 item.artwork_author.map((author) => (
                   <span key={author}>{author}, </span>
+                ))}
+            </span> */}
+            <span className="item-description">
+              {item.artwork_author &&
+                item.artwork_author.map((author, index) => (
+                  <span key={author}>
+                    {author}
+                    {index + 1 !== item.artwork_author.length && ', '}
+                  </span>
                 ))}
             </span>
             <span className="item-description">

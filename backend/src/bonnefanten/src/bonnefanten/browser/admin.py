@@ -175,23 +175,23 @@ class AdminFixes(BrowserView):
 
         records = json.loads(api_answer)
         for record in records:
-            try:
-                import_one_record(
-                    self,
-                    record=record,
-                    container=container,
-                    container_en=container_en,
-                    catalog=catalog,
-                    headers=headers,
-                )
-                transaction_counter += 1
-                # if transaction_counter >= 500:  # Checking for 500. transaction
-                #     transaction.commit()  # Commit the transaction
-                #     transaction_counter = 0
-            except Exception as e:
-                log_to_file(
-                    f"Error importing record: {record.get('Id', 'Unknown ID')} - {e}"
-                )
+            # try:
+            import_one_record(
+                self,
+                record=record,
+                container=container,
+                container_en=container_en,
+                catalog=catalog,
+                headers=headers,
+            )
+            transaction_counter += 1
+            # if transaction_counter >= 500:  # Checking for 500. transaction
+            #     transaction.commit()  # Commit the transaction
+            #     transaction_counter = 0
+            # except Exception as e:
+            #     log_to_file(
+            #         f"Error importing record: {record.get('Id', 'Unknown ID')} - {e}"
+            #     )
 
         if transaction_counter > 0:
             transaction.commit()  # Final commit for any remaining records
@@ -276,7 +276,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         collection_grp_values = [
             grp["CollectionVoc"]["LabelTxt_en"]
             for grp in record["ObjCollectionGrp"]
-            if "LabelTxt_en" in grp.get("CollectionVoc", {})
+            if grp.get("CollectionVoc") and "LabelTxt_en" in grp["CollectionVoc"]
         ]
         info["nl"]["ObjCollectionGrp"] = " | ".join(
             collection_grp_values
@@ -637,8 +637,8 @@ def import_images(container, object_id, headers):
 
 
 def log_to_file(message):
-    log_file_path = "/app/logs/collectionLogs.txt"
-    # log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
+    # log_file_path = "/app/logs/collectionLogs.txt"
+    log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
 
     # Attempt to create the file if it doesn't exist
     try:

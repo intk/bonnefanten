@@ -154,11 +154,11 @@ class AdminFixes(BrowserView):
             equalsField = SubElement(expert, "equalsField")
             equalsField.set("fieldPath", "ObjCollectionGrp.CollectionVoc.LabelTxt_en")
             equalsField.set("operand", category)
-        else:
+        # else:
             # Default search criterion when object_id is not provided
-            greater = SubElement(expert, "greater")
-            greater.set("fieldPath", "__lastModified")
-            greater.set("operand", "2022-08-01T00:00:00")
+            # greater = SubElement(expert, "greater")
+            # greater.set("fieldPath", "__lastModified")
+            # greater.set("operand", "2022-08-01T00:00:00")
 
         # Convert to string
         xml_str = minidom.parseString(tostring(root)).toprettyxml(indent="   ")
@@ -369,108 +369,108 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     brains = catalog.searchResults(
         ObjObjectNumberTxt=ObjectNumber, portal_type="artwork"
     )
-    if len(brains) == 1:
-        lang = brains[0].getObject().language
-        missing_lang = "en" if lang == "nl" else "nl"
-        if missing_lang == "nl":
-            obj = create_and_setup_object(
-                title, container, info, intl, "artwork", title_url
-            )  # Dutch version
-            # log_to_file(f"{ObjectNumber} Dutch version of object is created")
+    # if len(brains) == 1:
+    #     lang = brains[0].getObject().language
+    #     missing_lang = "en" if lang == "nl" else "nl"
+    #     if missing_lang == "nl":
+    #         obj = create_and_setup_object(
+    #             title, container, info, intl, "artwork", title_url
+    #         )  # Dutch version
+    #         # log_to_file(f"{ObjectNumber} Dutch version of object is created")
 
-            if authors != "null":
-                for author in authors:
-                    relation.create(source=obj, target=author, relationship="authors")
+    #         if authors != "null":
+    #             for author in authors:
+    #                 relation.create(source=obj, target=author, relationship="authors")
 
-            manager = ITranslationManager(obj)
-            if not manager.has_translation("en"):
-                manager.register_translation("en", brains[0].getObject())
+    #         manager = ITranslationManager(obj)
+    #         if not manager.has_translation("en"):
+    #             manager.register_translation("en", brains[0].getObject())
 
-            # adding images
-            import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
-            obj.hasImage = True
-            obj.reindexObject()
+    #         # adding images
+    #         import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
+    #         obj.hasImage = True
+    #         obj.reindexObject()
 
-        else:
-            obj_en = create_and_setup_object(
-                title, container_en, info, intl, "artwork", title_url
-            )  # English version
-            # log_to_file(f"{ObjectNumber} English version of object is created")
-            if authors_en != "null":
-                for author in authors_en:
-                    relation.create(
-                        source=obj_en, target=author, relationship="authors"
-                    )
+    #     else:
+    #         obj_en = create_and_setup_object(
+    #             title, container_en, info, intl, "artwork", title_url
+    #         )  # English version
+    #         # log_to_file(f"{ObjectNumber} English version of object is created")
+    #         if authors_en != "null":
+    #             for author in authors_en:
+    #                 relation.create(
+    #                     source=obj_en, target=author, relationship="authors"
+    #                 )
 
-            manager = ITranslationManager(obj_en)
-            if not manager.has_translation("nl"):
-                manager.register_translation("nl", brains[0].getObject())
+    #         manager = ITranslationManager(obj_en)
+    #         if not manager.has_translation("nl"):
+    #             manager.register_translation("nl", brains[0].getObject())
 
-            # adding images
-            import_images(container=obj_en, object_id=info["en"]["Id"], headers=headers)
-            obj_en.hasImage = True
+    #         # adding images
+    #         import_images(container=obj_en, object_id=info["en"]["Id"], headers=headers)
+    #         obj_en.hasImage = True
 
-            obj_en.reindexObject()
+    #         obj_en.reindexObject()
 
-    # # Check if object with ObjectNumber already exists in the container
-    elif brains:
-        for brain in brains:
-            # Object exists, so we fetch it and update it
-            obj = brain.getObject()
+    # # # Check if object with ObjectNumber already exists in the container
+    # elif brains:
+    #     for brain in brains:
+    #         # Object exists, so we fetch it and update it
+    #         obj = brain.getObject()
 
-            # First clear all of the fields
-            schema = obj.getTypeInfo().lookupSchema()
-            fields = getFields(schema)
+    #         # First clear all of the fields
+    #         schema = obj.getTypeInfo().lookupSchema()
+    #         fields = getFields(schema)
 
-            # Exclude these fields from clearing
-            exclude_fields = ["id", "UID", "title", "description", "authors"]
+    #         # Exclude these fields from clearing
+    #         exclude_fields = ["id", "UID", "title", "description", "authors"]
 
-            for field_name, field in fields.items():
-                if field_name not in exclude_fields:
-                    # Clear the field by setting it to its missing_value
-                    setattr(obj, field_name, field.missing_value)
+    #         for field_name, field in fields.items():
+    #             if field_name not in exclude_fields:
+    #                 # Clear the field by setting it to its missing_value
+    #                 setattr(obj, field_name, field.missing_value)
 
-            # Update the object's fields with new data
-            lang = obj.language
-            for k, v in info[lang].items():
-                if v:
-                    setattr(obj, k, v)
+    #         # Update the object's fields with new data
+    #         lang = obj.language
+    #         for k, v in info[lang].items():
+    #             if v:
+    #                 setattr(obj, k, v)
 
-            for k, v in intl[lang].items():
-                if v:
-                    setattr(obj, k, json.dumps(v))
+    #         for k, v in intl[lang].items():
+    #             if v:
+    #                 setattr(obj, k, json.dumps(v))
 
-            if lang == "nl":
-                if authors != "null":
-                    for author in authors:
-                        relation.delete(
-                            source=obj, target=author, relationship="authors"
-                        )
-                        relation.create(
-                            source=obj, target=author, relationship="authors"
-                        )
+    #         if lang == "nl":
+    #             if authors != "null":
+    #                 for author in authors:
+    #                     relation.delete(
+    #                         source=obj, target=author, relationship="authors"
+    #                     )
+    #                     relation.create(
+    #                         source=obj, target=author, relationship="authors"
+    #                     )
 
-            else:
-                if authors != "null":
-                    for author_en in authors_en:
-                        relation.delete(
-                            source=obj, target=author_en, relationship="authors"
-                        )
-                        relation.create(
-                            source=obj, target=author_en, relationship="authors"
-                        )
+    #         else:
+    #             if authors != "null":
+    #                 for author_en in authors_en:
+    #                     relation.delete(
+    #                         source=obj, target=author_en, relationship="authors"
+    #                     )
+    #                     relation.create(
+    #                         source=obj, target=author_en, relationship="authors"
+    #                     )
 
-            log_to_file(f"Object is updated: {ObjectNumber} id and {title} title")
+    #         log_to_file(f"Object is updated: {ObjectNumber} id and {title} title")
 
-            # adding images
-            import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
-            obj.hasImage = True
+    #         # adding images
+    #         import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
+    #         obj.hasImage = True
 
-            # Reindex the updated object
-            obj.reindexObject()
+    #         # Reindex the updated object
+    #         obj.reindexObject()
 
     # # Object doesn't exist, so we create a new one
-    else:
+    if not brains:
         if not title:
             title = "Untitled Object"  # default value for untitled objects
 

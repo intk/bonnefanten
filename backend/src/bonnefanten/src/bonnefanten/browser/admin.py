@@ -155,10 +155,10 @@ class AdminFixes(BrowserView):
             equalsField.set("fieldPath", "ObjCollectionGrp.CollectionVoc.LabelTxt_en")
             equalsField.set("operand", category)
         # else:
-            # Default search criterion when object_id is not provided
-            # greater = SubElement(expert, "greater")
-            # greater.set("fieldPath", "__lastModified")
-            # greater.set("operand", "2022-08-01T00:00:00")
+        # Default search criterion when object_id is not provided
+        # greater = SubElement(expert, "greater")
+        # greater.set("fieldPath", "__lastModified")
+        # greater.set("operand", "2022-08-01T00:00:00")
 
         # Convert to string
         xml_str = minidom.parseString(tostring(root)).toprettyxml(indent="   ")

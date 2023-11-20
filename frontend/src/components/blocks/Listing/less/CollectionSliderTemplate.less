@@ -23,7 +23,9 @@
         padding-left: 13px;
         padding-right: 13px;
       }
-
+      @media screen and (min-width:1400px) {
+        max-height: calc(80vh - 210px) !important;
+      }
     }
   }
   .content-wrapper{
@@ -131,6 +133,13 @@
       margin-left: 25px !important;
       visibility: hidden;
     }
+    @media screen and (min-width: 992px) {
+      margin-left: 33px !important;
+    }
+    @media screen and (min-width: 1400px) {
+      margin-left: 39px !important;
+      bottom: 23px !important;
+    }
   }
   .plone-item-card-link:hover {
     .title-description{
@@ -187,7 +196,7 @@
       margin-bottom: 36px;
     }
     @media screen and (min-width: 1400px) {
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
     h3{
       font-size: 11vw;

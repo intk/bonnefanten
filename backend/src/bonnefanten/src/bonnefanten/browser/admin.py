@@ -185,9 +185,9 @@ class AdminFixes(BrowserView):
                     headers=headers,
                 )
                 transaction_counter += 1
-                if transaction_counter >= 500:  # Checking for 500. transaction
-                    transaction.commit()  # Commit the transaction
-                    transaction_counter = 0
+                # if transaction_counter >= 500:  # Checking for 500. transaction
+                #     transaction.commit()  # Commit the transaction
+                #     transaction_counter = 0
             except Exception as e:
                 log_to_file(
                     f"Error importing record: {record.get('Id', 'Unknown ID')} - {e}"

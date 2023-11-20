@@ -175,23 +175,23 @@ class AdminFixes(BrowserView):
 
         records = json.loads(api_answer)
         for record in records:
-            # try:
-            import_one_record(
-                self,
-                record=record,
-                container=container,
-                container_en=container_en,
-                catalog=catalog,
-                headers=headers,
-            )
-            transaction_counter += 1
+            try:
+                import_one_record(
+                    self,
+                    record=record,
+                    container=container,
+                    container_en=container_en,
+                    catalog=catalog,
+                    headers=headers,
+                )
+                transaction_counter += 1
             # if transaction_counter >= 500:  # Checking for 500. transaction
             #     transaction.commit()  # Commit the transaction
             #     transaction_counter = 0
-            # except Exception as e:
-            #     log_to_file(
-            #         f"Error importing record: {record.get('Id', 'Unknown ID')} - {e}"
-            #     )
+            except Exception as e:
+                log_to_file(
+                    f"Error importing record: {record.get('Id', 'Unknown ID')} - {e}"
+                )
 
         if transaction_counter > 0:
             transaction.commit()  # Final commit for any remaining records

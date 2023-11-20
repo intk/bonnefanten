@@ -14,33 +14,13 @@ const messages = defineMessages({
     id: 'zoeken',
     defaultMessage: 'Zoeken',
   },
-  vervaardiger: {
-    id: 'vervaardiger',
-    defaultMessage: 'Vervaardiger',
+  zoekindecollectie: {
+    id: 'zoekindecollectie',
+    defaultMessage: 'Zoek in de collectie',
   },
-  Titel: {
-    id: 'Titel',
-    defaultMessage: 'Titel',
-  },
-  Objectnaam: {
-    id: 'Objectnaam',
-    defaultMessage: 'Objectnaam',
-  },
-  Materiaal: {
-    id: 'Materiaal',
-    defaultMessage: 'Materiaal',
-  },
-  Techniek: {
-    id: 'Techniek',
-    defaultMessage: 'Techniek',
-  },
-  Objectnummer: {
-    id: 'Objectnummer',
-    defaultMessage: 'Objectnummer',
-  },
-  Creditline: {
-    id: 'Credit Line',
-    defaultMessage: 'Credit Line',
+  advancedsearchlink: {
+    id: 'advancedsearchlink',
+    defaultMessage: 'Geavanceerd zoeken...',
   },
 });
 
@@ -127,6 +107,8 @@ const AdvancedSearch = () => {
     history.push(`/search?SearchableText=${encodeURIComponent(searchQuery)}`);
   };
 
+  const intl = useIntl();
+
   return (
     <div id="advancedsearchblock">
       {' '}
@@ -138,7 +120,7 @@ const AdvancedSearch = () => {
               name="SearchableText"
               value={searchParams.SearchableText}
               onChange={handleInputChange}
-              placeholder="Zoek in de collectie"
+              placeholder={intl.formatMessage(messages.zoekindecollectie)}
             />
           </div>
           <button
@@ -147,12 +129,14 @@ const AdvancedSearch = () => {
             type="submit"
             className="Search-main-button"
           >
-            Zoeken
+            {intl.formatMessage(messages.zoeken)}
           </button>
         </div>
         <p className="link-to-search">
           {' '}
-          <a href="/nl/advancedsearch">Geavanceerd zoeken...</a>{' '}
+          <a href="/nl/advancedsearch">
+            {intl.formatMessage(messages.advancedsearchlink)}
+          </a>{' '}
         </p>
       </div>
     </div>

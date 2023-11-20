@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-11-15T12:54:26.943Z\n"
+"POT-Creation-Date: 2023-11-20T15:24:12.265Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -57,11 +57,6 @@ msgstr ""
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Controls
 msgid "Controls"
-msgstr ""
-
-#: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Credit Line
-msgid "Credit Line"
 msgstr ""
 
 #: components/blocks/Search/FilterList
@@ -129,11 +124,6 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
-#: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Materiaal
-msgid "Materiaal"
-msgstr ""
-
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Multiple choices?
 msgid "Multiple choices?"
@@ -152,16 +142,6 @@ msgstr ""
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: Now on display
 msgid "Now on display"
-msgstr ""
-
-#: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Objectnaam
-msgid "Objectnaam"
-msgstr ""
-
-#: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Objectnummer
-msgid "Objectnummer"
 msgstr ""
 
 #: components/blocks/Teaser/schema
@@ -285,19 +265,9 @@ msgstr ""
 msgid "Teaser"
 msgstr ""
 
-#: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Techniek
-msgid "Techniek"
-msgstr ""
-
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: The button presence disables the live search, the query is issued when you press ENTER
 msgid "The button presence disables the live search, the query is issued when you press ENTER"
-msgstr ""
-
-#: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Titel
-msgid "Titel"
 msgstr ""
 
 #: components/blocks/Teaser/schema
@@ -313,6 +283,11 @@ msgstr ""
 #: components/theme/View/ArtworkView
 # defaultMessage: Verwerving
 msgid "acquisition"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Geavanceerd zoeken...<
+msgid "advancedsearchlink"
 msgstr ""
 
 #: components/theme/View/ArtworkView
@@ -421,11 +396,6 @@ msgstr ""
 msgid "title"
 msgstr ""
 
-#: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Vervaardiger
-msgid "vervaardiger"
-msgstr ""
-
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Views
 msgid "views"
@@ -434,4 +404,9 @@ msgstr ""
 #: components/blocks/AdvancedSearch/AdvancedSearchView
 # defaultMessage: Zoeken
 msgid "zoeken"
+msgstr ""
+
+#: components/blocks/AdvancedSearch/AdvancedSearchView
+# defaultMessage: Zoek in de collectie
+msgid "zoekindecollectie"
 msgstr ""

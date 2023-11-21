@@ -134,7 +134,7 @@ const AdvancedSearch = () => {
         </div>
         <p className="link-to-search">
           {' '}
-          <a href="/nl/advancedsearch">
+          <a href={`${intl.locale}/advancedsearch`}>
             {intl.formatMessage(messages.advancedsearchlink)}
           </a>{' '}
         </p>

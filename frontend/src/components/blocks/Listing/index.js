@@ -1,5 +1,6 @@
 import ListingsBlockTemplate from '@package/components/blocks/Listing/ListingTemplate';
 import CategoryBlockTemplate from '@package/components/blocks/Listing/CategoryTemplate';
+import SubcategoryBlockTemplate from '@package/components/blocks/Listing/SubcategoryTemplate';
 import MasonryBlockTemplate from '@package/components/blocks/Listing/MasonryTemplate';
 import MakerPageTemplate from '@package/components/blocks/Listing/MasonryTemplate';
 import CollectionSliderTemplate from '@package/components/blocks/Listing/CollectionSliderTemplate';
@@ -62,6 +63,12 @@ export default (config) => {
       isDefault: false,
       title: 'Category',
       template: CategoryBlockTemplate,
+    },
+    {
+      id: 'subcategories',
+      isDefault: false,
+      title: 'Subcategory',
+      template: SubcategoryBlockTemplate,
     },
     {
       id: 'masonary',

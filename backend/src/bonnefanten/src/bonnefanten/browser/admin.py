@@ -74,10 +74,10 @@ class AdminFixes(BrowserView):
             content.transition(obj=trans, transition="publish")
         trans._p_changed = True
 
-
         # Copy the preview image, if it exists
         if hasattr(obj, "preview_image"):
             setattr(trans, "preview_image", getattr(obj, "preview_image"))
+
         # if obj.hasImage:
         #     trans.hasImage=True
 
@@ -288,6 +288,7 @@ def import_one_record(self, record, container, container_en, catalog, headers):
         info["en"]["ObjCollectionGrp"] = " | ".join(collection_grp_values)
 
     fields_to_extract = {
+        "Id": "ObjectId",
         "ObjObjectNumberTxt": "ObjObjectNumberTxt",
         "ObjTitleTxt": "ObjTitleTxt",
         "ObjDimensionTxt": "ObjDimensionTxt",
@@ -367,119 +368,117 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     #     info["en"]["images"] = "null"
 
     # Find the existing object
-    ObjectNumber = info["nl"]["ObjObjectNumberTxt"]
+    ObjectId = info["nl"]["ObjectId"]
 
     # Check if only one language version of the object with ObjectNumber exists
-    brains = catalog.searchResults(
-        ObjObjectNumberTxt=ObjectNumber, portal_type="artwork"
-    )
-    # if len(brains) == 1:
-    #     lang = brains[0].getObject().language
-    #     missing_lang = "en" if lang == "nl" else "nl"
-    #     if missing_lang == "nl":
-    #         obj = create_and_setup_object(
-    #             title, container, info, intl, "artwork", title_url
-    #         )  # Dutch version
-    #         # log_to_file(f"{ObjectNumber} Dutch version of object is created")
+    brains = catalog.searchResults(ObjectId=ObjectId, portal_type="artwork")
+    if len(brains) == 1:
+        lang = brains[0].getObject().language
+        missing_lang = "en" if lang == "nl" else "nl"
+        if missing_lang == "nl":
+            obj = create_and_setup_object(
+                title, container, info, intl, "artwork", title_url, ObjectId
+            )  # Dutch version
+            # log_to_file(f"{ObjectNumber} Dutch version of object is created")
 
-    #         if authors != "null":
-    #             for author in authors:
-    #                 relation.create(source=obj, target=author, relationship="authors")
+            if authors != "null":
+                for author in authors:
+                    relation.create(source=obj, target=author, relationship="authors")
 
-    #         manager = ITranslationManager(obj)
-    #         if not manager.has_translation("en"):
-    #             manager.register_translation("en", brains[0].getObject())
+            manager = ITranslationManager(obj)
+            if not manager.has_translation("en"):
+                manager.register_translation("en", brains[0].getObject())
 
-    #         # adding images
-    #         import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
-    #         obj.hasImage = True
-    #         obj.reindexObject()
+            # adding images
+            import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
+            obj.hasImage = True
+            obj.reindexObject()
 
-    #     else:
-    #         obj_en = create_and_setup_object(
-    #             title, container_en, info, intl, "artwork", title_url
-    #         )  # English version
-    #         # log_to_file(f"{ObjectNumber} English version of object is created")
-    #         if authors_en != "null":
-    #             for author in authors_en:
-    #                 relation.create(
-    #                     source=obj_en, target=author, relationship="authors"
-    #                 )
+        else:
+            obj_en = create_and_setup_object(
+                title, container_en, info, intl, "artwork", title_url, ObjectId
+            )  # English version
+            # log_to_file(f"{ObjectNumber} English version of object is created")
+            if authors_en != "null":
+                for author in authors_en:
+                    relation.create(
+                        source=obj_en, target=author, relationship="authors"
+                    )
 
-    #         manager = ITranslationManager(obj_en)
-    #         if not manager.has_translation("nl"):
-    #             manager.register_translation("nl", brains[0].getObject())
+            manager = ITranslationManager(obj_en)
+            if not manager.has_translation("nl"):
+                manager.register_translation("nl", brains[0].getObject())
 
-    #         # adding images
-    #         import_images(container=obj_en, object_id=info["en"]["Id"], headers=headers)
-    #         obj_en.hasImage = True
+            # adding images
+            import_images(container=obj_en, object_id=info["en"]["Id"], headers=headers)
+            obj_en.hasImage = True
 
-    #         obj_en.reindexObject()
+            obj_en.reindexObject()
 
-    # # # Check if object with ObjectNumber already exists in the container
-    # elif brains:
-    #     for brain in brains:
-    #         # Object exists, so we fetch it and update it
-    #         obj = brain.getObject()
+    # Check if object with ObjectNumber already exists in the container
+    elif brains:
+        for brain in brains:
+            # Object exists, so we fetch it and update it
+            obj = brain.getObject()
 
-    #         # First clear all of the fields
-    #         schema = obj.getTypeInfo().lookupSchema()
-    #         fields = getFields(schema)
+            # First clear all of the fields
+            schema = obj.getTypeInfo().lookupSchema()
+            fields = getFields(schema)
 
-    #         # Exclude these fields from clearing
-    #         exclude_fields = ["id", "UID", "title", "description", "authors"]
+            # Exclude these fields from clearing
+            exclude_fields = ["id", "UID", "title", "description", "authors"]
 
-    #         for field_name, field in fields.items():
-    #             if field_name not in exclude_fields:
-    #                 # Clear the field by setting it to its missing_value
-    #                 setattr(obj, field_name, field.missing_value)
+            for field_name, field in fields.items():
+                if field_name not in exclude_fields:
+                    # Clear the field by setting it to its missing_value
+                    setattr(obj, field_name, field.missing_value)
 
-    #         # Update the object's fields with new data
-    #         lang = obj.language
-    #         for k, v in info[lang].items():
-    #             if v:
-    #                 setattr(obj, k, v)
+            # Update the object's fields with new data
+            lang = obj.language
+            for k, v in info[lang].items():
+                if v:
+                    setattr(obj, k, v)
 
-    #         for k, v in intl[lang].items():
-    #             if v:
-    #                 setattr(obj, k, json.dumps(v))
+            for k, v in intl[lang].items():
+                if v:
+                    setattr(obj, k, json.dumps(v))
 
-    #         if lang == "nl":
-    #             if authors != "null":
-    #                 for author in authors:
-    #                     relation.delete(
-    #                         source=obj, target=author, relationship="authors"
-    #                     )
-    #                     relation.create(
-    #                         source=obj, target=author, relationship="authors"
-    #                     )
+            if lang == "nl":
+                if authors != "null":
+                    for author in authors:
+                        relation.delete(
+                            source=obj, target=author, relationship="authors"
+                        )
+                        relation.create(
+                            source=obj, target=author, relationship="authors"
+                        )
 
-    #         else:
-    #             if authors != "null":
-    #                 for author_en in authors_en:
-    #                     relation.delete(
-    #                         source=obj, target=author_en, relationship="authors"
-    #                     )
-    #                     relation.create(
-    #                         source=obj, target=author_en, relationship="authors"
-    #                     )
+            else:
+                if authors != "null":
+                    for author_en in authors_en:
+                        relation.delete(
+                            source=obj, target=author_en, relationship="authors"
+                        )
+                        relation.create(
+                            source=obj, target=author_en, relationship="authors"
+                        )
 
-    #         log_to_file(f"Object is updated: {ObjectNumber} id and {title} title")
+            log_to_file(f"Object is updated: {ObjectId} id and {title} title")
 
-    #         # adding images
-    #         import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
-    #         obj.hasImage = True
+            # adding images
+            import_images(container=obj, object_id=info["en"]["Id"], headers=headers)
+            obj.hasImage = True
 
-    #         # Reindex the updated object
-    #         obj.reindexObject()
+            # Reindex the updated object
+            obj.reindexObject()
 
-    # # Object doesn't exist, so we create a new one
+    # Object doesn't exist, so we create a new one
     if not brains:
         if not title:
             title = "Untitled Object"  # default value for untitled objects
 
         obj = create_and_setup_object(
-            title, container, info, intl, "artwork", title_url
+            title, container, info, intl, "artwork", title_url, ObjectId
         )  # Dutch version
 
         # log_to_file(f"{ObjObjectNumberTxt} object is created")
@@ -500,12 +499,14 @@ def import_one_record(self, record, container, container_en, catalog, headers):
     counter = counter + 1
 
 
-def create_and_setup_object(title, container, info, intl, object_type, obj_id):
+def create_and_setup_object(
+    title, container, info, intl, object_type, obj_id, ObjectId
+):
     """
     Create an object with the given title and container, then set its attributes
     using the provided info and intl dictionaries.
     """
-    log_to_file(f"Creating the object with title = ' {title} '")
+    log_to_file(f"Creating the object with title = '{title}' and id = '{ObjectId}'")
     raw_obj_id = f"{info['nl']['ObjObjectNumberTxt']}-{obj_id}"
     sanitized_id = re.sub(r"[^a-zA-Z0-9-]", "", raw_obj_id)
 
@@ -641,8 +642,8 @@ def import_images(container, object_id, headers):
 
 
 def log_to_file(message):
-    log_file_path = "/app/logs/collectionLogs.txt"
-    # log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
+    # log_file_path = "/app/logs/collectionLogs.txt"
+    log_file_path = "/Users/cihanandac/Documents/bonnefanten/collectionLogs.txt"
 
     # Attempt to create the file if it doesn't exist
     try:
@@ -726,7 +727,7 @@ def import_authors(self, record, use_archive=True):
                 content.transition(obj=author, transition="publish")
                 content.transition(obj=author_en, transition="publish")
 
-                log_to_file(f"Created author {author.getId()}")
+                log_to_file(f"Creating author {author.getId()}")
 
     return [authors, authors_en]
 

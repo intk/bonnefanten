@@ -8,6 +8,7 @@ import { Container } from 'semantic-ui-react';
 import SelectFacet from './SelectFacet';
 import { getVocabulary } from '@plone/volto/actions';
 import { defineMessages, useIntl } from 'react-intl';
+import { flattenToAppURL } from '@plone/volto/helpers';
 
 const messages = defineMessages({
   zoeken: {
@@ -108,6 +109,8 @@ const AdvancedSearch = () => {
   };
 
   const intl = useIntl();
+  const locale = intl.locale;
+  const searchLink = `${locale}/advancedsearch`;
 
   return (
     <div id="advancedsearchblock">
@@ -134,7 +137,8 @@ const AdvancedSearch = () => {
         </div>
         <p className="link-to-search">
           {' '}
-          <a href={`${intl.locale}/advancedsearch`}>
+          <a href={`/${searchLink}`}>
+            {' '}
             {intl.formatMessage(messages.advancedsearchlink)}
           </a>{' '}
         </p>

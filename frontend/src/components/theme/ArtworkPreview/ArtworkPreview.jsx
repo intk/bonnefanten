@@ -24,7 +24,7 @@ function ArtworkPreview(props) {
   return (
     <>
       {item.image_field !== '' ? (
-        <Link to={props['@id']}>
+        <Link to={flattenToAppURL(item['@id'])} className="listing-image">
           <img src={src} alt={item.title ?? 'alt'} />
         </Link>
       ) : (

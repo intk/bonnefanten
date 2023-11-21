@@ -5,24 +5,25 @@ import { ConditionalLink, UniversalLink } from '@plone/volto/components';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import './less/CategoryTemplate.less';
 import { BodyClass } from '@plone/volto/helpers';
-
+import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 import { isInternalURL } from '@plone/volto/helpers/Url/Url';
 
 const Card = ({ item, showDescription = true }) => {
-  const image = item?.image_field
-    ? `${item['@id']}/${
-        item.image_scales[item.image_field]?.[0]?.scales?.teaser?.download
-      }`
-    : null;
+  // const image = item?.image_field
+  //   ? `${item['@id']}/${
+  //       item.image_scales[item.image_field]?.[0]?.scales?.teaser?.download
+  //     }`
+  //   : null;
   return (
     <div className="categories plone-item-card">
       <BodyClass className="category-page" />
       <UniversalLink href={item['@id']} className="plone-item-card-link">
-        {image && (
+        {/* {image && (
           <figure className="listing-image">
             <img src={image} alt="" role="presentation" />
           </figure>
-        )}
+        )} */}
+        <ArtworkPreview {...item} />
         <div className="title-description">
           <h3 className="plone-item-title">
             <span>{item.title}</span>

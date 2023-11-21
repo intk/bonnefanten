@@ -137,10 +137,10 @@ export default function ArtworkView(props) {
     }
   };
 
-  const materials = content.ObjMaterialTxt.split(',');
-  const techniques = content.ObjTechniqueTxt.split(',');
-  const materialsArray = materials.map((material, index) => material.trim());
-  const techniquesArray = techniques.map((technique, index) =>
+  const materials = content.ObjMaterialTxt?.split(',');
+  const techniques = content.ObjTechniqueTxt?.split(',');
+  const materialsArray = materials?.map((material, index) => material.trim());
+  const techniquesArray = techniques?.map((technique, index) =>
     technique.trim(),
   );
 
@@ -293,7 +293,7 @@ export default function ArtworkView(props) {
                                 <img
                                   src={`${item.url}/@@images/image`}
                                   id="imgExample"
-                                  alt="test"
+                                  alt=""
                                 />
                               </TransformComponent>
                             </React.Fragment>

@@ -76,8 +76,10 @@ class AdminFixes(BrowserView):
 
 
         # Copy the preview image, if it exists
-        if hasattr(obj, 'preview_image'):  # replace 'image_field_name' with the actual field name
-            setattr(trans, 'preview_image', getattr(obj, 'preview_image'))
+        if hasattr(
+            obj, "preview_image"
+        ):  # replace 'image_field_name' with the actual field name
+            setattr(trans, "preview_image", getattr(obj, "preview_image"))
         # if obj.hasImage:
         #     trans.hasImage=True
 

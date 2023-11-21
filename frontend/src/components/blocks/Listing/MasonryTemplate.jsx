@@ -35,7 +35,9 @@ const Card = ({ item, showDescription = true }) => {
                 ))}
             </span>
             <span className="item-description">
-              {item.ObjDateFromTxt && ', '}
+              {item.ObjDateFromTxt && item.artwork_author.length > 0
+                ? ', '
+                : ''}
               {item.ObjDateFromTxt && item.ObjDateFromTxt}
             </span>
           </div>

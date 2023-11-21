@@ -16,6 +16,12 @@
     <indexed_attr value="ObjObjectNumberTxt" />
   </index>
 
+  <index meta_type="FieldIndex"
+         name="ObjectId"
+  >
+    <indexed_attr value="ObjectId" />
+  </index>
+
   <index meta_type="KeywordIndex"
          name="Artwork_Collection_Group"
   >

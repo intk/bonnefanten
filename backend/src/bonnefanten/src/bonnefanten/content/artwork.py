@@ -97,6 +97,7 @@ class IArtwork(model.Schema):
     #     description=u"Image that will be used as a preview for this artwork.",
     #     required=False,
     # )
+    ObjectId = schema.TextLine(title="ObjectId", required=False)
     ObjDimensionTxt = schema.Text(title="ObjDimensionTxt", required=False)
     ObjMaterialTxt = schema.TextLine(title="ObjMaterialTxt", required=False)
     ObjObjectNumberTxt = schema.TextLine(title="ObjObjectNumberTxt", required=False)
@@ -196,4 +197,5 @@ class IArtwork(model.Schema):
         "ObjTechniqueTxt",
         "ObjCreditlineTxt",
         "ObjDateFromTxt",
+        "ObjectId",
     )

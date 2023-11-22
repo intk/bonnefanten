@@ -519,7 +519,9 @@ def create_and_setup_object(
             container=container,
         )
     except Exception as e:
-        log_to_file(f"Error with ID '{sanitized_id}'. Trying without specifying ID. Error: {e}")
+        log_to_file(
+            f"Error with ID '{sanitized_id}'. Trying without specifying ID. Error: {e}"
+        )
         # If there's an error, try creating the object without specifying the ID
         try:
             obj = api.content.create(
@@ -528,7 +530,9 @@ def create_and_setup_object(
                 container=container,
             )
         except Exception as e:
-            log_to_file(f"Error while creating the Object {title} without specifying ID. Error: {e}")
+            log_to_file(
+                f"Error while creating the Object {title} without specifying ID. Error: {e}"
+            )
             return None
 
 

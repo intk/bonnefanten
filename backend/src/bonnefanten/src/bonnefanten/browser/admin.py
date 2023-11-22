@@ -511,6 +511,7 @@ def create_and_setup_object(
     sanitized_id = re.sub(r"[^a-zA-Z0-9-]", "", raw_obj_id)
 
     try:
+        # First try to create the object with the sanitized ID
         obj = api.content.create(
             type=object_type,
             id=sanitized_id,
@@ -518,10 +519,18 @@ def create_and_setup_object(
             container=container,
         )
     except Exception as e:
-        log_to_file(
-            f"Error while creating the Object {title}, -> info {info} -> error {e}"
-        )
-        return None
+        log_to_file(f"Error with ID '{sanitized_id}'. Trying without specifying ID. Error: {e}")
+        # If there's an error, try creating the object without specifying the ID
+        try:
+            obj = api.content.create(
+                type=object_type,
+                title=title,
+                container=container,
+            )
+        except Exception as e:
+            log_to_file(f"Error while creating the Object {title} without specifying ID. Error: {e}")
+            return None
+
 
     lang = obj.language
     for k, v in info[lang].items():

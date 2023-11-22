@@ -1,4 +1,4 @@
-.block.image {
+.block.image, .block.video {
   figure {
     margin: 0;
 
@@ -36,6 +36,10 @@
 
   &.align.left {
     margin-left: 0;
+    .video-inner{
+      width: 100%;
+    }
+
 
     @media (max-width: 768px) {
       margin-right: -20px;
@@ -45,11 +49,11 @@
     @media (min-width: 769px) {
       margin-left: -15%;
 
-      figure.image-wrapper {
+      figure.image-wrapper, .video-inner {
         padding-top: 45px;
         margin-bottom: 45px;
 
-        img {
+        img, .ui.embed {
           margin-right: 0 !important;
         }
       }

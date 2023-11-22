@@ -31,7 +31,8 @@
     "volto-form-block",
     "volto-editablefooter",
     "volto-social-settings",
-    "volto-gdpr-privacy"
+    "volto-gdpr-privacy",
+    "@eeacms/volto-block-image-cards"
   ],
   "jest": {
     "modulePathIgnorePatterns": [
@@ -143,6 +144,7 @@
   },
   "dependencies": {
     "@eeacms/volto-accordion-block": "*",
+    "@eeacms/volto-block-image-cards": "0.6.3",
     "@eeacms/volto-matomo": "*",
     "@kitconcept/volto-blocks-grid": "*",
     "@kitconcept/volto-slider-block": "*",

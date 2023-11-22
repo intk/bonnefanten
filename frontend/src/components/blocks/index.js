@@ -8,6 +8,7 @@ import installListingBlock from './Listing';
 import installNewsletterBlock from './Newsletter';
 import installSearchBlock from './Search';
 import installAdvancedSearch from './AdvancedSearch';
+import installEventPageButtonBlock from './EventPageButton';
 
 import { compose } from 'redux';
 
@@ -25,6 +26,7 @@ const installBlocks = (config) => {
     installNewsletterBlock,
     installSearchBlock,
     installAdvancedSearch,
+    installEventPageButtonBlock,
   )(config);
 };
 

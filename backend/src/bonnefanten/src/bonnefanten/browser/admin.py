@@ -535,7 +535,6 @@ def create_and_setup_object(
             )
             return None
 
-
     lang = obj.language
     for k, v in info[lang].items():
         if v:

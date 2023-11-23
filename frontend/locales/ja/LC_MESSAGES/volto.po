@@ -291,7 +291,7 @@ msgid "acquisition"
 msgstr ""
 
 #: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Geavanceerd zoeken...<
+# defaultMessage: Geavanceerd zoeken...
 msgid "advancedsearchlink"
 msgstr ""
 
@@ -370,6 +370,16 @@ msgstr ""
 msgid "objectType"
 msgstr ""
 
+#: components/blocks/EventPageButton/EventPageButtonView
+# defaultMessage: PRAKTISCHE INFO
+msgid "pracktischeinfo"
+msgstr ""
+
+#: components/blocks/EventPageButton/EventPageButtonView
+# defaultMessage: /nl/zien-en-doen/praktische-informatie
+msgid "pracktischeinfourl"
+msgstr ""
+
 #: components/theme/View/ArtworkView
 # defaultMessage: Vragen?
 msgid "question"
@@ -394,6 +404,16 @@ msgstr ""
 #: components/theme/View/ArtworkView
 # defaultMessage: Techniek
 msgid "technique"
+msgstr ""
+
+#: components/blocks/EventPageButton/EventPageButtonView
+# defaultMessage: TICKETS
+msgid "tickets"
+msgstr ""
+
+#: components/blocks/EventPageButton/EventPageButtonView
+# defaultMessage: /nl/tickets
+msgid "ticketurl"
 msgstr ""
 
 #: components/theme/View/ArtworkView

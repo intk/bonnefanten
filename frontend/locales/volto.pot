@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-11-20T15:24:12.265Z\n"
+"POT-Creation-Date: 2023-11-23T08:42:55.537Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -286,7 +286,7 @@ msgid "acquisition"
 msgstr ""
 
 #: components/blocks/AdvancedSearch/AdvancedSearchView
-# defaultMessage: Geavanceerd zoeken...<
+# defaultMessage: Geavanceerd zoeken...
 msgid "advancedsearchlink"
 msgstr ""
 
@@ -365,6 +365,16 @@ msgstr ""
 msgid "objectType"
 msgstr ""
 
+#: components/blocks/EventPageButton/EventPageButtonView
+# defaultMessage: PRAKTISCHE INFO
+msgid "pracktischeinfo"
+msgstr ""
+
+#: components/blocks/EventPageButton/EventPageButtonView
+# defaultMessage: /nl/zien-en-doen/praktische-informatie
+msgid "pracktischeinfourl"
+msgstr ""
+
 #: components/theme/View/ArtworkView
 # defaultMessage: Vragen?
 msgid "question"
@@ -389,6 +399,16 @@ msgstr ""
 #: components/theme/View/ArtworkView
 # defaultMessage: Techniek
 msgid "technique"
+msgstr ""
+
+#: components/blocks/EventPageButton/EventPageButtonView
+# defaultMessage: TICKETS
+msgid "tickets"
+msgstr ""
+
+#: components/blocks/EventPageButton/EventPageButtonView
+# defaultMessage: /nl/tickets
+msgid "ticketurl"
 msgstr ""
 
 #: components/theme/View/ArtworkView

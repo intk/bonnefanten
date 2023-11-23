@@ -27,19 +27,23 @@
     min-width: 100%;
     // max-width: 100%;
     // width: 100%;
-    height: 900px !important;
+    min-height: 500px !important;
+    height: 90vh !important;
+    max-height: 900px !important;
 
     @media (min-width: 1640px) {
-      height: 1423px !important;
+      max-height: 1423px !important;
     }
 
     .slider-slide {
       .slide-img {
-        height: 900px !important;
+        min-height: 500px !important;
+        height: 90vh !important;
+        max-height: 900px !important;
         background-size: cover;
         background-position: center;
         @media (min-width: 1640px) {
-            height: 1423px !important;
+            max-height: 1423px !important;
           }
       }
 
@@ -345,6 +349,7 @@
     font-family: 'StyreneBold', Arial, sans-serif !important;
     @media screen and (min-width: 768px) {
       font-size: 30px !important;
+      line-height: 34px !important;
     }
     @media screen and (min-width: 1200px){
       font-size: 38px !important;

@@ -87,7 +87,7 @@ const NutezienSliderTemplate = (props) => {
             </div>
           ))}
         </ReactSwipe>
-        {items.length > 1 && (
+        {items?.length > 1 && (
           <>
             <button
               className="left-button"

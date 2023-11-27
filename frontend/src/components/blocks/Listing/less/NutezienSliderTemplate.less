@@ -1,0 +1,502 @@
+.block.listing.nuteziensliderview{
+  // padding-left: 200px;
+  // padding-right: 200px;
+    margin-top: 187px;
+    margin-bottom: 0px;
+    position: relative;
+    right: 50%;
+    left: 50%;
+    width: 100vw !important;
+    max-width: initial !important;
+    margin-right: -50vw !important;
+    margin-left: -50vw !important;
+    @media screen and (min-width: 1400px) {
+      margin-top: 212.5px;
+      margin-bottom: 0px;
+    }
+}
+
+.nutezien-slider-template {
+  .listing-slider>div{
+    width: 100%;
+  }
+  .content-wrapper{
+    padding-bottom: 100px;
+    @media screen and (min-width: 992px){
+      padding-bottom: 0px;
+    }
+  }
+  .content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 68px;
+    padding-right: 68px;
+    margin-top: 28px;
+    @media screen and (min-width: 768px) {
+      padding-left: 78px;
+      padding-right: 78px;
+      margin-top: 0px;
+    }
+    @media screen and (min-width: 992px){
+      flex-direction: row;
+      padding-left: 82.5px;
+      padding-right: 82.5px;
+    }
+    @media screen and (min-width: 1480px) {
+      padding-left: 141px;
+      padding-right: 141px;
+    }
+  }
+  .card-left-part{
+    width: 100%;
+        @media screen and (min-width: 992px) {
+    width: calc(40% + 1px);
+        }
+  }
+  .card-right-part{
+    width: 100%;
+            @media screen and (min-width: 992px) {
+    width: 60%;
+    padding: 0 20px ;
+            }
+  }
+  .listing-image{
+    width: 100%;
+    img{
+      max-width: 100%;
+    }
+  }
+  .buttons{
+    position: absolute;
+    z-index: 0;
+    top: calc(50% - 37px);
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      top: calc(50% - 45px);
+    }
+  }
+  button > .icon{
+    background-color: transparent;
+  }
+  .left-button{
+    position: absolute;
+    z-index: 0;
+    top: calc(50% + 23px);
+    left: 6.5px;
+    margin-top: 1px;
+    margin-left: 18px;
+    width: 16px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    z-index: 1;
+    svg{
+      fill: var(--bonnefanten-primary);
+      height: 42.5px;
+    }
+    @media screen and (min-width: 768px) {
+      top: calc(50% + 10px);
+      width: 62px;
+      // height: 80px;
+      margin-left: 10px;
+      left: 10px;
+    }
+    @media screen and (min-width: 992px) {
+      top: calc(50% + 14px);
+      left: 7px;
+    }
+    @media screen and (min-width: 992px) {
+      top: calc(50% + 20px);
+    }
+    @media screen and (min-width: 1480px) {
+      width: 70px;
+      height: 85px;
+      margin-left: 64px;
+      top: calc(50% + 35px);
+    }
+  }
+  .right-button {
+    position: absolute;
+    z-index: 0;
+    top: calc(50% + 23.0px);
+    right: 42px;
+    z-index: 5;
+    margin-top: 1px;
+    margin-right: 3px;
+    width: 16px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    svg {
+        fill: var(--bonnefanten-primary);
+        height: 42.5px;
+      }
+    @media screen and (min-width: 768px) {
+      top: calc(50% + 10.0px);
+      margin-left: 10px;
+      right: 18px;
+      width: 62px;
+      // height: 80px;
+    }
+    @media screen and (min-width: 992px) {
+      top: calc(50% + 14px);
+      right: 13px;
+    }
+    @media screen and (min-width: 992px) {
+      top: calc(50% + 20px);
+    }
+    @media screen and (min-width: 1480px) {
+      top: calc(50% + 35px);
+      width: 70px;
+      height: 85px;
+      margin-right: 58px;
+    }
+  }
+  .text-button.btn-block.more-info {
+    line-height: 25px !important;
+    margin-right: 15px !important;
+    padding: 5px 14px !important;
+    font-size: 16px !important;
+    visibility: hidden !important;
+    a{
+      text-decoration: none !important;
+      color: var(--bonnefanten-bg) !important;
+    }
+
+    @media screen and (min-width: 768px) {
+      font-size: 19px !important;
+    }
+    @media screen and (min-width: 992px) {
+      visibility: visible !important;
+    }
+  }
+
+  .text-button.btn-block:hover {
+    background-color: #B6A782 !important;
+    border-color: #B6A782 !important;
+    font-size: 19px;
+  }
+  .plone-item-title {
+    margin-top: 0px;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 0px;
+    }
+
+    a{
+      border-bottom: 0px !important;
+      text-decoration: none !important;
+    }
+    h2{
+      border-bottom: 1px solid transparent;
+      color: var(--bonnefanten-primary) !important;
+      font-family: 'StyreneBold', Arial, sans-serif;
+      margin-top: 15px !important;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 2.5vw;
+      letter-spacing: 0em;
+      line-height: 30px;
+      text-transform: none;
+      margin-left: -0.5px !important;
+      margin-bottom: 0px !important;
+      @media screen and (min-width: 992px) {
+        font-size: 1.8vw;
+        margin-top: 12px !important;
+        margin-left: 0px;
+        margin-bottom: 16px !important;
+      }
+      @media screen and (min-width: 1480px){
+        margin-top: 14px !important;
+        font-size: 30px;
+        // margin-bottom: 20px !important;
+      }
+
+    }
+  }
+  .hero-dates{
+    font-family: 'StyreneRegular', Arial, sans-serif;
+    letter-spacing: 0.00em;
+    color: #575756 !important;
+    font-size: 18px !important;
+    line-height: 18px !important;
+  }
+  .event-label{
+    padding-top: 18px !important;
+      @media screen and (min-width: 992px) {
+        padding-top: 0px !important;
+      }
+  }
+  .description{
+    @media screen and (min-width: 992px) {
+      margin-top: 25px !important;
+    }
+    @media screen and (min-width: 1480px){
+      margin-top: 28px !important;
+    }
+    p{
+      color: #575756 !important;
+      font-size: 17px;
+      line-height: 25px !important;
+      overflow: hidden;
+      margin-bottom: 25px !important;
+      @media screen and (max-width: 992px) {
+        margin-top: 3px !important;
+      }
+      @media screen and (min-width: 992px){
+        font-size: 19px !important;
+        max-width: 75%;
+      }
+    }
+  }
+  .nutezien-header{
+    margin-top: 15px;
+    margin-bottom: 79px;
+    margin-left: 11px;
+     @media screen and (min-width: 768px) {
+      margin-bottom: 65px;
+      // margin-left: 14px;
+       }
+    @media screen and (min-width: 992px) {
+      margin-bottom: 50px;
+      margin-left: 11px;
+      // margin-left: 18px;
+    }
+    @media screen and (min-width: 1200px) {
+      margin-bottom: 50px;
+    }
+    @media screen and (min-width: 1480px) {
+      margin-bottom: 84px;
+    }
+    h3{
+      line-height: 1.2;
+      margin-top: 8px;
+      color: #b6a782 !important;
+      font-family: 'BonnefantenBlock', Arial, sans-serif;
+      text-align: center;
+      margin-top: 25px;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0.0em;
+      padding-right: 11px;
+      font-size: 11vw !important;
+      line-height: 10vw;
+      @media screen and (min-width: 768px) {
+        font-size: 11vw !important;
+        // font-size: 8vw;
+        line-height: 10vw;
+      }
+      // @media screen and (min-width: 992px) {
+      //   font-size: 8vw;
+      //   line-height: 10vw;
+      // }
+      @media screen and (min-width: 992px) {
+        font-size: 4vw !important;
+        line-height: 4.7vw;
+      }
+      @media screen and (min-width: 1400px) {
+        font-size: 60px !important;
+      }
+
+    }
+  }
+}
+// .nutezien-slider-template {
+//   .listing-slider>div{
+//     width: 100%;
+//   }
+//   // height: 80vh;
+//   .listing-slider{
+//     img{
+//       width: 200px;
+//       // max-height: calc(80vh - 190px) !important;
+//       // height: auto;
+//       // max-width: 100%;
+//       // object-fit: contain;
+//       // margin-top: auto;
+//       // margin-bottom: auto;
+//       // overflow: hidden;
+//       // @media screen and (min-width: 768px){
+//       //   max-height: 80vh !important;
+//       // }
+//       // @media screen and (min-width:1200px) {
+//       //   margin-top: 12px;
+//       //   padding-left: 13px;
+//       //   padding-right: 13px;
+//       // }
+//       // @media screen and (min-width:1400px) {
+//       //   max-height: calc(80vh - 210px) !important;
+//       // }
+//     }
+//   }
+//   .content-wrapper{
+//     position: relative;
+//   }
+//   .buttons{
+//     position: absolute;
+//     top: calc(50% - 33px);
+//     margin-left: auto;
+//     margin-right: auto;
+//     display: flex;
+//     justify-content: space-between;
+//     width: 100%;
+//     @media screen and (min-width: 768px) {
+//       top: calc(50% - 45px);
+//     }
+//   }
+//   .plone-item-card {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     margin-left: auto;
+//     margin-right: auto;
+//     padding: 15px 46px;
+//     width: auto;
+//     // height: 80vh;
+//     // height: calc(80vh - 50px);
+//     overflow: hidden;
+
+//     @media screen and (min-width: 768px){
+//       padding: 0px 40px;
+//       // height: 80vh;
+//     }
+//     @media screen and (min-width: 992px) {
+//       padding: 0px 220px;
+//       // height: 80vh;
+//     }
+//     @media screen and (min-width: 1400px) {
+//       // padding: 15px 280px;
+//       // height: 80vh;
+//     }
+//   }
+//   .plone-item-card, .plone-item-card-link{
+//     // position: relative;
+//     // right: 50%;
+//     // left: 50%;
+//     // width: 100vw !important;
+//     // max-width: initial !important;
+//     // margin-right: -50vw !important;
+//     // margin-left: -50vw !important;
+
+//     @media screen and (min-width: 992px) {
+//     }
+//   }
+//   .plone-item-card-link > * {
+//     margin-left: auto !important;
+//     margin-right: auto !important;
+//     // max-width: 40%;
+//   }
+//   button > .icon{
+//     background-color: transparent;
+//   }
+//   .left-button{
+//     margin-top: 1px;
+//     margin-left: 3px;
+//     width: 36px;
+//     height: 55px;
+//     background-color: transparent;
+//     border: none;
+//     opacity: 0.6 !important;
+//     @media screen and (min-width: 768px) {
+//       width: 62px;
+//       height: 80px;
+//       margin-left: 10px;
+//     }
+//     @media screen and (min-width: 1480px) {
+//       // width: 70px;
+//       // height: 85px;
+//       margin-left: 70px;
+//     }
+//   }
+//   .right-button {
+//     margin-top: 1px;
+//     margin-right: 3px;
+//     width: 36px;
+//     height: 55px;
+//     background-color: transparent;
+//     border: none;
+//     opacity: 0.6 !important;
+//     @media screen and (min-width: 768px) {
+//       margin-left: 10px;
+//       width: 62px;
+//       height: 80px;
+//     }
+//     @media screen and (min-width: 1480px) {
+//       // width: 70px;
+//       // height: 85px;
+//       margin-right: 70px;
+//     }
+//   }
+//   .title-description{
+//     // margin-left: 20px !important;
+//     margin-top: 10px;
+//     @media screen and (min-width: 992px) {
+//       position: absolute;
+//       bottom: 7px;
+//       margin-left: 25px !important;
+//       visibility: hidden;
+//     }
+//     @media screen and (min-width: 992px) {
+//       margin-left: 33px !important;
+//     }
+//     @media screen and (min-width: 1400px) {
+//       margin-left: 39px !important;
+//       bottom: 23px !important;
+//     }
+//   }
+//   .plone-item-card-link:hover {
+//     .title-description{
+//       visibility: visible !important;
+//     }
+//   }
+//   .plone-item-title{
+//     margin-top:15px;
+//     margin-bottom: 5px;
+//     p{
+//       font-size: 20px;
+//       color: #b6a782;
+//       line-height: 28px;
+//       margin-bottom: 0px;
+//       @media screen and (min-width: 992px) {
+//         font-size: 1.8vw;
+//         line-height: 2.5vw;
+//         color: #ffffff;
+//       }
+//       @media screen and (min-width: 1480px) {
+//         font-size: 30px;
+//       }
+//     }
+//     @media screen and (min-width: 992px) {
+//       p:hover {
+//         text-decoration: underline;
+//         text-underline-offset: 4px;
+//         text-decoration-thickness: 1px;
+//       }
+//     }
+
+//   }
+//   .item-description, .item-description span{
+//       font-size: 15px;
+//       color: #b6a782;
+//       line-height: 25px;
+//       @media screen and (min-width: 992px) {
+//         color: #ffffff;
+//         font-size: 17px;
+//         line-height: 25px !important;
+//       }
+//   }
+//   @media screen and (min-width: 992px) {
+//     .item-description span::before {
+//       content: "— ";
+//     }
+//   }
+
+
+//   }
+// }

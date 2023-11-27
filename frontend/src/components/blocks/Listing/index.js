@@ -6,6 +6,7 @@ import MakerPageTemplate from '@package/components/blocks/Listing/MasonryTemplat
 import CollectionSliderTemplate from '@package/components/blocks/Listing/CollectionSliderTemplate';
 import PermanentExhibitionsTemplate from '@package/components/blocks/Listing/PermanentExhibitionsTemplate';
 import HomepageSliderTemplate from '@package/components/blocks/Listing/HomepageSliderTemplate';
+import NutezienSliderTemplate from './NutezienSliderTemplate';
 // import MasonryTemplate from './MasonryTemplate';
 
 export default (config) => {
@@ -99,6 +100,12 @@ export default (config) => {
       isDefault: false,
       title: 'Homepage Slider Wiew',
       template: HomepageSliderTemplate,
+    },
+    {
+      id: 'nuteziensliderview',
+      isDefault: false,
+      title: 'Nutezien Slider',
+      template: NutezienSliderTemplate,
     },
   ];
 

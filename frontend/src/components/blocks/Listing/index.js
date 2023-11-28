@@ -7,6 +7,7 @@ import CollectionSliderTemplate from '@package/components/blocks/Listing/Collect
 import PermanentExhibitionsTemplate from '@package/components/blocks/Listing/PermanentExhibitionsTemplate';
 import HomepageSliderTemplate from '@package/components/blocks/Listing/HomepageSliderTemplate';
 import NutezienSliderTemplate from './NutezienSliderTemplate';
+import VerwachtSliderTemplate from './VerwachtSliderTemplate';
 // import MasonryTemplate from './MasonryTemplate';
 
 export default (config) => {
@@ -106,6 +107,12 @@ export default (config) => {
       isDefault: false,
       title: 'Nutezien Slider',
       template: NutezienSliderTemplate,
+    },
+    {
+      id: 'verwachtsliderview',
+      isDefault: false,
+      title: 'Verwacht Slider',
+      template: VerwachtSliderTemplate,
     },
   ];
 

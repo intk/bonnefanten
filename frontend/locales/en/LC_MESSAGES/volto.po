@@ -343,6 +343,12 @@ msgstr ""
 msgid "material"
 msgstr "Materials"
 
+#: components/blocks/Listing/NutezienSliderTemplate
+#: components/blocks/Listing/VerwachtSliderTemplate
+# defaultMessage: MEER INFO
+msgid "meerinfo"
+msgstr "MORE INFO"
+
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: More info
 msgid "moreInfo"

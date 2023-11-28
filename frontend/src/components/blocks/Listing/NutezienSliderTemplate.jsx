@@ -11,8 +11,17 @@ import { When } from '@package/customizations/components/theme/View/EventDatesIn
 import './less/NutezienSliderTemplate.less';
 import TruncateText from './TruncateText';
 import { ConditionalLink } from '@plone/volto/components';
+import { defineMessages, useIntl } from 'react-intl';
+
+const messages = defineMessages({
+  meerinfo: {
+    id: 'meerinfo',
+    defaultMessage: 'MEER INFO',
+  },
+});
 
 const Card = ({ item, showDescription = true }) => {
+  const intl = useIntl();
   return (
     <div className="plone-item-card">
       {/* <BodyClass className="masonary-listing-page" /> */}
@@ -52,7 +61,7 @@ const Card = ({ item, showDescription = true }) => {
                 condition="view"
               >
                 {/* {intl.formatMessage(messages.tickets)} */}
-                MEER INFO
+                {intl.formatMessage(messages.meerinfo)}
               </ConditionalLink>
             </div>
           </div>

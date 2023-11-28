@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-11-28T11:44:04.862Z\n"
+"POT-Creation-Date: 2023-11-28T11:48:21.985Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -343,6 +343,12 @@ msgstr ""
 #: components/theme/View/ArtworkView
 # defaultMessage: Materialen
 msgid "material"
+msgstr ""
+
+#: components/blocks/Listing/NutezienSliderTemplate
+#: components/blocks/Listing/VerwachtSliderTemplate
+# defaultMessage: MEER INFO
+msgid "meerinfo"
 msgstr ""
 
 #: components/blocks/Teaser/TeaserDefaultTemplate

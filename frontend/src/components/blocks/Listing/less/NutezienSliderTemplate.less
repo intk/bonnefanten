@@ -137,7 +137,13 @@
       svg {
         fill: var(--bonnefanten-primary);
         height: 42.5px;
-      }
+        opacity: 0.75;
+        transition: opacity 0.1s ease-in;
+        }
+
+        svg:hover {
+          opacity: 1;
+        }
 
       @media screen and (min-width: 768px) {
         // top: calc(50% - 45px);
@@ -178,6 +184,12 @@
       svg {
         fill: var(--bonnefanten-primary);
         height: 42.5px;
+        opacity: 0.75;
+        transition: opacity 0.1s ease-in;
+      }
+
+      svg:hover {
+        opacity: 1;
       }
 
       @media screen and (min-width: 768px) {
@@ -239,6 +251,12 @@
       a {
         border-bottom: 0px !important;
         text-decoration: none !important;
+      }
+      a:hover {
+        text-decoration: underline !important;
+        text-decoration-color: var(--bonnefanten-primary) !important;
+        text-decoration-thickness: 1px !important;
+        text-underline-offset: 3px !important;
       }
 
       h2 {

@@ -28,8 +28,6 @@ const Card = ({ item, showDescription = true }) => {
   const intl = useIntl();
   return (
     <div className="plone-item-card">
-      {/* <BodyClass className="masonary-listing-page" /> */}
-
       <div className="content">
         <div className="card-left-part">
           <UniversalLink href={item['@id']} className="plone-item-card-link">

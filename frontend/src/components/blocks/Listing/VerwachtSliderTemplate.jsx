@@ -10,7 +10,15 @@ import './less/CollectionSliderTemplate.less';
 import { When } from '@package/customizations/components/theme/View/EventDatesInfo';
 import './less/VerwachtSliderTemplate.less';
 import TruncateText from './TruncateText';
+import { defineMessages, useIntl } from 'react-intl';
 import { ConditionalLink } from '@plone/volto/components';
+
+const messages = defineMessages({
+  verwacht: {
+    id: 'verwacht',
+    defaultMessage: 'Verwacht',
+  },
+});
 
 const Card = ({ item, showDescription = true }) => {
   return (
@@ -65,12 +73,13 @@ const Card = ({ item, showDescription = true }) => {
 const VerwachtSliderTemplate = (props) => {
   const { items } = props;
   let reactSwipeEl;
+  const intl = useIntl();
 
   return (
     <div className="verwacht-slider-template">
       <div className="nutezien-header">
         <h3>
-          <span>Verwacht</span> <span>—</span>
+          <span>{intl.formatMessage(messages.verwacht)}</span> <span>—</span>
         </h3>
       </div>
       <div className="content-wrapper">

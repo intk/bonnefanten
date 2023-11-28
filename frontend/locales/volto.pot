@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-11-23T08:42:55.537Z\n"
+"POT-Creation-Date: 2023-11-28T11:44:04.862Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -290,6 +290,11 @@ msgstr ""
 msgid "advancedsearchlink"
 msgstr ""
 
+#: components/blocks/Listing/PermanentExhibitionsTemplate
+# defaultMessage: Altijd
+msgid "altijd"
+msgstr ""
+
 #: components/theme/View/ArtworkView
 # defaultMessage: Vervaardiger
 msgid "artist"
@@ -298,6 +303,11 @@ msgstr ""
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Available views
 msgid "availableViews"
+msgstr ""
+
+#: components/blocks/Listing/CollectionSliderTemplate
+# defaultMessage: Collectie
+msgid "collectie"
 msgstr ""
 
 #: components/theme/View/ArtworkView
@@ -414,6 +424,11 @@ msgstr ""
 #: components/theme/View/ArtworkView
 # defaultMessage: Titel
 msgid "title"
+msgstr ""
+
+#: components/blocks/Listing/VerwachtSliderTemplate
+# defaultMessage: Verwacht
+msgid "verwacht"
 msgstr ""
 
 #: components/blocks/AdvancedSearch/schema

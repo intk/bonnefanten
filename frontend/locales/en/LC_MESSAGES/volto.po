@@ -288,6 +288,11 @@ msgstr "Acquisition"
 msgid "advancedsearchlink"
 msgstr "Advanced search"
 
+#: components/blocks/Listing/PermanentExhibitionsTemplate
+# defaultMessage: Altijd
+msgid "altijd"
+msgstr "Permanent"
+
 #: components/theme/View/ArtworkView
 # defaultMessage: Vervaardiger
 msgid "artist"
@@ -297,6 +302,11 @@ msgstr "Artist"
 # defaultMessage: Available views
 msgid "availableViews"
 msgstr ""
+
+#: components/blocks/Listing/CollectionSliderTemplate
+# defaultMessage: Collectie
+msgid "collectie"
+msgstr "Collection"
 
 #: components/theme/View/ArtworkView
 # defaultMessage: Credit line
@@ -413,6 +423,11 @@ msgstr "/en/tickets"
 # defaultMessage: Titel
 msgid "title"
 msgstr "Title"
+
+#: components/blocks/Listing/VerwachtSliderTemplate
+# defaultMessage: Verwacht
+msgid "verwacht"
+msgstr "Upcoming"
 
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Views

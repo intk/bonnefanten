@@ -293,6 +293,11 @@ msgstr ""
 msgid "advancedsearchlink"
 msgstr ""
 
+#: components/blocks/Listing/PermanentExhibitionsTemplate
+# defaultMessage: Altijd
+msgid "altijd"
+msgstr ""
+
 #: components/theme/View/ArtworkView
 # defaultMessage: Vervaardiger
 msgid "artist"
@@ -301,6 +306,11 @@ msgstr ""
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Available views
 msgid "availableViews"
+msgstr ""
+
+#: components/blocks/Listing/CollectionSliderTemplate
+# defaultMessage: Collectie
+msgid "collectie"
 msgstr ""
 
 #: components/theme/View/ArtworkView
@@ -417,6 +427,11 @@ msgstr ""
 #: components/theme/View/ArtworkView
 # defaultMessage: Titel
 msgid "title"
+msgstr ""
+
+#: components/blocks/Listing/VerwachtSliderTemplate
+# defaultMessage: Verwacht
+msgid "verwacht"
 msgstr ""
 
 #: components/blocks/AdvancedSearch/schema

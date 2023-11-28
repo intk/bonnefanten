@@ -5,8 +5,16 @@ import loadable from '@loadable/component';
 import { UniversalLink } from '@plone/volto/components';
 import './less/PermanentExhibitionsTemplate.less';
 import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
+import { defineMessages, useIntl } from 'react-intl';
 
 const Masonry = loadable(() => import('react-masonry-css'));
+
+const messages = defineMessages({
+  altijd: {
+    id: 'altijd',
+    defaultMessage: 'Altijd',
+  },
+});
 
 const Card = ({ item, showDescription = true }) => {
   return (
@@ -60,12 +68,13 @@ const breakpointColumnsObj = {
 
 const PermanentExhibitionsTemplate = (props) => {
   const { items } = props;
+  const intl = useIntl();
 
   return (
     <div className="permanent-exhibitons-template">
       <div className="permanent-exhitions-header">
         <h3>
-          <span>Altijd</span> <span>—</span>
+          <span>{intl.formatMessage(messages.altijd)}</span> <span>—</span>{' '}
         </h3>
       </div>
       <Masonry

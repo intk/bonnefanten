@@ -6,6 +6,14 @@ import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 // import { BodyClass } from '@plone/volto/helpers';
 import ReactSwipe from 'react-swipe';
 import './less/CollectionSliderTemplate.less';
+import { defineMessages, useIntl } from 'react-intl';
+
+const messages = defineMessages({
+  collectie: {
+    id: 'collectie',
+    defaultMessage: 'Collectie',
+  },
+});
 
 const Card = ({ item, showDescription = true }) => {
   return (
@@ -45,12 +53,13 @@ const Card = ({ item, showDescription = true }) => {
 const CollectionSliderTemplate = (props) => {
   const { items } = props;
   let reactSwipeEl;
+  const intl = useIntl();
 
   return (
     <div className="slider-template">
       <div className="collectie-header">
         <h3>
-          <span>Collectie</span> <span>—</span>
+          <span>{intl.formatMessage(messages.collectie)}</span> <span>—</span>{' '}
         </h3>
       </div>
       <div className="content-wrapper">

@@ -15,25 +15,26 @@ const Card = ({ item, showDescription = true }) => {
       <UniversalLink href={item['@id']} className="plone-item-card-link">
         <div className="content">
           <ArtworkPreview {...item} />
-          <div className="title-description">
-            {/* <h3 className="plone-item-title">
+          <div className="title-wrapper">
+            <div className="title-description">
+              {/* <h3 className="plone-item-title">
               <p>{item.title}</p>
             </h3> */}
-            <div className="slide-description">
-              <div className="header-quotes-wrapper">
-                <div className="quote-top-left quote-bonnefanten">“</div>
-                <div className="quote-top-right quote-bonnefanten">”</div>
-              </div>
-              <div className="slide-title-date">
-                <When
-                  start={item.start}
-                  end={item.end}
-                  whole_day="true"
-                  open_end={item.open_end}
-                />
-              </div>
-              <p className="slide-title">{item.title}</p>
-              {/* <span className="documentDescription">
+              <div className="slide-description">
+                <div className="header-quotes-wrapper">
+                  <div className="quote-top-left quote-bonnefanten">“</div>
+                  <div className="quote-top-right quote-bonnefanten">”</div>
+                </div>
+                <div className="slide-title-date">
+                  <When
+                    start={item.start}
+                    end={item.end}
+                    whole_day="true"
+                    open_end={item.open_end}
+                  />
+                </div>
+                <p className="slide-title">{item.title}</p>
+                {/* <span className="documentDescription">
                 {item.artwork_author &&
                   item.artwork_author.map((author, index) => (
                     <span key={author}>
@@ -46,6 +47,7 @@ const Card = ({ item, showDescription = true }) => {
                 {item.ObjDateFromTxt && ', '}
                 {item.ObjDateFromTxt && item.ObjDateFromTxt}
               </span> */}
+              </div>
             </div>
           </div>
         </div>

@@ -56,7 +56,7 @@ const CollectionSliderTemplate = (props) => {
   const intl = useIntl();
 
   return (
-    <div className="slider-template">
+    <div className="collection-slider-template">
       <div className="collectie-header">
         <h3>
           <span>{intl.formatMessage(messages.collectie)}</span> <span>—</span>{' '}
@@ -64,7 +64,7 @@ const CollectionSliderTemplate = (props) => {
       </div>
       <div className="content-wrapper">
         <ReactSwipe
-          className="listing-slider"
+          className="collection-slider"
           swipeOptions={{
             continuous: true,
           }}

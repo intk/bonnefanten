@@ -59,7 +59,7 @@ const HomepageSliderTemplate = (props) => {
   let reactSwipeEl;
 
   return (
-    <div className="homepage-slider-template full-width">
+    <div className="homepage-slider-template">
       <div className="content-wrapper">
         <ReactSwipe
           className="listing-slider"

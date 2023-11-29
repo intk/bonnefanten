@@ -28,7 +28,7 @@ const Card = ({ item, showDescription = true }) => {
                 <When
                   start={item.start}
                   end={item.end}
-                  whole_day={item.whole_day}
+                  whole_day="true"
                   open_end={item.open_end}
                 />
               </div>

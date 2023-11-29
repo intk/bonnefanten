@@ -353,6 +353,7 @@ msgstr ""
 
 #: components/blocks/Listing/NutezienSliderTemplate
 #: components/blocks/Listing/VerwachtSliderTemplate
+#: components/blocks/Listing/WhatsonTemplate
 # defaultMessage: MEER INFO
 msgid "meerinfo"
 msgstr ""
@@ -370,6 +371,11 @@ msgstr ""
 #: components/theme/View/ArtworkView
 # defaultMessage: Nu te zien
 msgid "nowonview"
+msgstr ""
+
+#: components/blocks/Listing/WhatsonTemplate
+# defaultMessage: Nu te zien
+msgid "nutezien"
 msgstr ""
 
 #: components/theme/View/ArtworkView

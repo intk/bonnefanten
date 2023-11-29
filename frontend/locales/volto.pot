@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2023-11-28T11:48:21.985Z\n"
+"POT-Creation-Date: 2023-11-29T11:03:37.805Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -347,6 +347,7 @@ msgstr ""
 
 #: components/blocks/Listing/NutezienSliderTemplate
 #: components/blocks/Listing/VerwachtSliderTemplate
+#: components/blocks/Listing/WhatsonTemplate
 # defaultMessage: MEER INFO
 msgid "meerinfo"
 msgstr ""
@@ -364,6 +365,11 @@ msgstr ""
 #: components/theme/View/ArtworkView
 # defaultMessage: Nu te zien
 msgid "nowonview"
+msgstr ""
+
+#: components/blocks/Listing/WhatsonTemplate
+# defaultMessage: Nu te zien
+msgid "nutezien"
 msgstr ""
 
 #: components/theme/View/ArtworkView

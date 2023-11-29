@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { ListingBlockHeader } from '@package/components';
 import { UniversalLink } from '@plone/volto/components';
-import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
+// import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 // import { BodyClass } from '@plone/volto/helpers';
 import './less/CollectionSliderTemplate.less';
 // import { PreviewImage } from '@plone/volto/components/';

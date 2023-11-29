@@ -9,6 +9,10 @@ import installNewsletterBlock from './Newsletter';
 import installSearchBlock from './Search';
 import installAdvancedSearch from './AdvancedSearch';
 import installEventPageButtonBlock from './EventPageButton';
+import installQuoteblock from './Quoteblock';
+import installImageAndTextBlock from './ImageAndTextBlock';
+import installSlidingTextBlock from './SlidingTextBlock';
+import installVideoPageBlock from './VideoPageBlock';
 
 import { compose } from 'redux';
 
@@ -27,6 +31,10 @@ const installBlocks = (config) => {
     installSearchBlock,
     installAdvancedSearch,
     installEventPageButtonBlock,
+    installQuoteblock,
+    installImageAndTextBlock,
+    installSlidingTextBlock,
+    installVideoPageBlock,
   )(config);
 };
 

@@ -1,0 +1,214 @@
+#view, #page-edit{
+  #quote-block-wrapper.Quoteblock, .block-editor-Quoteblock{
+    background-color: #f9fafb;
+    position: relative;
+    width: 100vw;
+    right: 50% !important;
+    left: 50% !important;
+    margin-right: -50vw !important;
+    margin-left: -50vw !important;
+
+    .block.Quoteblock::before {
+      z-index: 0;
+    }
+
+    .ui.stackable.stretched.column.grid{
+      flex-direction: column;
+      justify-content: center;
+      height: 110vh;
+      padding: 50px 48px 50px !important;
+
+      .column.grid-block-text{
+        width: 100%;
+        text-align: center;
+        padding: 0% !important;
+      }
+      .column span {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-left: 0% !important;
+        // border: 1px solid red ;
+      }
+
+      .public-DraftEditorPlaceholder-root{
+        width: 100%;
+      }
+      .public-DraftEditorPlaceholder-inner{
+        display: none;
+      }
+      .public-DraftEditorPlaceholder-root:after {
+        content: 'Every child is an artist. The problem is how to remain an artist once we grow up.' !important;
+        padding: 25px;
+        text-align: center !important;
+        width: 100%;
+        display: block;
+
+        padding: 0% !important;
+        font-size: 27.2px !important;
+        line-height: 36px !important;
+        margin-top: 0px !important;
+        margin-bottom: 25px !important;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        font-family: 'FranklinBook', Arial, sans-serif;
+        letter-spacing: 0.0em;
+        color: #292831;
+
+        @media (min-width: 992px) {
+          font-size: 3vw !important;
+          line-height: 4.7vw !important;
+          margin-top: 0px !important;
+          margin-bottom: 10px !important;
+        }
+      }
+
+
+      h2{
+        padding: 0% !important;
+        color: #e70518 !important;
+        margin-top: 25px !important;
+        margin-bottom: 25px !important;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        font-family: 'FranklinBook', Arial, sans-serif;
+        letter-spacing: 0.0em;
+        text-transform: none;
+        font-size: 17.6px !important;
+        line-height: 30px !important;
+
+        @media (min-width: 992px) {
+          font-size: 1.8vw !important;
+          margin-top: 0px !important;
+          line-height: 1.8vw !important;
+          margin-bottom: 20px !important;
+        }
+      }
+
+      p, .DraftEditor-editorContainer{
+        padding: 0% !important;
+        font-size: 27.2px !important;
+        line-height: 36px !important;
+        margin-top: 0px !important;
+        margin-bottom: 25px !important;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        font-family: 'FranklinBook', Arial, sans-serif;
+        letter-spacing: 0.0em;
+        color: #292831;
+
+        @media (min-width: 992px){
+          font-size: 3vw !important;
+          line-height: 4.7vw !important;
+          margin-top: 0px !important;
+          margin-bottom: 10px !important;
+        }
+      }
+    }
+
+    .ui.stackable.stretched.column.grid .column.grid-block-text:first-child {
+          .public-DraftEditorPlaceholder-root:after {
+              content: 'Pablo Picasso' !important;
+              padding: 0% !important;
+              color: #e70518 !important;
+              margin-top: 25px !important;
+              margin-bottom: 25px !important;
+              margin-left: 10px;
+              margin-right: 10px !important;
+              font-family: 'FranklinBook', Arial, sans-serif;
+              letter-spacing: 0.0em;
+              text-transform: none;
+              font-size: 17.6px !important;
+              line-height: 30px !important;
+
+              @media (min-width: 992px) {
+                font-size: 1.8vw !important;
+                margin-top: 0px !important;
+                line-height: 1.8vw !important;
+                margin-bottom: 20px !important;
+              }
+          }
+    }
+
+    .ui.stackable.stretched.column.grid .column.grid-block-text:first-child{
+    .public-DraftEditorPlaceholder-root:after {
+        padding: 0% !important;
+      }
+      p, span{
+        padding: 0% !important;
+        color: #e70518 !important;
+        margin-top: 25px !important;
+        margin-bottom: 25px !important;
+        margin-left: 10px;
+        margin-right: 10px !important;
+        font-family: 'FranklinBook', Arial, sans-serif;
+        letter-spacing: 0.0em;
+        text-transform: none;
+        font-size: 17.6px !important;
+        line-height: 30px !important;
+
+        @media (min-width: 992px) {
+          font-size: 1.8vw !important;
+          margin-top: 0px !important;
+          line-height: 1.8vw !important;
+          margin-bottom: 20px !important;
+        }
+      }
+    }
+  }
+}
+
+
+#page-edit {
+  .block-editor-Quoteblock {
+    background-color: white;
+    width: 90vw !important;
+    padding-left: 100px !important;
+    .ui.stackable.stretched.column.grid {
+        height: 90vh !important;
+        background-color: #f9fafb;
+    }
+    .block-add-button, .remove-block-button, .toolbar{
+      display: none;
+    }
+  }
+}
+
+.has-sidebar #page-edit {
+  // .block-editor-Quoteblock .ui.stackable.stretched.column.grid{
+  //   padding-left: 300px !important;
+  // }
+  .block-editor-Quoteblock {
+    padding-left: 150px !important;
+    width: 70vw !important;
+    margin-right: -40vw !important;
+    margin-left: -40vw !important;
+  }
+
+  @media screen and (max-width: 1150px) {
+    .block-editor-Quoteblock {
+      width: 65vw !important;
+      // padding-left: 50px !important;
+      .ui.stackable.stretched.column.grid {
+        padding-left: 0px !important;
+      }
+    }
+  }
+    @media screen and (max-width: 1100px) {
+      .block-editor-Quoteblock {
+        padding-left: 120px !important;
+        width: 60vw !important;
+      }
+    }
+    @media screen and (max-width: 1000px) {
+      .block-editor-Quoteblock {
+      padding-left: 50px !important;
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .block-editor-Quoteblock {
+        padding-left: 0px !important;
+      }
+    }
+}
+

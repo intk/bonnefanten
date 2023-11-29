@@ -15,18 +15,71 @@
     .ui.stackable.stretched.column.grid{
       flex-direction: column;
       justify-content: center;
-      height: 110vh;
+      height: 100vh;
       padding: 50px 48px 50px !important;
+      position: relative;
+
+      @media screen and (min-width: 768px){
+        height: 110vh;
+      }
+
+      &::before{
+        content: "\002B";
+        position: absolute;
+        top: 61px;
+        left: 32.5px;
+        font-family: 'BonnefantenBlock', Arial, sans-serif;
+        font-size: 15vw;
+        color: #b6a782;
+        @media screen and (min-width: 768px) {
+          left: 48px;
+          top: 59px;
+          font-size: 8vw;
+        }
+        @media screen and (min-width:1400px){
+          font-size: 110px;
+          top: 71px;
+        }
+      }
+      &::after{
+        content: "\002B";
+        position: absolute;
+        bottom: 21px;
+        left: 32.5px;
+        font-family: 'BonnefantenBlock', Arial, sans-serif;
+        font-size: 15vw;
+        color: #b6a782;
+        @media screen and (min-width: 768px) {
+          left: 48px;
+          bottom: 18px;
+          font-size: 8vw;
+        }
+        @media screen and (min-width:1400px) {
+          font-size: 110px;
+          bottom: 26px;
+        }
+      }
 
       .column.grid-block-text{
-        width: 100%;
-        text-align: center;
-        padding: 0% !important;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+        padding-top: 0% !important;
+        padding-bottom: 0% !important;
+        @media screen and (min-width: 550px) {
+          padding-left: 3px !important;
+        }
+        @media screen and (min-width: 768px){
+          padding-right: 23px !important;
+          padding-left: 23px !important;
+        }
       }
       .column span {
         display: block;
         width: 100%;
-        text-align: center;
+        // text-align: center;
         margin-left: 0% !important;
         // border: 1px solid red ;
       }
@@ -40,7 +93,7 @@
       .public-DraftEditorPlaceholder-root:after {
         content: 'Every child is an artist. The problem is how to remain an artist once we grow up.' !important;
         padding: 25px;
-        text-align: center !important;
+        // text-align: center !important;
         width: 100%;
         display: block;
 
@@ -51,9 +104,9 @@
         margin-bottom: 25px !important;
         margin-left: 10px !important;
         margin-right: 10px !important;
-        font-family: 'FranklinBook', Arial, sans-serif;
+        font-family: 'StyreneRegular',Arial,sans-serif;
         letter-spacing: 0.0em;
-        color: #292831;
+        color: var(--bonnefanten-primary);
 
         @media (min-width: 992px) {
           font-size: 3vw !important;
@@ -71,7 +124,7 @@
         margin-bottom: 25px !important;
         margin-left: 10px !important;
         margin-right: 10px !important;
-        font-family: 'FranklinBook', Arial, sans-serif;
+        font-family: 'StyreneRegular',Arial,sans-serif;
         letter-spacing: 0.0em;
         text-transform: none;
         font-size: 17.6px !important;
@@ -87,19 +140,23 @@
 
       p, .DraftEditor-editorContainer{
         padding: 0% !important;
-        font-size: 27.2px !important;
-        line-height: 36px !important;
+        font-size: 1.600em;
+        line-height: 36px;
         margin-top: 0px !important;
         margin-bottom: 25px !important;
-        margin-left: 10px !important;
+        margin-left: -2px !important;
         margin-right: 10px !important;
-        font-family: 'FranklinBook', Arial, sans-serif;
+        font-family: 'StyreneRegular', Arial, sans-serif;
         letter-spacing: 0.0em;
-        color: #292831;
+        color: var(--bonnefanten-primary);
+
+        @media (min-width: 768px){
+          margin-left: 10px !important;
+        }
 
         @media (min-width: 992px){
           font-size: 3vw !important;
-          line-height: 4.7vw !important;
+          line-height: 3.8vw !important;
           margin-top: 0px !important;
           margin-bottom: 10px !important;
         }

@@ -40,6 +40,11 @@ export default function applyConfig(config) {
     'News Item': ['title', 'description'],
   };
 
+  config.blocks.groupBlocksOrder.push({
+    id: 'Storytelling',
+    title: 'Storytelling',
+  });
+
   config.blocks.initialBlocksFocus = {
     ...config.blocks.initialBlocksFocus,
     Document: 'title',

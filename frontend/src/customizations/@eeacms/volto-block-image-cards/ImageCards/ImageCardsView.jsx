@@ -1,5 +1,7 @@
 import React from 'react';
 import config from '@plone/volto/registry';
+import useInView from '@package/helpers/useInView';
+import { BodyClass } from '@plone/volto/helpers';
 
 const ImageCardView = (props) => {
   const byDisplayType = {};
@@ -10,9 +12,22 @@ const ImageCardView = (props) => {
   });
 
   const Impl = byDisplayType[props.data.display || 'carousel'];
+  const titleInView = useInView(
+    'p',
+    {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0,
+    },
+    true,
+  );
   return Impl ? (
     <>
-      {' '}
+      {titleInView ? (
+        <BodyClass className="page-title-in-view" />
+      ) : (
+        <BodyClass className="page-title-out-of-view" />
+      )}{' '}
       <Impl {...props} />{' '}
     </>
   ) : (

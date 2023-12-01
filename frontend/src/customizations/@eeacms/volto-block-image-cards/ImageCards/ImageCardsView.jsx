@@ -13,7 +13,7 @@ const ImageCardView = (props) => {
 
   const Impl = byDisplayType[props.data.display || 'carousel'];
   const titleInView = useInView(
-    'p',
+    'div.slide-title',
     {
       root: null,
       rootMargin: '0px',

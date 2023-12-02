@@ -1,4 +1,5 @@
 from bonnefanten.content.artwork import IArtwork
+from datetime import datetime
 from plone.indexer.decorator import indexer
 
 
@@ -68,7 +69,25 @@ def artwork_technique(obj):
 
 @indexer(IArtwork)
 def artwork_date(obj):
-    return str(obj.ObjDateFromTxt)
+    date_text = obj.ObjDateFromTxt
+    if not date_text:
+        # Handle empty strings or None
+        return None  # Or a default value if appropriate
+
+    try:
+        # Attempt to parse the date string as a full date
+        parsed_date = datetime.strptime(date_text, "%Y-%m-%d")
+        # Extract and return only the year part
+        return parsed_date.year
+    except ValueError:
+        try:
+            # If the above fails, assume it's a year and try to convert to int
+            return int(date_text)
+        except ValueError:
+            # Handle cases where the date_text is not a valid year
+            return None  # Or a default value if appropriate
+
+    # Note: Add additional error handling as needed
 
 
 @indexer(IArtwork)

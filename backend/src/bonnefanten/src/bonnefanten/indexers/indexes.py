@@ -72,7 +72,7 @@ def artwork_date(obj):
     date_text = obj.ObjDateFromTxt
     if not date_text:
         # Handle empty strings or None
-        return None  # Or a default value if appropriate
+        return 0  # Or a default value if appropriate
 
     try:
         # Attempt to parse the date string as a full date
@@ -85,7 +85,7 @@ def artwork_date(obj):
             return int(date_text)
         except ValueError:
             # Handle cases where the date_text is not a valid year
-            return None  # Or a default value if appropriate
+            return 0  # Or a default value if appropriate
 
     # Note: Add additional error handling as needed
 

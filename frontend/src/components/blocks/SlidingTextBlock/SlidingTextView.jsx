@@ -10,6 +10,7 @@ import './css/slidingtextblock.less';
 import { getScaleUrl, getPath } from './utils';
 import DefaultImageSVG from '@plone/volto/components/manage/Blocks/Listing/default-image.svg';
 import { flattenToAppURL } from '@plone/volto/helpers';
+import SlateEditor from '@plone/volto-slate/editor/SlateEditor';
 
 const ViewGrid = (props) => {
   const { data, path, className } = props;
@@ -54,7 +55,7 @@ const ViewGrid = (props) => {
           className="shadow"
           style={{
             backgroundImage:
-              'linear-gradient(to bottom, rgba(46, 46, 46, 0) 0%, #242424 200%)',
+              'linear-gradient(to bottom, rgba(46, 46, 46, 0) 0%, #242424 130%)',
             // zIndex: 1,
             height: '100%',
             width: '100vw',
@@ -76,8 +77,15 @@ const ViewGrid = (props) => {
             >
               {column['@type'] === 'image' ? (
                 <div id="photo-credit">
-                  <span>{column?.alt || ''}</span>
-                  <span>{column?.copyright || ''}</span>
+                  {column?.caption ? (
+                    <SlateEditor
+                      id="photo-credit"
+                      name="photo-credit"
+                      value={column?.caption}
+                    />
+                  ) : (
+                    ''
+                  )}
                 </div>
               ) : (
                 <BlockRenderer

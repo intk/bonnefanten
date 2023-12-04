@@ -38,17 +38,18 @@ const translations = {
   searchresults: {
     en: 'Search results',
     nl: 'Zoekresultaten',
-    de: 'Suchergebnisse',
   },
   results: {
     en: 'items matching your search terms.',
     nl: 'resultaten voor de zoekopdracht.',
-    de: 'Artikel gefunden.',
   },
   for: {
     en: 'for',
     nl: 'voor',
-    de: 'für',
+  },
+  advancedsearch: {
+    en: 'Advanced search',
+    nl: 'Geavanceerd zoeken',
   },
 };
 
@@ -204,7 +205,9 @@ class Search extends Component {
                   <SearchBar />
                 </div>
                 <div className="advanced-search-link">
-                  <a href="/nl/advancedsearch">Geavanceerd zoeken</a>
+                  <a href={`/${intl.locale}/advancedsearch`}>
+                    {translations.advancedsearch[intl.locale]}
+                  </a>
                 </div>
                 {this.props.search?.items_total > 0 ? (
                   <>

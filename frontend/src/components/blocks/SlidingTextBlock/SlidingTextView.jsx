@@ -55,7 +55,7 @@ const ViewGrid = (props) => {
           className="shadow"
           style={{
             backgroundImage:
-              'linear-gradient(to bottom, rgba(46, 46, 46, 0) 0%, #242424 200%)',
+              'linear-gradient(to bottom, rgba(46, 46, 46, 0) 0%, #242424 130%)',
             // zIndex: 1,
             height: '150vh',
             width: '100vw',

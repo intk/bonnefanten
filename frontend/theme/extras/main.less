@@ -1387,12 +1387,18 @@ em{
     margin-top: 40px;
   }
   .tileItem{
+    margin-bottom: 50px !important;
+
+    @media (min-width: 768px) {
+      margin-bottom: 50px !important;
+    }
+
     display: flex;
     flex-direction: column;
     @media (min-width:768px){
       flex-direction: row;
 
-      img {
+      img, .image-placeholder {
         width: 41.6%;
         padding-left: 0px;
         padding-right: 15px;
@@ -1405,7 +1411,7 @@ em{
       }
     }
     @media (min-width: 1200px){
-      img {
+      img, .image-placeholder {
         width: 25%;
         padding-left: 0px;
         padding-right: 20px;
@@ -1427,6 +1433,7 @@ em{
       // width: 40%;
       // padding-left: 35px;
       // padding-right: 15px;
+
       .tileHeadline{
         margin-top: 20px;
         @media (min-width: 768px){

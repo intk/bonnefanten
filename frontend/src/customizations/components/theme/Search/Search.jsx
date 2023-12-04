@@ -188,45 +188,32 @@ class Search extends Component {
     const { intl } = this.props;
 
     return (
-      <Container id="page-search">
-        <Helmet title={this.props.intl.formatMessage(messages.Search)} />
-        <div className="container">
-          <article id="content">
-            <header>
-              <h1 className="documentFirstHeading">
-                {/* {this.props.searchableText ? (
-                  <FormattedMessage
-                    id="Search results for {term}"
-                    defaultMessage="Search results for {term}"
-                    values={{
-                      term: <q>{this.props.searchableText}</q>,
-                    }}
-                  />
-                ) : (
-                  <FormattedMessage
-                    id="Search results"
-                    defaultMessage="Search results"
-                  />
-                )} */}
-                {translations.searchresults[intl.locale]}{' '}
-                {translations.for[intl.locale]} {this.props.searchableText}
-              </h1>
-
-              {/* <SearchTags /> */}
-              <div className="search">
-                <SearchBar />
-              </div>
-              {this.props.search?.items_total > 0 ? (
-                <>
-                  <div className="items_total">
-                    <strong>{this.props.search.items_total}</strong>
-                    {/* <FormattedMessage
+      <>
+        <h1 className="documentFirstHeading">
+          {translations.searchresults[intl.locale]}{' '}
+          {translations.for[intl.locale]}{' '}
+          <span className="search-term">{this.props.searchableText}</span>
+        </h1>
+        <Container id="page-search">
+          <Helmet title={this.props.intl.formatMessage(messages.Search)} />
+          <div className="container">
+            <article id="content">
+              <header>
+                {/* <SearchTags /> */}
+                <div className="search">
+                  <SearchBar />
+                </div>
+                {this.props.search?.items_total > 0 ? (
+                  <>
+                    <div className="items_total">
+                      <strong>{this.props.search.items_total}</strong>
+                      {/* <FormattedMessage
                       id="results found"
                       defaultMessage="results"
                     /> */}
-                    {translations.results[intl.locale]}
-                  </div>
-                  {/* <Header>
+                      {translations.results[intl.locale]}
+                    </div>
+                    {/* <Header>
                     <Header.Content className="header-content">
                       <div className="sort-by">
                         <FormattedMessage
@@ -282,62 +269,64 @@ class Search extends Component {
                       </Button>
                     </Header.Content>
                   </Header> */}
-                </>
-              ) : (
-                <div>
-                  <FormattedMessage
-                    id="No results found"
-                    defaultMessage="No results found"
-                  />
-                </div>
-              )}
-            </header>
-            <section id="content-core">
-              {this.props.items.map((item) => (
-                <article className="tileItem" key={item['@id']}>
-                  {item.image_field !== '' ? (
-                    <PreviewImage
-                      item={item}
-                      size="preview"
-                      alt={item.image_caption ? item.image_caption : item.title}
-                      className="ui image"
+                  </>
+                ) : (
+                  <div>
+                    <FormattedMessage
+                      id="No results found"
+                      defaultMessage="No results found"
                     />
-                  ) : (
-                    <div className="image-placeholder"></div>
-                  )}
-
-                  <div className="search-text-wrapper">
-                    <h2 className="tileHeadline">
-                      <UniversalLink
+                  </div>
+                )}
+              </header>
+              <section id="content-core">
+                {this.props.items.map((item) => (
+                  <article className="tileItem" key={item['@id']}>
+                    {item.image_field !== '' ? (
+                      <PreviewImage
                         item={item}
-                        className="summary url"
-                        title={item['@type']}
-                      >
-                        {item.title}
-                      </UniversalLink>
-                    </h2>
-                    {item['@type'] === 'Event' ? (
-                      <div className="listing-dates">
-                        <div className={`listing-dates-wrapper`}>
-                          <When
-                            start={item.start}
-                            end={item.end}
-                            whole_day={item.whole_day}
-                            open_end={item.open_end}
-                          />
-                        </div>
-                      </div>
+                        size="preview"
+                        alt={
+                          item.image_caption ? item.image_caption : item.title
+                        }
+                        className="ui image"
+                      />
                     ) : (
-                      ''
+                      <div className="image-placeholder"></div>
                     )}
-                    {item.description && (
-                      <div className="tileBody">
-                        <span className="description">
-                          {truncate(item.description, 155)}
-                        </span>
-                      </div>
-                    )}
-                    {/* <div className="tileFooter">
+
+                    <div className="search-text-wrapper">
+                      <h2 className="tileHeadline">
+                        <UniversalLink
+                          item={item}
+                          className="summary url"
+                          title={item['@type']}
+                        >
+                          {item.title}
+                        </UniversalLink>
+                      </h2>
+                      {item['@type'] === 'Event' ? (
+                        <div className="listing-dates">
+                          <div className={`listing-dates-wrapper`}>
+                            <When
+                              start={item.start}
+                              end={item.end}
+                              whole_day={item.whole_day}
+                              open_end={item.open_end}
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                      {item.description && (
+                        <div className="tileBody">
+                          <span className="description">
+                            {truncate(item.description, 155)}
+                          </span>
+                        </div>
+                      )}
+                      {/* <div className="tileFooter">
                       <UniversalLink item={item}>
                         <FormattedMessage
                           id="Read More…"
@@ -345,53 +334,55 @@ class Search extends Component {
                         />
                       </UniversalLink>
                     </div> */}
-                    <div className="visualClear" />
-                  </div>
-                </article>
-              ))}
+                      <div className="visualClear" />
+                    </div>
+                  </article>
+                ))}
 
-              {this.props.search?.batching && (
-                <div className="pagination-wrapper">
-                  <Pagination
-                    activePage={this.state.currentPage}
-                    totalPages={Math.ceil(
-                      this.props.search.items_total / settings.defaultPageSize,
-                    )}
-                    onPageChange={this.handleQueryPaginationChange}
-                    firstItem={null}
-                    lastItem={null}
-                    prevItem={{
-                      content: <HiMiniArrowLongLeft />,
-                      icon: true,
-                      'aria-disabled': !this.props.search.batching.prev,
-                      className: !this.props.search.batching.prev
-                        ? 'disabled'
-                        : null,
-                    }}
-                    nextItem={{
-                      content: <HiMiniArrowLongRight />,
-                      icon: true,
-                      'aria-disabled': !this.props.search.batching.next,
-                      className: !this.props.search.batching.next
-                        ? 'disabled'
-                        : null,
-                    }}
-                  />
-                </div>
-              )}
-            </section>
-          </article>
-        </div>
-        {this.state.isClient && (
-          <Portal node={document.getElementById('toolbar')}>
-            <Toolbar
-              pathname={this.props.pathname}
-              hideDefaultViewButtons
-              inner={<span />}
-            />
-          </Portal>
-        )}
-      </Container>
+                {this.props.search?.batching && (
+                  <div className="pagination-wrapper">
+                    <Pagination
+                      activePage={this.state.currentPage}
+                      totalPages={Math.ceil(
+                        this.props.search.items_total /
+                          settings.defaultPageSize,
+                      )}
+                      onPageChange={this.handleQueryPaginationChange}
+                      firstItem={null}
+                      lastItem={null}
+                      prevItem={{
+                        content: <HiMiniArrowLongLeft />,
+                        icon: true,
+                        'aria-disabled': !this.props.search.batching.prev,
+                        className: !this.props.search.batching.prev
+                          ? 'disabled'
+                          : null,
+                      }}
+                      nextItem={{
+                        content: <HiMiniArrowLongRight />,
+                        icon: true,
+                        'aria-disabled': !this.props.search.batching.next,
+                        className: !this.props.search.batching.next
+                          ? 'disabled'
+                          : null,
+                      }}
+                    />
+                  </div>
+                )}
+              </section>
+            </article>
+          </div>
+          {this.state.isClient && (
+            <Portal node={document.getElementById('toolbar')}>
+              <Toolbar
+                pathname={this.props.pathname}
+                hideDefaultViewButtons
+                inner={<span />}
+              />
+            </Portal>
+          )}
+        </Container>
+      </>
     );
   }
 }

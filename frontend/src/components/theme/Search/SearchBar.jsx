@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { Form, Input } from 'semantic-ui-react';
 import { defineMessages, useIntl } from 'react-intl';
 import { useDetectClickOutside } from 'react-detect-click-outside';
+import './SearchBar.less';
 
 const messages = defineMessages({
   search: {
@@ -72,6 +73,7 @@ const SearchBar = ({ onClose }) => {
             title={intl.formatMessage(messages.search)}
           />
           <button
+            className="Search-main-button"
             type="submit"
             aria-label={intl.formatMessage(messages.search)}
             onClick={(e) => {

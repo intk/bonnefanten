@@ -61,7 +61,7 @@ const SearchBar = ({ onClose }) => {
       <Form action="/search" onSubmit={onSubmit}>
         <Form.Field className={`searchbox${visible ? ' visible' : ''}`}>
           <Input
-            id="input"
+            id="search-input"
             ref={inputRef}
             aria-label={intl.formatMessage(messages.searchSite)}
             onChange={onChangeText}
@@ -74,6 +74,7 @@ const SearchBar = ({ onClose }) => {
           />
           <button
             className="Search-main-button"
+            id="search-button"
             type="submit"
             aria-label={intl.formatMessage(messages.search)}
             onClick={(e) => {

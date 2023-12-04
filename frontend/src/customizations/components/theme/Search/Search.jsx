@@ -203,6 +203,9 @@ class Search extends Component {
                 <div className="search">
                   <SearchBar />
                 </div>
+                <div className="advanced-search-link">
+                  <a href="/nl/advancedsearch">Geavanceerd zoeken</a>
+                </div>
                 {this.props.search?.items_total > 0 ? (
                   <>
                     <div className="items_total">

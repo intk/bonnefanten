@@ -563,7 +563,10 @@ h1.documentFirstHeading {
 }
 .section-search h1.documentFirstHeading{
   margin-top: 70px;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+  @media(min-width: 992px){
+    margin-bottom: 60px;
+  }
   .search-term{
     font-family: 'BonnefantenSlab', Arial, sans-serif;
   }
@@ -1369,4 +1372,85 @@ body.contenttype-event{
 
 em{
   font-style: italic;
+}
+
+.section-search {
+  .items_total {
+    font-family: 'StyreneRegular', 'Helvetica Neue', Helvetica, sans-serif;
+    justify-content:flex-start;
+    color: #b6a782;
+    strong{
+      padding-right: 3px;
+    }
+  }
+  #content-core{
+    margin-top: 40px;
+  }
+  .tileItem{
+    display: flex;
+    flex-direction: column;
+    @media (min-width:768px){
+      flex-direction: row;
+
+      img {
+        width: 41.6%;
+        padding-left: 0px;
+        padding-right: 15px;
+      }
+
+      .search-text-wrapper {
+        width: 58.3%;
+        padding-left: 10px;
+        padding-right: 15px;
+      }
+    }
+    @media (min-width: 1200px){
+      img {
+        width: 25%;
+        padding-left: 0px;
+        padding-right: 20px;
+      }
+
+      .search-text-wrapper {
+        width: 40%;
+        padding-left: 35px;
+        padding-right: 15px;
+      }
+    }
+
+    img{
+      // width: 25%;
+      // padding-left: 0px;
+      // padding-right: 20px;
+    }
+    .search-text-wrapper{
+      // width: 40%;
+      // padding-left: 35px;
+      // padding-right: 15px;
+      .tileHeadline{
+        margin-top: 20px;
+        @media (min-width: 768px){
+          margin-top: 0px;
+        }
+        a{
+          color: var(--bonnefanten-primary) !important;
+          text-decoration: none !important;
+        }
+        a:hover{
+          text-decoration: underline !important;
+          text-decoration-thickness: 1px !important;
+          text-underline-offset: 4px;
+        }
+      }
+      .tileBody{
+        font-family: 'StyreneRegular', Arial, sans-serif;
+        margin-top: 10px;
+        line-height: 25px;
+        margin-bottom: 5px;
+        color: #b6a782;
+        font-size: 19px;
+        letter-spacing: 0.00em;
+      }
+    }
+  }
 }

@@ -79,7 +79,9 @@ class SearchWidget extends Component {
         ? `&path=${encodeURIComponent(this.props.pathname)}`
         : '';
     this.props.history.push(
-      `/search?SearchableText=${encodeURIComponent(this.state.text)}${path}`,
+      `/search?SearchableText=${encodeURIComponent(
+        this.state.text,
+      )}${path}/&Language=${this.props.intl.locale}`,
     );
     // reset input value
     this.setState({

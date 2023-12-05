@@ -16,7 +16,7 @@ function ArtworkPreview(props) {
 
   const src = item.image_field
     ? flattenToAppURL(
-        `${item['@id']}/${item.image_scales.preview_image[0].scales.preview.download}`,
+        `${item['@id']}/${item.image_scales?.preview_image[0]?.scales?.preview.download}`,
       )
     : config.getComponent({
         name: 'DefaultImage',

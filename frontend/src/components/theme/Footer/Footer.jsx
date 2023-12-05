@@ -4,13 +4,29 @@
  */
 
 import React from 'react';
-import { injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, useIntl } from 'react-intl';
 import FooterColumns from '@package/components/theme/Footer/FooterColumns';
 import useInView from '@package/helpers/useInView';
 import { BodyClass } from '@plone/volto/helpers';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
 
+const messages = defineMessages({
+  newsletterErrorMessage: {
+    id: 'Close menu',
+    defaultMessage: 'Error',
+  },
+  newsletterSuccessMessage: {
+    id: 'Open menu',
+    defaultMessage: 'Success',
+  },
+  submitButton: {
+    id: 'Submit',
+    defaultMessage: 'Inschrijven',
+  },
+});
+
 const MailChimpForm = ({ status, message, onValidated }) => {
+  let intl = useIntl();
   let email;
   const submit = () =>
     email &&
@@ -33,12 +49,12 @@ const MailChimpForm = ({ status, message, onValidated }) => {
         </div>
         <div className="formControls">
           <button id="form-buttons-subscribe" onClick={submit}>
-            Inschrijven
+            {intl.formatMessage(messages.submitButton)}
           </button>
         </div>
       </div>
 
-      <div>
+      <div className='message-wrapper'>
         <div className="message">
           {status === 'sending' && <div style={{ color: 'blue' }}>...</div>}
           {status === 'error' && (
@@ -46,7 +62,7 @@ const MailChimpForm = ({ status, message, onValidated }) => {
               style={{ color: 'red' }}
               // dangerouslySetInnerHTML={{ __html: message }}
             >
-              <p>asdf</p>
+              <p> {intl.formatMessage(messages.newsletterErrorMessage)}</p>
             </div>
           )}
           {status === 'success' && (
@@ -55,7 +71,7 @@ const MailChimpForm = ({ status, message, onValidated }) => {
               style={{ color: 'blue' }}
               // dangerouslySetInnerHTML={{ __html: message }}
             >
-              <p>asdf</p>
+              <p> {intl.formatMessage(messages.newsletterSuccessMessage)}</p>{' '}
             </div>
           )}
         </div>
@@ -71,8 +87,7 @@ const MailChimpForm = ({ status, message, onValidated }) => {
  * @returns {string} Markup of the component
  */
 const Footer = ({ intl }) => {
-  const mailchimp_url =
-    'https://bonnefanten.us15.list-manage.com/subscribe/post-json?c=?';
+  const mailchimp_url = `https://bonnefanten.us15.list-manage.com/subscribe/post-json?c=?`;
   const footerInView = useInView(
     'footer#site-footer',
     {

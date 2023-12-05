@@ -13,7 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import { Portal } from 'react-portal';
 import { Container, Pagination, Button, Header } from 'semantic-ui-react';
 import qs from 'query-string';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';
 import config from '@plone/volto/registry';
 import { Helmet } from '@plone/volto/helpers';
@@ -23,7 +23,7 @@ import { SearchTags, Toolbar, Icon } from '@plone/volto/components';
 import { PreviewImage } from '@plone/volto/components';
 import SearchBar from '@package/components/theme/Search/SearchBar';
 import { When } from '@package/customizations/components/theme/View/EventDatesInfo';
-
+import { NavLink } from 'react-router-dom';
 import { HiMiniArrowLongLeft } from 'react-icons/hi2';
 import { HiMiniArrowLongRight } from 'react-icons/hi2';
 
@@ -205,9 +205,16 @@ class Search extends Component {
                   <SearchBar />
                 </div>
                 <div className="advanced-search-link">
-                  <a href={`/${intl.locale}/advancedsearch`}>
+                  {/* <a href={`/${intl.locale}/advancedsearch`}>
                     {translations.advancedsearch[intl.locale]}
-                  </a>
+                  </a> */}
+                  <NavLink
+                    to={`/${intl.locale}/advancedsearch`}
+                    key={`/${intl.locale}/advancedsearch`}
+                    activeClassName="active"
+                  >
+                    {translations.advancedsearch[intl.locale]}
+                  </NavLink>
                 </div>
                 {this.props.search?.items_total > 0 ? (
                   <>

@@ -11,8 +11,6 @@ import './less/Whatson.less';
 import TruncateText from './TruncateText';
 import { defineMessages, useIntl } from 'react-intl';
 import { ConditionalLink } from '@plone/volto/components';
-// import SimpleReactLightbox from 'simple-react-lightbox';
-import { SRLWrapper } from 'simple-react-lightbox';
 
 import config from '@plone/volto/registry';
 import { flattenToAppURL } from '@plone/volto/helpers';
@@ -44,17 +42,13 @@ const Card = ({ item, showDescription = true }) => {
         <div className="quote-top-right quote-bonnefanten">”</div>
         <div className="content">
           <div className="card-left-part">
-            {/* <UniversalLink href={item['@id']} className="plone-item-card-link"> */}
-            <SRLWrapper>
+            <UniversalLink href={item['@id']} className="plone-item-card-link">
               <div className="listing-image">
                 <a href={src}>
                   <img src={src} alt={item.title ?? 'alt'} />
                 </a>
               </div>
-            </SRLWrapper>
-
-            {/* {console.log(item)} */}
-            {/* </UniversalLink> */}
+            </UniversalLink>
           </div>
 
           <div className="card-right-part">

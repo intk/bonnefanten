@@ -88,7 +88,9 @@ function HeroSection(props) {
                 <div className="quote-top-left quote-bonnefanten">“</div>
                 <div className="quote-top-right quote-bonnefanten">”</div>
               </div>
-              <h1 className="hero-title-floating">{title}</h1>
+              <h1 className="hero-title-floating">
+                {preview_caption || title}
+              </h1>
               {startDate && isEvent && (
                 <p className="hero-dates">
                   {getDateRangeDescription(intl.locale, startDate, endDate)}

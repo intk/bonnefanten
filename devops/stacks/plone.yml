@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   frontend:
-    image: intkbv/bonnefanten-frontend:sha-090aaa6
+    image: intkbv/bonnefanten-frontend:sha-3766092
     environment:
       RAZZLE_INTERNAL_API_PATH: http://backend:8080/Plone
     depends_on:

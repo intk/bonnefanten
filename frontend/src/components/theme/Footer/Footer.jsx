@@ -54,7 +54,7 @@ const MailChimpForm = ({ status, message, onValidated }) => {
         </div>
       </div>
 
-      <div className='message-wrapper'>
+      <div className="message-wrapper">
         <div className="message">
           {status === 'sending' && <div style={{ color: 'blue' }}>...</div>}
           {status === 'error' && (

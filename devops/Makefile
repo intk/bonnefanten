@@ -109,10 +109,10 @@ status: ## Check status of stack
 	@echo "$(GREEN)==> Stack status in $(DEPLOY_ENV) $(RESET)"
 	${DOCKER_CONTEXT} stack ps -f "desired-state=running" plone
 
-.PHONY: logs-webserver
-logs-webserver: ## Display webserver logs
-	@echo "$(GREEN)==> Logs for webserver in $(DEPLOY_ENV) $(RESET)"
-	${DOCKER_CONTEXT} service logs plone_traefik
+.PHONY: logs-zeo
+logs-zeo: ## Display zeo logs
+	@echo "$(GREEN)==> Logs for zeo in $(DEPLOY_ENV) $(RESET)"
+	${DOCKER_CONTEXT} service logs plone_zeo
 
 .PHONY: logs-frontend
 logs-frontend: ## Display frontend logs

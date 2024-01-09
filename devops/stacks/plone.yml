@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   frontend:
-    image: intkbv/bonnefanten-frontend:sha-d796a25
+    image: intkbv/bonnefanten-frontend:sha-090aaa6
     environment:
       RAZZLE_INTERNAL_API_PATH: http://backend:8080/Plone
     depends_on:
@@ -15,11 +15,14 @@ services:
       replicas: 2
 
   backend:
-    image: intkbv/bonnefanten-backend:sha-17414d5
+    image: intkbv/bonnefanten-backend:sha-4effb66
     environment:
       ZEO_ADDRESS: zeo:8100
       SITE: Plone
       DOCKER_DEPLOYMENT: "true"
+    volumes:
+      - /var/local/bonnefanten:/app/logs
+      - /var/local/bonnefanten/import:/app/import
     env_file:
       - ../container.env
     networks:

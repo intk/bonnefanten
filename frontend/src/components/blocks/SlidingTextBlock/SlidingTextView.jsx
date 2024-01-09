@@ -60,6 +60,7 @@ const ViewGrid = (props) => {
             height: '150vh',
             width: '100vw',
             position: 'absolute',
+            left: '0',
           }}
         ></div>
         <div

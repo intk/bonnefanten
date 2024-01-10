@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import withObjectBrowser from '@plone/volto/components/manage/Sidebar/ObjectBrowser';
+import { UniversalLink } from '@plone/volto/components';
 
 /**
  * BlockRenderer container class.
@@ -9,7 +10,7 @@ import withObjectBrowser from '@plone/volto/components/manage/Sidebar/ObjectBrow
  * @extends Component
  */
 function BlockRenderer(props) {
-  const { edit, type, blocksConfig } = props;
+  const { edit, type, blocksConfig, buttonData } = props;
 
   if (!type) {
     // We could have an empty block, although should be handled somewhere else
@@ -21,13 +22,24 @@ function BlockRenderer(props) {
   const ViewBlock =
     blocksConfig?.[type]?.view || config.blocks.blocksConfig[type].view;
 
-  if (!edit) {
-    return <ViewBlock {...props} detached onChangeBlock={() => {}} />;
-  }
-  if (edit) {
-    return <EditBlock {...props} detached index={0} />;
-  }
-  return '';
+  let href = buttonData?.linkHref?.[0]?.['@id'] || '';
+  return (
+    <div>
+      {/* Render the edit or view block based on the edit state */}
+      {!edit ? (
+        <ViewBlock {...props} detached onChangeBlock={() => {}} />
+      ) : (
+        <EditBlock {...props} detached index={0} />
+      )}
+
+      {/* Render "Click Me" button if block type is 'text' */}
+      {type === 'text' && buttonData.linkTitle && (
+        <UniversalLink href={href} className={`text-button btn-block primary`}>
+          {buttonData.linkTitle || href}
+        </UniversalLink>
+      )}
+    </div>
+  );
 }
 
 BlockRenderer.propTypes = {

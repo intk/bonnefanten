@@ -44,6 +44,7 @@ const ViewGrid = (props) => {
               data={column}
               path={path}
               blocksConfig={blocksConfig}
+              buttonData={data}
             />
           </Grid.Column>
         ))}

@@ -13,6 +13,7 @@ import installQuoteblock from './Quoteblock';
 import installImageAndTextBlock from './ImageAndTextBlock';
 import installSlidingTextBlock from './SlidingTextBlock';
 import installVideoPageBlock from './VideoPageBlock';
+import installDiscreetText from './DiscreetText';
 
 import { compose } from 'redux';
 
@@ -35,6 +36,7 @@ const installBlocks = (config) => {
     installImageAndTextBlock,
     installSlidingTextBlock,
     installVideoPageBlock,
+    installDiscreetText,
   )(config);
 };
 

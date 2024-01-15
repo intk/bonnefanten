@@ -43,7 +43,7 @@ const ShareLinks = () => {
   }, []);
 
   return (
-    <div className="social-share-links">
+    <div className="social-share-links" style={{ clear: 'both' }}>
       <ul>
         {socials.map((social) => (
           <li key={social.id}>

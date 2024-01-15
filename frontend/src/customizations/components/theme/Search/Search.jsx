@@ -11,7 +11,7 @@ import { UniversalLink } from '@plone/volto/components';
 import { asyncConnect } from '@plone/volto/helpers';
 import { FormattedMessage } from 'react-intl';
 import { Portal } from 'react-portal';
-import { Container, Pagination, Button, Header } from 'semantic-ui-react';
+import { Container, Pagination } from 'semantic-ui-react';
 import qs from 'query-string';
 // import classNames from 'classnames';
 import { defineMessages, injectIntl } from 'react-intl';

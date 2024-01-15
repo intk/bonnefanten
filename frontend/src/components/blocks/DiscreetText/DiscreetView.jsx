@@ -1,10 +1,9 @@
 import React from 'react';
-import { serializeNodes } from '@plone/volto-slate/editor/render';
 import SlateEditor from '@plone/volto-slate/editor/SlateEditor';
 
 const DiscreetView = ({ data, mode = 'view' }) => {
   const text = data.text;
-  const isEditMode = mode === 'edit';
+  // const isEditMode = mode === 'edit';
 
   return (
     <div className="Discreet-text-block">

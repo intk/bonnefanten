@@ -434,6 +434,7 @@ body:not(.cms-ui) {
   ul {
     margin-top: 0;
     margin-bottom: 30px;
+    padding-left: 40px;
 
     &,
     li {
@@ -1308,6 +1309,16 @@ body.view-viewview.contenttype-event {
         // margin-bottom: -80px;
       }
     }
+    .event-page-button-block{
+      .social-button {
+        visibility: hidden;
+      }
+    }
+    .event-page-button-block.secondary{
+      .social-button {
+        visibility: visible;
+      }
+    }
   #page-document > .content-container {
     padding-bottom: 15px !important;
   };
@@ -1353,6 +1364,9 @@ body.contenttype-event{
     @media screen and (min-width: 768px) {
       font-size: 19px !important;
     }
+  }
+  .text-button.btn-block.secondary {
+    padding: 15px !important;
   }
 
   .text-button.btn-block:hover {

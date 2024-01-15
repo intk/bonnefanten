@@ -27,7 +27,7 @@ const messages = defineMessages({
 
 const EventPageButtonView = ({ data, mode = 'view' }) => {
   let intl = useIntl();
-  const classNames = cx('text-button btn-block', data.btnStyle || 'primary');
+  const classNames = cx('text-button btn-block', 'primary');
   const [targetUrl, setTargetUrl] = useState();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const EventPageButtonView = ({ data, mode = 'view' }) => {
   }, []);
 
   return (
-    <div className="event-page-button-block">
+    <div className={`event-page-button-block ${data?.btnStyle}`}>
       <div className="event-links">
         <ConditionalLink
           to={intl.formatMessage(messages.ticketurl)}

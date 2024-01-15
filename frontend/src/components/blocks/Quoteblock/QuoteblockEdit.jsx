@@ -262,7 +262,7 @@ class EditGrid extends Component {
     );
 
     for (let i = 0; i < elements.length; i++) {
-      elements[i].textContent = 'ow ye test';
+      elements[i].textContent = 'test';
     }
   }
 

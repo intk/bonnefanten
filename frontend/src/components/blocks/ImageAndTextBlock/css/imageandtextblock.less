@@ -1,5 +1,11 @@
 #view, #page-edit{
   #quote-block-wrapper.ImageAndTextBlock, .block-editor-ImageAndTextBlock{
+    @media (min-width: 768px) {
+      margin-top: calc(5.21vw + 2px) !important;
+      margin-bottom: calc(5.21vw - 6px) !important;
+      // padding-top: calc(5.21vw - 13px);
+      padding-bottom: 5.21vw;
+    }
 
     .text-button.btn-block.primary{
       line-height: 2.2rem;
@@ -28,6 +34,7 @@
       margin: 0% !important;
       position: relative;
 
+
       @media (min-width: 768px){
         flex-direction: row;
         display: grid;
@@ -35,10 +42,10 @@
         // grid-template-rows: 16% 84%;
         padding-left: calc(5vw + 1px);
         padding-right: calc(5vw + 2px);
-        padding-top: calc(5.21vw - 13px);
-        padding-bottom: 5.21vw;
-        margin-top: calc(5.21vw + 2px) !important;
-        margin-bottom: calc(5.21vw - 6px) !important;
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-bottom: 0px !important;
+        margin-top: 0px !important;
         align-items: start;
       }
       @media (min-width: 992px) {

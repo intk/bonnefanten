@@ -6,11 +6,29 @@ export const GridSchema = (props) => {
       {
         id: 'default',
         title: 'Default',
-        fields: [],
+        fields: ['linkTitle', 'linkHref', 'btnStyle'],
       },
     ],
+    properties: {
+      linkTitle: {
+        title: 'Button title',
+      },
+      linkHref: {
+        title: 'Call to action',
+        widget: 'object_browser',
+        mode: 'link',
+        selectedItemAttrs: ['Title', 'Description'],
+        allowExternals: true,
+      },
+      btnStyle: {
+        title: 'Style',
+        choices: [
+          ['primary', 'Primary'],
+          ['secondary', 'Secondary'],
+        ],
+      },
+    },
 
-    properties: {},
     required: [],
   };
 };

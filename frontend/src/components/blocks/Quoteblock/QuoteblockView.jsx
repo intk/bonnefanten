@@ -6,11 +6,14 @@ import BlockRenderer from './BlockRenderer';
 import { withBlockExtensions } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import './css/quoteblock.less';
+import { UniversalLink } from '@plone/volto/components';
 
 const ViewGrid = (props) => {
   const { data, path, className } = props;
   const blocksConfig =
     config.blocks.blocksConfig.__grid.blocksConfig || props.blocksConfig;
+
+  let href = data?.linkHref?.[0]?.['@id'] || '';
 
   return (
     <div
@@ -33,6 +36,16 @@ const ViewGrid = (props) => {
       {data.headline && <h2 className="headline">{data.headline}</h2>}
 
       <Grid stackable stretched columns={data.columns.length}>
+        <div className="button">
+          {data?.linkTitle && (
+            <UniversalLink
+              href={href}
+              className={`text-button btn-block primary`}
+            >
+              {data?.linkTitle || href}
+            </UniversalLink>
+          )}
+        </div>
         {data.columns.map((column) => (
           <Grid.Column
             key={column.id}
@@ -48,6 +61,7 @@ const ViewGrid = (props) => {
             />
           </Grid.Column>
         ))}
+        {/* Render "Click Me" button if block type is 'text' */}
       </Grid>
     </div>
   );

@@ -37,6 +37,7 @@ msgid "Browse the site, drop an image, or type an URL"
 msgstr ""
 
 #: components/blocks/Button/schema
+#: components/blocks/EventPageButton/schema
 # defaultMessage: Button
 msgid "Button"
 msgstr ""
@@ -70,6 +71,11 @@ msgstr ""
 #: components/blocks/Teaser/schema
 # defaultMessage: Description
 msgid "Description"
+msgstr ""
+
+#: components/blocks/DiscreetText/schema
+# defaultMessage: Discreet
+msgid "Discreet"
 msgstr ""
 
 #: components/blocks/AdvancedSearch/schema
@@ -306,6 +312,22 @@ msgstr ""
 #: components/blocks/Listing/CollectionSliderTemplate
 # defaultMessage: Collectie
 msgid "collectie"
+msgstr ""
+
+#: components/blocks/ImageAndTextBlock/templates
+#: components/blocks/Quoteblock/templates
+#: components/blocks/SlidingTextBlock/templates
+#: components/blocks/VideoPageBlock/templates
+# defaultMessage: column
+msgid "column"
+msgstr ""
+
+#: components/blocks/ImageAndTextBlock/templates
+#: components/blocks/Quoteblock/templates
+#: components/blocks/SlidingTextBlock/templates
+#: components/blocks/VideoPageBlock/templates
+# defaultMessage: columns
+msgid "columns"
 msgstr ""
 
 #: components/theme/View/ArtworkView

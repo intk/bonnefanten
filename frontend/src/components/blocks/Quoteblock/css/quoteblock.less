@@ -83,6 +83,11 @@
           padding-left: 11px !important;
         }
       }
+      .column.grid-block-text.empty{
+        p{
+          display: none !important;
+        }
+      }
       .column span {
         display: block;
         width: 100%;
@@ -176,7 +181,8 @@
       }
     }
 
-    .ui.stackable.stretched.column.grid .column.grid-block-text:first-child {
+    // .ui.stackable.stretched.column.grid .column.grid-block-text:first-child
+        .ui.stackable.stretched.column.grid .column.grid-block-text:nth-child(2){
           .public-DraftEditorPlaceholder-root:after {
               content: '- Pablo Picasso' !important;
               padding: 0% !important;
@@ -200,7 +206,8 @@
           }
     }
 
-    .ui.stackable.stretched.column.grid .column.grid-block-text:first-child{
+    // .ui.stackable.stretched.column.grid .column.grid-block-text:first-child{
+      .ui.stackable.stretched.column.grid .column.grid-block-text:nth-child(2) {
     .public-DraftEditorPlaceholder-root:after {
         padding: 0% !important;
       }

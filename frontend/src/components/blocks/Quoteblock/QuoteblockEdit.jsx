@@ -14,7 +14,7 @@ import { withBlockExtensions } from '@plone/volto/helpers';
 import addSVG from '@plone/volto/icons/add.svg';
 import clearSVG from '@plone/volto/icons/clear.svg';
 import configSVG from '@plone/volto/icons/configuration.svg';
-
+import { UniversalLink } from '@plone/volto/components';
 import BlockRenderer from './BlockRenderer';
 import TemplateChooser from './TemplateChooser';
 import NewBlockAddButton from './NewBlockAddButton';
@@ -277,6 +277,8 @@ class EditGrid extends Component {
     const blocksConfig =
       config.blocks.blocksConfig.__grid.blocksConfig || this.props.blocksConfig;
 
+    let href = data?.linkHref?.[0]?.['@id'] || '';
+
     return (
       <>
         {this.props.selected && (
@@ -382,6 +384,16 @@ class EditGrid extends Component {
                         : 0
                     }
                   >
+                    <div className="button">
+                      {data?.linkTitle && (
+                        <UniversalLink
+                          href={href}
+                          className={`text-button btn-block primary`}
+                        >
+                          {data?.linkTitle || href}
+                        </UniversalLink>
+                      )}
+                    </div>
                     {this.props.data.columns &&
                       this.props.data.columns.map((item, index) => (
                         <Draggable

@@ -6,7 +6,7 @@ export const GridSchema = (props) => {
       {
         id: 'default',
         title: 'Default',
-        fields: ['linkTitle', 'linkHref', 'btnStyle'],
+        fields: [],
       },
       {
         id: 'slideshow',
@@ -15,23 +15,6 @@ export const GridSchema = (props) => {
       },
     ],
     properties: {
-      linkTitle: {
-        title: 'Button title',
-      },
-      linkHref: {
-        title: 'Buttons link',
-        widget: 'object_browser',
-        mode: 'link',
-        selectedItemAttrs: ['Title', 'Description'],
-        allowExternals: true,
-      },
-      btnStyle: {
-        title: 'Style',
-        choices: [
-          ['primary', 'Primary'],
-          ['secondary', 'Secondary'],
-        ],
-      },
       sliderelementslink: {
         title: 'Folder of the images',
         widget: 'object_browser',

@@ -315,6 +315,7 @@ msgid "collectie"
 msgstr ""
 
 #: components/blocks/ImageAndTextBlock/templates
+#: components/blocks/PreviewCollection/templates
 #: components/blocks/Quoteblock/templates
 #: components/blocks/SlidingTextBlock/templates
 #: components/blocks/VideoPageBlock/templates
@@ -323,6 +324,7 @@ msgid "column"
 msgstr ""
 
 #: components/blocks/ImageAndTextBlock/templates
+#: components/blocks/PreviewCollection/templates
 #: components/blocks/Quoteblock/templates
 #: components/blocks/SlidingTextBlock/templates
 #: components/blocks/VideoPageBlock/templates
@@ -415,6 +417,11 @@ msgstr ""
 #: components/blocks/EventPageButton/EventPageButtonView
 # defaultMessage: /nl/zien-en-doen/praktische-informatie
 msgid "pracktischeinfourl"
+msgstr ""
+
+#: components/blocks/PreviewCollection/ImageTextView
+# defaultMessage: ONTDEK DE COLLECTIE
+msgid "previewcollection"
 msgstr ""
 
 #: components/theme/View/ArtworkView

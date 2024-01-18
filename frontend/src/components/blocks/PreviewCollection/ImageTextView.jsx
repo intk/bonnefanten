@@ -8,11 +8,23 @@ import config from '@plone/volto/registry';
 import './css/previewimageblock.less';
 import ImageAlbum from '../../theme/ImageAlbum/ImageAlbum';
 
-const ViewGrid = (props) => {
-  const { data, path, className } = props;
-  const blocksConfig =
-    config.blocks.blocksConfig.__grid.blocksConfig || props.blocksConfig;
+import { defineMessages, useIntl } from 'react-intl';
 
+const messages = defineMessages({
+  previewcollection: {
+    id: 'previewcollection',
+    defaultMessage: 'ONTDEK DE COLLECTIE',
+  },
+});
+
+const ViewGrid = (props) => {
+  // eslint-disable-next-line no-unused-vars
+  const { data, path, className } = props;
+  // const blocksConfig =
+  //   config.blocks.blocksConfig.__grid.blocksConfig || props.blocksConfig;
+
+  const intl = useIntl();
+  // const locale = intl.locale;
   return (
     <div
       className={cx(
@@ -41,7 +53,10 @@ const ViewGrid = (props) => {
           >
             {column['@type'] === 'text' && (
               <div>
-                <h4 id="preview-collection-headline">ONTDEK DE COLLECTIE</h4>
+                <h4 id="preview-collection-headline">
+                  {' '}
+                  {intl.formatMessage(messages.previewcollection)}
+                </h4>
                 <h2 id="preview-collection-item-title">
                   {props.content.title}
                 </h2>{' '}
@@ -50,15 +65,6 @@ const ViewGrid = (props) => {
                 </p>
               </div>
             )}
-            {/* <BlockRenderer
-              block={column.id}
-              id={column.id}
-              type={column['@type']}
-              data={column}
-              path={path}
-              blocksConfig={blocksConfig}
-              buttonData={data}
-            /> */}
             {column['@type'] === 'text' && (
               <ImageAlbum
                 items={props.content.items}

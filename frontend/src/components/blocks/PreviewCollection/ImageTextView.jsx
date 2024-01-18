@@ -58,24 +58,24 @@ const ViewGrid = (props) => {
                   {intl.formatMessage(messages.previewcollection)}
                 </h4>
                 <h2 id="preview-collection-item-title">
-                  {props.content.title}
+                  {props.content?.title}
                 </h2>{' '}
                 <p id="preview-collection-item-description">
-                  {props.content.description}
+                  {props.content?.description}
                 </p>
               </div>
             )}
             {column['@type'] === 'text' && (
               <ImageAlbum
-                items={props.content.items}
-                itemTitle={props.content.objectTitle}
+                items={props.content?.items}
+                itemTitle={props.content?.objectTitle}
                 image="false"
               />
             )}
             {column['@type'] === 'image' && (
               <ImageAlbum
-                items={props.content.items}
-                itemTitle={props.content.objectTitle}
+                items={props.content?.items}
+                itemTitle={props.content?.objectTitle}
                 image="true"
               />
             )}

@@ -50,7 +50,7 @@ const ViewGrid = (props) => {
                 </p>
               </div>
             )}
-            <BlockRenderer
+            {/* <BlockRenderer
               block={column.id}
               id={column.id}
               type={column['@type']}
@@ -58,11 +58,19 @@ const ViewGrid = (props) => {
               path={path}
               blocksConfig={blocksConfig}
               buttonData={data}
-            />
+            /> */}
             {column['@type'] === 'text' && (
               <ImageAlbum
                 items={props.content.items}
                 itemTitle={props.content.objectTitle}
+                image="false"
+              />
+            )}
+            {column['@type'] === 'image' && (
+              <ImageAlbum
+                items={props.content.items}
+                itemTitle={props.content.objectTitle}
+                image="true"
               />
             )}
           </Grid.Column>

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Image } from 'semantic-ui-react';
 import { PreviewImage } from '@plone/volto/components';
-import { ArtworkPreview } from '@package/components';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import { GET_CONTENT } from '@plone/volto/constants/ActionTypes';
 import 'slick-carousel/slick/slick.css';
@@ -32,6 +31,7 @@ const ImageAlbum = (props) => {
   const pathname = useSelector((state) => state.router.location.pathname);
   const slideshowPath = `${pathname}/slideshow`; // Adjusted to fetch from /slideshow
   const id = `full-items@${slideshowPath}`;
+
   const dispatch = useDispatch();
 
   const [albumItems, setAlbumItems] = useState([]);
@@ -81,7 +81,24 @@ const ImageAlbum = (props) => {
         onClick={handleClick}
         className="preview-image-wrapper"
       >
-        <button className={`text-button btn-block primary`}>PREVIEW</button>
+        {props.image === 'false' ? (
+          <button className={`text-button btn-block primary`}>PREVIEW</button>
+        ) : (
+          <Image
+            key="prev-image"
+            src={
+              albumItems[0]
+                ? flattenToAppURL(
+                    `${albumItems[0]?.['@id']}/@@images/${
+                      albumItems[0]?.image_field || 'image'
+                    }/great`,
+                  )
+                : ''
+            }
+            alt={albumItems[0]?.title}
+            className="modal-slide-img"
+          />
+        )}
       </div>
 
       {thumbsToShow.length > 0 && (
@@ -100,11 +117,19 @@ const ImageAlbum = (props) => {
                 setOpen(true);
               }}
             >
-              <PreviewImage
+              <Image
                 key={i}
-                item={thumb}
-                size="mini"
-                className="img-thumb"
+                src={
+                  albumItems[0]
+                    ? flattenToAppURL(
+                        `${albumItems[0]?.['@id']}/@@images/${
+                          albumItems[0]?.image_field || 'image'
+                        }/great`,
+                      )
+                    : ''
+                }
+                alt={albumItems[0]?.title}
+                className="modal-slide-img"
               />
             </div>
           ))}
@@ -143,7 +168,7 @@ const ImageAlbum = (props) => {
             ))}
           </Slider>
           <div className="slide-image-count">
-            {activeSlideIndex + 1} of {albumItems.length}
+            {activeSlideIndex + 1}/{albumItems.length}
           </div>
         </Modal.Content>
       </Modal>

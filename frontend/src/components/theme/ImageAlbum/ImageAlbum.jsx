@@ -29,7 +29,10 @@ const getContent = (url, subrequest) => {
 
 const ImageAlbum = (props) => {
   const pathname = useSelector((state) => state.router.location.pathname);
-  const slideshowPath = `${pathname}/slideshow`; // Adjusted to fetch from /slideshow
+  const slideshowPath =
+    props.sliderelementlink !== ''
+      ? props.sliderelementlink
+      : `${pathname}/slideshow`;
   const id = `full-items@${slideshowPath}`;
 
   const dispatch = useDispatch();

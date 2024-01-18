@@ -7,6 +7,7 @@ import { withBlockExtensions } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import './css/previewimageblock.less';
 import ImageAlbum from '../../theme/ImageAlbum/ImageAlbum';
+import { flattenToAppURL } from '@plone/volto/helpers';
 
 import { defineMessages, useIntl } from 'react-intl';
 
@@ -24,7 +25,19 @@ const ViewGrid = (props) => {
   //   config.blocks.blocksConfig.__grid.blocksConfig || props.blocksConfig;
 
   const intl = useIntl();
-  // const locale = intl.locale;
+  let sliderelementlink =
+    data.sliderelementslink[0] !== undefined
+      ? flattenToAppURL(data.sliderelementslink[0]['@id'])
+      : '';
+  // let sliderelementstitle =
+  //   data.sliderelementslink[0] !== undefined
+  //     ? data.sliderelementlink[0]['title']
+  //     : '';
+  // let sliderelementsdescription =
+  //   data.sliderelementslink[0] !== undefined
+  //     ? data.sliderelementlink[0]['Description']
+  //     : '';
+
   return (
     <div
       className={cx(
@@ -77,6 +90,7 @@ const ViewGrid = (props) => {
                 items={props.content?.items}
                 itemTitle={props.content?.objectTitle}
                 image="true"
+                sliderelementlink={sliderelementlink}
               />
             )}
           </Grid.Column>

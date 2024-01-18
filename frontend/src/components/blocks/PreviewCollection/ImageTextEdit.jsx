@@ -20,6 +20,7 @@ import TemplateChooser from './TemplateChooser';
 import NewBlockAddButton from './NewBlockAddButton';
 import GridData from './Data';
 import './css/previewimageblock.less';
+import ImageAlbum from '../../theme/ImageAlbum/ImageAlbum';
 
 import {
   reorderArray,
@@ -443,24 +444,39 @@ class EditGrid extends Component {
                                       </Button>
                                     )}
                                     {item['@type'] ? (
-                                      <BlockRenderer
-                                        {...this.props}
-                                        id={item.id}
-                                        block={item.id}
-                                        edit
-                                        type={item['@type']}
-                                        selected={
-                                          this.props.selected &&
-                                          this.state.selectedColumnIndex ===
-                                            index
-                                        }
-                                        onChangeBlock={(block, data) => {
-                                          this.onChangeGridItem(index, data);
-                                        }}
-                                        data={this.props.data.columns[index]}
-                                        blocksConfig={blocksConfig}
-                                        buttonData={this.props.data}
-                                      />
+                                      <>
+                                        {item['@type'] === 'text' && (
+                                          <div>
+                                            <h4 id="preview-collection-headline">
+                                              ONTDEK DE COLLECTIE
+                                            </h4>
+                                            <h2 id="preview-collection-item-title">
+                                              {this.props?.content?.title}
+                                            </h2>{' '}
+                                            <p id="preview-collection-item-description">
+                                              {this.props.content?.description}
+                                            </p>
+                                          </div>
+                                        )}
+                                        {item['@type'] === 'text' && (
+                                          <ImageAlbum
+                                            items={this.props?.content?.items}
+                                            itemTitle={
+                                              this.props?.content?.objectTitle
+                                            }
+                                            image="false"
+                                          />
+                                        )}
+                                        {item['@type'] === 'image' && (
+                                          <ImageAlbum
+                                            items={this.props?.content?.items}
+                                            itemTitle={
+                                              this.props?.content?.objectTitle
+                                            }
+                                            image="true"
+                                          />
+                                        )}
+                                      </>
                                     ) : (
                                       <div className="uber-grid-default-item">
                                         <p>Add a new block</p>

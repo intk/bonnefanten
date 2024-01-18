@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Modal, Image } from 'semantic-ui-react';
-import { PreviewImage } from '@plone/volto/components';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import { GET_CONTENT } from '@plone/volto/constants/ActionTypes';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './image-album.less';
 import loadable from '@loadable/component';
+import { debounce } from 'lodash'; // Import debounce from lodash
 
 const Slider = loadable(() => import('react-slick'));
 const MAX_THUMBS = 1;
@@ -46,12 +46,29 @@ const ImageAlbum = (props) => {
     });
   }, [dispatch, id, slideshowPath]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedSetIndex = useCallback(
+    debounce((newIndex) => {
+      setActiveSlideIndex(newIndex);
+    }, 100),
+    [],
+  );
+
+  // Custom method to change slide
+  const changeSlide = useCallback(
+    (newIndex) => {
+      debouncedSetIndex(newIndex); // Use debounced method to set index
+      sliderRef.current.slickGoTo(newIndex); // Change the slide
+    },
+    [debouncedSetIndex],
+  );
+
   const thumbsToShow = albumItems.slice(1, MAX_THUMBS);
   const moreImagesLength =
     albumItems.length > MAX_THUMBS ? albumItems.length - MAX_THUMBS : null;
 
   const carouselSettings = {
-    afterChange: (current) => setActiveSlideIndex(current),
+    // afterChange: (current) => setActiveSlideIndex(current),
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -149,7 +166,11 @@ const ImageAlbum = (props) => {
         className="slider-modal"
       >
         <Modal.Content>
-          <Slider {...carouselSettings} ref={sliderRef}>
+          <Slider
+            {...carouselSettings}
+            ref={sliderRef}
+            beforeChange={(current, next) => changeSlide(next)}
+          >
             {albumItems.map((item, i) => (
               <Image
                 key={i}

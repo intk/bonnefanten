@@ -1,29 +1,23 @@
-import React from 'react';
-import loadable from '@loadable/component';
-import { Modal, Image } from 'semantic-ui-react';
-// import { ArtworkPreview } from '@package/components';
-import { PreviewImage } from '@plone/volto/components';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Modal, Image } from 'semantic-ui-react';
+import { PreviewImage } from '@plone/volto/components';
+import { ArtworkPreview } from '@package/components';
+import { flattenToAppURL } from '@plone/volto/helpers';
 import { GET_CONTENT } from '@plone/volto/constants/ActionTypes';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './image-album.less';
+import loadable from '@loadable/component';
 
 const Slider = loadable(() => import('react-slick'));
-
 const MAX_THUMBS = 1;
 
-export function getContent(url, subrequest) {
+const getContent = (url, subrequest) => {
   const query = { b_size: 1000000 };
-
   let qs = Object.keys(query)
-    .map(function (key) {
-      return key + '=' + query[key];
-    })
+    .map((key) => key + '=' + query[key])
     .join('&');
-
   return {
     type: GET_CONTENT,
     subrequest,
@@ -32,59 +26,47 @@ export function getContent(url, subrequest) {
       path: `${url}${qs ? `?${qs}` : ''}`,
     },
   };
-}
+};
 
 const ImageAlbum = (props) => {
-  const { items = [] } = props;
   const pathname = useSelector((state) => state.router.location.pathname);
-  const id = `full-items@${pathname}`;
-
-  const selectorItems = useSelector(
-    (state) => state.content.subrequests?.[id]?.items,
-  );
-  const isRequested = !!selectorItems;
-
-  // eslint-disable-next-line no-unused-vars
-  const [albumItems, setAlbumItems] = React.useState(selectorItems || items);
+  const slideshowPath = `${pathname}/slideshow`; // Adjusted to fetch from /slideshow
+  const id = `full-items@${slideshowPath}`;
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    if (!isRequested) {
-      const action = getContent(pathname, null, id);
-      dispatch(action).then((content) => {
-        setAlbumItems(content.items);
-      });
-    }
-  }, [dispatch, id, pathname, isRequested]);
+  const [albumItems, setAlbumItems] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const sliderRef = useRef(null);
 
-  const [open, setOpen] = React.useState(false);
-  const [activeSlideIndex, setActiveSlideIndex] = React.useState(0);
-  const sliderRef = React.useRef(null);
+  useEffect(() => {
+    const action = getContent(slideshowPath, id);
+    dispatch(action).then((content) => {
+      setAlbumItems(content.items || []);
+    });
+  }, [dispatch, id, slideshowPath]);
 
-  const thumbsToShow = items.slice(1, MAX_THUMBS);
+  const thumbsToShow = albumItems.slice(1, MAX_THUMBS);
   const moreImagesLength =
-    items.length > MAX_THUMBS ? items.length - MAX_THUMBS : null;
+    albumItems.length > MAX_THUMBS ? albumItems.length - MAX_THUMBS : null;
 
-  const carouselSettings = React.useMemo(
-    () => ({
-      afterChange: (current) => setActiveSlideIndex(current),
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      dots: false,
-      arrows: true,
-      adaptiveHeight: true,
-      autoplay: false,
-      fade: false,
-      useTransform: false,
-      lazyLoad: 'ondemand',
-      initialSlide: activeSlideIndex,
-    }),
-    [activeSlideIndex],
-  );
+  const carouselSettings = {
+    afterChange: (current) => setActiveSlideIndex(current),
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: false,
+    arrows: true,
+    adaptiveHeight: true,
+    autoplay: false,
+    fade: false,
+    useTransform: false,
+    lazyLoad: 'ondemand',
+    initialSlide: activeSlideIndex,
+  };
 
   const handleClick = () => {
-    if (items.length) {
+    if (albumItems.length) {
       setActiveSlideIndex(0);
       setOpen(true);
     }
@@ -99,12 +81,7 @@ const ImageAlbum = (props) => {
         onClick={handleClick}
         className="preview-image-wrapper"
       >
-        <PreviewImage
-          {...props}
-          item={items[0]}
-          size="huge"
-          isFallback={!items.length}
-        />
+        <button className={`text-button btn-block primary`}>PREVIEW</button>
       </div>
 
       {thumbsToShow.length > 0 && (
@@ -148,27 +125,25 @@ const ImageAlbum = (props) => {
       >
         <Modal.Content>
           <Slider {...carouselSettings} ref={sliderRef}>
-            {items.map((item, i) => {
-              return (
-                <Image
-                  key={i}
-                  src={
-                    item
-                      ? flattenToAppURL(
-                          `${item?.['@id']}/@@${'images'}/${
-                            item?.image_field || 'preview_image'
-                          }/large`,
-                        )
-                      : ''
-                  }
-                  // alt={item?.title}
-                  className="modal-slide-img"
-                />
-              );
-            })}
+            {albumItems.map((item, i) => (
+              <Image
+                key={i}
+                src={
+                  item
+                    ? flattenToAppURL(
+                        `${item?.['@id']}/@@images/${
+                          item?.image_field || 'image'
+                        }/great`,
+                      )
+                    : ''
+                }
+                alt={item?.title}
+                className="modal-slide-img"
+              />
+            ))}
           </Slider>
           <div className="slide-image-count">
-            {activeSlideIndex + 1} of {items.length}
+            {activeSlideIndex + 1} of {albumItems.length}
           </div>
         </Modal.Content>
       </Modal>

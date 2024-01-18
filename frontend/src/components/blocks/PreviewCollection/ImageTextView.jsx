@@ -6,6 +6,7 @@ import BlockRenderer from './BlockRenderer';
 import { withBlockExtensions } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import './css/previewimageblock.less';
+import ImageAlbum from '../../theme/ImageAlbum/ImageAlbum';
 
 const ViewGrid = (props) => {
   const { data, path, className } = props;
@@ -31,6 +32,7 @@ const ViewGrid = (props) => {
       id="quote-block-wrapper"
     >
       {data.headline && <h2 className="headline">{data.headline}</h2>}
+
       <Grid stackable stretched columns={data.columns.length}>
         {data.columns.map((column) => (
           <Grid.Column
@@ -57,6 +59,12 @@ const ViewGrid = (props) => {
               blocksConfig={blocksConfig}
               buttonData={data}
             />
+            {column['@type'] === 'text' && (
+              <ImageAlbum
+                items={props.content.items}
+                itemTitle={props.content.objectTitle}
+              />
+            )}
           </Grid.Column>
         ))}
       </Grid>

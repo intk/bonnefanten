@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import config from '@plone/volto/registry';
 import withObjectBrowser from '@plone/volto/components/manage/Sidebar/ObjectBrowser';
-import { UniversalLink } from '@plone/volto/components';
+// import { UniversalLink } from '@plone/volto/components';
 
 /**
  * BlockRenderer container class.
@@ -10,6 +10,7 @@ import { UniversalLink } from '@plone/volto/components';
  * @extends Component
  */
 function BlockRenderer(props) {
+  // eslint-disable-next-line no-unused-vars
   const { edit, type, blocksConfig, buttonData } = props;
 
   if (!type) {
@@ -22,7 +23,7 @@ function BlockRenderer(props) {
   const ViewBlock =
     blocksConfig?.[type]?.view || config.blocks.blocksConfig[type].view;
 
-  let href = buttonData?.linkHref?.[0]?.['@id'] || '';
+  // let href = buttonData?.linkHref?.[0]?.['@id'] || '';
   return (
     <div>
       {/* Render the edit or view block based on the edit state */}
@@ -33,11 +34,11 @@ function BlockRenderer(props) {
       )}
 
       {/* Render "Click Me" button if block type is 'text' */}
-      {type === 'text' && buttonData.linkTitle && (
+      {/* {type === 'text' && buttonData.linkTitle && (
         <UniversalLink href={href} className={`text-button btn-block primary`}>
           {buttonData.linkTitle || href}
         </UniversalLink>
-      )}
+      )} */}
     </div>
   );
 }

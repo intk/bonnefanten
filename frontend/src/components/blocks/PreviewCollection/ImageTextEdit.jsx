@@ -15,7 +15,7 @@ import addSVG from '@plone/volto/icons/add.svg';
 import clearSVG from '@plone/volto/icons/clear.svg';
 import configSVG from '@plone/volto/icons/configuration.svg';
 
-import BlockRenderer from './BlockRenderer';
+// import BlockRenderer from './BlockRenderer';
 import TemplateChooser from './TemplateChooser';
 import NewBlockAddButton from './NewBlockAddButton';
 import GridData from './Data';
@@ -265,8 +265,8 @@ class EditGrid extends Component {
   render() {
     const { data } = this.props;
 
-    const blocksConfig =
-      config.blocks.blocksConfig.__grid.blocksConfig || this.props.blocksConfig;
+    // const blocksConfig =
+    //   config.blocks.blocksConfig.__grid.blocksConfig || this.props.blocksConfig;
 
     return (
       <>

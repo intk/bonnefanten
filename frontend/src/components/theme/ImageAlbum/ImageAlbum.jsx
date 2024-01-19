@@ -254,7 +254,12 @@ const ImageAlbum = (props) => {
         className="preview-image-wrapper"
       >
         {props.image === 'false' ? (
-          <button className={`text-button btn-block primary`}>PREVIEW</button>
+          <button
+            onClick={() => setOpen(true)}
+            className={`text-button btn-block primary`}
+          >
+            PREVIEW
+          </button>
         ) : (
           <div className="imagethumb" style={{ position: 'relative' }}>
             <Image

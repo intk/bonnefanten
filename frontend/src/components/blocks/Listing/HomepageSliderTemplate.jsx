@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import { ListingBlockHeader } from '@package/components';
 import { UniversalLink } from '@plone/volto/components';
-import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
+import SlideshowPreview from '../../theme/SlideshowPreview/SlideshowPreview';
 import { BodyClass } from '@plone/volto/helpers';
 import ReactSwipe from 'react-swipe';
 import './less/HomepageSliderTemplate.less';
@@ -28,7 +28,7 @@ const Card = ({ item, showDescription = true }) => {
       )}
       <UniversalLink href={item['@id']} className="plone-item-card-link">
         <div className="content">
-          <ArtworkPreview {...item} />
+          <SlideshowPreview {...item} />
           <div className="title-wrapper">
             <div className="title-description">
               {/* <h3 className="plone-item-title">

@@ -15,7 +15,7 @@ function ArtworkPreview(props) {
   const item = props;
 
   const src = item.image_field
-    ? flattenToAppURL(`${item['@id']}/@@images/${item.image_field}/preview`)
+    ? flattenToAppURL(`${item['@id']}/@@images/${item.image_field}/large`)
     : '';
 
   return (

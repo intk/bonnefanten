@@ -65,7 +65,7 @@ const Card = ({ item, showDescription = true }) => {
       </UniversalLink>
       {!!showDescription && (
         <p className="plone-item-description">
-          <span>{truncate(item.description, 155)}</span>
+          <span>{truncate(item.description, 159)}</span>
         </p>
       )}
     </div>

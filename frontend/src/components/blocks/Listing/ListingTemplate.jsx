@@ -8,6 +8,15 @@ import { isInternalURL } from '@plone/volto/helpers/Url/Url';
 import { When } from './EventDatesInfo';
 import './less/ListingTemplate.less';
 
+function truncate(str, num) {
+  if (str.length <= num) {
+    return str;
+  }
+
+  const subString = str.substr(0, num);
+  return subString.substr(0, subString.lastIndexOf(' ')) + ' ...';
+}
+
 const Card = ({ item, showDescription = true }) => {
   // const image = item?.image_field
   //   ? `${item['@id']}/${
@@ -56,7 +65,7 @@ const Card = ({ item, showDescription = true }) => {
       </UniversalLink>
       {!!showDescription && (
         <p className="plone-item-description">
-          <span>{item.description}</span>
+          <span>{truncate(item.description, 155)}</span>
         </p>
       )}
     </div>

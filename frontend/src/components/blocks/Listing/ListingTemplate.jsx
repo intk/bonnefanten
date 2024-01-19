@@ -5,6 +5,7 @@ import { ConditionalLink, UniversalLink } from '@plone/volto/components';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 import { isInternalURL } from '@plone/volto/helpers/Url/Url';
+import { When } from './EventDatesInfo';
 
 const Card = ({ item, showDescription = true }) => {
   // const image = item?.image_field
@@ -22,6 +23,20 @@ const Card = ({ item, showDescription = true }) => {
         )} */}
         <ArtworkPreview {...item} />
         <div className="title-description">
+          <div className="event-label">
+            {item['@type'] === 'Event' && (
+              <div className="listing-dates">
+                <div className={`listing-dates-wrapper`}>
+                  <When
+                    start={item.start}
+                    end={item.end}
+                    whole_day="true"
+                    open_end={item.open_end}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
           <h3 className="plone-item-title">
             <span>{item.title}</span>
           </h3>

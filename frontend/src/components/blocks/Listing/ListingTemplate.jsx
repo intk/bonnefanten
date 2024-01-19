@@ -6,6 +6,7 @@ import { flattenToAppURL } from '@plone/volto/helpers';
 import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 import { isInternalURL } from '@plone/volto/helpers/Url/Url';
 import { When } from './EventDatesInfo';
+import './less/ListingTemplate.less';
 
 const Card = ({ item, showDescription = true }) => {
   // const image = item?.image_field

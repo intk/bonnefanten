@@ -83,6 +83,7 @@ const ViewGrid = (props) => {
                 items={props.content?.items}
                 itemTitle={props.content?.objectTitle}
                 image="false"
+                sliderelementlink={sliderelementlink}
               />
             )}
             {column['@type'] === 'image' && (

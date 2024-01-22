@@ -22,7 +22,9 @@ function BlockRenderer(props) {
   const ViewBlock =
     blocksConfig?.[type]?.view || config.blocks.blocksConfig[type].view;
 
-  let href = buttonData?.linkHref?.[0]?.['@id'] || '';
+  let href = buttonData?.linkHref1?.[0]?.['@id'] || '';
+  let href2 = buttonData?.linkHref2?.[0]?.['@id'] || '';
+
   return (
     <div>
       {/* Render the edit or view block based on the edit state */}
@@ -36,6 +38,11 @@ function BlockRenderer(props) {
       {type === 'text' && buttonData.linkTitle && (
         <UniversalLink href={href} className={`text-button btn-block primary`}>
           {buttonData.linkTitle || href}
+        </UniversalLink>
+      )}
+      {type === 'text' && buttonData.linkTitle2 && (
+        <UniversalLink href={href2} className={`text-button btn-block primary`}>
+          {buttonData.linkTitle2 || href2}
         </UniversalLink>
       )}
     </div>

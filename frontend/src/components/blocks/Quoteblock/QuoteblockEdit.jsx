@@ -278,6 +278,7 @@ class EditGrid extends Component {
       config.blocks.blocksConfig.__grid.blocksConfig || this.props.blocksConfig;
 
     let href = data?.linkHref?.[0]?.['@id'] || '';
+    let href2 = data?.linkHref2?.[0]?.['@id'] || '';
 
     return (
       <>
@@ -391,6 +392,14 @@ class EditGrid extends Component {
                           className={`text-button btn-block primary`}
                         >
                           {data?.linkTitle || href}
+                        </UniversalLink>
+                      )}
+                      {data?.linkTitle2 && (
+                        <UniversalLink
+                          href={href2}
+                          className={`text-button btn-block primary`}
+                        >
+                          {data?.linkTitle2 || href2}
                         </UniversalLink>
                       )}
                     </div>

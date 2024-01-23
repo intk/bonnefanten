@@ -116,9 +116,8 @@ export default function applyConfig(config) {
     };
   }
 
-  const DEFAULT_LANG = 'nl';
-
-  config.settings.siteDataPageId = 'nutezien';
+  let nutezien_en = 'whatson';
+  let nutezien_nl = 'nutezien';
 
   config.settings.asyncPropsExtenders = [
     ...config.settings.asyncPropsExtenders,
@@ -132,14 +131,17 @@ export default function applyConfig(config) {
             // const currentLang = state.intl.locale;
             const bits = location.pathname.split('/');
             const currentLang =
-              bits.length >= 2 ? bits[1] || DEFAULT_LANG : DEFAULT_LANG;
+              bits.length >= 2
+                ? bits[1] || config.settings.defaultLanguage
+                : config.settings.defaultLanguage;
 
             const state = store.getState();
-            if (state.content.subrequests?.[`footer-${currentLang}`]?.data) {
+            if (state.content.subrequests?.[`nutezien-${currentLang}`]?.data) {
               return;
             }
 
-            const siteDataPageId = config.settings.siteDataPageId;
+            const siteDataPageId =
+              currentLang === 'nl' ? nutezien_nl : nutezien_en;
             const url = `/${currentLang}/${siteDataPageId}`;
             const action = getContent(url, null, `nutezien-${currentLang}`);
             return store.dispatch(action).catch((e) => {

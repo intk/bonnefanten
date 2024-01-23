@@ -11,7 +11,7 @@ import useInView from '@package/helpers/useInView';
 
 const Card = ({ item, showDescription = true }) => {
   const titleInView = useInView(
-    'p',
+    '.homepagesliderview',
     {
       root: null,
       rootMargin: '0px',

@@ -397,6 +397,7 @@ msgstr ""
 msgid "nowonview"
 msgstr ""
 
+#: components/blocks/Listing/NutezienSliderTemplate
 #: components/blocks/Listing/WhatsonTemplate
 # defaultMessage: Nu te zien
 msgid "nutezien"

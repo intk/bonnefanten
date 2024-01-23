@@ -25,6 +25,7 @@ import {
 import { isEqual } from 'lodash';
 import { getWidget } from '@plone/volto/helpers/Widget/utils';
 import ShareLinks from '@package/components/theme/ShareLinks/ShareLinks';
+import { useNutezienContent } from '@package/helpers';
 
 // const EventTextfieldView = ({ content }) => (
 //   <React.Fragment>
@@ -70,6 +71,7 @@ function filterBlocks(content, types) {
  * @returns {string} Markup of the component.
  */
 const EventView = (props) => {
+  const nutezienContent = useNutezienContent();
   const { content, location } = props;
   const path = getBaseUrl(location?.pathname || '');
   const dispatch = useDispatch();
@@ -125,6 +127,15 @@ const EventView = (props) => {
           <RenderBlocks {...props} path={path} content={filteredContent} />
         </div>
         <ShareLinks />
+        <div id="view">
+          <Container id="page-document" className="Footer">
+            <RenderBlocks
+              content={nutezienContent}
+              path={path}
+              intl={props.intl}
+            />
+          </Container>
+        </div>
       </div>
     ) : (
       <Container id="page-document">

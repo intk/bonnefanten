@@ -3,6 +3,7 @@ import TagManager from 'react-gtm-module';
 import MultipleContentView from './components/theme/View/MultipleContentView';
 import ArtworkView from './components/theme/View/ArtworkView';
 import AuthorView from './components/theme/View/AuthorView';
+import { getContent } from '@plone/volto/actions';
 
 // All your imports required for the config here BEFORE this line
 import '@plone/volto/config';
@@ -114,6 +115,47 @@ export default function applyConfig(config) {
       },
     };
   }
+
+  const DEFAULT_LANG = 'nl';
+
+  config.settings.siteDataPageId = 'nutezien';
+
+  config.settings.asyncPropsExtenders = [
+    ...config.settings.asyncPropsExtenders,
+    {
+      path: '/',
+      key: 'nutezien',
+      extend: (dispatchActions) => {
+        const action = {
+          key: 'nutezien',
+          promise: ({ location, store }) => {
+            // const currentLang = state.intl.locale;
+            const bits = location.pathname.split('/');
+            const currentLang =
+              bits.length >= 2 ? bits[1] || DEFAULT_LANG : DEFAULT_LANG;
+
+            const state = store.getState();
+            if (state.content.subrequests?.[`footer-${currentLang}`]?.data) {
+              return;
+            }
+
+            const siteDataPageId = config.settings.siteDataPageId;
+            const url = `/${currentLang}/${siteDataPageId}`;
+            const action = getContent(url, null, `nutezien-${currentLang}`);
+            return store.dispatch(action).catch((e) => {
+              // eslint-disable-next-line
+              console.log(
+                `Footer links folder not found: ${url}. Please create as page
+                named ${siteDataPageId} in the root of your current language and
+                fill it with the appropriate action blocks`,
+              );
+            });
+          },
+        };
+        return [...dispatchActions, action];
+      },
+    },
+  ];
 
   config.settings['volto-editablefooter'] = {
     options: { socials: true, newsletterSubscribe: true },

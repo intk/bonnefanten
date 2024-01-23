@@ -7,3 +7,4 @@
 
 export * from './images';
 export useSiteDataContent from './useSiteDataContent';
+export useNutezienContent from './useNutezienContent';

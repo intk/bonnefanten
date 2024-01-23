@@ -128,7 +128,7 @@ const EventView = (props) => {
         </div>
         <ShareLinks />
         <div id="view">
-          <Container id="page-document" className="Footer">
+          <Container id="event-nutezien-slider">
             <RenderBlocks
               content={nutezienContent}
               path={path}

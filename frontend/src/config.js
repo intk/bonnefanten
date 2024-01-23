@@ -145,7 +145,7 @@ export default function applyConfig(config) {
             return store.dispatch(action).catch((e) => {
               // eslint-disable-next-line
               console.log(
-                `Footer links folder not found: ${url}. Please create as page
+                `Nutezien page cannot be found: ${url}. Please create as page
                 named ${siteDataPageId} in the root of your current language and
                 fill it with the appropriate action blocks`,
               );

@@ -14,6 +14,10 @@ import { ConditionalLink } from '@plone/volto/components';
 import { defineMessages, useIntl } from 'react-intl';
 
 const messages = defineMessages({
+  nutezien: {
+    id: 'nutezien',
+    defaultMessage: 'Nu te zien',
+  },
   meerinfo: {
     id: 'meerinfo',
     defaultMessage: 'MEER INFO',
@@ -67,6 +71,7 @@ const Card = ({ item, showDescription = true }) => {
 };
 
 const NutezienSliderTemplate = (props) => {
+  const intl = useIntl();
   const { items } = props;
   let reactSwipeEl;
 
@@ -74,7 +79,7 @@ const NutezienSliderTemplate = (props) => {
     <div className="nutezien-slider-template">
       <div className="nutezien-header">
         <h3>
-          <span>Nu te zien</span> <span>—</span>
+          <span>{intl.formatMessage(messages.nutezien)}</span> <span>—</span>
         </h3>
       </div>
       <div className="content-wrapper">

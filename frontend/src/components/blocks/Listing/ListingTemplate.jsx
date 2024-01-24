@@ -32,7 +32,11 @@ const Card = ({ item, showDescription = true }) => {
           </figure>
         )} */}
         <ArtworkPreview {...item} />
-        <div className="title-description">
+        <div
+          className={`title-description ${
+            item.review_state === 'private' ? 'private' : ''
+          }`}
+        >
           <div className="event-label">
             {item['@type'] === 'Event' && (
               <div className="listing-dates">

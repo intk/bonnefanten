@@ -855,9 +855,19 @@ table.ui.table.block {
         display: inline-block;
         font-size: 22px;
         text-decoration: none !important;
+        margin-top:auto;
 
         i {
           color: var(--bonnefanten-primary);
+        }
+
+        svg,
+        path {
+          max-height: 100%;
+          fill: var(--bonnefanten-primary) !important;
+          color: var(--bonnefanten-primary) !important;
+          margin-top: 4px;
+          stroke-width: 10px !important;
         }
 
         &:hover,
@@ -866,6 +876,10 @@ table.ui.table.block {
 
           i {
             color: var(--bonnefanten-secondary);
+          }
+          svg, path{
+            fill: var(--bonnefanten-secondary) !important;
+            color: var(--bonnefanten-secondary) !important;
           }
         }
       }
@@ -1308,6 +1322,9 @@ body.contenttype-event.has-image-card-block{
   margin-left: -50vw !important;
   padding-left: 122.5px !important;
   padding-right: 0px !important;
+}
+.multiple-content-view .documentFirstHeading{
+  padding-left: 21px !important;
 }
 
 body.view-viewview.contenttype-event {

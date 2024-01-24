@@ -148,7 +148,10 @@ footer#site-footer {
   }
 
   .social-header {
-    display: block;
+    // display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding-top: 35px;
     margin-bottom: 5px;
     font-size: 22px;
@@ -178,6 +181,20 @@ footer#site-footer {
         vertical-align: -15%;
       }
 
+      svg{
+        width: 50px;
+        height: 43px;
+        @media (max-width: 768px) {
+          height: 26px;
+          width: 25px;
+        }
+      }
+
+      svg path {
+        fill: var(--bonnefanten-primary);
+        border-bottom: 0;
+      }
+
       &:hover,
       &:focus,
       &:active {
@@ -185,8 +202,9 @@ footer#site-footer {
         color: var(--bonnefanten-secondary) !important;
         text-decoration: none !important;
 
-        i {
+        i, svg path {
           color: var(--bonnefanten-secondary) !important;
+          fill: var(--bonnefanten-secondary) !important;
         }
       }
     }

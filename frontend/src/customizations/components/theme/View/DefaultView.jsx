@@ -5,7 +5,7 @@ import { Container } from 'semantic-ui-react';
 
 import { hasBlocksData, getBaseUrl } from '@plone/volto/helpers';
 import ShareLinks from '@package/components/theme/ShareLinks/ShareLinks';
-import { useNutezienContent } from '@package/helpers';
+// import { useNutezienContent } from '@package/helpers';
 
 // Customized to hide the title blocks, as they are included in
 // the header
@@ -25,7 +25,7 @@ function filterBlocks(content, types) {
 }
 
 const DefaultView = (props) => {
-  const nutezienContent = useNutezienContent();
+  // const nutezienContent = useNutezienContent();
   const { content, location } = props;
   const path = getBaseUrl(location?.pathname || '');
 
@@ -64,7 +64,7 @@ const DefaultView = (props) => {
         </div>
 
         <ShareLinks />
-        <div id="view">
+        {/* <div id="view">
           <Container id="event-nutezien-slider">
             <RenderBlocks
               content={nutezienContent}
@@ -72,7 +72,7 @@ const DefaultView = (props) => {
               intl={props.intl}
             />
           </Container>
-        </div>
+        </div> */}
       </div>
     </>
   ) : (

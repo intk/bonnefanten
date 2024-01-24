@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 // import { ListingBlockHeader } from '@package/components';
 import { UniversalLink } from '@plone/volto/components';
@@ -7,20 +7,14 @@ import { BodyClass } from '@plone/volto/helpers';
 import ReactSwipe from 'react-swipe';
 import './less/HomepageSliderTemplate.less';
 import { When } from '@package/customizations/components/theme/View/EventDatesInfo';
-import useInView from '@package/helpers/useInView';
+import useInViewHomepage from '@package/helpers/useInViewHomepage';
 
 const Card = ({ item, showDescription = true }) => {
-  const titleInView = useInView(
-    '.homepagesliderview',
-    {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0,
-    },
-    true,
-  );
+  const ref = useRef();
+  const titleInView = useInViewHomepage(ref);
+
   return (
-    <div className="plone-item-card">
+    <div className="plone-item-card" ref={ref}>
       {titleInView ? (
         <BodyClass className="homepage-title-in-view" />
       ) : (
@@ -31,9 +25,6 @@ const Card = ({ item, showDescription = true }) => {
           <SlideshowPreview {...item} />
           <div className="title-wrapper">
             <div className="title-description">
-              {/* <h3 className="plone-item-title">
-              <p>{item.title}</p>
-            </h3> */}
               <div className="slide-description">
                 <div className="header-quotes-wrapper">
                   <div className="quote-top-left quote-bonnefanten">“</div>
@@ -48,19 +39,6 @@ const Card = ({ item, showDescription = true }) => {
                   />
                 </div>
                 <p className="slide-title">{item.title}</p>
-                {/* <span className="documentDescription">
-                {item.artwork_author &&
-                  item.artwork_author.map((author, index) => (
-                    <span key={author}>
-                      {author}
-                      {index + 1 !== item.artwork_author.length && ', '}
-                    </span>
-                  ))}
-              </span>
-              <span className="documentDescription">
-                {item.ObjDateFromTxt && ', '}
-                {item.ObjDateFromTxt && item.ObjDateFromTxt}
-              </span> */}
               </div>
             </div>
           </div>

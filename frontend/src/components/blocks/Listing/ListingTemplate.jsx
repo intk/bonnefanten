@@ -68,7 +68,11 @@ const Card = ({ item, showDescription = true }) => {
         </div>
       </UniversalLink>
       {!!showDescription && (
-        <p className="plone-item-description">
+        <p
+          className={`plone-item-description ${
+            item.review_state === 'private' ? 'private' : ''
+          }`}
+        >
           <span>{truncate(item.description, 159)}</span>
         </p>
       )}

@@ -70,7 +70,7 @@ export default function applyConfig(config) {
   config.views.layoutViewsNamesMapping.multiple_content = 'Section layout';
 
   config.settings.cookiebotDomainGroupId =
-    'a1d35702-1db0-4a57-bdc3-de342f65623e';
+    'd8622331-b362-4334-b74b-1b40a0698493';
 
   // if (config.settings['volto-gdpr-privacy']) {
   //   config.settings['volto-gdpr-privacy'].defaultPanelConfig = {

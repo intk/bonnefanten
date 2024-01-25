@@ -527,6 +527,9 @@ h6 {
 }
 
 h1.documentFirstHeading {
+  max-width: 100vw;
+  word-wrap: break-word !important;
+  // word-break: break-all;
   .content-area & {
     padding-top: 0;
     padding-right: 20px;
@@ -574,7 +577,7 @@ h1.documentFirstHeading {
   }
 }
 .multiple-content-view h1.documentFirstHeading{
-    @media (min-width: 992px) {
+    @media (min-width: 768px) {
         margin-top: 58px !important;
       }
 }

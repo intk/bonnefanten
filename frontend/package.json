@@ -31,8 +31,8 @@
     "volto-form-block",
     "volto-editablefooter",
     "volto-social-settings",
-    "volto-gdpr-privacy",
-    "@eeacms/volto-block-image-cards"
+    "@eeacms/volto-block-image-cards",
+    "@codesyntax/volto-cookiebot"
   ],
   "jest": {
     "modulePathIgnorePatterns": [
@@ -143,10 +143,11 @@
     "node": "^14 || ^16 || ^18"
   },
   "dependencies": {
+    "@codesyntax/volto-cookiebot": "0.4.0",
     "@eeacms/volto-accordion-block": "*",
     "@eeacms/volto-block-image-cards": "0.6.3",
     "@eeacms/volto-matomo": "*",
-    "@kitconcept/volto-blocks-grid": "*",
+    "@kitconcept/volto-blocks-grid": "8.0.3",
     "@kitconcept/volto-slider-block": "*",
     "@plone/volto": "16.20.8",
     "markdown-it": "13.0.1",
@@ -159,7 +160,6 @@
     "simple-react-lightbox": "3.6.9-0",
     "volto-editablefooter": "5.0.1",
     "volto-form-block": "3.0.1",
-    "volto-gdpr-privacy": "2.0.0",
     "volto-social-settings": "3.0.0"
   },
   "devDependencies": {

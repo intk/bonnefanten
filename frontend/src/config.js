@@ -69,52 +69,55 @@ export default function applyConfig(config) {
   config.views.layoutViews.multiple_content = MultipleContentView;
   config.views.layoutViewsNamesMapping.multiple_content = 'Section layout';
 
-  if (config.settings['volto-gdpr-privacy']) {
-    config.settings['volto-gdpr-privacy'].defaultPanelConfig = {
-      ...config.settings['volto-gdpr-privacy'].defaultPanelConfig,
-      last_updated: '2022-12-10T00:07:00+00:00',
-      text: {
-        en: {
-          title: 'This site uses cookies',
-          description:
-            'For this website we use cookies for anonymous analytics gathering and show external content. You can also enable third parties independently.',
-        },
-      },
-      technical: {
-        text: {
-          en: {
-            title: 'Required cookies',
-            description:
-              'This website uses cookies for visitor analytics and login functionality. No personal identifiable information is collected or exchanged with third parties.',
-          },
-        },
-        choices: [],
-      },
-      profiling: {
-        text: {
-          en: {
-            title: 'Third party integrations',
-            description:
-              'To show rich content from other websites we use integrations from third parties. These might set cookies and collect personal data that can be used for profiling purposes across websites. You can disable individual services below.',
-          },
-        },
-        choices: [
-          ...config.settings['volto-gdpr-privacy'].defaultPanelConfig.profiling
-            .choices,
-          {
-            config_key: 'GTAG',
-            text: {
-              en: {
-                title: 'Google Tag Manager',
-                description:
-                  'Google Tag Manager is a tag management system that allows you to manage and deploy marketing tags (snippets of code or tracking pixels) on your website. Google Tag Manager does not collect any personal data.',
-              },
-            },
-          },
-        ],
-      },
-    };
-  }
+  config.settings.cookiebotDomainGroupId =
+    'a1d35702-1db0-4a57-bdc3-de342f65623e';
+
+  // if (config.settings['volto-gdpr-privacy']) {
+  //   config.settings['volto-gdpr-privacy'].defaultPanelConfig = {
+  //     ...config.settings['volto-gdpr-privacy'].defaultPanelConfig,
+  //     last_updated: '2022-12-10T00:07:00+00:00',
+  //     text: {
+  //       en: {
+  //         title: 'This site uses cookies',
+  //         description:
+  //           'For this website we use cookies for anonymous analytics gathering and show external content. You can also enable third parties independently.',
+  //       },
+  //     },
+  //     technical: {
+  //       text: {
+  //         en: {
+  //           title: 'Required cookies',
+  //           description:
+  //             'This website uses cookies for visitor analytics and login functionality. No personal identifiable information is collected or exchanged with third parties.',
+  //         },
+  //       },
+  //       choices: [],
+  //     },
+  //     profiling: {
+  //       text: {
+  //         en: {
+  //           title: 'Third party integrations',
+  //           description:
+  //             'To show rich content from other websites we use integrations from third parties. These might set cookies and collect personal data that can be used for profiling purposes across websites. You can disable individual services below.',
+  //         },
+  //       },
+  //       choices: [
+  //         ...config.settings['volto-gdpr-privacy'].defaultPanelConfig.profiling
+  //           .choices,
+  //         {
+  //           config_key: 'GTAG',
+  //           text: {
+  //             en: {
+  //               title: 'Google Tag Manager',
+  //               description:
+  //                 'Google Tag Manager is a tag management system that allows you to manage and deploy marketing tags (snippets of code or tracking pixels) on your website. Google Tag Manager does not collect any personal data.',
+  //             },
+  //           },
+  //         },
+  //       ],
+  //     },
+  //   };
+  // }
 
   let nutezien_en = 'whatson';
   let nutezien_nl = 'nutezien';

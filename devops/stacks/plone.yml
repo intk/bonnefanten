@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   frontend:
-    image: intkbv/bonnefanten-frontend:sha-3766092
+    image: intkbv/bonnefanten-frontend:sha-62d2a7c
     environment:
       RAZZLE_INTERNAL_API_PATH: http://backend:8080/Plone
     depends_on:
@@ -15,7 +15,7 @@ services:
       replicas: 2
 
   backend:
-    image: intkbv/bonnefanten-backend:sha-4effb66
+    image: intkbv/bonnefanten-backend:sha-566a56f
     environment:
       ZEO_ADDRESS: zeo:8100
       SITE: Plone
@@ -40,6 +40,13 @@ services:
     # - 8100:8100
     volumes:
       - /var/local/bonnefanten/data:/data
+    networks:
+      - nw-data
+
+  conversion:
+    image: plone/blocks-conversion-tool:latest
+    ports:
+      - 5000:5000
     networks:
       - nw-data
 

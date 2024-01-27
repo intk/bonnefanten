@@ -22,7 +22,7 @@ function BlockRenderer(props) {
   const ViewBlock =
     blocksConfig?.[type]?.view || config.blocks.blocksConfig[type].view;
 
-  let href = buttonData?.linkHref1?.[0]?.['@id'] || '';
+  let href = buttonData?.linkHref?.[0]?.['@id'] || '';
   let href2 = buttonData?.linkHref2?.[0]?.['@id'] || '';
 
   return (

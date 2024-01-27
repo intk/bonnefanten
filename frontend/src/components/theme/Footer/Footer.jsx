@@ -55,7 +55,7 @@ const MailChimpForm = ({ status, message, onValidated }) => {
             id="form-widgets-email"
             ref={(node) => (email = node)}
             type="email"
-            placeholder={intl.formatMessage(messages.newsletterErrorMessage)}
+            placeholder={intl.formatMessage(messages.Mailaddress)}
           />
           <br />
         </div>

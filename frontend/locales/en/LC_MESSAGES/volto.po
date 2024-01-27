@@ -29,7 +29,7 @@ msgstr ""
 #: components/theme/Footer/Footer
 # defaultMessage: Blijf op de hoogte
 msgid "Blijf"
-msgstr ""
+msgstr "Stay informed"
 
 #: components/blocks/Break/schema
 # defaultMessage: Break
@@ -133,6 +133,11 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
+#: components/theme/Footer/Footer
+# defaultMessage: Uw mailadres
+msgid "MailAddress"
+msgstr "Email Address"
+
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Multiple choices?
 msgid "Multiple choices?"
@@ -183,7 +188,7 @@ msgstr ""
 #: components/theme/Footer/Footer
 # defaultMessage: Privacyreglement
 msgid "Privacyreglement"
-msgstr ""
+msgstr "Privacy regulations"
 
 #: components/blocks/Quote/schema
 # defaultMessage: Quote
@@ -256,7 +261,7 @@ msgstr ""
 #: components/theme/Footer/Footer
 # defaultMessage: Inschrijven
 msgid "Submit"
-msgstr ""
+msgstr "Subscribe"
 
 #: components/blocks/Newsletter/NewsletterView
 #: components/theme/Footer/NewsletterSubscribe

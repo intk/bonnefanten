@@ -31,6 +31,10 @@ const messages = defineMessages({
     id: 'Blijf',
     defaultMessage: 'Blijf op de hoogte',
   },
+  Mailaddress: {
+    id: 'MailAddress',
+    defaultMessage: 'Uw mailadres',
+  },
 });
 
 const MailChimpForm = ({ status, message, onValidated }) => {
@@ -51,7 +55,7 @@ const MailChimpForm = ({ status, message, onValidated }) => {
             id="form-widgets-email"
             ref={(node) => (email = node)}
             type="email"
-            placeholder="Uw mailadres"
+            placeholder={intl.formatMessage(messages.newsletterErrorMessage)}
           />
           <br />
         </div>

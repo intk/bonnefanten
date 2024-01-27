@@ -140,6 +140,11 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
+#: components/theme/Footer/Footer
+# defaultMessage: Uw mailadres
+msgid "MailAddress"
+msgstr ""
+
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Multiple choices?
 msgid "Multiple choices?"

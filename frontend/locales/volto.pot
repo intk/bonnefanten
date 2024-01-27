@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-01-27T13:24:09.624Z\n"
+"POT-Creation-Date: 2024-01-27T13:33:52.589Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -133,6 +133,11 @@ msgstr ""
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Label
 msgid "Label"
+msgstr ""
+
+#: components/theme/Footer/Footer
+# defaultMessage: Uw mailadres
+msgid "MailAddress"
 msgstr ""
 
 #: components/blocks/AdvancedSearch/schema

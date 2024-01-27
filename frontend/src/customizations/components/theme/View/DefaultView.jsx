@@ -31,7 +31,7 @@ const DefaultView = (props) => {
 
   // const description = content?.description;
   const isHeroSection = content?.has_hero_section && content?.preview_image;
-  const filteredContent = filterBlocks(content, ['title', 'description']);
+  const filteredContent = filterBlocks(content, ['title']);
 
   return hasBlocksData(content) ? (
     <>
@@ -45,7 +45,7 @@ const DefaultView = (props) => {
         <>
           <h1 className="documentFirstHeading">{content.title}</h1>
           {content.description ? (
-            <div className="description-wrapper">
+            <div className="description-wrapper no-hero-description">
               <div className="header-quotes-wrapper">
                 <div className="quote-top-left quote-bonnefanten">“</div>
                 <div className="quote-top-right quote-bonnefanten">”</div>

@@ -45,6 +45,11 @@ msgstr ""
 msgid "Base search query"
 msgstr ""
 
+#: components/theme/Footer/Footer
+# defaultMessage: Blijf op de hoogte
+msgid "Blijf"
+msgstr ""
+
 #: components/blocks/Break/schema
 # defaultMessage: Break
 msgid "Break"
@@ -193,6 +198,11 @@ msgstr ""
 # defaultMessage: Privacy statement
 msgid "Privacy statement"
 msgstr "Privacyreglement"
+
+#: components/theme/Footer/Footer
+# defaultMessage: Privacyreglement
+msgid "Privacyreglement"
+msgstr ""
 
 #: components/blocks/Quote/schema
 # defaultMessage: Quote

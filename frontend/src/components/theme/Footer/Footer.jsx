@@ -23,6 +23,14 @@ const messages = defineMessages({
     id: 'Submit',
     defaultMessage: 'Inschrijven',
   },
+  Privacyreglement: {
+    id: 'Privacyreglement',
+    defaultMessage: 'Privacyreglement',
+  },
+  Blijf: {
+    id: 'Blijf',
+    defaultMessage: 'Blijf op de hoogte',
+  },
 });
 
 const MailChimpForm = ({ status, message, onValidated }) => {
@@ -108,7 +116,7 @@ const Footer = ({ intl }) => {
 
       <div id="Newsletter">
         <p className="newsletter-footer-seperator">--</p>
-        <h3 className="Header">Blijf op de hoogte</h3>
+        <h3 className="Header">{intl.formatMessage(messages.Blijf)}</h3>
         <MailchimpSubscribe
           url={mailchimp_url}
           render={({ subscribe, status, message }) => (
@@ -126,7 +134,7 @@ const Footer = ({ intl }) => {
             // eslint-disable-next-line react/jsx-no-target-blank
             target="_blank"
           >
-            Privacyreglement
+            {intl.formatMessage(messages.Privacyreglement)}
           </a>
         </div>
       </div>

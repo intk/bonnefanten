@@ -7,6 +7,22 @@ import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 import { isInternalURL } from '@plone/volto/helpers/Url/Url';
 import { When } from './EventDatesInfo';
 import './less/ListingTemplate.less';
+import { defineMessages, useIntl } from 'react-intl';
+
+const messages = defineMessages({
+  daily: {
+    id: 'daily',
+    defaultMessage: 'dagelijks',
+  },
+  weekly: {
+    id: 'weekly',
+    defaultMessage: 'wekelijks',
+  },
+  monthly: {
+    id: 'monthly',
+    defaultMessage: 'maandelijks',
+  },
+});
 
 function truncate(str, num) {
   if (str.length <= num) {
@@ -18,11 +34,25 @@ function truncate(str, num) {
 }
 
 const Card = ({ item, showDescription = true }) => {
+  let intl = useIntl();
   // const image = item?.image_field
   //   ? `${item['@id']}/${
   //       item.image_scales[item.image_field]?.[0]?.scales?.teaser?.download
   //     }`
   //   : null;
+  const hasDailyFrequency = item.recurrence?.includes('FREQ=DAILY');
+  const hasWeeklyFrequency = item.recurrence?.includes('FREQ=WEEKLY');
+  const hasMonthlyFrequency = item.recurrence?.includes('FREQ=MONTHLY');
+
+  let recurrenceText = '';
+  if (hasDailyFrequency) {
+    recurrenceText = intl.formatMessage(messages.daily);
+  } else if (hasWeeklyFrequency) {
+    recurrenceText = intl.formatMessage(messages.weekly);
+  } else if (hasMonthlyFrequency) {
+    recurrenceText = intl.formatMessage(messages.monthly);
+  }
+
   return (
     <div className="plone-item-card">
       <UniversalLink href={item['@id']} className="plone-item-card-link">
@@ -41,12 +71,16 @@ const Card = ({ item, showDescription = true }) => {
             {item['@type'] === 'Event' && (
               <div className="listing-dates">
                 <div className={`listing-dates-wrapper`}>
-                  <When
-                    start={item.start}
-                    end={item.end}
-                    whole_day="true"
-                    open_end={item.open_end}
-                  />
+                  {item.recurrence !== null ? (
+                    recurrenceText?.toUpperCase()
+                  ) : (
+                    <When
+                      start={item.start}
+                      end={item.end}
+                      whole_day={item.whole_day}
+                      open_end={item.open_end}
+                    />
+                  )}
                 </div>
               </div>
             )}

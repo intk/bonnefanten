@@ -8,21 +8,21 @@ import { withRouter } from 'react-router-dom';
 import { Form, Input } from 'semantic-ui-react';
 import { compose } from 'redux';
 import { PropTypes } from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 
 import { Icon } from '@plone/volto/components';
 import zoomSVG from '@plone/volto/icons/zoom.svg';
 
-const messages = defineMessages({
+const messages = {
   search: {
     id: 'Search',
     defaultMessage: 'Search',
   },
   searchSite: {
-    id: 'Search Site',
-    defaultMessage: 'Search Site',
+    nl: 'Website doorzoeken',
+    en: 'Search Site',
   },
-});
+};
 
 /**
  * SearchWidget component class.
@@ -101,16 +101,16 @@ class SearchWidget extends Component {
       <Form action="/search" onSubmit={this.onSubmit}>
         <Form.Field className="searchbox">
           <Input
-            aria-label={this.props.intl.formatMessage(messages.search)}
+            aria-label={messages.searchSite[this.props.intl.locale]}
             onChange={this.onChangeText}
             name="SearchableText"
             value={this.state.text}
             transparent
             autoComplete="off"
-            placeholder={this.props.intl.formatMessage(messages.searchSite)}
-            title={this.props.intl.formatMessage(messages.search)}
+            placeholder={messages.searchSite[this.props.intl.locale]}
+            title={messages.searchSite[this.props.intl.locale]}
           />
-          <button aria-label={this.props.intl.formatMessage(messages.search)}>
+          <button aria-label={messages.searchSite[this.props.intl.locale]}>
             <Icon name={zoomSVG} size="18px" />
           </button>
         </Form.Field>

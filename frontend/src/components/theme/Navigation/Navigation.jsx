@@ -101,6 +101,23 @@ class Navigation extends Component {
     }
   }
 
+  disableScroll() {
+    window.addEventListener('wheel', this.preventDefault, { passive: false });
+    window.addEventListener('touchmove', this.preventDefault, {
+      passive: false,
+    });
+    // Add more listeners if needed for other scroll methods (like keyboard inputs)
+  }
+
+  enableScroll() {
+    window.removeEventListener('wheel', this.preventDefault);
+    window.removeEventListener('touchmove', this.preventDefault);
+    // Remove any other listeners you added
+  }
+  preventDefault(e) {
+    e.preventDefault();
+  }
+
   /**
    * Toggle mobile menu's open state
    * @method toggleMobileMenu
@@ -108,6 +125,11 @@ class Navigation extends Component {
    */
   toggleMobileMenu() {
     this.setState({ isMobileMenuOpen: !this.state.isMobileMenuOpen });
+    if (this.state.isMobileMenuOpen) {
+      this.enableScroll();
+    } else {
+      this.disableScroll();
+    }
   }
 
   /**
@@ -120,6 +142,7 @@ class Navigation extends Component {
       return;
     }
     this.setState({ isMobileMenuOpen: false });
+    this.enableScroll();
   }
 
   /**
@@ -185,7 +208,7 @@ class Navigation extends Component {
           classNames="mobile-menu"
           appear
           mountOnEnter
-          timeout={500}
+          timeout={0}
           onEntering={() => {
             document.body.classList.add('intk-menu-opening');
             document.body.classList.add('intk-menu-visible');

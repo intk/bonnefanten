@@ -49,6 +49,7 @@ const getDateRangeDescription = (lang, start, end) => {
 
 function HeroSection(props) {
   const intl = useIntl();
+  // eslint-disable-next-line no-unused-vars
   const { image_url, content } = props;
   const {
     title,

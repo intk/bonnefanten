@@ -4,6 +4,6 @@ default_context:
   dos_protection_available: false
 
   load_zcml:
-    package_includes: ["bonnefanten", "kitconcept.seo", "collective.volto.formsupport", "redturtle.voltoplugin.editablefooter", "collective.volto.socialsettings", "collective.exportimport"]
+    package_includes: ["bonnefanten", "kitconcept.seo", "collective.volto.formsupport", "redturtle.voltoplugin.editablefooter", "collective.volto.socialsettings", "collective.exportimport", "collective.catalogcleanup"]
 
   db_storage: direct

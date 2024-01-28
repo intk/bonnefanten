@@ -1,3 +1,4 @@
 -c constraints.txt
 src/bonnefanten
 collective.exportimport
+collective.catalogcleanup

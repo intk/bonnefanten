@@ -7,6 +7,7 @@ collective.volto.formsupport
 redturtle.voltoplugin.editablefooter
 collective.volto.socialsettings
 collective.exportimport
+collective.catalogcleanup
 
 # Add required add-ons
 # (Ideally add them in setup.py for bonnefanten)

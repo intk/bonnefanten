@@ -102,7 +102,7 @@ function HeroSection(props) {
           <div className="herosection-missing-image"></div>
         )}
       </div>
-      {title && !image_url && (
+      {title && !has_hero_section && (
         <Container className="content-container header-no-hero">
           {startDate && isEvent && (
             <p className="hero-dates">

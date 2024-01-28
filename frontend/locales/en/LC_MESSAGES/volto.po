@@ -352,6 +352,11 @@ msgstr ""
 msgid "credit"
 msgstr "Credit line"
 
+#: components/blocks/Listing/ListingTemplate
+# defaultMessage: dagelijks
+msgid "daily"
+msgstr "daily"
+
 #: components/theme/View/ArtworkView
 # defaultMessage: Datering
 msgid "date"
@@ -388,6 +393,11 @@ msgstr "Materials"
 # defaultMessage: MEER INFO
 msgid "meerinfo"
 msgstr "MORE INFO"
+
+#: components/blocks/Listing/ListingTemplate
+# defaultMessage: maandelijks
+msgid "monthly"
+msgstr "monthly"
 
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: More info
@@ -490,6 +500,11 @@ msgstr "Upcoming"
 # defaultMessage: Views
 msgid "views"
 msgstr ""
+
+#: components/blocks/Listing/ListingTemplate
+# defaultMessage: wekelijks
+msgid "weekly"
+msgstr "weekly"
 
 #: components/blocks/AdvancedSearch/AdvancedSearchView
 # defaultMessage: Zoeken

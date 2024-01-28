@@ -129,4 +129,7 @@
   <column value="artwork_date" />
   <column value="ObjCollectionGrp" />
   <column value="Artwork_Collection_Group" />
+  <column value="whole_day" />
+  <column value="open_end" />
+  <column value="recurrence" />
 </object>

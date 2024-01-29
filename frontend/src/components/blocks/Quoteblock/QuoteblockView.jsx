@@ -13,7 +13,7 @@ const ViewGrid = (props) => {
   const blocksConfig =
     config.blocks.blocksConfig.__grid.blocksConfig || props.blocksConfig;
 
-  let href = data?.linkHref1?.[0]?.['@id'] || '';
+  let href = data?.linkHref?.[0]?.['@id'] || '';
   let href2 = data?.linkHref2?.[0]?.['@id'] || '';
 
   return (

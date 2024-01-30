@@ -59,7 +59,7 @@ const Card = ({ item, showDescription = true }) => {
             <div className="text-button btn-block more-info">
               <ConditionalLink
                 // to={intl.formatMessage(messages.ticketurl)}
-                to="/nl"
+                to={item['@id']}
                 condition="view"
               >
                 {/* {intl.formatMessage(messages.tickets)} */}

@@ -37,7 +37,7 @@
         height: auto;
         padding-left: 20px;
         background-color: transparent;
-        color: var(--bonnefanten-primary, #f9423a);
+        color: var(--dynamic-item-color, var(--bonnefanten-primary, #f9423a));
         cursor: pointer;
         font-family: 'BonnefantenBlock', Arial, sans-serif;
         font-size: 8vw;
@@ -240,13 +240,14 @@ body.scrolled #main .portal-top .header-wrapper {
     &.is-active {
       svg {
         color: var(--bonnefanten-bg);
+        // color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
         transform: rotate(90deg);
       }
 
       &:hover,
       &:active {
         svg {
-          color: var(--bonnefanten-secondary);
+          color: var(--bonnefanten-secondary) !important;
         }
       }
 
@@ -311,7 +312,8 @@ nav.navigation {
         margin-top: 5px;
         margin-bottom: 15px;
         background: none;
-        color: var(--bonnefanten-bg) !important;
+        // color: var(--bonnefanten-bg) !important;
+        color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
         font-family: 'BonnefantenBlock', Arial, sans-serif;
         font-size: 6.2vw;
         line-height: 7vw;
@@ -404,7 +406,7 @@ nav.navigation {
 
       a {
         display: inline-block;
-        color: var(--bonnefanten-bg) !important;
+        color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
         font-family: 'StyreneBold', Arial, sans-serif;
         font-size: 19px;
         font-weight: 400;
@@ -443,7 +445,8 @@ nav.navigation {
         align-items: center;
         justify-content: flex-end;
         padding: 0;
-        border: 1px solid var(--bonnefanten-bg);
+        // border: 1px solid var(--bonnefanten-bg);
+        border: 1px solid var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
         margin: 0;
         background: var(--bonnefanten-bg);
         clip-path: polygon(
@@ -457,6 +460,7 @@ nav.navigation {
           0 calc(100%)
         );
         color: var(--bonnefanten-bg);
+        // color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
         font-size: 14px;
         outline: none;
 
@@ -488,8 +492,9 @@ nav.navigation {
           padding-right: 45px;
           padding-bottom: 5px;
           padding-left: 14px;
-          border: 1px solid var(--bonnefanten-bg) !important;
-          background: var(--bonnefanten-primary);
+          border: 1px solid var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
+          // background: var(--bonnefanten-primary);
+          background: var(--dynamic-before-color, var(--bonnefanten-primary));
           clip-path: polygon(
             0% 11px,
             11px 0%,
@@ -591,13 +596,38 @@ body.has-toolbar .mobile-menu {
   transition: visibility 0.1s linear 0.1s;
 }
 
-body.intk-menu-opened,
-body.intk-menu-visible {
-  #main .portal-top .header-wrapper .logo a.site-logo,
-  .hamburger-wrapper button.hamburger svg {
-    color: var(--bonnefanten-bg);
+// body.intk-menu-opened,
+// body.intk-menu-visible {
+//   #main .portal-top .header-wrapper .logo a.site-logo,
+//   .hamburger-wrapper button.hamburger svg {
+//     color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
+//   }
+// }
+
+
+svg#nav-trigger-open-svg {
+  color: var(--dynamic-item-color, var(--bonnefanten-primary)) !important;
+}
+svg#nav-trigger-close-svg {
+  color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
+}
+
+.hamburger.hamburger--spin:hover{
+  svg#nav-trigger-close-svg{
+    color: var(--bonnefanten-secondary) !important;
   }
 }
+
+svg#nav-trigger-close-svg:hover,
+svg#nav-trigger-close-svg:active {
+  color: var(--bonnefanten-secondary) !important;
+}
+svg#nav-trigger-open-svg:hover,
+svg#nav-trigger-open-svg:active {
+  color: var(--bonnefanten-secondary) !important;
+}
+
+
 
 // body.intk-menu-visible,
 // body.intk-menu-opening {
@@ -892,7 +922,8 @@ body.has-hero-image {
 
 body #main > .portal-top::before{
   content: '';
-  background-color: var(--bonnefanten-primary);
+  // background-color: var(--bonnefanten-primary);
+  background: var(--dynamic-before-color, var(--bonnefanten-primary));
   width: 100vw;
   height: 100vh;
   display: block;
@@ -911,7 +942,7 @@ body.has-mobile-menu-open{
     top: 0vh;
   }
   .site-logo{
-    color: var(--bonnefanten-bg) !important;
+    color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
   #view{
     transform: translateY(100vh);
@@ -928,7 +959,8 @@ body.has-mobile-menu-open{
   background-color: transparent;
   .searchbox{
     .input input::placeholder, .input input::-webkit-input-placeholder{
-      color: var(--bonnefanten-bg) !important;
+      // color: var(--bonnefanten-bg) !important;
+      color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
       font-size: 14px !important;
     }
   }

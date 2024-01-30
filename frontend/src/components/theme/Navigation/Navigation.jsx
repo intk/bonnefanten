@@ -118,6 +118,50 @@ class Navigation extends Component {
     e.preventDefault();
   }
 
+  captureAndFreezeColor() {
+    let backgroundColor;
+    let itemColor;
+
+    if (document.body.classList.contains('footer-in-view')) {
+      backgroundColor = '#7841b3';
+      itemColor = '#ffd100';
+    } else if (document.body.classList.contains('page-title-in-view')) {
+      backgroundColor = '#F9423A';
+      itemColor = '#FFE79A';
+    } else if (document.body.classList.contains('homepage-title-in-view')) {
+      backgroundColor = '#FFD100';
+      itemColor = '#FF4438';
+    } else if (document.body.classList.contains('homepage-title-out-of-view')) {
+      backgroundColor = '#7841b3';
+      itemColor = '#faf5b8';
+    } else if (document.body.classList.contains('page-title-out-of-view')) {
+      backgroundColor = '#216d6a';
+      itemColor = '#fedacd';
+    } else if (document.body.classList.contains('title-out-of-view')) {
+      backgroundColor = '#216d6a';
+      itemColor = '#fedacd';
+    }
+    // Apply this value to a CSS variable
+    const portalTopElement = document.querySelector('.portal-top');
+    if (portalTopElement) {
+      portalTopElement.style.setProperty(
+        '--dynamic-before-color',
+        backgroundColor,
+      );
+      portalTopElement.style.setProperty('--dynamic-item-color', itemColor);
+    }
+  }
+
+  resetColor() {
+    setTimeout(() => {
+      const portalTopElement = document.querySelector('.portal-top');
+      if (portalTopElement) {
+        portalTopElement.style.removeProperty('--dynamic-before-color');
+        portalTopElement.style.removeProperty('--dynamic-item-color');
+      }
+    }, 300);
+  }
+
   /**
    * Toggle mobile menu's open state
    * @method toggleMobileMenu
@@ -127,8 +171,10 @@ class Navigation extends Component {
     this.setState({ isMobileMenuOpen: !this.state.isMobileMenuOpen });
     if (this.state.isMobileMenuOpen) {
       this.enableScroll();
+      this.resetColor();
     } else {
       this.disableScroll();
+      this.captureAndFreezeColor();
     }
   }
 
@@ -143,6 +189,7 @@ class Navigation extends Component {
     }
     this.setState({ isMobileMenuOpen: false });
     this.enableScroll();
+    this.resetColor();
   }
 
   /**

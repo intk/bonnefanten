@@ -140,6 +140,9 @@ class Navigation extends Component {
     } else if (document.body.classList.contains('title-out-of-view')) {
       backgroundColor = '#216d6a';
       itemColor = '#fedacd';
+    } else {
+      backgroundColor = '#f9423a';
+      itemColor = '#ffe79a';
     }
     // Apply this value to a CSS variable
     const portalTopElement = document.querySelector('.portal-top');

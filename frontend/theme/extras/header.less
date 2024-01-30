@@ -449,7 +449,7 @@ nav.navigation {
         // border: 1px solid var(--bonnefanten-bg);
         border: 1px solid var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
         margin: 0;
-        background: var(--bonnefanten-bg);
+        background: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
         clip-path: polygon(
           0% 10px,
           10px 0%,
@@ -460,8 +460,8 @@ nav.navigation {
           10px 100%,
           0 calc(100%)
         );
-        color: var(--bonnefanten-bg);
-        // color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
+        // color: var(--bonnefanten-bg);
+        color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
         font-size: 14px;
         outline: none;
 
@@ -473,8 +473,9 @@ nav.navigation {
 
           svg {
             height: 18px !important;
-            color: var(--bonnefanten-bg) !important;
-            fill: var(--bonnefanten-bg) !important;
+            // color: var(--bonnefanten-bg) !important;
+            fill: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
+            color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
           }
 
           &:hover,

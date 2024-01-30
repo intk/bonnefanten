@@ -73,7 +73,7 @@ const Header = (props) => {
         </div>
       </div>
 
-      {!((cmsView && !isSearch) || isHomePage) && (
+      {/* {!((cmsView && !isSearch) || isHomePage) && (
         <div className="header-bg">
           <div className="header-container">
             <HeroSection image_url={previewImageUrl} content={content} />
@@ -93,7 +93,7 @@ const Header = (props) => {
             />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

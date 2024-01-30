@@ -2,25 +2,26 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Logo, Navigation } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
-import HeroSection from '@package/components/theme/Header/HeroSection'; // , StickyHeader
+// import HeroSection from '@package/components/theme/Header/HeroSection'; // , StickyHeader
 import cx from 'classnames';
-import { useIntl } from 'react-intl';
-import usePreviewImage from './usePreviewImage';
+// import { useIntl } from 'react-intl';
+// import usePreviewImage from './usePreviewImage';
 import { useLocation } from 'react-router-dom';
-import qs from 'query-string';
+// import qs from 'query-string';
 import useInView from '@package/helpers/useInView';
 
 const Header = (props) => {
   const { navigationItems } = props;
-  const intl = useIntl();
+  // const intl = useIntl();
+  // eslint-disable-next-line no-unused-vars
   const { pathname, search } = useLocation();
-  const searchableText = qs.parse(search).SearchableText;
+  // const searchableText = qs.parse(search).SearchableText;
 
   const content = useSelector((state) => state.content.data);
 
-  const previewImage = usePreviewImage(pathname);
+  // const previewImage = usePreviewImage(pathname);
 
-  const previewImageUrl = previewImage?.scales?.preview?.download;
+  // const previewImageUrl = previewImage?.scales?.preview?.download;
 
   const contentType = content?.['@type'];
   const isHomePage = contentType === 'Plone Site' || contentType === 'LRF';

@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React from 'react';
 import NavItem from './NavItem';
 import { MenuProvider } from './MenuContext';
 

@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { isInternalURL } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 import cx from 'classnames';
+import { MenuContext } from './MenuContext'; // Import the context
 
 const NavItem = ({ item, lang, onClose, level = 0 }) => {
   const { settings } = config;
-  const [open, setOpen] = useState(false);
+  const { openItem, toggleItem } = useContext(MenuContext); // Use the context
+  const isOpen = item.url === openItem;
+
+  // Adjusted click handler
+  const handleClick = () => {
+    toggleItem(item.url);
+  };
 
   // The item.url in the root is ''
   // TODO: make more consistent it everywhere (eg. reducers to return '/' instead of '')
@@ -15,8 +22,8 @@ const NavItem = ({ item, lang, onClose, level = 0 }) => {
       <li className={cx('item', `level-${level}`, item.review_state)}>
         {!!item.items?.length && level === 0 ? (
           <button
-            className={cx('item-link', { open })}
-            onClick={() => setOpen(!open)}
+            className={cx('item-link', { open: isOpen })}
+            onClick={handleClick}
           >
             {item.title}
           </button>
@@ -35,19 +42,22 @@ const NavItem = ({ item, lang, onClose, level = 0 }) => {
             <span>{item.title}</span>
           </NavLink>
         )}
-        {!!item.items?.length && level === 0 && open && (
-          <ul className="nav-items-nested">
-            {item.items.map((child) => (
-              <NavItem
-                item={child}
-                lang={lang}
-                level={level + 1}
-                key={child.url}
-                onClose={onClose}
-              />
-            ))}
-          </ul>
-        )}
+
+        {!!item.items?.length &&
+        level === 0 &&
+        isOpen && ( // Replace `open` with `isOpen` here
+            <ul className="nav-items-nested">
+              {item.items.map((child) => (
+                <NavItem
+                  item={child}
+                  lang={lang}
+                  level={level + 1}
+                  key={child.url}
+                  onClose={onClose}
+                />
+              ))}
+            </ul>
+          )}
       </li>
     );
   } else {

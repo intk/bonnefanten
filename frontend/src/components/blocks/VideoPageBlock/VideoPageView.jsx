@@ -14,15 +14,21 @@ const ViewGrid = (props) => {
   useEffect(() => {
     const elements = document.querySelectorAll('.grid-block-text');
     elements.forEach((el) => {
+      // Check if the element contains any h2 child nodes
+      const hasH2 = el.querySelector('h2') !== null;
+
       const p = el.querySelector('p');
       if (
-        (p && p.childNodes.length === 1 && p.childNodes[0].nodeName === 'BR') ||
-        (el.childNodes.length === 1 && el.childNodes[0].nodeName === 'BR')
+        !hasH2 && // Make sure there are no h2 child nodes
+        ((p &&
+          p.childNodes.length === 1 &&
+          p.childNodes[0].nodeName === 'BR') ||
+          (el.childNodes.length === 1 && el.childNodes[0].nodeName === 'BR'))
       ) {
         el.style.height = '0';
         el.style.padding = '0';
         el.style.margin = '0';
-        // el.classList.add('empty');
+        el.classList.add('empty');
         // el.style.display = 'none';
       }
     });

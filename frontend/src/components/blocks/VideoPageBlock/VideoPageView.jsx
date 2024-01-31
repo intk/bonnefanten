@@ -22,7 +22,7 @@ const ViewGrid = (props) => {
         el.style.height = '0';
         el.style.padding = '0';
         el.style.margin = '0';
-        el.classList.add('empty');
+        // el.classList.add('empty');
         // el.style.display = 'none';
       }
     });

@@ -3,7 +3,7 @@
  * @module components/theme/Footer/Footer
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { defineMessages, injectIntl, useIntl } from 'react-intl';
 import FooterColumns from '@package/components/theme/Footer/FooterColumns';
 import useInView from '@package/helpers/useInView';
@@ -13,11 +13,12 @@ import MailchimpSubscribe from 'react-mailchimp-subscribe';
 const messages = defineMessages({
   newsletterErrorMessage: {
     id: 'Close menu',
-    defaultMessage: 'Error',
+    defaultMessage: 'Aanmelden op nieuwsbrief mislukt.',
   },
   newsletterSuccessMessage: {
     id: 'Open menu',
-    defaultMessage: 'Success',
+    defaultMessage:
+      'Bedankt voor uw aanmelding. U ontvangt een e-mail waarin uw inschrijving wordt bevestigd.',
   },
   submitButton: {
     id: 'Submit',
@@ -65,29 +66,6 @@ const MailChimpForm = ({ status, message, onValidated }) => {
           </button>
         </div>
       </div>
-
-      <div className="message-wrapper">
-        <div className="message">
-          {status === 'sending' && <div style={{ color: 'blue' }}>...</div>}
-          {status === 'error' && (
-            <div
-              style={{ color: 'red' }}
-              // dangerouslySetInnerHTML={{ __html: message }}
-            >
-              <p> {intl.formatMessage(messages.newsletterErrorMessage)}</p>
-            </div>
-          )}
-          {status === 'success' && (
-            <div
-              className="success-msg"
-              style={{ color: 'blue' }}
-              // dangerouslySetInnerHTML={{ __html: message }}
-            >
-              <p> {intl.formatMessage(messages.newsletterSuccessMessage)}</p>{' '}
-            </div>
-          )}
-        </div>
-      </div>
     </>
   );
 };
@@ -99,7 +77,9 @@ const MailChimpForm = ({ status, message, onValidated }) => {
  * @returns {string} Markup of the component
  */
 const Footer = ({ intl }) => {
-  const mailchimp_url = `https://bonnefanten.us15.list-manage.com/subscribe/post-json?c=?`;
+  const [status, setStatus] = useState(undefined);
+  const mailchimp_url =
+    'https://bonnefanten.us15.list-manage.com/subscribe/post-json?u=9e387b9a702e7ed1e33db1e6e&id=306b21f58b';
   const footerInView = useInView(
     'footer#site-footer',
     {
@@ -124,11 +104,14 @@ const Footer = ({ intl }) => {
         <MailchimpSubscribe
           url={mailchimp_url}
           render={({ subscribe, status, message }) => (
-            <MailChimpForm
-              status={status}
-              message={message}
-              onValidated={(formData) => subscribe(formData)}
-            />
+            <>
+              {setStatus(status)}
+              <MailChimpForm
+                status={status}
+                message={message}
+                onValidated={(formData) => subscribe(formData)}
+              />
+            </>
           )}
         />
         <div id="privacy-statement-wrapper">
@@ -140,6 +123,31 @@ const Footer = ({ intl }) => {
           >
             {intl.formatMessage(messages.Privacyreglement)}
           </a>
+          <div className="message-wrapper">
+            <div className="message">
+              {status === 'sending' && <div style={{ color: 'blue' }}>...</div>}
+              {status === 'error' && (
+                <div
+                  style={{ color: 'red' }}
+                  // dangerouslySetInnerHTML={{ __html: message }}
+                >
+                  <p> {intl.formatMessage(messages.newsletterErrorMessage)}</p>
+                </div>
+              )}
+              {status === 'success' && (
+                <div
+                  className="success-msg"
+                  style={{ color: 'blue' }}
+                  // dangerouslySetInnerHTML={{ __html: message }}
+                >
+                  <p>
+                    {' '}
+                    {intl.formatMessage(messages.newsletterSuccessMessage)}
+                  </p>{' '}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 

@@ -10,7 +10,7 @@ const messages = defineMessages({
 const NewsletterSubscribe = ({ intl }) => (
   <div className="newsletter-subscribe">
     <a
-      href="https://mailchi.mp/fdcc9a135efd/nieuwsbrief-haags-historisch-museum"
+      href="https://bonnefanten.us15.list-manage.com/subscribe/post-json?c=&"
       target="_blank"
       rel="noopener noreferrer"
       className="newsletter-subscribe-link"

@@ -87,7 +87,7 @@ const DefaultView = (props) => {
                 <div className="quote-top-left quote-bonnefanten">“</div>
                 <div className="quote-top-right quote-bonnefanten">”</div>
               </div>
-              <p className="documentDescription">{content.description}</p>
+              <p className="documentDescription">{content?.description}</p>
             </div>
           ) : (
             <div className="empty-description-wrapper"> </div>

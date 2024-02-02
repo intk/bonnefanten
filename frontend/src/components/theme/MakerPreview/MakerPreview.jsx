@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { flattenToAppURL } from '@plone/volto/helpers';
 // import config from '@plone/volto/registry';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 // import DefaultImageSVG from '@plone/volto/components/manage/Blocks/Listing/default-image.svg';
 

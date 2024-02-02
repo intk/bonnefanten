@@ -2,7 +2,7 @@ import ListingsBlockTemplate from '@package/components/blocks/Listing/ListingTem
 import CategoryBlockTemplate from '@package/components/blocks/Listing/CategoryTemplate';
 import SubcategoryBlockTemplate from '@package/components/blocks/Listing/SubcategoryTemplate';
 import MasonryBlockTemplate from '@package/components/blocks/Listing/MasonryTemplate';
-import MakerPageTemplate from '@package/components/blocks/Listing/MasonryTemplate';
+import MakerPageTemplate from '@package/components/blocks/Listing/MakerPageTemplate';
 import CollectionSliderTemplate from '@package/components/blocks/Listing/CollectionSliderTemplate';
 import PermanentExhibitionsTemplate from '@package/components/blocks/Listing/PermanentExhibitionsTemplate';
 import HomepageSliderTemplate from '@package/components/blocks/Listing/HomepageSliderTemplate';

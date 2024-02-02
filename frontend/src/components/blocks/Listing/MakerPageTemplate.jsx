@@ -1,47 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 // import { ListingBlockHeader } from '@package/components';
 import { UniversalLink } from '@plone/volto/components';
 import './less/MasonryTemplate.less';
-import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 import { BodyClass } from '@plone/volto/helpers';
+import AuthorPreviewImage from './AuthorPreviewImage';
+import { defineMessages, useIntl } from 'react-intl';
 
 const Masonry = loadable(() => import('react-masonry-css'));
 
+const messages = defineMessages({
+  work: {
+    id: 'work',
+    defaultMessage: 'werk',
+  },
+});
+
 const Card = ({ item, showDescription = true }) => {
+  const authorName = item.title;
+  const [artworkCounts, setArtworkCounts] = useState({});
+  const [firstItem, setFirstItem] = useState(undefined);
+  const updateArtworkCount = (authorName, count, firstItem) => {
+    setArtworkCounts((prevCounts) => ({ ...prevCounts, [authorName]: count }));
+    setFirstItem(firstItem);
+  };
+  const intl = useIntl();
+
   return (
     <div className="plone-item-card">
       <BodyClass className="maker-page-listing" />
       <UniversalLink href={item['@id']} className="plone-item-card-link">
-        {/* {image && (
-          <figure className="listing-image">
-            <img src={image} alt="" role="presentation" />
-          </figure>
-        )} */}
-        <ArtworkPreview {...item} />
-        <div className="title-description">
-          <h3 className="plone-item-title">
+        <AuthorPreviewImage
+          authorName={authorName}
+          item={item}
+          onUpdateArtworkCount={updateArtworkCount}
+        />
+        {firstItem ? (
+          <div className="title-description">
+            {/* <h3 className="plone-item-title">
             <p>{item.title}</p>
-          </h3>
-          <div className="desctiption">
-            {/* <span className="item-description">
-              {item.artwork_author &&
-                item.artwork_author.map((author) => (
-                  <span key={author}>{author}, </span>
-                ))}
-            </span>
-            <span className="item-description">
-              {item.ObjDateFromTxt && item.ObjDateFromTxt}
-            </span> */}
+          </h3> */}
+            <p>
+              {firstItem && artworkCounts[authorName]
+                ? `${artworkCounts[authorName]} ${intl.formatMessage(
+                    messages.work,
+                  )}`
+                : ''}
+            </p>
+            <div className="desctiption"></div>
           </div>
-        </div>
+        ) : (
+          ''
+        )}
       </UniversalLink>
-      {!!showDescription && (
-        <p className="plone-item-description">
-          <div>{item.description}</div>
-        </p>
-      )}
     </div>
   );
 };

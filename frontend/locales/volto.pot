@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-01-28T21:36:58.067Z\n"
+"POT-Creation-Date: 2024-02-02T14:00:40.259Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -506,6 +506,11 @@ msgstr ""
 #: components/blocks/Listing/ListingTemplate
 # defaultMessage: wekelijks
 msgid "weekly"
+msgstr ""
+
+#: components/blocks/Listing/MakerPageTemplate
+# defaultMessage: werk
+msgid "work"
 msgstr ""
 
 #: components/blocks/AdvancedSearch/AdvancedSearchView

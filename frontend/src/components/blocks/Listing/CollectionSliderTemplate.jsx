@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 // import { ListingBlockHeader } from '@package/components';
 import { UniversalLink } from '@plone/volto/components';
@@ -7,6 +7,8 @@ import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 import ReactSwipe from 'react-swipe';
 import './less/CollectionSliderTemplate.less';
 import { defineMessages, useIntl } from 'react-intl';
+import useInViewHomepage from '@package/helpers/useInViewHomepage';
+import { BodyClass } from '@plone/volto/helpers';
 
 const messages = defineMessages({
   collectie: {
@@ -54,9 +56,16 @@ const CollectionSliderTemplate = (props) => {
   const { items } = props;
   let reactSwipeEl;
   const intl = useIntl();
+  const ref = useRef();
+  const titleInView = useInViewHomepage(ref);
 
   return (
     <div className="collection-slider-template">
+      {titleInView ? (
+        <BodyClass className="collectionslide-in-view" />
+      ) : (
+        <BodyClass className="collectionslide-out-of-view" />
+      )}
       <div className="collectie-header">
         <h3>
           <span>{intl.formatMessage(messages.collectie)}</span> <span>—</span>{' '}
@@ -106,6 +115,7 @@ const CollectionSliderTemplate = (props) => {
               onClick={() => {
                 reactSwipeEl.next();
               }}
+              ref={ref}
             >
               <svg
                 id="Layer_1"

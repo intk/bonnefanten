@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 // import { ListingBlockHeader } from '@package/components';
 import { UniversalLink } from '@plone/volto/components';
-import './less/MasonryTemplate.less';
+import './less/MakerTemplate.less';
 import { BodyClass } from '@plone/volto/helpers';
 import AuthorPreviewImage from './AuthorPreviewImage';
 import { defineMessages, useIntl } from 'react-intl';

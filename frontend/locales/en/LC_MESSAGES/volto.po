@@ -54,9 +54,9 @@ msgstr ""
 
 #: components/theme/Footer/Footer
 #: components/theme/Navigation/Navigation
-# defaultMessage: Error
+# defaultMessage: Aanmelden op nieuwsbrief mislukt.
 msgid "Close menu"
-msgstr ""
+msgstr "Newsletter registration failed."
 
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Controls
@@ -165,9 +165,9 @@ msgstr ""
 
 #: components/theme/Footer/Footer
 #: components/theme/Navigation/Navigation
-# defaultMessage: Success
+# defaultMessage: Bedankt voor uw aanmelding. U ontvangt een e-mail waarin uw inschrijving wordt bevestigd.
 msgid "Open menu"
-msgstr ""
+msgstr "Thank you for your application. You will receive an email confirming your registration."
 
 #: components/blocks/Teaser/TeaserDefaultTemplate
 # defaultMessage: Past exhibition

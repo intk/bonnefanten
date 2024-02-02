@@ -61,7 +61,7 @@ msgstr ""
 
 #: components/theme/Footer/Footer
 #: components/theme/Navigation/Navigation
-# defaultMessage: Error
+# defaultMessage: Aanmelden op nieuwsbrief mislukt.
 msgid "Close menu"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgstr ""
 
 #: components/theme/Footer/Footer
 #: components/theme/Navigation/Navigation
-# defaultMessage: Success
+# defaultMessage: Bedankt voor uw aanmelding. U ontvangt een e-mail waarin uw inschrijving wordt bevestigd.
 msgid "Open menu"
 msgstr ""
 

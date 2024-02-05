@@ -38,9 +38,9 @@ const Card = ({ item, showDescription = true }) => {
         />
         {firstItem ? (
           <div className="title-description">
-            {/* <h3 className="plone-item-title">
-            <p>{item.title}</p>
-          </h3> */}
+            <h3 className="plone-item-title">
+              <p>{item.title}</p>
+            </h3>
             <p>
               {firstItem && artworkCounts[authorName]
                 ? `${artworkCounts[authorName]} ${intl.formatMessage(

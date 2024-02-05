@@ -3,120 +3,101 @@
  * @module components/theme/SearchWidget/SearchWidget
  */
 
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form, Input } from 'semantic-ui-react';
-import { compose } from 'redux';
-import { PropTypes } from 'prop-types';
-import { injectIntl } from 'react-intl';
+import { defineMessages, useIntl } from 'react-intl';
+import { useDetectClickOutside } from 'react-detect-click-outside';
 
-import { Icon } from '@plone/volto/components';
-import zoomSVG from '@plone/volto/icons/zoom.svg';
-
-const messages = {
+const messages = defineMessages({
   search: {
     id: 'Search',
     defaultMessage: 'Search',
   },
   searchSite: {
-    nl: 'Website doorzoeken',
-    en: 'Search Site',
+    id: 'Search Site',
+    defaultMessage: 'Search Site',
   },
-};
+});
 
 /**
  * SearchWidget component class.
  * @class SearchWidget
  * @extends Component
  */
-class SearchWidget extends Component {
-  /**
-   * Property types.
-   * @property {Object} propTypes Property types.
-   * @static
-   */
-  static propTypes = {
-    pathname: PropTypes.string,
+const SearchWidget = ({ onClose }) => {
+  const [text, setText] = React.useState('');
+  const [visible, setVisible] = React.useState(false);
+  const history = useHistory();
+  const intl = useIntl();
+  const ref = useDetectClickOutside({
+    onTriggered: () => {
+      setText('');
+      setVisible(false);
+    },
+  });
+  const inputRef = React.useRef(null);
+
+  const onChangeText = (e, { value }) => {
+    setText(value);
   };
 
-  /**
-   * Constructor
-   * @method constructor
-   * @param {Object} props Component properties
-   * @constructs WysiwygEditor
-   */
-  constructor(props) {
-    super(props);
-    this.onChangeText = this.onChangeText.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-    this.state = {
-      text: '',
-    };
-  }
+  const onSubmit = (e) => {
+    if (e) e.preventDefault(); // Only call preventDefault if e is provided
+    setVisible(false);
+    const newPath = `/${intl.locale}/search?SearchableText=${encodeURIComponent(
+      text,
+    )}&Language=${intl.locale}`;
+    history.push(newPath);
+    setText('');
+    onClose();
+  };
 
-  /**
-   * On change text
-   * @method onChangeText
-   * @param {object} event Event object.
-   * @param {string} value Text value.
-   * @returns {undefined}
-   */
-  onChangeText(event, { value }) {
-    this.setState({
-      text: value,
-    });
-  }
-
-  /**
-   * Submit handler
-   * @method onSubmit
-   * @param {event} event Event object.
-   * @returns {undefined}
-   */
-  onSubmit(event) {
-    const path =
-      this.props.pathname?.length > 0
-        ? `&path=${encodeURIComponent(this.props.pathname)}`
-        : '';
-    this.props.history.push(
-      `/search?SearchableText=${encodeURIComponent(
-        this.state.text,
-      )}${path}/&Language=${this.props.intl.locale}`,
-    );
-    // reset input value
-    this.setState({
-      text: '',
-    });
-    event.preventDefault();
-    this.props.onClose();
-  }
-
-  /**
-   * Render method.
-   * @method render
-   * @returns {string} Markup for the component.
-   */
-  render() {
-    return (
-      <Form action="/search" onSubmit={this.onSubmit}>
-        <Form.Field className="searchbox">
+  return (
+    <div ref={ref} className="searchWrapper">
+      <Form action="/search" onSubmit={onSubmit}>
+        <Form.Field className={`searchbox${visible ? ' visible' : ''}`}>
           <Input
-            aria-label={messages.searchSite[this.props.intl.locale]}
-            onChange={this.onChangeText}
+            id="input"
+            ref={inputRef}
+            aria-label={intl.formatMessage(messages.searchSite)}
+            onChange={onChangeText}
             name="SearchableText"
-            value={this.state.text}
+            value={text}
             transparent
             autoComplete="off"
-            placeholder={messages.searchSite[this.props.intl.locale]}
-            title={messages.searchSite[this.props.intl.locale]}
+            placeholder={intl.formatMessage(messages.searchSite)}
+            title={intl.formatMessage(messages.search)}
           />
-          <button aria-label={messages.searchSite[this.props.intl.locale]}>
-            <Icon name={zoomSVG} size="18px" />
+          <button
+            type="submit"
+            aria-label={intl.formatMessage(messages.search)}
+            onClick={(e) => {
+              if (!text?.length) {
+                e.preventDefault();
+
+                if (inputRef?.current) {
+                  inputRef.current.focus();
+                }
+
+                setVisible(true);
+              } else {
+                onSubmit();
+              }
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="18px"
+              viewBox="0 0 512 512"
+            >
+              <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+            </svg>
           </button>
         </Form.Field>
       </Form>
-    );
-  }
-}
+    </div>
+  );
+};
 
-export default compose(withRouter, injectIntl)(SearchWidget);
+export default SearchWidget;

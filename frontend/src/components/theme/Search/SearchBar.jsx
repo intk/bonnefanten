@@ -46,12 +46,12 @@ const SearchBar = ({ onClose }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     setVisible(false);
-    history.push(
-      `/search?SearchableText=${encodeURIComponent(text)}&Language=${
-        intl.locale
-      }`,
-    );
-    // reset input value
+    const basePath = `${intl.locale}/search`;
+    const searchParams = `SearchableText=${encodeURIComponent(text)}&Language=${
+      intl.locale
+    }`;
+    const newPath = `/${basePath}?${searchParams}`;
+    history.push(newPath);
     setText('');
     // onClose();
   };

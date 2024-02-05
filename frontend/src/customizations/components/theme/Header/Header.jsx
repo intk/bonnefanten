@@ -4,7 +4,7 @@ import { Logo, Navigation } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
 // import HeroSection from '@package/components/theme/Header/HeroSection'; // , StickyHeader
 import cx from 'classnames';
-// import { useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 // import usePreviewImage from './usePreviewImage';
 import { useLocation } from 'react-router-dom';
 // import qs from 'query-string';
@@ -12,7 +12,7 @@ import useInView from '@package/helpers/useInView';
 
 const Header = (props) => {
   const { navigationItems } = props;
-  // const intl = useIntl();
+  const intl = useIntl();
   // eslint-disable-next-line no-unused-vars
   const { pathname, search } = useLocation();
   // const searchableText = qs.parse(search).SearchableText;
@@ -25,7 +25,7 @@ const Header = (props) => {
 
   const contentType = content?.['@type'];
   const isHomePage = contentType === 'Plone Site' || contentType === 'LRF';
-  const isSearch = pathname === '/search';
+  const isSearch = pathname === `/${intl.locale}/search`;
   const cmsView = isCmsUi(pathname);
   const homePageView = isHomePage && !cmsView && !isSearch;
 

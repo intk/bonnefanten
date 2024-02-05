@@ -82,7 +82,7 @@ const SearchWidget = ({ onClose }) => {
 
                 setVisible(true);
               } else {
-                onSubmit();
+                onSubmit(e);
               }
             }}
           >

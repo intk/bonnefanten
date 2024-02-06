@@ -443,7 +443,7 @@ msgid "objectType"
 msgstr ""
 
 #: components/blocks/Listing/EventDatesInfo
-# defaultMessage: undefined
+# defaultMessage: VASTE COLLECTIE
 msgid "permanent"
 msgstr ""
 

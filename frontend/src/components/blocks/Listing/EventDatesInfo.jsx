@@ -26,7 +26,6 @@ const getDateRangeDescription = (intl, lang, start, end) => {
   };
   if (end?.getFullYear() - start?.getFullYear() >= 10) {
     return intl.formatMessage(messages.permanent);
-
   }
 
   if (

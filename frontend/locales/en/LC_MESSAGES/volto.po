@@ -435,6 +435,11 @@ msgstr "Object number"
 msgid "objectType"
 msgstr "Object type"
 
+#: components/blocks/Listing/EventDatesInfo
+# defaultMessage: undefined
+msgid "permanent"
+msgstr "PERMANENT COLLECTION"
+
 #: components/blocks/EventPageButton/EventPageButtonView
 # defaultMessage: PRAKTISCHE INFO
 msgid "pracktischeinfo"

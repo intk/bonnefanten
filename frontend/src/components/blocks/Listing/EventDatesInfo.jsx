@@ -5,9 +5,15 @@ import { List } from 'semantic-ui-react';
 import { toBackendLang } from '@plone/volto/helpers';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 import { useSelector } from 'react-redux';
-import { useIntl } from 'react-intl';
+import { useIntl, defineMessages } from 'react-intl';
 
-const getDateRangeDescription = (lang, start, end) => {
+const messages = defineMessages({
+  permanent: {
+    id: 'permanent',
+    defineMessages: 'VASTE COLLECTIE',
+  },
+});
+const getDateRangeDescription = (intl, lang, start, end) => {
   const format = (date) => {
     // Extracting individual components of the date
     let day = date.getDate().toString().padStart(2, '0');
@@ -17,6 +23,12 @@ const getDateRangeDescription = (lang, start, end) => {
     // Constructing the date string with periods as separators
     return `${day}.${month}.${year}`;
   };
+  if (end.getFullYear() - start.getFullYear() >= 10) {
+    return intl.formatMessage({
+      id: 'permanent',
+      defaultMessage: 'VASTE COLLECTIE',
+    });
+  }
 
   if (
     !end ||
@@ -115,12 +127,12 @@ const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
     >
       {start && !open_end ? (
         <span className="hero-dates">
-          {getDateRangeDescription(intl.locale, startDate, endDate)}
+          {getDateRangeDescription(intl, intl.locale, startDate, endDate)}
         </span>
       ) : (
         start && (
           <span className="hero-dates">
-            {getDateRangeDescription(intl.locale, startDate)}
+            {getDateRangeDescription(intl, intl.locale, startDate)}
           </span>
         )
       )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import loadable from '@loadable/component';
 // import { ListingBlockHeader } from '@package/components';
@@ -6,6 +6,8 @@ import { UniversalLink } from '@plone/volto/components';
 import './less/PermanentExhibitionsTemplate.less';
 import ArtworkPreview from '../../theme/ArtworkPreview/ArtworkPreview';
 import { defineMessages, useIntl } from 'react-intl';
+import useInViewHomepage from '@package/helpers/useInViewHomepage';
+import { BodyClass } from '@plone/volto/helpers';
 
 const Masonry = loadable(() => import('react-masonry-css'));
 
@@ -69,9 +71,16 @@ const breakpointColumnsObj = {
 const PermanentExhibitionsTemplate = (props) => {
   const { items } = props;
   const intl = useIntl();
+  const ref = useRef();
+  const titleInView = useInViewHomepage(ref);
 
   return (
     <div className="permanent-exhibitons-template">
+      {titleInView ? (
+        <BodyClass className="permanentslide-in-view" />
+      ) : (
+        <BodyClass className="permanentslide-in-view" />
+      )}
       <div className="permanent-exhitions-header">
         <h3>
           <span>{intl.formatMessage(messages.altijd)}</span> <span>—</span>{' '}
@@ -82,6 +91,7 @@ const PermanentExhibitionsTemplate = (props) => {
         className="search-items"
         columnClassName="masonry-multiple-column"
         style={{ display: 'flex' }}
+        ref={ref}
       >
         {items.map((item, i) => (
           <div>

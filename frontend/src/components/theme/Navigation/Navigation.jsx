@@ -122,7 +122,10 @@ class Navigation extends Component {
     let backgroundColor;
     let itemColor;
 
-    if (document.body.classList.contains('collectionslide-in-view')) {
+    if (document.body.classList.contains('permanentslide-in-view')) {
+      backgroundColor = '#fdcdc0';
+      itemColor = '#276d6a';
+    } else if (document.body.classList.contains('collectionslide-in-view')) {
       backgroundColor = '#cfb3e4';
       itemColor = '#ab3c4e';
     } else if (document.body.classList.contains('footer-in-view')) {

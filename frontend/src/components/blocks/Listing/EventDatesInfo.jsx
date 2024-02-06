@@ -5,14 +5,8 @@ import { List } from 'semantic-ui-react';
 import { toBackendLang } from '@plone/volto/helpers';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 import { useSelector } from 'react-redux';
-import { useIntl, defineMessages } from 'react-intl';
+import { useIntl } from 'react-intl';
 
-const messages = defineMessages({
-  permanent: {
-    id: 'permanent',
-    defineMessages: 'VASTE COLLECTIE',
-  },
-});
 const getDateRangeDescription = (intl, lang, start, end) => {
   const format = (date) => {
     // Extracting individual components of the date
@@ -23,7 +17,7 @@ const getDateRangeDescription = (intl, lang, start, end) => {
     // Constructing the date string with periods as separators
     return `${day}.${month}.${year}`;
   };
-  if (end.getFullYear() - start.getFullYear() >= 10) {
+  if (end?.getFullYear() - start?.getFullYear() >= 10) {
     return intl.formatMessage({
       id: 'permanent',
       defaultMessage: 'VASTE COLLECTIE',

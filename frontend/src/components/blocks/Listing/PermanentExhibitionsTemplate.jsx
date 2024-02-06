@@ -72,16 +72,16 @@ const PermanentExhibitionsTemplate = (props) => {
   const { items } = props;
   const intl = useIntl();
   const ref = useRef();
-  const titleInView = useInViewHomepage(ref);
+  const InView = useInViewHomepage(ref);
 
   return (
     <div className="permanent-exhibitons-template">
-      {titleInView ? (
+      {InView ? (
         <BodyClass className="permanentslide-in-view" />
       ) : (
-        <BodyClass className="permanentslide-in-view" />
+        <BodyClass className="permanentslide-out-of-view" />
       )}
-      <div className="permanent-exhitions-header">
+      <div ref={ref} className="permanent-exhitions-header">
         <h3>
           <span>{intl.formatMessage(messages.altijd)}</span> <span>—</span>{' '}
         </h3>
@@ -91,7 +91,6 @@ const PermanentExhibitionsTemplate = (props) => {
         className="search-items"
         columnClassName="masonry-multiple-column"
         style={{ display: 'flex' }}
-        ref={ref}
       >
         {items.map((item, i) => (
           <div>

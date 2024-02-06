@@ -81,7 +81,7 @@ const PermanentExhibitionsTemplate = (props) => {
       ) : (
         <BodyClass className="permanentslide-out-of-view" />
       )}
-      <div ref={ref} className="permanent-exhitions-header">
+      <div className="permanent-exhitions-header">
         <h3>
           <span>{intl.formatMessage(messages.altijd)}</span> <span>—</span>{' '}
         </h3>
@@ -93,7 +93,7 @@ const PermanentExhibitionsTemplate = (props) => {
         style={{ display: 'flex' }}
       >
         {items.map((item, i) => (
-          <div>
+          <div >
             <Card item={item} showDescription="true" />
           </div>
         ))}

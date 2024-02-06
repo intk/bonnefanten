@@ -93,7 +93,7 @@ const PermanentExhibitionsTemplate = (props) => {
         style={{ display: 'flex' }}
       >
         {items.map((item, i) => (
-          <div >
+          <div ref={ref}>
             <Card item={item} showDescription="true" />
           </div>
         ))}

@@ -133,7 +133,7 @@ const Logo = () => {
   }, [updateLetters]);
 
   const scrolledListener = (e) => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 500) {
       document.body.classList.add('scrolled');
     } else {
       document.body.classList.remove('scrolled');

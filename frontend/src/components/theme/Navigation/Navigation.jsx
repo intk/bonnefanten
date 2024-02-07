@@ -278,7 +278,8 @@ class Navigation extends Component {
           }}
           onExited={() => {
             setTimeout(() => {
-              document.body.classList.add('scrolled');
+              window.pageYOffset > 300 &&
+                document.body.classList.add('scrolled');
             }, 300);
           }}
           unmountOnExit

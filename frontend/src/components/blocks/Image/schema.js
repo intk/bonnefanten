@@ -1,4 +1,4 @@
-import { flattenToAppURL } from '@plone/volto/helpers';
+// import { flattenToAppURL } from '@plone/volto/helpers';
 
 import clearSVG from '@plone/volto/icons/clear.svg';
 import navTreeSVG from '@plone/volto/icons/nav.svg';

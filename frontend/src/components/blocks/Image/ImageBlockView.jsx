@@ -67,12 +67,12 @@ const ViewImage = (props) => {
                   loading="lazy"
                 />
               );
-              if (data.href) {
-                if (!isInternalURL(data.href)) {
+              if (data?.href && data.href[0] && data.href[0]['@id']) {
+                if (!isInternalURL(data?.href[0]['@id'])) {
                   return (
                     <a
                       target={data.openLinkInNewTab ? '_blank' : null}
-                      href={data.href}
+                      href={data.href[0]['@id']}
                     >
                       {image}
                     </a>
@@ -80,7 +80,7 @@ const ViewImage = (props) => {
                 } else {
                   return (
                     <Link
-                      to={flattenToAppURL(data.href)}
+                      to={flattenToAppURL(data.href[0]['@id'])}
                       target={data.openLinkInNewTab ? '_blank' : null}
                     >
                       {image}

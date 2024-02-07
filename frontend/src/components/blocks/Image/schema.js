@@ -34,7 +34,7 @@ const ImageSchema = (props) => {
               });
             }
           : () => openObjectBrowser({ mode: 'link' }),
-        value: data.href && flattenToAppURL(data.href),
+        // value: data.href && flattenToAppURL(data.href),
       },
       imageCaption: {
         type: 'richtext',

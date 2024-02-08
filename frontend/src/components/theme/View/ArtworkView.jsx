@@ -20,6 +20,8 @@ import fbbutton from './assets/soc_fb_wBG.svg';
 import twbutton from './assets/share_button_twitter.svg';
 import { defineMessages, useIntl } from 'react-intl';
 import { SeeMore } from '../../index';
+import { BodyClass } from '@plone/volto/helpers';
+import useInViewHomepage from '@package/helpers/useInViewHomepage';
 
 const messages = defineMessages({
   artist: {
@@ -110,6 +112,8 @@ export default function ArtworkView(props) {
 
   const [popupVisible, setPopupVisible] = useState(false);
   const zoomUtilsRefs = useRef([]);
+  const sliderRef = useRef();
+  const InView = useInViewHomepage(sliderRef);
 
   const togglePopup = () => {
     setPopupVisible(!popupVisible);
@@ -245,7 +249,6 @@ export default function ArtworkView(props) {
           height="2em"
         />
       </button>
-
       <button className="button zoomminus" onClick={() => zoomOut()}>
         <SlMagnifierRemove
           icon
@@ -259,9 +262,14 @@ export default function ArtworkView(props) {
 
   return (
     <div id="object-block">
+      {InView ? (
+        <BodyClass className="page-title-in-view" />
+      ) : (
+        <BodyClass className="page-title-out-of-view" />
+      )}
       <Container>
         <div className="object-wrapper full-width">
-          <div id="swipe-slider">
+          <div id="swipe-slider" ref={sliderRef}>
             <ReactSwipe
               className="carousel"
               swipeOptions={{

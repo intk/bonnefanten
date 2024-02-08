@@ -6,11 +6,26 @@ import { getScaleUrl, getPath } from '../utils';
 import { CommonCarouselschemaExtender } from '../CommonAssets/schema';
 import cx from 'classnames';
 import { When } from '@package/customizations/components/theme/View/EventDatesInfo';
-
+import { defineMessages, useIntl } from 'react-intl';
 import 'slick-carousel/slick/slick.css';
 import '../css/carousel.less';
 
 const Slider = loadable(() => import('react-slick'));
+
+const messages = defineMessages({
+  daily: {
+    id: 'daily',
+    defaultMessage: 'dagelijks',
+  },
+  weekly: {
+    id: 'weekly',
+    defaultMessage: 'wekelijks',
+  },
+  monthly: {
+    id: 'monthly',
+    defaultMessage: 'maandelijks',
+  },
+});
 
 const Arrows = (props) => {
   const { slider = {} } = props;
@@ -100,6 +115,9 @@ const Carousel = (props) => {
     lazyLoad: 'ondemand',
   };
 
+  let intl = useIntl();
+  let recurrenceText = '';
+
   return cards && cards.length > 0 ? (
     <div
       className={cx(
@@ -118,59 +136,83 @@ const Carousel = (props) => {
       >
         <div className="slider-wrapper" style={{ height: `${height}px` }}>
           <Slider {...settings} ref={slider}>
-            {(cards || []).map((card, index) => (
-              <div className="slider-slide" key={index}>
-                <div
-                  className="slide-img"
-                  style={
-                    card.attachedimage
-                      ? {
-                          backgroundImage: `url(${getScaleUrl(
-                            getPath(card.attachedimage),
-                            image_scale || 'great',
-                          )})`,
-                          height: `${height}px`,
-                        }
-                      : {}
-                  }
-                />
-                <div className="slide-overlay"></div>
-                {
-                  <div className="slider-caption">
-                    <div className="slide-body">
-                      <div className="description-wrapper">
-                        <div className="header-quotes-wrapper">
-                          <div className="quote-top-left quote-bonnefanten">
-                            “
-                          </div>
-                          <div className="quote-top-right quote-bonnefanten">
-                            ”
-                          </div>
-                        </div>
-                        <div className="hero-dates-wrapper">
-                          {props?.content &&
-                          props?.content['@type'] === 'Event' ? (
-                            <div className="hero-dates">
-                              <When
-                                start={props?.content.start}
-                                end={props?.content.end}
-                                whole_day={props?.content.whole_day}
-                                open_end={props?.content.open_end}
-                              />
+            {(cards || []).map((card, index) => {
+              const hasDailyFrequency = props.content?.recurrence?.includes(
+                'FREQ=DAILY',
+              );
+              const hasWeeklyFrequency = props.content?.recurrence?.includes(
+                'FREQ=WEEKLY',
+              );
+              const hasMonthlyFrequency = props.content?.recurrence?.includes(
+                'FREQ=MONTHLY',
+              );
+
+              if (hasDailyFrequency) {
+                recurrenceText = intl.formatMessage(messages.daily);
+              } else if (hasWeeklyFrequency) {
+                recurrenceText = intl.formatMessage(messages.weekly);
+              } else if (hasMonthlyFrequency) {
+                recurrenceText = intl.formatMessage(messages.monthly);
+              }
+
+              return (
+                <div className="slider-slide" key={index}>
+                  <div
+                    className="slide-img"
+                    style={
+                      card.attachedimage
+                        ? {
+                            backgroundImage: `url(${getScaleUrl(
+                              getPath(card.attachedimage),
+                              image_scale || 'great',
+                            )})`,
+                            height: `${height}px`,
+                          }
+                        : {}
+                    }
+                  />
+                  <div className="slide-overlay"></div>
+                  {
+                    <div className="slider-caption">
+                      <div className="slide-body">
+                        <div className="description-wrapper">
+                          <div className="header-quotes-wrapper">
+                            <div className="quote-top-left quote-bonnefanten">
+                              “
                             </div>
-                          ) : (
-                            ''
-                          )}
-                        </div>
-                        <div className="slide-title">
-                          {card.title || props.properties.title}
+                            <div className="quote-top-right quote-bonnefanten">
+                              ”
+                            </div>
+                          </div>
+                          <div className="hero-dates-wrapper">
+                            {props?.content &&
+                            props?.content['@type'] === 'Event' ? (
+                              <div className="hero-dates">
+                                {props.content.recurrence !== null ? (
+                                  recurrenceText?.toUpperCase()
+                                ) : (
+                                  <When
+                                    start={props?.content.start}
+                                    end={props?.content.end}
+                                    whole_day={props?.content.whole_day}
+                                    open_end={props?.content.open_end}
+                                  />
+                                )}
+                              </div>
+                            ) : (
+                              ''
+                            )}
+                          </div>
+                          <div className="slide-title">
+                            {card.title || props.properties.title}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                }
-              </div>
-            ))}
+                  }
+                </div>
+              );
+            })}
           </Slider>
           {!hideArrows && cards.length > 1 && <Arrows slider={slider} />}
         </div>

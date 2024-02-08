@@ -75,7 +75,7 @@ const PermanentExhibitionsTemplate = (props) => {
   const InView = useInViewHomepage(ref);
 
   return (
-    <div className="permanent-exhibitons-template">
+    <div className="permanent-exhibitons-template " ref={ref}>
       {InView ? (
         <BodyClass className="permanentslide-in-view" />
       ) : (
@@ -93,7 +93,7 @@ const PermanentExhibitionsTemplate = (props) => {
         style={{ display: 'flex' }}
       >
         {items.map((item, i) => (
-          <div ref={ref}>
+          <div>
             <Card item={item} showDescription="true" />
           </div>
         ))}

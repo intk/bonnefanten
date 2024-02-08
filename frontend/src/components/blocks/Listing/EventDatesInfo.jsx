@@ -97,13 +97,13 @@ const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
 
   const startDate = new Date(datesInfo.startDate);
   const endDate = new Date(datesInfo.endDate);
-  const format = new Intl.DateTimeFormat(lang, {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false,
-  });
-  const startHour = format.format(startDate);
-  const endHour = format.format(endDate);
+  // const format = new Intl.DateTimeFormat(lang, {
+  //   hour: '2-digit',
+  //   minute: '2-digit',
+  //   hour12: false,
+  // });
+  // const startHour = format.format(startDate);
+  // const endHour = format.format(endDate);
 
   // TODO I18N INTL
   return (

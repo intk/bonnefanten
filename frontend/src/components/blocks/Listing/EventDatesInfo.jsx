@@ -107,22 +107,7 @@ const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
 
   // TODO I18N INTL
   return (
-    <div
-      className={`${
-        (!(startHour === '00:00' || endHour === '23:59') &&
-          startDate.getDate() === endDate?.getDate() &&
-          startDate.getMonth() === endDate?.getMonth() &&
-          startDate.getFullYear() === endDate?.getFullYear()) ||
-        (!(
-          startDate.getDate() === endDate?.getDate() &&
-          startDate.getMonth() === endDate?.getMonth() &&
-          startDate.getFullYear() === endDate?.getFullYear()
-        ) &&
-          new Date(end) < new Date())
-          ? 'expired'
-          : ''
-      }`}
-    >
+    <div className={`${new Date(end) < new Date() ? 'expired' : ''}`}>
       {start && !open_end ? (
         <span className="hero-dates">
           {getDateRangeDescription(intl, intl.locale, startDate, endDate)}

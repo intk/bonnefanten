@@ -654,8 +654,16 @@ svg#nav-trigger-open-svg:active {
 //   // }
 // }
 
-body.intk-menu-opening {
+body.has-mobile-menu-open{
   // overflow: hidden;
+  #main > .content-area, #site-footer {
+    // margin-top: 100vh;
+    transform: translateY(100vh);
+    transition: all ease-in 0.4s;
+  }
+}
+#main > .content-area, #site-footer  {
+  transition: all ease-in 0.4s;
 }
 
 body.has-toolbar.has-hero-image {
@@ -947,7 +955,7 @@ body.has-mobile-menu-open{
     color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
   #view{
-    transform: translateY(100vh);
+    // transform: translateY(100vh);
     background-color: var(--bonnefanten-primary);
     // transition: all ease-in 0.2s;
   }

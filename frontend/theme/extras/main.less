@@ -577,9 +577,16 @@ h1.documentFirstHeading {
   }
 }
 h1.documentFirstHeading{
-    @media (min-width: 768px) {
-        margin-top: 58px !important;
-      }
+  @media (min-width: 768px) {
+    margin-top: 58px !important;
+  }
+}
+.view-viewview.contenttype-event, .view-viewview.contenttype-link{
+  .content-area #view h1.documentFirstHeading{
+    @media screen and (min-width: 768px){
+      padding-top: 58px !important;
+    }
+  }
 }
 .section-search h1.documentFirstHeading{
   margin-top: 70px;
@@ -1385,8 +1392,11 @@ body.view-viewview.has-image-card-block {
   padding-right: 0px !important;
 }
 
-.view-viewview h1.documentFirstHeading{
-  padding-left: 28.5px !important;
+.view-viewview.contenttype-document,
+.section-search {
+  h1.documentFirstHeading{
+    padding-left: 28.5px !important;
+  }
 }
 
 

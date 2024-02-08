@@ -47,7 +47,7 @@ const ViewImage = (props) => {
                           if (data.size === 'l')
                             return `${flattenToAppURL(
                               data.url,
-                            )}/@@images/image/large`;
+                            )}/@@images/image/great`;
                           if (data.size === 'm')
                             return `${flattenToAppURL(
                               data.url,
@@ -58,7 +58,7 @@ const ViewImage = (props) => {
                             )}/@@images/image/mini`;
                           return `${flattenToAppURL(
                             data.url,
-                          )}/@@images/image/large`;
+                          )}/@@images/image/great`;
                         })()
                       : data.url
                   }

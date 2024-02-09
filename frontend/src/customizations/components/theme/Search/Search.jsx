@@ -166,18 +166,23 @@ class Search extends Component {
     );
   };
 
-  handleQueryPaginationChange = (e, { activePage }) => {
-    const { settings } = config;
-    window.scrollTo(0, 0);
-    let options = qs.parse(this.props.history.location.search);
-    options['use_site_search_settings'] = 1;
+  handleCheckboxChange = () => {
+    const { history, location } = this.props;
+    const currentUrlParams = new URLSearchParams(location.search);
 
-    this.setState({ currentPage: activePage }, () => {
-      this.props.searchContent('', {
-        ...options,
-        b_start: (this.state.currentPage - 1) * settings.defaultPageSize,
-      });
-    });
+    if (this.state.onlyArtworks) {
+      // If currently checked, remove the portal_type=artwork parameter
+      currentUrlParams.delete('portal_type');
+    } else {
+      // If currently unchecked, add the portal_type=artwork parameter
+      currentUrlParams.set('portal_type', 'artwork');
+    }
+
+    // Toggle the onlyArtworks state
+    this.setState((prevState) => ({ onlyArtworks: !prevState.onlyArtworks }));
+
+    // Redirect to the updated URL
+    history.push(`${location.pathname}?${currentUrlParams.toString()}`);
   };
 
   onSortChange = (event, sort_order) => {

@@ -6,7 +6,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isInternalURL, flattenToAppURL } from '@plone/volto/helpers';
-import { Container } from 'semantic-ui-react';
+// import { Container } from 'semantic-ui-react';
 import { UniversalLink } from '@plone/volto/components';
 import { FormattedMessage } from 'react-intl';
 import config from '@plone/volto/registry';

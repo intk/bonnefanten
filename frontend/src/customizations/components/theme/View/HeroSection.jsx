@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+// import { Container } from 'semantic-ui-react';
 import { BodyClass } from '@plone/volto/helpers';
 import Image from '@package/components/theme/Image/Image';
 import { useIntl } from 'react-intl';
@@ -51,6 +51,7 @@ function HeroSection(props) {
   const intl = useIntl();
   // eslint-disable-next-line no-unused-vars
   const { image_url, content } = props;
+  // eslint-disable-next-line no-unused-vars
   const { title, preview_caption, has_hero_section, start, end } =
     content || {};
 

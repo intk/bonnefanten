@@ -5,6 +5,13 @@ import { Container } from 'semantic-ui-react';
 
 import { hasBlocksData, getBaseUrl } from '@plone/volto/helpers';
 import ShareLinks from '@package/components/theme/ShareLinks/ShareLinks';
+import HeroSection from '@package/components/theme/Header/HeroSection'; // , StickyHeader
+import { useIntl } from 'react-intl';
+import qs from 'query-string';
+import usePreviewImage from './usePreviewImage';
+import { useLocation } from 'react-router-dom';
+import { isCmsUi } from '@plone/volto/helpers';
+// import { useNutezienContent } from '@package/helpers';
 
 // Customized to hide the title blocks, as they are included in
 // the header
@@ -24,15 +31,47 @@ function filterBlocks(content, types) {
 }
 
 const DefaultView = (props) => {
+  // const nutezienContent = useNutezienContent();
   const { content, location } = props;
   const path = getBaseUrl(location?.pathname || '');
 
   // const description = content?.description;
   const isHeroSection = content?.has_hero_section && content?.preview_image;
-  const filteredContent = filterBlocks(content, ['title', 'description']);
+  const filteredContent = filterBlocks(content, ['title']);
+
+  const intl = useIntl();
+  const { pathname, search } = useLocation();
+  const searchableText = qs.parse(search).SearchableText;
+  const previewImage = usePreviewImage(pathname);
+  const previewImageUrl = previewImage?.scales?.preview?.download;
+  const cmsView = isCmsUi(pathname);
+  const isSearch = pathname === '/search';
+  const contentType = content?.['@type'];
+  const isHomePage = contentType === 'Plone Site' || contentType === 'LRF';
 
   return hasBlocksData(content) ? (
     <>
+      {!((cmsView && !isSearch) || isHomePage) && (
+        <div className="header-bg">
+          <div className="header-container">
+            <HeroSection image_url={previewImageUrl} content={content} />
+          </div>
+        </div>
+      )}
+      {isSearch && (
+        <div className="header-bg">
+          <div className="header-container">
+            <HeroSection
+              content={{
+                title:
+                  intl.locale === 'nl'
+                    ? `Zoekresultaten voor "${searchableText}"`
+                    : `Search results for "${searchableText}"`,
+              }}
+            />
+          </div>
+        </div>
+      )}
       {isHeroSection ? (
         <>
           <p className="documentDescription hero-description">
@@ -42,13 +81,17 @@ const DefaultView = (props) => {
       ) : (
         <>
           <h1 className="documentFirstHeading">{content.title}</h1>
-          <div className="description-wrapper">
-            <div className="header-quotes-wrapper">
-              <div className="quote-top-left quote-bonnefanten">“</div>
-              <div className="quote-top-right quote-bonnefanten">”</div>
+          {content.description ? (
+            <div className="description-wrapper no-hero-description">
+              <div className="header-quotes-wrapper">
+                <div className="quote-top-left quote-bonnefanten">“</div>
+                <div className="quote-top-right quote-bonnefanten">”</div>
+              </div>
+              <p className="documentDescription">{content?.description}</p>
             </div>
-            <p className="documentDescription">{content.description}</p>
-          </div>
+          ) : (
+            <div className="empty-description-wrapper"> </div>
+          )}
         </>
       )}
 
@@ -58,6 +101,15 @@ const DefaultView = (props) => {
         </div>
 
         <ShareLinks />
+        {/* <div id="view">
+          <Container id="event-nutezien-slider">
+            <RenderBlocks
+              content={nutezienContent}
+              path={path}
+              intl={props.intl}
+            />
+          </Container>
+        </div> */}
       </div>
     </>
   ) : (

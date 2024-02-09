@@ -51,6 +51,10 @@ const translations = {
     en: 'Advanced search',
     nl: 'Geavanceerd zoeken',
   },
+  filterArtworks: {
+    en: 'Show only artworks',
+    nl: 'Alleen kunstwerken tonen',
+  },
 };
 
 function truncate(str, num) {
@@ -232,7 +236,7 @@ class Search extends Component {
                 </div>
                 <div id="artwork-search-check">
                   <label>
-                    <span>Search Only Artworks</span>
+                    <span> {translations.filterArtworks[intl.locale]} </span>
                     <input
                       className="artwork-checkbox"
                       type="checkbox"

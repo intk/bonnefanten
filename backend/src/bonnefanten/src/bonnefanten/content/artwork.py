@@ -107,6 +107,7 @@ class IArtwork(model.Schema):
     )
     ObjCreditlineTxt = schema.TextLine(title="ObjCreditlineTxt", required=False)
     ObjOnDisplay = schema.Bool(title="ObjOnDisplay", required=False)
+    HasImage = schema.Bool(title="HasImage", required=False)
     ObjTechniqueTxt = schema.TextLine(title="ObjTechniqueTxt", required=False)
     ObjCurrentLocationTxt = schema.TextLine(
         title="ObjCurrentLocationTxt", required=False
@@ -186,6 +187,7 @@ class IArtwork(model.Schema):
         # "ObjAcquisitionMethodTxt",
         "ObjAcquisitionDateTxt",
         "ObjHistoricLocationTxt",
+        "HasImage",
         # "ObjPersonRef",
     )
 
@@ -198,4 +200,6 @@ class IArtwork(model.Schema):
         "ObjCreditlineTxt",
         "ObjDateFromTxt",
         "ObjectId",
+        "authors",
+        "HasImage",
     )

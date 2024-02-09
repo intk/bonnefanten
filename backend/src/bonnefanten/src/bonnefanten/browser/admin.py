@@ -47,6 +47,22 @@ class AdminFixes(BrowserView):
 
         return getattr(self, op)()
 
+    def import_hasimage(self):
+        site = portal.get()
+        catalog = site.portal_catalog
+
+        for brain in catalog.searchResults(portal_type='artwork'):
+            obj = brain.getObject()
+            has_image_child = any(child_brain.portal_type == 'Image' for child_brain in catalog(path={'query': '/'.join(obj.getPhysicalPath()), 'depth': 1}))
+            if has_image_child:
+                obj.HasImage = True
+                obj.reindexObject(idxs=['HasImage'])
+            else:
+                obj.HasImage = False
+                obj.reindexObject(idxs=['HasImage'])
+
+        return "ok"
+
     def translate(self, obj, fields):
         language = "en"
 
@@ -354,6 +370,13 @@ def import_one_record(self, record, container, container_en, catalog, headers):
 
     extra_large_uri = None
     thumbnails = record.get("Thumbnails", [])
+
+    if (thumbnails and isinstance(thumbnails, list) and "Sizes" in thumbnails[0]):
+        info["nl"]["HasImage"] = True
+        info["en"]["HasImage"] = True
+    else:
+        info["nl"]["HasImage"] = False
+        info["en"]["HasImage"] = False
 
     # if (
     #     thumbnails

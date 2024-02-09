@@ -1,20 +1,54 @@
+/**
+ * EventView view component.
+ * @module components/theme/View/EventView
+ */
+
 import React from 'react';
-
-import { RenderBlocks } from '@plone/volto/components';
-import { Container } from 'semantic-ui-react';
-
-import { hasBlocksData, getBaseUrl } from '@plone/volto/helpers';
+import PropTypes from 'prop-types';
+import {
+  hasBlocksData,
+  // flattenHTMLToAppURL,
+  getBaseUrl,
+} from '@plone/volto/helpers';
+// import { Image, Grid } from 'semantic-ui-react';
+import RenderBlocks from '@plone/volto/components/theme/View/RenderBlocks';
+// import { EventDetails } from '@plone/volto/components';
+import { useDispatch, useSelector } from 'react-redux';
+import config from '@plone/volto/registry';
+import { getSchema } from '@plone/volto/actions';
+import {
+  Container as SemanticContainer,
+  Segment,
+  Grid,
+  Label,
+} from 'semantic-ui-react';
+import { isEqual } from 'lodash';
+import { getWidget } from '@plone/volto/helpers/Widget/utils';
 import ShareLinks from '@package/components/theme/ShareLinks/ShareLinks';
-import HeroSection from '@package/components/theme/Header/HeroSection'; // , StickyHeader
-import { useIntl } from 'react-intl';
-import qs from 'query-string';
-import usePreviewImage from './usePreviewImage';
-import { useLocation } from 'react-router-dom';
-import { isCmsUi } from '@plone/volto/helpers';
-// import { useNutezienContent } from '@package/helpers';
+import { useNutezienContent } from '@package/helpers';
 
-// Customized to hide the title blocks, as they are included in
-// the header
+// const EventTextfieldView = ({ content }) => (
+//   <React.Fragment>
+//     {content.title && <h1 className="documentFirstHeading">{content.title}</h1>}
+//     {content.description && (
+//       <p className="documentDescription">{content.description}</p>
+//     )}
+//     {content.image && (
+//       <Image
+//         className="document-image"
+//         src={content.image.scales.thumb.download}
+//         floated="right"
+//       />
+//     )}
+//     {content.text && (
+//       <div
+//         dangerouslySetInnerHTML={{
+//           __html: flattenHTMLToAppURL(content.text.data),
+//         }}
+//       />
+//     )}
+//   </React.Fragment>
+// );
 
 function filterBlocks(content, types) {
   if (!(content.blocks && content.blocks_layout?.items)) return content;
@@ -30,78 +64,70 @@ function filterBlocks(content, types) {
   };
 }
 
-const DefaultView = (props) => {
-  // const nutezienContent = useNutezienContent();
+/**
+ * EventView view component class.
+ * @function EventView
+ * @params {object} content Content object.
+ * @returns {string} Markup of the component.
+ */
+const EventView = (props) => {
+  const nutezienContent = useNutezienContent();
   const { content, location } = props;
   const path = getBaseUrl(location?.pathname || '');
-
+  const dispatch = useDispatch();
+  const { views } = config.widgets;
+  const contentSchema = useSelector((state) => state.schema?.schema);
+  const fieldsetsToExclude = [
+    'categorization',
+    'dates',
+    'ownership',
+    'settings',
+  ];
+  const fieldsets = contentSchema?.fieldsets.filter(
+    (fs) => !fieldsetsToExclude.includes(fs.id),
+  );
   // const description = content?.description;
-  const isHeroSection = content?.has_hero_section && content?.preview_image;
-  const filteredContent = filterBlocks(content, ['title']);
+  let hasLeadImage = content?.preview_image;
 
-  const intl = useIntl();
-  const { pathname, search } = useLocation();
-  const searchableText = qs.parse(search).SearchableText;
-  const previewImage = usePreviewImage(pathname);
-  const previewImageUrl = previewImage?.scales?.preview?.download;
-  const cmsView = isCmsUi(pathname);
-  const isSearch = pathname === '/search';
-  const contentType = content?.['@type'];
-  const isHomePage = contentType === 'Plone Site' || contentType === 'LRF';
+  content.hide_top_image !== null
+    ? (hasLeadImage = content?.preview_image && !content.hide_top_image)
+    : (hasLeadImage = content?.preview_image);
 
-  return hasBlocksData(content) ? (
-    <>
-      {!((cmsView && !isSearch) || isHomePage) && (
-        <div className="header-bg">
-          <div className="header-container">
-            <HeroSection image_url={previewImageUrl} content={content} />
-          </div>
-        </div>
-      )}
-      {isSearch && (
-        <div className="header-bg">
-          <div className="header-container">
-            <HeroSection
-              content={{
-                title:
-                  intl.locale === 'nl'
-                    ? `Zoekresultaten voor "${searchableText}"`
-                    : `Search results for "${searchableText}"`,
-              }}
-            />
-          </div>
-        </div>
-      )}
-      {isHeroSection ? (
-        <>
-          <p className="documentDescription hero-description">
-            {content.description}
-          </p>
-        </>
-      ) : (
-        <>
-          <h1 className="documentFirstHeading">{content.title}</h1>
-          {content.description ? (
-            <div className="description-wrapper no-hero-description">
-              <div className="header-quotes-wrapper">
-                <div className="quote-top-left quote-bonnefanten">“</div>
-                <div className="quote-top-right quote-bonnefanten">”</div>
-              </div>
-              <p className="documentDescription">{content?.description}</p>
-            </div>
-          ) : (
-            <div className="empty-description-wrapper"> </div>
-          )}
-        </>
-      )}
+  const filteredContent = hasLeadImage
+    ? filterBlocks(content, ['title'])
+    : content;
 
+  // TL;DR: There is a flash of the non block-based view because of the reset
+  // of the content on route change. Subscribing to the content change at this
+  // level has nasty implications, so we can't watch the Redux state for loaded
+  // content flag here (because it forces an additional component update)
+  // Instead, we can watch if the content is "empty", but this has a drawback
+  // since the locking mechanism inserts a `lock` key before the content is there.
+  // So "empty" means `content` is present, but only with a `lock` key, thus the next
+  // ugly condition comes to life
+  const contentLoaded = content && !isEqual(Object.keys(content), ['lock']);
+
+  React.useEffect(() => {
+    content?.['@type'] &&
+      !hasBlocksData(content) &&
+      dispatch(getSchema(content['@type'], location.pathname));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const Container =
+    config.getComponent({ name: 'Container' }).component || SemanticContainer;
+
+  return contentLoaded ? (
+    hasBlocksData(content) ? (
+      // <Container id="page-document">
+      //   <RenderBlocks {...props} path={path} content={filteredContent} />
+      // </Container>
       <div id="page-document" className="ui container">
         <div className="content-container">
           <RenderBlocks {...props} path={path} content={filteredContent} />
         </div>
-
         <ShareLinks />
-        {/* <div id="view">
+        <div id="view">
           <Container id="event-nutezien-slider">
             <RenderBlocks
               content={nutezienContent}
@@ -109,43 +135,69 @@ const DefaultView = (props) => {
               intl={props.intl}
             />
           </Container>
-        </div> */}
+        </div>
       </div>
-    </>
-  ) : (
-    <Container id="page-document">
-      <div className="content-container">
-        {/* default title+description blocks are inserted by the HeroSection */}
-        {content.remoteUrl && (
-          <span>
-            The link address is:
-            <a href={content.remoteUrl}>{content.remoteUrl}</a>
-          </span>
-        )}
-        {content.text && (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: content.text.data,
-            }}
-          />
-        )}
-
-        <ShareLinks />
-      </div>
-    </Container>
-  );
+    ) : (
+      <Container id="page-document">
+        {fieldsets?.map((fs) => {
+          return (
+            <div className="fieldset" key={fs.id}>
+              {fs.id !== 'default' && <h2>{fs.title}</h2>}
+              {fs.fields?.map((f, key) => {
+                let field = {
+                  ...contentSchema?.properties[f],
+                  id: f,
+                  widget: getWidget(f, contentSchema?.properties[f]),
+                };
+                let Widget = views?.getWidget(field);
+                return f !== 'title' ? (
+                  <Grid celled="internally" key={key}>
+                    <Grid.Row>
+                      <Label title={field.id}>{field.title}:</Label>
+                    </Grid.Row>
+                    <Grid.Row>
+                      <Segment basic>
+                        <Widget value={content[f]} />
+                      </Segment>
+                    </Grid.Row>
+                  </Grid>
+                ) : (
+                  <Widget key={key} value={content[f]} />
+                );
+              })}
+            </div>
+          );
+        })}
+      </Container>
+    )
+  ) : null;
 };
 
-//    <h1 className="documentFirstHeading">{content.title}</h1>
-//    {content.description && (
-//      <p className="documentDescription">{content.description}</p>
-//    )}
-//    {content.preview_image && (
-//      <Image
-//        className="document-image"
-//        src={content.preview_image.scales.thumb.download}
-//        floated="right"
-//      />
-//    )}
+/**
+ * Property types.
+ * @property {Object} propTypes Property types.
+ * @static
+ */
+EventView.propTypes = {
+  content: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    text: PropTypes.shape({
+      data: PropTypes.string,
+    }),
+    attendees: PropTypes.arrayOf(PropTypes.string).isRequired,
+    contact_email: PropTypes.string,
+    contact_name: PropTypes.string,
+    contact_phone: PropTypes.string,
+    end: PropTypes.string.isRequired,
+    event_url: PropTypes.string,
+    location: PropTypes.string,
+    open_end: PropTypes.bool,
+    recurrence: PropTypes.any,
+    start: PropTypes.string.isRequired,
+    subjects: PropTypes.arrayOf(PropTypes.string).isRequired,
+    whole_day: PropTypes.bool,
+  }).isRequired,
+};
 
-export default DefaultView;
+export default EventView;

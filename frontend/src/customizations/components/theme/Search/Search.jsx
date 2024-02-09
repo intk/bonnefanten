@@ -141,11 +141,25 @@ class Search extends Component {
    */
 
   doSearch = () => {
+    const { onlyArtworks } = this.state;
     const options = qs.parse(this.props.history.location.search);
+
+    if (onlyArtworks) {
+      options.portal_type = 'artwork'; // Adjust search to include only artworks if checkbox is checked
+    } else {
+      delete options.portal_type; // Remove the filter if checkbox is unchecked
+    }
+
     this.setState({ currentPage: 1 });
     options['use_site_search_settings'] = 1;
-    options['metadata_fields'] = ['start', 'end', 'whole_day', 'open_end']; // Add this line
     this.props.searchContent('', options);
+  };
+
+  handleCheckboxChange = () => {
+    this.setState(
+      (prevState) => ({ onlyArtworks: !prevState.onlyArtworks }),
+      () => this.doSearch(), // Perform search after state update
+    );
   };
 
   handleQueryPaginationChange = (e, { activePage }) => {
@@ -216,72 +230,23 @@ class Search extends Component {
                     {translations.advancedsearch[intl.locale]}
                   </NavLink>
                 </div>
+                <div id="artwork-search-check">
+                  <label>
+                    <span>Search Only Artworks</span>
+                    <input
+                      className="artwork-checkbox"
+                      type="checkbox"
+                      checked={this.state.onlyArtworks}
+                      onChange={this.handleCheckboxChange}
+                    />
+                  </label>
+                </div>
                 {this.props.search?.items_total > 0 ? (
                   <>
                     <div className="items_total">
                       <strong>{this.props.search.items_total}</strong>
-                      {/* <FormattedMessage
-                      id="results found"
-                      defaultMessage="results"
-                    /> */}
                       {translations.results[intl.locale]}
                     </div>
-                    {/* <Header>
-                    <Header.Content className="header-content">
-                      <div className="sort-by">
-                        <FormattedMessage
-                          id="Sort By:"
-                          defaultMessage="Sort by:"
-                        />
-                      </div>
-                      <Button
-                        onClick={(event) => {
-                          this.onSortChange(event);
-                        }}
-                        name="relevance"
-                        size="tiny"
-                        className={classNames('button-sort', {
-                          'button-active': this.state.active === 'relevance',
-                        })}
-                      >
-                        <FormattedMessage
-                          id="Relevance"
-                          defaultMessage="Relevance"
-                        />
-                      </Button>
-                      <Button
-                        onClick={(event) => {
-                          this.onSortChange(event);
-                        }}
-                        name="sortable_title"
-                        size="tiny"
-                        className={classNames('button-sort', {
-                          'button-active':
-                            this.state.active === 'sortable_title',
-                        })}
-                      >
-                        <FormattedMessage
-                          id="Alphabetically"
-                          defaultMessage="Alphabetically"
-                        />
-                      </Button>
-                      <Button
-                        onClick={(event) => {
-                          this.onSortChange(event, 'reverse');
-                        }}
-                        name="effective"
-                        size="tiny"
-                        className={classNames('button-sort', {
-                          'button-active': this.state.active === 'effective',
-                        })}
-                      >
-                        <FormattedMessage
-                          id="Date (newest first)"
-                          defaultMessage="Date (newest first)"
-                        />
-                      </Button>
-                    </Header.Content>
-                  </Header> */}
                   </>
                 ) : (
                   <div>
@@ -339,14 +304,6 @@ class Search extends Component {
                           </span>
                         </div>
                       )}
-                      {/* <div className="tileFooter">
-                      <UniversalLink item={item}>
-                        <FormattedMessage
-                          id="Read More…"
-                          defaultMessage="Read More…"
-                        />
-                      </UniversalLink>
-                    </div> */}
                       <div className="visualClear" />
                     </div>
                   </article>
@@ -407,6 +364,7 @@ export const __test__ = compose(
       items: state.search.items,
       searchableText: qs.parse(props.history.location.search).SearchableText,
       pathname: props.history.location.pathname,
+      itemsTotal: state.search.items_total,
     }),
     { searchContent },
   ),

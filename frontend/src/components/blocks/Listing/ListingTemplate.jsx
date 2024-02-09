@@ -34,6 +34,7 @@ function truncate(str, num) {
 }
 
 const Card = ({ item, showDescription = true }) => {
+  const startDate = new Date(item?.effective);
   let intl = useIntl();
   // const image = item?.image_field
   //   ? `${item['@id']}/${
@@ -81,6 +82,18 @@ const Card = ({ item, showDescription = true }) => {
                       open_end={item.open_end}
                     />
                   )}
+                </div>
+              </div>
+            )}
+            {item['@type'] === 'News Item' && (
+              <div className="listing-dates">
+                <div className={`listing-dates-wrapper`}>
+                  {' '}
+                  <When
+                    start={item.effective}
+                    whole_day="true"
+                    open_end="true"
+                  />
                 </div>
               </div>
             )}

@@ -199,6 +199,14 @@ const Carousel = (props) => {
                                   />
                                 )}
                               </div>
+                            ) : props?.content &&
+                              props?.content['@type'] === 'News Item' ? (
+                              <When
+                                start={props?.content.effective}
+                                end={props?.content.end}
+                                whole_day="true"
+                                open_end="true"
+                              />
                             ) : (
                               ''
                             )}

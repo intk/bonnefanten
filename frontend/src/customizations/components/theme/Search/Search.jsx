@@ -52,8 +52,8 @@ const translations = {
     nl: 'Geavanceerd zoeken',
   },
   filterArtworks: {
-    en: 'Show only artworks',
-    nl: 'Alleen kunstwerken tonen',
+    en: 'Only in the collection',
+    nl: 'Alleen in de collectie',
   },
 };
 

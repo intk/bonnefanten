@@ -55,6 +55,10 @@ const translations = {
     en: 'Only in the collection',
     nl: 'Alleen in de collectie',
   },
+  excludeArtworks: {
+    en: 'Only in the website',
+    nl: 'Alleen in de website',
+  },
 };
 
 function truncate(str, num) {
@@ -110,7 +114,13 @@ class Search extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { currentPage: 1, isClient: false, active: 'relevance' };
+    this.state = {
+      currentPage: 1,
+      isClient: false,
+      active: 'relevance',
+      onlyArtworks: false,
+      excludeArtworks: false,
+    };
   }
 
   /**
@@ -159,47 +169,79 @@ class Search extends Component {
     this.props.searchContent('', options);
   };
 
-  handleCheckboxChange = () => {
-    this.setState(
-      (prevState) => ({ onlyArtworks: !prevState.onlyArtworks }),
-      () => this.doSearch(), // Perform search after state update
-    );
+  handleCheckboxChange = (checkboxType) => {
+    const { history, location } = this.props;
+    let currentUrlParams = new URLSearchParams(location.search);
+
+    // Determine action based on checkboxType
+    switch (checkboxType) {
+      case 'onlyArtworks':
+        // Toggle onlyArtworks state
+        const newOnlyArtworksState = !this.state.onlyArtworks;
+        this.setState(
+          { onlyArtworks: newOnlyArtworksState, excludeArtworks: false },
+          () => {
+            // Clear all portal_type parameters
+            currentUrlParams.delete('portal_type');
+            currentUrlParams.delete('portal_type:list');
+            // Set or clear parameters based on the new state
+            if (newOnlyArtworksState) {
+              currentUrlParams.set('portal_type', 'artwork');
+            }
+            // Update URL
+            history.push(`${location.pathname}?${currentUrlParams.toString()}`);
+            this.doSearch();
+          },
+        );
+        break;
+      case 'excludeArtworks':
+        // Toggle excludeArtworks state
+        const newExcludeArtworksState = !this.state.excludeArtworks;
+        this.setState(
+          { excludeArtworks: newExcludeArtworksState, onlyArtworks: false },
+          () => {
+            // Clear all portal_type parameters
+            currentUrlParams.delete('portal_type');
+            currentUrlParams.delete('portal_type:list');
+            // Set or clear parameters based on the new state
+            if (newExcludeArtworksState) {
+              const includeTypes = [
+                'Document',
+                'Event',
+                'News Item',
+                'author',
+                'Link',
+              ];
+              includeTypes.forEach((type) => {
+                currentUrlParams.append('portal_type:list', type);
+              });
+            }
+            // Update URL
+            history.push(`${location.pathname}?${currentUrlParams.toString()}`);
+            this.doSearch();
+          },
+        );
+        break;
+      default:
+        break;
+    }
   };
 
-  handleCheckboxChange = () => {
-    const { history, location } = this.props;
-    const currentUrlParams = new URLSearchParams(location.search);
+  doSearch = () => {
+    const options = qs.parse(this.props.history.location.search);
 
     if (this.state.onlyArtworks) {
-      // If currently checked, remove the portal_type=artwork parameter
-      currentUrlParams.delete('portal_type');
+      options.portal_type = 'artwork';
+    } else if (this.state.excludeArtworks) {
+      options.excludeArtworks = 'true';
     } else {
-      // If currently unchecked, add the portal_type=artwork parameter
-      currentUrlParams.set('portal_type', 'artwork');
+      delete options.portal_type;
+      delete options.excludeArtworks;
     }
 
-    // Toggle the onlyArtworks state
-    this.setState((prevState) => ({ onlyArtworks: !prevState.onlyArtworks }));
-
-    // Redirect to the updated URL
-    history.push(`${location.pathname}?${currentUrlParams.toString()}`);
-  };
-
-  onSortChange = (event, sort_order) => {
-    let options = qs.parse(this.props.history.location.search);
-    options.sort_on = event.target.name;
-    options.sort_order = sort_order || 'ascending';
-    if (event.target.name === 'relevance') {
-      delete options.sort_on;
-      delete options.sort_order;
-    }
-    let searchParams = qs.stringify(options);
-    this.setState({ currentPage: 1, active: event.target.name }, () => {
-      // eslint-disable-next-line no-restricted-globals
-      this.props.history.replace({
-        search: searchParams,
-      });
-    });
+    this.setState({ currentPage: 1 });
+    options['use_site_search_settings'] = 1;
+    this.props.searchContent('', options);
   };
 
   /**
@@ -241,12 +283,23 @@ class Search extends Component {
                 </div>
                 <div id="artwork-search-check">
                   <label>
-                    <span> {translations.filterArtworks[intl.locale]} </span>
+                    <span>{translations.filterArtworks[intl.locale]} </span>
                     <input
-                      className="artwork-checkbox"
                       type="checkbox"
                       checked={this.state.onlyArtworks}
-                      onChange={this.handleCheckboxChange}
+                      onChange={() => this.handleCheckboxChange('onlyArtworks')}
+                      className="artwork-checkbox"
+                    />
+                  </label>
+                  <label>
+                    <span>{translations.excludeArtworks[intl.locale]}</span>
+                    <input
+                      type="checkbox"
+                      checked={this.state.excludeArtworks}
+                      onChange={() =>
+                        this.handleCheckboxChange('excludeArtworks')
+                      }
+                      className="artwork-checkbox"
                     />
                   </label>
                 </div>

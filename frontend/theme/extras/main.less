@@ -1764,6 +1764,8 @@ body.multiple-content-view .herosection > .content-container.header-no-hero{
 
 
 #artwork-search-check{
+  max-width: 400px;
+  width: auto;
   margin-bottom: 20px;
   .artwork-checkbox{
     width: 20px;
@@ -1773,6 +1775,11 @@ body.multiple-content-view .herosection > .content-container.header-no-hero{
   }
   label{
     display: flex;
+    margin-bottom: 5px;
+    span{
+      // flex-grow: 1;
+      flex-basis: 200px;
+    }
   }
   input[type="checkbox"]:checked{
     background-color: var(--bonnefanten-primary);

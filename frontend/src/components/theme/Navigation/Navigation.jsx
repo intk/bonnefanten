@@ -151,7 +151,7 @@ class Navigation extends Component {
       itemColor = '#ffe79a';
     }
     // Apply this value to a CSS variable
-    const portalTopElement = document.querySelector('.portal-top');
+    const portalTopElement = document.querySelector('body');
     if (portalTopElement) {
       portalTopElement.style.setProperty(
         '--dynamic-before-color',
@@ -163,7 +163,7 @@ class Navigation extends Component {
 
   resetColor() {
     setTimeout(() => {
-      const portalTopElement = document.querySelector('.portal-top');
+      const portalTopElement = document.querySelector('body');
       if (portalTopElement) {
         portalTopElement.style.removeProperty('--dynamic-before-color');
         portalTopElement.style.removeProperty('--dynamic-item-color');

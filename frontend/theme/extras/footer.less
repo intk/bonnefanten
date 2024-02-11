@@ -5,9 +5,10 @@ footer#site-footer {
   padding-bottom: 110px;
   // background: #ffd100;
   // background: var(--bonnefanten-bg);
-  background: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
+  // background: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
+  background: transparent;
   color: #333;
-  transform: background ease-in 0.2s !important;
+  // transform: background-color ease-in 0.2s !important;
 
   @media (max-width: 767px) {
     padding-top: 50px;
@@ -389,7 +390,8 @@ footer#site-footer {
           width: 100%;
         }
       #form-widgets-email{
-        transition: background-color 0.2s !important;
+        background-color: transparent;
+        transition: background-color 0.4s !important;
         padding: 15px 20px;
         width: 100%;
         line-height: 35.7px;

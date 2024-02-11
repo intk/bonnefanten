@@ -8,7 +8,8 @@ body {
   accent-color: var(--bonnefanten-primary);
 
   background-color: #ffe79a;
-  background-color: var(--bonnefanten-bg);
+  // background-color: var(--bonnefanten-bg);
+  background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   transition: background-color 0.2s ease-in;
 
   #main {
@@ -23,7 +24,8 @@ body {
     --bonnefanten-secondary: #b6a782;
     --bonnefanten-text: #575756;
     background-color: #fedacd;
-    background-color: var(--bonnefanten-bg);
+    // background-color: var(--bonnefanten-bg);
+  background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
 
   &.page-title-out-of-view{
@@ -34,7 +36,8 @@ body {
     --bonnefanten-secondary: #b6a782;
     --bonnefanten-text: #575756;
     background-color: #fedacd;
-    background-color: var(--bonnefanten-bg);
+    // background-color: var(--bonnefanten-bg);
+  background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
 
   &.homepage-title-out-of-view{
@@ -45,7 +48,8 @@ body {
     --bonnefanten-secondary: #b6a782;
     --bonnefanten-text: #575756;
     background-color: #faf5b8;;
-    background-color: var(--bonnefanten-bg);
+    // background-color: var(--bonnefanten-bg);
+      background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
 
   &.homepage-title-in-view {
@@ -58,7 +62,8 @@ body {
     accent-color: var(--bonnefanten-primary);
 
     background-color: #ffe79a;
-    background-color: var(--bonnefanten-bg);
+    // background-color: var(--bonnefanten-bg);
+      background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
 
   &.page-title-in-view {
@@ -71,7 +76,8 @@ body {
     accent-color: var(--bonnefanten-primary);
 
     background-color: #ffe79a;
-    background-color: var(--bonnefanten-bg);
+    // background-color: var(--bonnefanten-bg);
+      background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
 
   &.permanentslide-in-view {
@@ -84,9 +90,10 @@ body {
     accent-color: var(--bonnefanten-primary);
 
     background-color: #ffe79a;
-    background-color: var(--bonnefanten-bg);
+    // background-color: var(--bonnefanten-bg);
+      background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
-  
+
   &.footer-in-view {
     --bonnefanten-bg: #ffd100;
     --bonnefanten-primary: #7841b3;
@@ -95,7 +102,8 @@ body {
     --bonnefanten-secondary: #b6a782;
     --bonnefanten-text: #575756;
     background-color: #ffd100;
-    background-color: var(--bonnefanten-bg);
+    // background-color: var(--bonnefanten-bg);
+      background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
 
   &.collectionslide-in-view {
@@ -108,7 +116,8 @@ body {
     accent-color: var(--bonnefanten-primary);
 
     background-color: #ffe79a;
-    background-color: var(--bonnefanten-bg);
+    // background-color: var(--bonnefanten-bg);
+  background-color: var(--dynamic-item-color, var(--bonnefanten-bg)) !important;
   }
 
 }

@@ -22,6 +22,12 @@
     <indexed_attr value="ObjectId" />
   </index>
 
+  <index meta_type="BooleanIndex"
+         name="hasPreviewImage"
+  >
+    <indexed_attr value="hasPreviewImage" />
+  </index>
+
   <index meta_type="KeywordIndex"
          name="Artwork_Collection_Group"
   >

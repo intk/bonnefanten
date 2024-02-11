@@ -120,6 +120,8 @@ class Search extends Component {
       active: 'relevance',
       onlyArtworks: false,
       excludeArtworks: false,
+      objOnDisplay: false,
+      hasPreviewImage: false,
     };
   }
 
@@ -154,20 +156,20 @@ class Search extends Component {
    * @returns {undefined}
    */
 
-  doSearch = () => {
-    const { onlyArtworks } = this.state;
-    const options = qs.parse(this.props.history.location.search);
+  // doSearch = () => {
+  //   const { onlyArtworks } = this.state;
+  //   const options = qs.parse(this.props.history.location.search);
 
-    if (onlyArtworks) {
-      options.portal_type = 'artwork'; // Adjust search to include only artworks if checkbox is checked
-    } else {
-      delete options.portal_type; // Remove the filter if checkbox is unchecked
-    }
+  //   if (onlyArtworks) {
+  //     options.portal_type = 'artwork';
+  //   } else {
+  //     delete options.portal_type; // Remove the filter if checkbox is unchecked
+  //   }
 
-    this.setState({ currentPage: 1 });
-    options['use_site_search_settings'] = 1;
-    this.props.searchContent('', options);
-  };
+  //   this.setState({ currentPage: 1 });
+  //   options['use_site_search_settings'] = 1;
+  //   this.props.searchContent('', options);
+  // };
 
   handleCheckboxChange = (checkboxType) => {
     const { history, location } = this.props;
@@ -176,35 +178,39 @@ class Search extends Component {
     // Determine action based on checkboxType
     switch (checkboxType) {
       case 'onlyArtworks':
-        // Toggle onlyArtworks state
         const newOnlyArtworksState = !this.state.onlyArtworks;
         this.setState(
-          { onlyArtworks: newOnlyArtworksState, excludeArtworks: false },
+          {
+            onlyArtworks: newOnlyArtworksState,
+            excludeArtworks: false, // Keep excluding artworks mutually exclusive
+          },
           () => {
-            // Clear all portal_type parameters
+            // Clear portal_type parameters when toggling
             currentUrlParams.delete('portal_type');
             currentUrlParams.delete('portal_type:list');
-            // Set or clear parameters based on the new state
-            if (newOnlyArtworksState) {
+            if (this.state.onlyArtworks) {
               currentUrlParams.set('portal_type', 'artwork');
             }
-            // Update URL
+            // Maintain hasPreviewImage independently
+            if (this.state.hasPreviewImage) {
+              currentUrlParams.set('hasPreviewImage', 'true');
+            }
             history.push(`${location.pathname}?${currentUrlParams.toString()}`);
             this.doSearch();
           },
         );
         break;
       case 'excludeArtworks':
-        // Toggle excludeArtworks state
         const newExcludeArtworksState = !this.state.excludeArtworks;
         this.setState(
-          { excludeArtworks: newExcludeArtworksState, onlyArtworks: false },
+          {
+            excludeArtworks: newExcludeArtworksState,
+            onlyArtworks: false, // Keep only artworks mutually exclusive
+          },
           () => {
-            // Clear all portal_type parameters
             currentUrlParams.delete('portal_type');
             currentUrlParams.delete('portal_type:list');
-            // Set or clear parameters based on the new state
-            if (newExcludeArtworksState) {
+            if (this.state.excludeArtworks) {
               const includeTypes = [
                 'Document',
                 'Event',
@@ -216,12 +222,48 @@ class Search extends Component {
                 currentUrlParams.append('portal_type:list', type);
               });
             }
-            // Update URL
+            // Maintain hasPreviewImage independently
+            if (this.state.hasPreviewImage) {
+              currentUrlParams.set('hasPreviewImage', 'true');
+            }
             history.push(`${location.pathname}?${currentUrlParams.toString()}`);
             this.doSearch();
           },
         );
         break;
+      case 'hasPreviewImage':
+        const newHasPreviewImage = !this.state.hasPreviewImage;
+        this.setState(
+          {
+            hasPreviewImage: newHasPreviewImage,
+          },
+          () => {
+            if (this.state.hasPreviewImage) {
+              currentUrlParams.set('hasPreviewImage', 'true');
+            } else {
+              currentUrlParams.delete('hasPreviewImage');
+            }
+            // Ensure the correct portal_type is set based on other checkboxes
+            if (this.state.onlyArtworks) {
+              currentUrlParams.set('portal_type', 'artwork');
+            } else if (this.state.excludeArtworks) {
+              const includeTypes = [
+                'Document',
+                'Event',
+                'News Item',
+                'author',
+                'Link',
+              ];
+              includeTypes.forEach((type) => {
+                currentUrlParams.append('portal_type:list', type);
+              });
+            }
+            history.push(`${location.pathname}?${currentUrlParams.toString()}`);
+            this.doSearch();
+          },
+        );
+        break;
+
       default:
         break;
     }
@@ -234,9 +276,13 @@ class Search extends Component {
       options.portal_type = 'artwork';
     } else if (this.state.excludeArtworks) {
       options.excludeArtworks = 'true';
+    } else if (this.state.hasPreviewImage) {
+      // This is an example, adjust the actual parameter based on your backend's requirement
+      options.hasPreviewImage = 'true';
     } else {
       delete options.portal_type;
       delete options.excludeArtworks;
+      delete options.hasPreviewImage;
     }
 
     this.setState({ currentPage: 1 });
@@ -298,6 +344,17 @@ class Search extends Component {
                       checked={this.state.excludeArtworks}
                       onChange={() =>
                         this.handleCheckboxChange('excludeArtworks')
+                      }
+                      className="artwork-checkbox"
+                    />
+                  </label>
+                  <label>
+                    <span>Artworks On Display</span>
+                    <input
+                      type="checkbox"
+                      checked={this.state.hasPreviewImage}
+                      onChange={() =>
+                        this.handleCheckboxChange('hasPreviewImage')
                       }
                       className="artwork-checkbox"
                     />

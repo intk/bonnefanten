@@ -59,6 +59,18 @@ const translations = {
     en: 'Only in the website',
     nl: 'Alleen in de website',
   },
+  hasImage: {
+    nl: 'Alleen met beeld',
+    en: 'Only Images',
+  },
+  onDisplay: {
+    en: 'Now on view',
+    nl: 'Nu te zien',
+  },
+  filterheading: {
+    nl: 'Filter de resultaten.',
+    en: 'Filter the results',
+  },
 };
 
 function truncate(str, num) {
@@ -123,6 +135,7 @@ class Search extends Component {
       objOnDisplay: false,
       hasPreviewImage: false,
       ObjOnDisplay: false,
+      filtersDisplay: false,
     };
   }
 
@@ -279,6 +292,54 @@ class Search extends Component {
     });
   };
 
+  renderFilterButtons = () => {
+    const { intl } = this.props;
+    return (
+      <>
+        <label>
+          <input
+            type="checkbox"
+            checked={this.state.hasPreviewImage}
+            onChange={() => this.handleCheckboxChange('hasPreviewImage')}
+            className="artwork-checkbox"
+          />
+          <span className="label">{translations.hasImage[intl.locale]}</span>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={this.state.excludeArtworks}
+            onChange={() => this.handleCheckboxChange('excludeArtworks')}
+            className="artwork-checkbox"
+          />
+          <span className="label">
+            {translations.excludeArtworks[intl.locale]}
+          </span>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={this.state.onlyArtworks}
+            onChange={() => this.handleCheckboxChange('onlyArtworks')}
+            className="artwork-checkbox"
+          />
+          <span className="label">
+            {translations.filterArtworks[intl.locale]}
+          </span>
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            checked={this.state.ObjOnDisplay}
+            onChange={() => this.handleCheckboxChange('ObjOnDisplay')}
+            className="artwork-checkbox"
+          />
+          <span className="label">{translations.onDisplay[intl.locale]}</span>
+        </label>
+      </>
+    );
+  };
+
   /**
    * Render method.
    * @method render
@@ -316,47 +377,27 @@ class Search extends Component {
                     {translations.advancedsearch[intl.locale]}
                   </NavLink>
                 </div>
-                <div id="artwork-search-check">
-                  <label>
-                    <span>{translations.filterArtworks[intl.locale]} </span>
-                    <input
-                      type="checkbox"
-                      checked={this.state.onlyArtworks}
-                      onChange={() => this.handleCheckboxChange('onlyArtworks')}
-                      className="artwork-checkbox"
-                    />
-                  </label>
-                  <label>
-                    <span>{translations.excludeArtworks[intl.locale]}</span>
-                    <input
-                      type="checkbox"
-                      checked={this.state.excludeArtworks}
-                      onChange={() =>
-                        this.handleCheckboxChange('excludeArtworks')
-                      }
-                      className="artwork-checkbox"
-                    />
-                  </label>
-                  <label>
-                    <span>Artworks On image</span>
-                    <input
-                      type="checkbox"
-                      checked={this.state.hasPreviewImage}
-                      onChange={() =>
-                        this.handleCheckboxChange('hasPreviewImage')
-                      }
-                      className="artwork-checkbox"
-                    />
-                  </label>
-                  <label>
-                    <span>Artworks On Display</span>
-                    <input
-                      type="checkbox"
-                      checked={this.state.ObjOnDisplay}
-                      onChange={() => this.handleCheckboxChange('ObjOnDisplay')}
-                      className="artwork-checkbox"
-                    />
-                  </label>
+                <div
+                  id="filter-section"
+                  className="artwork-search-check button"
+                >
+                  <button
+                    className="filter-button text-button btn-block"
+                    onClick={() =>
+                      this.setState({
+                        filtersDisplay: !this.state.filtersDisplay,
+                      })
+                    }
+                  >
+                    {translations.filterheading[intl.locale]}
+                  </button>
+                  {this.state.filtersDisplay && this.renderFilterButtons()}
+                </div>
+                <div className="artwork-search-check heading">
+                  <h3 className="search-heading">
+                    {translations.filterheading[intl.locale]}
+                  </h3>
+                  {this.renderFilterButtons()}
                 </div>
                 {this.props.search?.items_total > 0 ? (
                   <>

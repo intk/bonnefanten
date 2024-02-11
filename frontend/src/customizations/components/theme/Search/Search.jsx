@@ -122,6 +122,7 @@ class Search extends Component {
       excludeArtworks: false,
       objOnDisplay: false,
       hasPreviewImage: false,
+      ObjOnDisplay: false,
     };
   }
 
@@ -175,98 +176,71 @@ class Search extends Component {
     const { history, location } = this.props;
     let currentUrlParams = new URLSearchParams(location.search);
 
-    // Determine action based on checkboxType
+    // Initialize updates based on checkboxType
+    let updates = {};
+
     switch (checkboxType) {
       case 'onlyArtworks':
-        const newOnlyArtworksState = !this.state.onlyArtworks;
-        this.setState(
-          {
-            onlyArtworks: newOnlyArtworksState,
-            excludeArtworks: false, // Keep excluding artworks mutually exclusive
-          },
-          () => {
-            // Clear portal_type parameters when toggling
-            currentUrlParams.delete('portal_type');
-            currentUrlParams.delete('portal_type:list');
-            if (this.state.onlyArtworks) {
-              currentUrlParams.set('portal_type', 'artwork');
-            }
-            // Maintain hasPreviewImage independently
-            if (this.state.hasPreviewImage) {
-              currentUrlParams.set('hasPreviewImage', 'true');
-            }
-            history.push(`${location.pathname}?${currentUrlParams.toString()}`);
-            this.doSearch();
-          },
-        );
+        updates = {
+          onlyArtworks: !this.state.onlyArtworks,
+          // Turn off excludeArtworks if onlyArtworks is being turned on
+          excludeArtworks: this.state.onlyArtworks
+            ? this.state.excludeArtworks
+            : false,
+        };
         break;
       case 'excludeArtworks':
-        const newExcludeArtworksState = !this.state.excludeArtworks;
-        this.setState(
-          {
-            excludeArtworks: newExcludeArtworksState,
-            onlyArtworks: false, // Keep only artworks mutually exclusive
-          },
-          () => {
-            currentUrlParams.delete('portal_type');
-            currentUrlParams.delete('portal_type:list');
-            if (this.state.excludeArtworks) {
-              const includeTypes = [
-                'Document',
-                'Event',
-                'News Item',
-                'author',
-                'Link',
-              ];
-              includeTypes.forEach((type) => {
-                currentUrlParams.append('portal_type:list', type);
-              });
-            }
-            // Maintain hasPreviewImage independently
-            if (this.state.hasPreviewImage) {
-              currentUrlParams.set('hasPreviewImage', 'true');
-            }
-            history.push(`${location.pathname}?${currentUrlParams.toString()}`);
-            this.doSearch();
-          },
-        );
+        updates = {
+          excludeArtworks: !this.state.excludeArtworks,
+          // Turn off onlyArtworks if excludeArtworks is being turned on
+          onlyArtworks: this.state.excludeArtworks
+            ? this.state.onlyArtworks
+            : false,
+        };
         break;
       case 'hasPreviewImage':
-        const newHasPreviewImage = !this.state.hasPreviewImage;
-        this.setState(
-          {
-            hasPreviewImage: newHasPreviewImage,
-          },
-          () => {
-            if (this.state.hasPreviewImage) {
-              currentUrlParams.set('hasPreviewImage', 'true');
-            } else {
-              currentUrlParams.delete('hasPreviewImage');
-            }
-            // Ensure the correct portal_type is set based on other checkboxes
-            if (this.state.onlyArtworks) {
-              currentUrlParams.set('portal_type', 'artwork');
-            } else if (this.state.excludeArtworks) {
-              const includeTypes = [
-                'Document',
-                'Event',
-                'News Item',
-                'author',
-                'Link',
-              ];
-              includeTypes.forEach((type) => {
-                currentUrlParams.append('portal_type:list', type);
-              });
-            }
-            history.push(`${location.pathname}?${currentUrlParams.toString()}`);
-            this.doSearch();
-          },
-        );
+        updates = { hasPreviewImage: !this.state.hasPreviewImage };
         break;
-
+      case 'ObjOnDisplay':
+        updates = { ObjOnDisplay: !this.state.ObjOnDisplay };
+        break;
       default:
         break;
     }
+
+    // Update state with the changes
+    this.setState(updates, () => {
+      // After state update, adjust URL parameters
+      currentUrlParams.delete('portal_type');
+      currentUrlParams.delete('portal_type:list');
+      currentUrlParams.delete('hasPreviewImage');
+      currentUrlParams.delete('ObjOnDisplay');
+
+      if (this.state.onlyArtworks) {
+        currentUrlParams.set('portal_type', 'artwork');
+      }
+      if (this.state.excludeArtworks) {
+        const includeTypes = [
+          'Document',
+          'Event',
+          'News Item',
+          'author',
+          'Link',
+        ];
+        includeTypes.forEach((type) =>
+          currentUrlParams.append('portal_type:list', type),
+        );
+      }
+      if (this.state.hasPreviewImage) {
+        currentUrlParams.set('hasPreviewImage', 'true');
+      }
+      if (this.state.ObjOnDisplay) {
+        currentUrlParams.set('ObjOnDisplay', 'true');
+      }
+
+      history.push(`${location.pathname}?${currentUrlParams.toString()}`);
+      this.doSearch();
+    });
   };
 
   doSearch = () => {
@@ -277,7 +251,8 @@ class Search extends Component {
     } else if (this.state.excludeArtworks) {
       options.excludeArtworks = 'true';
     } else if (this.state.hasPreviewImage) {
-      // This is an example, adjust the actual parameter based on your backend's requirement
+      options.hasPreviewImage = 'true';
+    } else if (this.state.ObjOnDisplay) {
       options.hasPreviewImage = 'true';
     } else {
       delete options.portal_type;
@@ -288,6 +263,20 @@ class Search extends Component {
     this.setState({ currentPage: 1 });
     options['use_site_search_settings'] = 1;
     this.props.searchContent('', options);
+  };
+
+  handleQueryPaginationChange = (e, { activePage }) => {
+    const { settings } = config;
+    window.scrollTo(0, 0);
+    let options = qs.parse(this.props.history.location.search);
+    options['use_site_search_settings'] = 1;
+
+    this.setState({ currentPage: activePage }, () => {
+      this.props.searchContent('', {
+        ...options,
+        b_start: (this.state.currentPage - 1) * settings.defaultPageSize,
+      });
+    });
   };
 
   /**
@@ -349,13 +338,22 @@ class Search extends Component {
                     />
                   </label>
                   <label>
-                    <span>Artworks On Display</span>
+                    <span>Artworks On image</span>
                     <input
                       type="checkbox"
                       checked={this.state.hasPreviewImage}
                       onChange={() =>
                         this.handleCheckboxChange('hasPreviewImage')
                       }
+                      className="artwork-checkbox"
+                    />
+                  </label>
+                  <label>
+                    <span>Artworks On Display</span>
+                    <input
+                      type="checkbox"
+                      checked={this.state.ObjOnDisplay}
+                      onChange={() => this.handleCheckboxChange('ObjOnDisplay')}
                       className="artwork-checkbox"
                     />
                   </label>

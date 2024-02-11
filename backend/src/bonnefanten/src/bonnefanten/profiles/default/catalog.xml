@@ -28,6 +28,12 @@
     <indexed_attr value="hasPreviewImage" />
   </index>
 
+  <index meta_type="BooleanIndex"
+         name="ObjOnDisplay"
+  >
+    <indexed_attr value="ObjOnDisplay" />
+  </index>
+
   <index meta_type="KeywordIndex"
          name="Artwork_Collection_Group"
   >

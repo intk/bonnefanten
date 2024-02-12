@@ -13,6 +13,9 @@ import { Link } from 'react-router-dom';
  */
 function SlideshowPreview(props) {
   const item = props;
+  const lazy = props.lazy;
+
+  const loadingAttribute = lazy ? 'lazy' : 'eager';
 
   const src = item.image_field
     ? flattenToAppURL(`${item['@id']}/@@images/${item.image_field}/great`)
@@ -22,7 +25,8 @@ function SlideshowPreview(props) {
     <>
       {item.image_field !== '' ? (
         <Link to={flattenToAppURL(item['@id'])} className="listing-image">
-          <img rel="preload" src={src} alt={item.title ?? 'alt'} />
+          {console.log(lazy)}
+          <img loading={loadingAttribute} src={src} alt={item.title ?? 'alt'} />
         </Link>
       ) : (
         <img

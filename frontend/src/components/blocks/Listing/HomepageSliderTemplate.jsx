@@ -9,7 +9,7 @@ import './less/HomepageSliderTemplate.less';
 import { When } from '@package/customizations/components/theme/View/EventDatesInfo';
 import useInViewHomepage from '@package/helpers/useInViewHomepage';
 
-const Card = ({ item, showDescription = true }) => {
+const Card = ({ item, showDescription = true, index }) => {
   const ref = useRef();
   const titleInView = useInViewHomepage(ref);
 
@@ -22,7 +22,7 @@ const Card = ({ item, showDescription = true }) => {
       )}
       <UniversalLink href={item['@id']} className="plone-item-card-link">
         <div className="content">
-          <SlideshowPreview {...item} />
+          <SlideshowPreview {...item} lazy={index !== 0} />
           <div className="title-wrapper">
             <div className="title-description">
               <div className="slide-description">
@@ -62,9 +62,9 @@ const HomepageSliderTemplate = (props) => {
           }}
           ref={(el) => (reactSwipeEl = el)}
         >
-          {items.map((item, i) => (
+          {items.map((item, index) => (
             <div>
-              <Card item={item} showDescription="true" />
+              <Card item={item} showDescription="true" index={index} />
             </div>
           ))}
         </ReactSwipe>

@@ -17,7 +17,7 @@ function PreviewImage(props) {
     ? flattenToAppURL(`${item['@id']}/@@images/${item.image_field}/preview`)
     : '';
 
-  return <img src={src} alt={'alt' ?? item.title} />;
+  return <img src={src} alt={'alt' ?? item.title} loading="lazy" />;
 }
 
 PreviewImage.propTypes = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react';
 import cx from 'classnames';
@@ -16,6 +16,20 @@ const ViewGrid = (props) => {
   const { data, path, className } = props;
   const blocksConfig =
     config.blocks.blocksConfig.__grid.blocksConfig || props.blocksConfig;
+
+  const shadowRef = useRef(null);
+  const textWrapperRef = useRef(null);
+  const backgroundRef = useRef(null);
+
+  useEffect(() => {
+    if (shadowRef.current && textWrapperRef.current) {
+      // Get the height of the .text-wrapper
+      const textWrapperHeight = textWrapperRef.current.offsetHeight;
+      // Add this height to the .shadow element
+      shadowRef.current.style.height = `calc(100vh + ${textWrapperHeight}px)`;
+      backgroundRef.current.style.height = `calc(100vh + ${textWrapperHeight}px)`;
+    }
+  }, [data]); // You can add more dependencies if needed
 
   return (
     <div
@@ -42,17 +56,20 @@ const ViewGrid = (props) => {
           `${flattenToAppURL(getScaleUrl(data.columns[0].url, 'great'))}`,
         )} */}
         <div
+          ref={backgroundRef}
           className="background-image"
           style={{
             backgroundImage: `url(${
               flattenToAppURL(getScaleUrl(data.columns[0].url, 'great')) ||
               DefaultImageSVG
             })`,
+            height: '150vh',
           }}
           role="img"
         />
         <div
           className="shadow"
+          ref={shadowRef}
           style={{
             backgroundImage:
               'linear-gradient(to bottom, rgba(46, 46, 46, 0) 0%, #242424 130%)',
@@ -63,7 +80,9 @@ const ViewGrid = (props) => {
             left: '0',
           }}
         ></div>
+
         <div
+          ref={textWrapperRef}
           className="text-wrapper"
           style={{
             display: 'flex',

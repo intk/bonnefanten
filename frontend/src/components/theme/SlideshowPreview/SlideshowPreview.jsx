@@ -22,7 +22,7 @@ function SlideshowPreview(props) {
     <>
       {item.image_field !== '' ? (
         <Link to={flattenToAppURL(item['@id'])} className="listing-image">
-          <img src={src} alt={item.title ?? 'alt'} loading="lazy" />
+          <img src={src} alt={item.title ?? 'alt'} />
         </Link>
       ) : (
         <img

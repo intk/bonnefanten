@@ -71,6 +71,7 @@ const HomepageSliderTemplate = (props) => {
         {items.length > 1 && (
           <div className="buttons">
             <button
+              aria-label="left-arrow"
               className="left-button"
               onClick={() => {
                 reactSwipeEl.prev();
@@ -94,6 +95,7 @@ const HomepageSliderTemplate = (props) => {
           <p>{`${currentIndex + 1}/${props.content?.items_total}`}</p>
         </span>{' '} */}
             <button
+              aria-label="right-arrow"
               className="right-button"
               onClick={() => {
                 reactSwipeEl.next();

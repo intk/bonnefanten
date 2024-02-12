@@ -46,8 +46,6 @@ const Card = ({ item, showDescription = true }) => {
   //     }`
   //   : null;
   const intl = useIntl();
-  const ref = useRef();
-  const InView = useInViewHomepage(ref);
 
   const hasDailyFrequency = item.recurrence?.includes('FREQ=DAILY');
   const hasWeeklyFrequency = item.recurrence?.includes('FREQ=WEEKLY');

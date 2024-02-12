@@ -237,7 +237,7 @@ class Search extends Component {
           'Document',
           'Event',
           'News Item',
-          // 'author',
+          'author',
           'Link',
         ];
         includeTypes.forEach((type) =>

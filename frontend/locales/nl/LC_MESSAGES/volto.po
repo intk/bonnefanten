@@ -147,6 +147,11 @@ msgstr ""
 msgid "Image override"
 msgstr ""
 
+#: components/blocks/InpageLink/schema
+# defaultMessage: Inpage Link
+msgid "Inpage Link"
+msgstr ""
+
 #: components/blocks/AdvancedSearch/schema
 # defaultMessage: Label
 msgid "Label"
@@ -308,6 +313,11 @@ msgstr ""
 msgid "The button presence disables the live search, the query is issued when you press ENTER"
 msgstr ""
 
+#: components/blocks/InpageLink/InpageLinkView
+# defaultMessage: The link address is:
+msgid "The link address is:"
+msgstr "Het link adres is"
+
 #: components/blocks/Teaser/schema
 # defaultMessage: Title
 msgid "Title"
@@ -372,6 +382,7 @@ msgid "credit"
 msgstr "Credit line"
 
 #: components/blocks/Listing/ListingTemplate
+#: components/blocks/Listing/TedoenTemplate
 # defaultMessage: dagelijks
 msgid "daily"
 msgstr ""
@@ -414,6 +425,7 @@ msgid "meerinfo"
 msgstr ""
 
 #: components/blocks/Listing/ListingTemplate
+#: components/blocks/Listing/TedoenTemplate
 # defaultMessage: maandelijks
 msgid "monthly"
 msgstr ""
@@ -500,6 +512,11 @@ msgstr ""
 msgid "technique"
 msgstr ""
 
+#: components/blocks/Listing/TedoenTemplate
+# defaultMessage: Te Doen
+msgid "tedoen"
+msgstr ""
+
 #: components/blocks/EventPageButton/EventPageButtonView
 # defaultMessage: TICKETS
 msgid "tickets"
@@ -526,6 +543,7 @@ msgid "views"
 msgstr ""
 
 #: components/blocks/Listing/ListingTemplate
+#: components/blocks/Listing/TedoenTemplate
 # defaultMessage: wekelijks
 msgid "weekly"
 msgstr ""

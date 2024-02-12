@@ -9,6 +9,7 @@ import HomepageSliderTemplate from '@package/components/blocks/Listing/HomepageS
 import NutezienSliderTemplate from './NutezienSliderTemplate';
 import VerwachtSliderTemplate from './VerwachtSliderTemplate';
 import WhatsonTemplate from './WhatsonTemplate';
+import TedoenTemplate from './TedoenTemplate';
 // import MasonryTemplate from './MasonryTemplate';
 
 export default (config) => {
@@ -120,6 +121,12 @@ export default (config) => {
       isDefault: false,
       title: 'Whatson Listing',
       template: WhatsonTemplate,
+    },
+    {
+      id: 'tedoenview',
+      isDefault: false,
+      title: 'Homepage Tedoen Listing',
+      template: TedoenTemplate,
     },
   ];
 

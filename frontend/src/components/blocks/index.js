@@ -15,6 +15,7 @@ import installSlidingTextBlock from './SlidingTextBlock';
 import installVideoPageBlock from './VideoPageBlock';
 import installDiscreetText from './DiscreetText';
 import installPreviewCollectionBlock from './PreviewCollection';
+import installInpageLinkBlock from './InpageLink';
 
 import { compose } from 'redux';
 
@@ -39,6 +40,7 @@ const installBlocks = (config) => {
     installVideoPageBlock,
     installDiscreetText,
     installPreviewCollectionBlock,
+    installInpageLinkBlock,
   )(config);
 };
 

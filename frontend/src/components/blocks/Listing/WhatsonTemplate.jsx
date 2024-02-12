@@ -28,7 +28,7 @@ const messages = defineMessages({
 
 const Card = ({ item, showDescription = true }) => {
   const src = item.image_field
-    ? flattenToAppURL(`${item['@id']}/@@images/${item.image_field}`)
+    ? flattenToAppURL(`${item['@id']}/@@images/${item.image_field}/large`)
     : config.getComponent({
         name: 'DefaultImage',
         dependencies: ['listing', 'summary'],

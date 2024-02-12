@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'; // Import useHistory
 import { useSelector } from 'react-redux'; // Import useSelector to access Redux store state
 import { flattenToAppURL } from '@plone/volto/helpers';
 import { isInternalURL } from '@plone/volto/helpers/Url/Url';
+import { FormattedMessage } from 'react-intl';
 import cx from 'classnames';
 
 const InpageLinkView = ({ data, mode = 'view' }) => {
@@ -44,7 +45,15 @@ const InpageLinkView = ({ data, mode = 'view' }) => {
 
   return (
     <div className={classNames}>
-      <h4 style={headingStyle}>Het link adres is: {href}</h4>
+      <h4 style={!isEditMode ? headingStyle : {}}>
+        {
+          <FormattedMessage
+            id="The link address is:"
+            defaultMessage="The link address is:"
+          />
+        }{' '}
+        {href}
+      </h4>
     </div>
   );
 };

@@ -4,8 +4,8 @@ import InpageLinkView from './InpageLinkView';
 import InpageLinkEdit from './InpageLinkEdit';
 
 const installInpageLinkBlock = (config) => {
-  config.blocks.blocksConfig.Link = {
-    id: 'Link',
+  config.blocks.blocksConfig.linkBlock = {
+    id: 'linkBlock',
     title: 'Link',
     icon: aheadSVG,
     group: 'common',

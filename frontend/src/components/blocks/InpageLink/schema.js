@@ -17,7 +17,7 @@ const InpageLinkSchema = ({
   fieldsets: [
     {
       id: 'default',
-      fields: ['linkHref'], //  'url'
+      fields: ['linkHref'],
       title: 'Default',
     },
   ],

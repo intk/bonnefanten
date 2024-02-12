@@ -167,7 +167,7 @@ const TedoenTemplate = (props) => {
   const InView = useInViewHomepage(ref);
 
   return (
-    <div className="listing-template">
+    <div className="listing-template" ref={ref}>
       {InView ? (
         <BodyClass className="permanentslide-in-view" />
       ) : (

@@ -103,6 +103,7 @@ const VerwachtSliderTemplate = (props) => {
         {items?.length > 1 && (
           <>
             <button
+              aria-label="left-arrow-button"
               className="left-button"
               onClick={() => {
                 reactSwipeEl.prev();
@@ -123,6 +124,7 @@ const VerwachtSliderTemplate = (props) => {
               </svg>
             </button>
             <button
+              aria-label="right-arrow-button"
               className="right-button"
               onClick={() => {
                 reactSwipeEl.next();

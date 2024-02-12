@@ -61,6 +61,7 @@ const Card = ({ item, showDescription = true }) => {
                 // to={intl.formatMessage(messages.ticketurl)}
                 to={item['@id']}
                 condition="view"
+                aria-label="click button to see the page"
               >
                 {/* {intl.formatMessage(messages.tickets)} */}
                 {intl.formatMessage(messages.meerinfo)}

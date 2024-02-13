@@ -18,7 +18,7 @@ function SlideshowPreview(props) {
   const loadingAttribute = lazy ? 'lazy' : 'eager';
 
   const src = item.image_field
-    ? flattenToAppURL(`${item['@id']}/@@images/${item.image_field}/great`)
+    ? flattenToAppURL(`${item['@id']}/@@images/${item.image_field}/huge`)
     : '';
 
   return (

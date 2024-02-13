@@ -164,7 +164,7 @@ const Carousel = (props) => {
                         ? {
                             backgroundImage: `url(${getScaleUrl(
                               getPath(card.attachedimage),
-                              image_scale || 'huge',
+                              'huge',
                             )})`,
                             height: `${height}px`,
                           }

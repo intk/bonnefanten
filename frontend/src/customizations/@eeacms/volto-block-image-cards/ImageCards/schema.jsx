@@ -96,7 +96,7 @@ const ImageCards = (props) => {
       image_scale: {
         type: 'string',
         title: 'Image scale',
-        default: 'great',
+        default: 'huge',
       },
       align: {
         title: 'Alignment',

@@ -45,7 +45,7 @@ const Card = ({ item, showDescription = true }) => {
             <UniversalLink href={item['@id']} className="plone-item-card-link">
               <div className="listing-image">
                 <a href={src}>
-                  <img src={src} alt={item.title ?? 'alt'} />
+                  <img loading="lazy" src={src} alt={item.title ?? 'alt'} />
                 </a>
               </div>
             </UniversalLink>

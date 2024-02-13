@@ -1,5 +1,16 @@
 .block.listing.homepagesliderview {
   height: auto;
+  min-height: 500px;
+  max-height: 900px;
+  height: 70vh;
+
+  @media screen and (min-height: 768px) {
+    height: 90vh;
+  }
+
+  @media (min-width: 1640px) {
+    max-height: 90vh;
+  }
 }
 .view-viewview .block.listing.homepagesliderview{
   position: relative;

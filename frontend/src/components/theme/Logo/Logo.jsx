@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import config from '@plone/volto/registry';
 import { UniversalLink } from '@plone/volto/components';
 import { toBackendLang } from '@plone/volto/helpers';
+import { useLocation } from 'react-router-dom';
 
 const possibleClasses = ['gothic', 'slab', 'block'];
 
@@ -68,15 +69,6 @@ const initialLettersState = [
   },
 ];
 
-// Helper function to check if the current URL is the homepage
-const isHomepage = (currentURL, lang) => {
-  const { settings } = config;
-  const homepagePath = settings.isMultilingual
-    ? `/${toBackendLang(lang)}`
-    : '/';
-  return currentURL === homepagePath;
-};
-
 /**
  * Logo component class.
  * @function Logo
@@ -86,16 +78,27 @@ const isHomepage = (currentURL, lang) => {
 const Logo = () => {
   const { settings } = config;
   const lang = useSelector((state) => state.intl.locale);
-  const currentURL = window.location.pathname;
-
-  // Determine the href dynamically
-  const hrefValue = isHomepage(currentURL, lang)
-    ? '#'
-    : settings.isMultilingual
-    ? `/${toBackendLang(lang)}`
-    : '/';
+  const location = useLocation();
 
   const [letters, setLetters] = useState(initialLettersState);
+  let isCurrentPageHomepage =
+    location.pathname === '/nl' || location.pathname === '/en/';
+
+  useEffect(() => {
+    isCurrentPageHomepage =
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      location.pathname === '/nl' || location.pathname === '/en/';
+  });
+
+  const handleLogoClick = (e) => {
+    // Check if not on the homepage
+    if (!isCurrentPageHomepage) {
+      return;
+    }
+    // Prevent default link behavior and scroll to top if already on the homepage
+    e.preventDefault();
+    window.scrollTo(0, 0);
+  };
 
   useEffect(() => {
     let animationsSpan = 300;
@@ -168,8 +171,9 @@ const Logo = () => {
   return (
     <UniversalLink
       className="site-logo"
-      href={hrefValue}
+      href={settings.isMultilingual ? `/${toBackendLang(lang)}` : '/'}
       title="Bonnefanten Maastricht"
+      onClick={handleLogoClick}
     >
       {letters.map((letter, index) => (
         <span key={index} className={letter.theme}>

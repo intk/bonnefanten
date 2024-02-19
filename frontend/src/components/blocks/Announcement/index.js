@@ -1,4 +1,4 @@
-import aheadSVG from '@plone/volto/icons/ahead.svg';
+import aheadSVG from '@plone/volto/icons/megaphone.svg';
 
 import AnnouncementView from './AnnouncementView';
 import AnnouncementEdit from './AnnouncementEdit';

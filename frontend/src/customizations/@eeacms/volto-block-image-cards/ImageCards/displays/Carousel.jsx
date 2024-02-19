@@ -90,7 +90,7 @@ const Carousel = (props) => {
   const { data, editable } = props;
   const {
     cards,
-    image_scale,
+    // image_scale,
     height = '600',
     fade = true,
     infinite = true,

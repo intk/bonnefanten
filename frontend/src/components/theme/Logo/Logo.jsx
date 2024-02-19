@@ -97,7 +97,10 @@ const Logo = () => {
     }
     // Prevent default link behavior and scroll to top if already on the homepage
     e.preventDefault();
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   useEffect(() => {

@@ -125,8 +125,7 @@ export class App extends Component {
         this.setState({ FooterComponent: Footer });
       })
       .catch((error) => {
-        // It's a good practice to handle potential errors in dynamic imports
-        console.error('Failed to load the Footer component', error);
+        // console.error('Failed to load the Footer component', error);
       });
   };
 

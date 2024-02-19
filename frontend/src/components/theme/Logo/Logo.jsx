@@ -68,6 +68,15 @@ const initialLettersState = [
   },
 ];
 
+// Helper function to check if the current URL is the homepage
+const isHomepage = (currentURL, lang) => {
+  const { settings } = config;
+  const homepagePath = settings.isMultilingual
+    ? `/${toBackendLang(lang)}`
+    : '/';
+  return currentURL === homepagePath;
+};
+
 /**
  * Logo component class.
  * @function Logo
@@ -77,6 +86,14 @@ const initialLettersState = [
 const Logo = () => {
   const { settings } = config;
   const lang = useSelector((state) => state.intl.locale);
+  const currentURL = window.location.pathname;
+
+  // Determine the href dynamically
+  const hrefValue = isHomepage(currentURL, lang)
+    ? '#'
+    : settings.isMultilingual
+    ? `/${toBackendLang(lang)}`
+    : '/';
 
   const [letters, setLetters] = useState(initialLettersState);
 
@@ -151,7 +168,7 @@ const Logo = () => {
   return (
     <UniversalLink
       className="site-logo"
-      href={settings.isMultilingual ? `/${toBackendLang(lang)}` : '/'}
+      href={hrefValue}
       title="Bonnefanten Maastricht"
     >
       {letters.map((letter, index) => (

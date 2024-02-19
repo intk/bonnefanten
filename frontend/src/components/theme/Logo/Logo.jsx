@@ -82,12 +82,12 @@ const Logo = () => {
 
   const [letters, setLetters] = useState(initialLettersState);
   let isCurrentPageHomepage =
-    location.pathname === '/nl' || location.pathname === '/en/';
+    location.pathname === '/nl' || location.pathname === '/en';
 
   useEffect(() => {
     isCurrentPageHomepage =
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      location.pathname === '/nl' || location.pathname === '/en/';
+      location.pathname === '/nl' || location.pathname === '/en';
   });
 
   const handleLogoClick = (e) => {

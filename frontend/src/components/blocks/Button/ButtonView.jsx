@@ -11,7 +11,6 @@ const ButtonView = ({ data, mode = 'view' }) => {
 
   // Check if the URL ends with "/file", indicating a potential PDF link
   const hasDownloadPath = href.includes('/@@download/file');
-  // Modify href to replace "/@@download/file" with "/@@display-file/file" if it exists
   const modifiedHref = hasDownloadPath
     ? `${flattenToAppURL(
         href.replace('/@@download/file', '/@@display-file/file'),
@@ -26,13 +25,17 @@ const ButtonView = ({ data, mode = 'view' }) => {
         to={modifiedHref}
         condition={!isEditMode}
         className={classNames}
+        target={data?.target}
       >
         {data.linkTitle || href}
       </ConditionalLink>
     )
   ) : href ? (
-    // Ensure external links and modified document links open in a new tab
-    <UniversalLink href={modifiedHref} className={classNames} target="_blank">
+    <UniversalLink
+      href={modifiedHref}
+      className={classNames}
+      target={data?.target}
+    >
       {data.linkTitle || href}
     </UniversalLink>
   ) : isEditMode ? (

@@ -200,7 +200,8 @@ const Carousel = (props) => {
                                 )}
                               </div>
                             ) : props?.content &&
-                              props?.content['@type'] === 'News Item' ? (
+                              props?.content['@type'] === 'News Item' &&
+                              props?.content.effective ? (
                               <When
                                 start={props?.content.effective}
                                 end={props?.content.end}

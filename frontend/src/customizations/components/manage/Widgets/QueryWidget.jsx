@@ -364,7 +364,9 @@ export class QuerystringWidgetComponent extends Component {
                           components={{ DropdownIndicator, Option }}
                           value={{
                             value: row.o,
-                            label: indexes[row.i]?.operators[row.o].title,
+                            label:
+                              indexes[row.i]?.operators?.[row.o]?.title ??
+                              'Unknown Operator',
                           }}
                           onChange={(data) =>
                             onChange(

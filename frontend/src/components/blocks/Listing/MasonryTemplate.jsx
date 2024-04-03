@@ -27,7 +27,7 @@ const Card = ({ item, showDescription = true }) => {
           <div className="desctiption">
             <span className="item-description">
               {item.artwork_author &&
-                item.artwork_author.map((author, index) => (
+                item.artwork_author?.map((author, index) => (
                   <span key={author}>
                     {author}
                     {index + 1 !== item.artwork_author.length && ', '}
@@ -70,7 +70,7 @@ const MasonryTemplate = (props) => {
         columnClassName="masonry-multiple-column"
         style={{ display: 'flex' }}
       >
-        {items.map((item, i) => (
+        {items?.map((item, i) => (
           <div>
             <Card item={item} showDescription="true" />
           </div>

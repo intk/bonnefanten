@@ -3,12 +3,13 @@
  * @module components/theme/Footer/Footer
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { defineMessages, injectIntl, useIntl } from 'react-intl';
 import FooterColumns from '@package/components/theme/Footer/FooterColumns';
 import useInView from '@package/helpers/useInView';
 import { BodyClass } from '@plone/volto/helpers';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
+import { useLocation } from 'react-router-dom';
 
 const messages = defineMessages({
   newsletterErrorMessage: {
@@ -38,7 +39,13 @@ const messages = defineMessages({
   },
 });
 
-const MailChimpForm = ({ status, message, onValidated }) => {
+const MailChimpForm = ({
+  status,
+  message,
+  onValidated,
+  emailValue,
+  setEmailValue,
+}) => {
   let intl = useIntl();
   let email;
   const submit = () =>
@@ -57,6 +64,8 @@ const MailChimpForm = ({ status, message, onValidated }) => {
             ref={(node) => (email = node)}
             type="email"
             placeholder={intl.formatMessage(messages.Mailaddress)}
+            value={emailValue}
+            onChange={(e) => setEmailValue(e.target.value)}
           />
           <br />
         </div>
@@ -78,6 +87,14 @@ const MailChimpForm = ({ status, message, onValidated }) => {
  */
 const Footer = ({ intl }) => {
   const [status, setStatus] = useState(undefined);
+  const [emailValue, setEmailValue] = useState('');
+  const location = useLocation();
+
+  useEffect(() => {
+    setStatus(undefined);
+    setEmailValue('');
+  }, [location]);
+
   const mailchimp_url =
     'https://bonnefanten.us15.list-manage.com/subscribe/post-json?u=9e387b9a702e7ed1e33db1e6e&id=306b21f58b';
   const footerInView = useInView(
@@ -102,6 +119,7 @@ const Footer = ({ intl }) => {
         <p className="newsletter-footer-seperator">--</p>
         <h3 className="Header">{intl.formatMessage(messages.Blijf)}</h3>
         <MailchimpSubscribe
+          key={location.pathname}
           url={mailchimp_url}
           render={({ subscribe, status, message }) => (
             <>
@@ -109,6 +127,8 @@ const Footer = ({ intl }) => {
               <MailChimpForm
                 status={status}
                 message={message}
+                emailValue={emailValue}
+                setEmailValue={setEmailValue}
                 onValidated={(formData) => subscribe(formData)}
               />
             </>

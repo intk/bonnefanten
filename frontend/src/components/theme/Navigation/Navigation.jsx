@@ -101,13 +101,12 @@ class Navigation extends Component {
     }
   }
 
-  disableScroll() {
-    window.addEventListener('wheel', this.preventDefault, { passive: false });
-    window.addEventListener('touchmove', this.preventDefault, {
-      passive: false,
-    });
-    // Add more listeners if needed for other scroll methods (like keyboard inputs)
-  }
+  // disableScroll() {
+    // window.addEventListener('wheel', this.preventDefault, { passive: false });
+    // window.addEventListener('touchmove', this.preventDefault, {
+    //   passive: false,
+    // });
+  // }
 
   enableScroll() {
     window.removeEventListener('wheel', this.preventDefault);
@@ -182,7 +181,7 @@ class Navigation extends Component {
       this.enableScroll();
       this.resetColor();
     } else {
-      this.disableScroll();
+      // this.disableScroll();
       this.captureAndFreezeColor();
     }
   }

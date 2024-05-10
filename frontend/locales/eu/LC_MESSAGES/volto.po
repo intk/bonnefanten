@@ -21,6 +21,11 @@ msgstr ""
 msgid "Alignment"
 msgstr ""
 
+#: components/blocks/Announcement/schema
+# defaultMessage: Announcement
+msgid "Announcement"
+msgstr ""
+
 #: components/blocks/Search/SortOn
 # defaultMessage: Ascending
 msgid "Ascending"

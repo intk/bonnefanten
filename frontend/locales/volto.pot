@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2024-02-12T11:30:16.132Z\n"
+"POT-Creation-Date: 2024-05-10T09:30:32.020Z\n"
 "Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,11 @@ msgstr ""
 #: components/blocks/Teaser/schema
 # defaultMessage: Alignment
 msgid "Alignment"
+msgstr ""
+
+#: components/blocks/Announcement/schema
+# defaultMessage: Announcement
+msgid "Announcement"
 msgstr ""
 
 #: components/blocks/Search/SortOn

@@ -3,6 +3,7 @@ import { ConditionalLink } from '@plone/volto/components';
 import cx from 'classnames';
 import { flattenToAppURL, isInternalURL } from '@plone/volto/helpers';
 import { Link } from 'react-router-dom';
+import SlateEditor from '@plone/volto-slate/editor/SlateEditor';
 
 const Source = ({ source = '', sourceHref }) => (
   <span className="image-source">
@@ -97,6 +98,14 @@ const ViewImage = (props) => {
           {source && <Source source={source} sourceHref={sourceHref} />}
           {imageCaption && (
             <span className="image-caption">{imageCaption}</span>
+          )}
+          {data?.caption && (
+            <SlateEditor
+              className="image-caption"
+              name="photo-credit"
+              value={data?.caption}
+              readOnly="true"
+            />
           )}
         </figcaption>
       </figure>

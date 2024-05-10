@@ -15,7 +15,7 @@ const messages = defineMessages({
   },
   Caption: {
     id: 'Caption',
-    defaultMessage: 'Caption',
+    defaultMessage: 'Richtext Caption',
   },
   Align: {
     id: 'Alignment',

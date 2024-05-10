@@ -102,10 +102,10 @@ class Navigation extends Component {
   }
 
   // disableScroll() {
-    // window.addEventListener('wheel', this.preventDefault, { passive: false });
-    // window.addEventListener('touchmove', this.preventDefault, {
-    //   passive: false,
-    // });
+  // window.addEventListener('wheel', this.preventDefault, { passive: false });
+  // window.addEventListener('touchmove', this.preventDefault, {
+  //   passive: false,
+  // });
   // }
 
   enableScroll() {

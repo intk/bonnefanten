@@ -115,7 +115,6 @@ export class App extends Component {
 
   componentDidMount() {
     this.lazyLoadFooter();
-    this.applyHomepageColors();
   }
 
   lazyLoadFooter = () => {
@@ -134,53 +133,6 @@ export class App extends Component {
     const { FooterComponent } = this.state;
     // If the FooterComponent has been loaded, render it, otherwise render null or a loader
     return FooterComponent ? <FooterComponent /> : null;
-  };
-
-  componentDidUpdate(prevProps) {
-    if (this.props.pathname !== prevProps.pathname) {
-      this.applyHomepageColors();
-    }
-  }
-
-  componentWillUnmount() {
-    this.removeHomepageColors();
-  }
-
-  applyHomepageColors = () => {
-    let backgroundColor;
-    let itemColor;
-    let pagelocation = this.props.pathname;
-
-    if (pagelocation === '/nl' || pagelocation === '/en') {
-      backgroundColor = '#FF4438';
-      itemColor = '#FFD100';
-      // Apply this value to a CSS variable
-      const portalTopElement = document.querySelector('body');
-      if (portalTopElement) {
-        portalTopElement.style.setProperty('--dynamic-before-color', itemColor);
-        portalTopElement.style.setProperty(
-          '--dynamic-item-color',
-          backgroundColor,
-        );
-      }
-
-      // Delay for 2 seconds and then delete the CSS variables
-      this.timeoutId = setTimeout(() => {
-        if (portalTopElement) {
-          portalTopElement.style.removeProperty('--dynamic-before-color');
-          portalTopElement.style.removeProperty('--dynamic-item-color');
-        }
-      }, 1500);
-    }
-  };
-
-  removeHomepageColors = () => {
-    const portalTopElement = document.querySelector('body');
-    if (portalTopElement) {
-      portalTopElement.style.removeProperty('--dynamic-before-color');
-      portalTopElement.style.removeProperty('--dynamic-item-color');
-    }
-    clearTimeout(this.timeoutId);
   };
 
   /**

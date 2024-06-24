@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Logo, Navigation } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';

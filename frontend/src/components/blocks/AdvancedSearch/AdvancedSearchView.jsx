@@ -105,7 +105,11 @@ const AdvancedSearch = () => {
     //   `/nl/advancedsearch#b_size=20&query=${encodedQueryParam}&sort_order=ascending`,
     // );
     // Redirect to the search page with the search query as a parameter
-    history.push(`/search?SearchableText=${encodeURIComponent(searchQuery)}`);
+    history.push(
+      `/search?SearchableText=${encodeURIComponent(
+        searchQuery,
+      )}&portal_type=artwork`,
+    );
   };
 
   const intl = useIntl();

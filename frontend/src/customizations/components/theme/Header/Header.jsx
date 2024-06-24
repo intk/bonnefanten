@@ -39,6 +39,36 @@ const Header = (props) => {
     true,
   );
 
+  useEffect(() => {
+    let backgroundColor;
+    let itemColor;
+    let pagelocation = props.pathname;
+    if (
+      pagelocation === '/nl' ||
+      pagelocation === '/en' ||
+      pagelocation === '/de'
+    ) {
+      backgroundColor = '#FF4438';
+      itemColor = '#FFD100';
+    }
+    // Apply this value to a CSS variable
+    const portalTopElement = document.querySelector('body');
+    if (portalTopElement) {
+      portalTopElement.style.setProperty('--dynamic-before-color', itemColor);
+      portalTopElement.style.setProperty(
+        '--dynamic-item-color',
+        backgroundColor,
+      );
+    }
+    // Delay for 2 seconds and then delete the CSS variables
+    setTimeout(() => {
+      if (portalTopElement) {
+        portalTopElement.style.removeProperty('--dynamic-before-color');
+        portalTopElement.style.removeProperty('--dynamic-item-color');
+      }
+    }, 1500);
+  }, [props.pathname]);
+
   return (
     <div className="portal-top">
       {homePageView && <BodyClass className="homepage-view" />}

@@ -39,6 +39,9 @@ const Header = (props) => {
     true,
   );
 
+  // For fixing the chaotic loading of the website
+  // This forces the website to have a default background color
+  // For the first 1 second of the loading on the homepage
   useEffect(() => {
     let backgroundColor;
     let itemColor;
@@ -50,23 +53,24 @@ const Header = (props) => {
     ) {
       backgroundColor = '#FF4438';
       itemColor = '#FFD100';
-    }
-    // Apply this value to a CSS variable
-    const portalTopElement = document.querySelector('body');
-    if (portalTopElement) {
-      portalTopElement.style.setProperty('--dynamic-before-color', itemColor);
-      portalTopElement.style.setProperty(
-        '--dynamic-item-color',
-        backgroundColor,
-      );
-    }
-    // Delay for 2 seconds and then delete the CSS variables
-    setTimeout(() => {
+
+      // Apply this value to a CSS variable
+      const portalTopElement = document.querySelector('body');
       if (portalTopElement) {
-        portalTopElement.style.removeProperty('--dynamic-before-color');
-        portalTopElement.style.removeProperty('--dynamic-item-color');
+        portalTopElement.style.setProperty('--dynamic-before-color', itemColor);
+        portalTopElement.style.setProperty(
+          '--dynamic-item-color',
+          backgroundColor,
+        );
       }
-    }, 1500);
+      // Delay for 2 seconds and then delete the CSS variables
+      setTimeout(() => {
+        if (portalTopElement) {
+          portalTopElement.style.removeProperty('--dynamic-before-color');
+          portalTopElement.style.removeProperty('--dynamic-item-color');
+        }
+      }, 1000);
+    }
   }, [props.pathname]);
 
   return (

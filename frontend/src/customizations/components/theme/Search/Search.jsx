@@ -228,6 +228,7 @@ class Search extends Component {
       currentUrlParams.delete('portal_type:list');
       currentUrlParams.delete('hasPreviewImage');
       currentUrlParams.delete('ObjOnDisplay');
+      currentUrlParams.delete('advancedsearch');
 
       if (this.state.onlyArtworks) {
         currentUrlParams.set('portal_type', 'artwork');
@@ -258,6 +259,12 @@ class Search extends Component {
 
   doSearch = () => {
     const options = qs.parse(this.props.history.location.search);
+    if (
+      options?.advancedsearch === 'true' &&
+      options.portal_type !== 'artwork'
+    ) {
+      this.handleCheckboxChange('onlyArtworks');
+    }
 
     if (this.state.onlyArtworks) {
       options.portal_type = 'artwork';

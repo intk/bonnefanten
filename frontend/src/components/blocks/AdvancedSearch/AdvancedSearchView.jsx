@@ -108,7 +108,7 @@ const AdvancedSearch = () => {
     history.push(
       `/search?SearchableText=${encodeURIComponent(
         searchQuery,
-      )}&portal_type=artwork`,
+      )}&advancedsearch=true`,
     );
   };
 

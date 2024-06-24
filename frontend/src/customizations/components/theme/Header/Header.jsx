@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Logo, Navigation } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
@@ -42,7 +42,7 @@ const Header = (props) => {
   // For fixing the chaotic loading of the website
   // This forces the website to have a default background color
   // For the first 1 second of the loading on the homepage
-  useEffect(() => {
+  useLayoutEffect(() => {
     let backgroundColor;
     let itemColor;
     let pagelocation = props.pathname;

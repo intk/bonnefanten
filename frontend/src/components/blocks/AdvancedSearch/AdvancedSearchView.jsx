@@ -34,6 +34,9 @@ const artworkTechniqueVocabulary = [
 
 const AdvancedSearch = () => {
   const dispatch = useDispatch();
+  const intl = useIntl();
+  const locale = intl.locale;
+  const searchLink = `${locale}/advancedsearch`;
   const techniqueVocabulary = useSelector(
     (state) => state.vocabularies.techniqueVocabulary || [],
   );
@@ -106,15 +109,11 @@ const AdvancedSearch = () => {
     // );
     // Redirect to the search page with the search query as a parameter
     history.push(
-      `/search?SearchableText=${encodeURIComponent(
+      `/${locale}/search?SearchableText=${encodeURIComponent(
         searchQuery,
       )}&advancedsearch=true`,
     );
   };
-
-  const intl = useIntl();
-  const locale = intl.locale;
-  const searchLink = `${locale}/advancedsearch`;
 
   return (
     <div id="advancedsearchblock">

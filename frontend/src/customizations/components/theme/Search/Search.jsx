@@ -145,6 +145,14 @@ class Search extends Component {
    * @returns {undefined}
    */
   componentDidMount() {
+    const options = qs.parse(this.props.history.location.search);
+
+    if (
+      options?.advancedsearch === 'true' &&
+      options.portal_type !== 'artwork'
+    ) {
+      this.handleCheckboxChange('onlyArtworks');
+    }
     this.doSearch();
     this.setState({ isClient: true });
   }
@@ -259,12 +267,6 @@ class Search extends Component {
 
   doSearch = () => {
     const options = qs.parse(this.props.history.location.search);
-    if (
-      options?.advancedsearch === 'true' &&
-      options.portal_type !== 'artwork'
-    ) {
-      this.handleCheckboxChange('onlyArtworks');
-    }
 
     if (this.state.onlyArtworks) {
       options.portal_type = 'artwork';

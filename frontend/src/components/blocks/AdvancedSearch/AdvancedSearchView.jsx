@@ -111,7 +111,7 @@ const AdvancedSearch = () => {
     history.push(
       `/${locale}/search?SearchableText=${encodeURIComponent(
         searchQuery,
-      )}&advancedsearch=true`,
+      )}&Language=${locale}&advancedsearch=true`,
     );
   };
 

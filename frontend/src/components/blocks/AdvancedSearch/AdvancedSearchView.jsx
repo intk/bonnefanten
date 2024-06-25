@@ -82,7 +82,7 @@ const AdvancedSearch = () => {
 
   const handleSubmit = () => {
     // Extract only the necessary search parameters
-    const searchQuery = searchParams.SearchableText;
+    const searchQuery = searchParams.SearchableText || '';
 
     // Construct the complex query structure
     // const queryParamStructure = [

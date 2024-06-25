@@ -122,6 +122,7 @@ def Artwork_Collection_Group(obj):
 
     return collections_list
 
+
 @indexer(IArtwork)
 def ObjOnDisplay(obj):
     return obj.ObjOnDisplay

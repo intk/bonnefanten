@@ -3,6 +3,7 @@ from bonnefanten.config import IMAGE_BASE_URL
 from bonnefanten.config import IMPORT_LOCATIONS
 from collections import defaultdict
 from datetime import datetime
+from datetime import timedelta
 from DateTime import DateTime
 from plone import api
 from plone.api import content
@@ -134,14 +135,14 @@ class AdminFixes(BrowserView):
 
         return trans
 
-    def import_objects(self, top_limit="0"):
+    def import_objects(self, top_limit="0", modified_new="false"):
         global counter
         counter = 1
         transaction_counter = 0
         # start_range = self.request.form.get("start_range", 0)
         # end_range = self.request.form.get("end_range", 3000)
         object_id = self.request.form.get("object_id")
-        limit = self.request.form.get("limit", "100")
+        limit = self.request.form.get("limit", "1000")
         offset = self.request.form.get("offset", "0")
         if top_limit != "0":
             offset = str(top_limit)
@@ -207,15 +208,33 @@ class AdminFixes(BrowserView):
             equalsField = SubElement(expert, "equalsField")
             equalsField.set("fieldPath", "ObjCollectionGrp.CollectionVoc.LabelTxt_en")
             equalsField.set("operand", category)
-        # else:
-        # Default search criterion when object_id is not provided
-        # greater = SubElement(expert, "greater")
-        # greater.set("fieldPath", "__lastModified")
-        # greater.set("operand", "2022-08-01T00:00:00")
+        # elif date_from:
+        #     try:
+        #         # Parse the string into a datetime object
+        #         user_date = datetime.strptime(date_from, "%Y-%m-%d %H:%M:%S")
+        #     except ValueError:
+        #         log_to_file("Invalid date format provided. Please use 'YYYY-MM-DD HH:MM:SS'.")
+        #         return  # Handle the error appropriately, maybe set a default date or alert the user
+
+        #     greater = SubElement(expert, "greater")
+        #     greater.set("fieldPath", "__lastModified")
+        #     greater.set("operand", user_date.strftime("%Y-%m-%d %H:%M:%S"))
+
+        if modified_new == "true":
+            start_time_now = datetime.now()
+            time_24_hours_ago = start_time_now - timedelta(hours=24)
+            iso_formatted_time = time_24_hours_ago.strftime("%Y-%m-%dT%H:%M:%S")
+
+            greater = SubElement(expert, "greater")
+            greater.set("fieldPath", "__lastModified")
+            greater.set("operand", iso_formatted_time)
 
         # Convert to string
         xml_str = minidom.parseString(tostring(root)).toprettyxml(indent="   ")
 
+        log_to_file(
+            f"XML Payload being sent: {xml_str}",
+        )
         # Use the dynamic XML content
         response = requests.post(api_url, data=xml_str, headers=headers)
         response.raise_for_status()
@@ -267,6 +286,12 @@ class AdminFixes(BrowserView):
         top_limit = self.request.form.get("top_limit", "0")
         for offset in range(int(start_value), int(top_limit), 100):
             self.import_objects(top_limit=offset)
+
+    def daily_sync(self):
+        start_value = self.request.form.get("start_value", "0")
+        top_limit = self.request.form.get("top_limit", "20000")
+        for offset in range(int(start_value), int(top_limit), 1000):
+            self.import_objects(top_limit=offset, modified_new="true")
 
 
 def import_one_record(self, record, container, container_en, catalog, headers):

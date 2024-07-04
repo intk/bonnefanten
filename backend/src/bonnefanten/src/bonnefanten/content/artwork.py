@@ -202,4 +202,5 @@ class IArtwork(model.Schema):
         "ObjectId",
         "authors",
         "HasImage",
+        "ObjPersonRole",
     )

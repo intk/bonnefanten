@@ -1,36 +1,43 @@
-import base64
-import json
-import logging
-import os
-import re
-import time
-import uuid
-import xml.etree.ElementTree as ET
+from bonnefanten.config import DATA_REPO
+from bonnefanten.config import IMAGE_BASE_URL
+from bonnefanten.config import IMPORT_LOCATIONS
 from collections import defaultdict
 from datetime import datetime
-from xml.dom import minidom
-from xml.etree.ElementTree import Element, SubElement, tostring
-
-import lxml.etree
-import requests
-import transaction
-from bonnefanten.config import DATA_REPO, IMAGE_BASE_URL, IMPORT_LOCATIONS
 from DateTime import DateTime
 from plone import api
-from plone.api import content, portal, relation
-from plone.app.multilingual.api import get_translation_manager, translate
+from plone.api import content
+from plone.api import portal
+from plone.api import relation
+from plone.app.multilingual.api import get_translation_manager
+from plone.app.multilingual.api import translate
 from plone.app.multilingual.interfaces import ITranslationManager
 from plone.dexterity.interfaces import IDexterityContent
 from plone.folder.interfaces import IExplicitOrdering
 from plone.namedfile.file import NamedBlobImage
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
+from xml.dom import minidom
+from xml.etree.ElementTree import Element
+from xml.etree.ElementTree import SubElement
+from xml.etree.ElementTree import tostring
 from zc.relation.interfaces import ICatalog
 from zope import component
 from zope.component import getUtility
 from zope.interface import alsoProvides
 from zope.intid.interfaces import IIntIds
 from zope.schema import getFields
+
+import base64
+import json
+import logging
+import lxml.etree
+import os
+import re
+import requests
+import time
+import transaction
+import uuid
+import xml.etree.ElementTree as ET
 
 
 class AdminFixes(BrowserView):

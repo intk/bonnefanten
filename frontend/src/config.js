@@ -25,6 +25,7 @@ export default function applyConfig(config) {
   config.settings.defaultLanguage = 'en';
 
   config.settings.navDepth = 2;
+  config.settings.contentMetadataTagsImageField = 'preview_image';
 
   config.settings.apiExpanders = [
     ...config.settings.apiExpanders,

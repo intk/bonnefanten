@@ -17,6 +17,7 @@ import installDiscreetText from './DiscreetText';
 import installPreviewCollectionBlock from './PreviewCollection';
 import installInpageLinkBlock from './InpageLink';
 import installAnnouncementBlock from './Announcement';
+import installVimeoBlock from './VimeoBlock';
 
 import { compose } from 'redux';
 
@@ -43,6 +44,7 @@ const installBlocks = (config) => {
     installPreviewCollectionBlock,
     installInpageLinkBlock,
     installAnnouncementBlock,
+    installVimeoBlock,
   )(config);
 };
 

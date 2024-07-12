@@ -2,7 +2,7 @@ version: "3.3"
 
 services:
   frontend:
-    image: intkbv/bonnefanten-frontend:sha-cf454f7
+    image: intkbv/bonnefanten-frontend:sha-560bab5
     environment:
       RAZZLE_INTERNAL_API_PATH: http://backend:8080/Plone
     depends_on:
@@ -14,8 +14,21 @@ services:
     deploy:
       replicas: 2
 
+  stage-frontend:
+    image: intkbv/bonnefanten-frontend:sha-560bab5
+    environment:
+      RAZZLE_INTERNAL_API_PATH: http://backend:8080/Plone
+    depends_on:
+      - backend
+    networks:
+      - nw-data
+    ports:
+      - 3001:3000
+    deploy:
+      replicas: 1
+
   backend:
-    image: intkbv/bonnefanten-backend:sha-566a56f
+    image: intkbv/bonnefanten-backend:sha-eb295e8
     environment:
       ZEO_ADDRESS: zeo:8100
       SITE: Plone
@@ -34,21 +47,41 @@ services:
     depends_on:
       - zeo
 
+  backend-sync:
+    image: intkbv/bonnefanten-backend:sha-eb295e8
+    environment:
+      ZEO_ADDRESS: zeo:8100
+      SITE: Plone
+      DOCKER_DEPLOYMENT: "true"
+    volumes:
+      - /var/local/bonnefanten:/app/logs
+      - /var/local/bonnefanten/import:/app/import
+    env_file:
+      - ../container.env
+    networks:
+      - nw-data
+    ports:
+      - 8081:8080
+    deploy:
+      replicas: 1
+    depends_on:
+      - zeo
+
   zeo:
     image: plone/plone-zeo:latest
     # ports:
     # - 8100:8100
     volumes:
-      - /var/local/bonnefanten/data:/data
+      - /var/local/bonnefanten/data-new:/data
     networks:
       - nw-data
 
-  conversion:
-    image: plone/blocks-conversion-tool:latest
-    ports:
-      - 5000:5000
-    networks:
-      - nw-data
+  # conversion:
+  #   image: plone/blocks-conversion-tool:latest
+  #   ports:
+  #     - 5000:5000
+  #   networks:
+  #     - nw-data
 
 networks:
   nw-data:

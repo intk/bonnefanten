@@ -7,9 +7,6 @@ on:
         description: Exact tested source commit from this repository
         required: true
         type: string
-  push:
-    branches: [codex/cloud-release-tooling]
-    paths: [frontend/Dockerfile, .github/workflows/frontend.yml]
 
 permissions:
   contents: read
@@ -20,7 +17,7 @@ concurrency:
 
 jobs:
   candidate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
@@ -58,7 +55,7 @@ jobs:
           CANDIDATE: ${{ steps.source.outputs.tag }}
         run: |
           set -eu
-          docker run --rm --entrypoint sh "$CANDIDATE" -c 'test -s build/server.js && node --check build/server.js && yarn test --watchAll=false --runInBand'
+          docker run --rm --env CI=true --entrypoint sh "$CANDIDATE" -c 'test -s build/server.js && node --check build/server.js && yarn test --watchAll=false --runInBand'
       - name: Sign in to existing Docker Hub image repository
         uses: docker/login-action@v3
         with:

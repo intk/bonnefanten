@@ -1,8 +1,9 @@
 # syntax=docker/dockerfile:1
-FROM node:16-slim as base
-FROM base as builder
+FROM node:16.20.2-bookworm-slim@sha256:89061680359f5d9103d24f0066e2c96a8018c24d5c4fe8eb8d59d16dd4ab64ba AS base
+FROM base AS builder
 
 RUN <<EOT
+    set -eu
     apt-get update
     buildDeps="python3 build-essential git ca-certificates"
     apt-get install -y --no-install-recommends $buildDeps
@@ -15,6 +16,7 @@ RUN corepack enable
 USER node
 WORKDIR /build
 RUN <<EOT
+    set -eu
     make install
     yarn build
 EOT
@@ -27,6 +29,7 @@ LABEL maintainer="INTK <collective@plone.org>" \
       org.label-schema.vendor="INTK"
 
 RUN <<EOT
+    set -eu
     apt-get update
     buildDeps="busybox"
     apt-get install -y --no-install-recommends $buildDeps

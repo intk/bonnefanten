@@ -1,139 +1,86 @@
-name: Frontend CI
+name: Codex frontend candidate
 
 on:
-  push:
-    paths:
-      - "frontend/**"
-      - ".github/workflows/frontend.yml"
   workflow_dispatch:
+    inputs:
+      source_ref:
+        description: Exact tested source commit from this repository
+        required: true
+        type: string
+  push:
+    branches: [codex/cloud-release-tooling]
+    paths: [frontend/Dockerfile, .github/workflows/frontend.yml]
 
-env:
-  node-version: 16.x
+permissions:
+  contents: read
+
+concurrency:
+  group: codex-frontend-candidate-${{ github.repository }}
+  cancel-in-progress: false
 
 jobs:
-  eslint:
+  candidate:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
+    timeout-minutes: 45
     steps:
-      - name: Checkout codebase
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ env.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
         with:
-          node-version: ${{ env.node-version }}
-          cache: "yarn"
-          cache-dependency-path: "frontend/yarn.lock"
-
-      - name: Install packages
-        run: make install
-
-      - name: Lint
-        run: yarn run lint:ci
-
-  prettier:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
-    steps:
-      - name: Checkout codebase
-        uses: actions/checkout@v3
-
-      - name: Run Prettier
-        run: npx prettier@2.0.5 --single-quote --check 'src/**/*.{js,jsx,ts,tsx,css,scss}' --config=package.json
-
-  i18n:
-    name: i18n sync
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
-
-    steps:
-      - name: Checkout codebase
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ env.node-version }}
-        uses: actions/setup-node@v3
+          path: tooling
+      - uses: actions/checkout@v4
         with:
-          node-version: ${{ env.node-version }}
-          cache: "yarn"
-          cache-dependency-path: "frontend/yarn.lock"
-
-      - name: Install packages
-        run: make install
-
-      - name: Test i18n sync
-        run: make i18n-ci
-
-  unit:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./frontend
-    steps:
-      - name: Checkout codebase
-        uses: actions/checkout@v3
-
-      - name: Use Node.js ${{ env.node-version }}
-        uses: actions/setup-node@v3
+          ref: ${{ inputs.source_ref || github.sha }}
+          path: source
+      - name: Resolve immutable source and candidate tag
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          revision=$(git -C source rev-parse HEAD)
+          echo "revision=$revision" >> "$GITHUB_OUTPUT"
+          echo "tag=intkbv/bonnefanten-frontend:codex-$revision-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT" >> "$GITHUB_OUTPUT"
+      - uses: docker/setup-buildx-action@v3
+      - name: Build Linux production candidate
+        uses: docker/build-push-action@v6
         with:
-          node-version: ${{ env.node-version }}
-          cache: "yarn"
-          cache-dependency-path: "frontend/yarn.lock"
-
-      - name: Install packages
-        run: make install
-
-      - name: Test
-        run: make test
-
-  release:
-    runs-on: ubuntu-latest
-    needs: [unit]
-    permissions:
-      contents: read
-      packages: write
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            intkbv/bonnefanten-frontend
+          context: source/frontend
+          file: tooling/frontend/Dockerfile
+          platforms: linux/amd64
+          load: true
+          push: false
+          tags: ${{ steps.source.outputs.tag }}
           labels: |
-            org.label-schema.docker.cmd=docker run -d -p 3000:3000 intkbv/bonnefanten-frontend:latest
-          flavor: latest=false
-          tags: |
-            type=ref,event=branch
-            type=sha
-            type=raw,value=latest,enable={{is_default_branch}}
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Login to Container Registry
-        uses: docker/login-action@v2
+            org.opencontainers.image.source=https://github.com/${{ github.repository }}
+            org.opencontainers.image.revision=${{ steps.source.outputs.revision }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Verify production output and run frontend unit suite
+        env:
+          CANDIDATE: ${{ steps.source.outputs.tag }}
+        run: |
+          set -eu
+          docker run --rm --entrypoint sh "$CANDIDATE" -c 'test -s build/server.js && node --check build/server.js && yarn test --watchAll=false --runInBand'
+      - name: Sign in to existing Docker Hub image repository
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push
-        uses: docker/build-push-action@v3
+      - name: Publish unique candidate and record immutable digest
+        env:
+          CANDIDATE: ${{ steps.source.outputs.tag }}
+          SOURCE_REVISION: ${{ steps.source.outputs.revision }}
+        run: |
+          set -euo pipefail
+          docker push "$CANDIDATE"
+          docker image inspect "$CANDIDATE" --format '{{json .RepoDigests}}' > digests.json
+          python3 - <<'PY'
+          import json, os
+          metadata = {'source_revision':os.environ['SOURCE_REVISION'],
+                      'tag':os.environ['CANDIDATE'], 'digests':json.load(open('digests.json')),
+                      'deployed':False, 'requires_fix_specific_validation_before_deployment':True}
+          json.dump(metadata,open('candidate.json','w'),indent=2)
+          print(json.dumps(metadata,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
         with:
-          platforms: linux/amd64
-          context: frontend/
-          file: frontend/Dockerfile
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: $${{ steps.meta.outputs.labels }}
+          name: frontend-candidate
+          path: candidate.json
